@@ -1392,3 +1392,13 @@ html.cvar-open{overflow:hidden}
   .shelves.is-hero .shelf .rgrid .reason h3{font-size:14px !important;line-height:1.25}
   .shelves.is-hero .shelf .rgrid .reason svg{width:40px;height:40px}
 }
+/* 23 Oct 2026, owner: the kit pouch was hidden on phones (max-width:900px rule
+   above). Shown again under the words, sized to the phone's width. */
+@media (max-width:900px){
+  .shelves.is-hero .shelf.kit .kitorbit{display:block;position:relative;right:auto;top:auto;transform:none;
+    width:min(290px,72vw);height:auto;aspect-ratio:1;margin:46px auto 30px}
+  /* the desktop entrance animation lifts it by half its height - off on phones */
+  .shelves.is-hero .shelf.kit.is-on .kitorbit{opacity:1;animation:none;transform:none}
+  /* the "Packed by Satva Sahelis" stamp sat off the left edge of the phone */
+  .shelves.is-hero .shelf.kit .ko-stamp{left:-6%;bottom:-4%}
+}
