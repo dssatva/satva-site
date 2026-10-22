@@ -1,0 +1,133 @@
+/* ============================================================
+   DENSITY PASS — card.html only.                   21 Sep 2026
+   ------------------------------------------------------------
+   "cut down all the extra space in the whole site and the
+   unnecessary space and make the blocks visible block by block
+   resizing it to the screen"
+
+   MEASURED FIRST. At 1440x1000 the page was 9971px and the
+   blocks stood at:
+     top         919   already inside a screen
+     categories 1000   already exactly a screen, by design
+     range      3452   ← 2452px over. The whole problem.
+     reasons    1000   already exactly a screen, by design
+     made        788   212px of slack
+     mission     734   266px
+     saheli      545   455px
+     recipes     781   219px
+     contact     568   432px
+
+   So this is really two jobs: shave the slack off seven blocks,
+   and deal with the range, which is a different problem - 21
+   cards at four across is six rows, and no amount of padding
+   explains that. See the note above .grid-p below.
+   ============================================================ */
+
+/* ---- 1. the space between and inside blocks ---------------- */
+.made,.mission,.saheli,.contact,.recipes,.range,.reasons{
+  padding-top:clamp(26px,3vw,44px);
+  padding-bottom:clamp(26px,3vw,44px);
+}
+/* .categories and .reasons are deliberately 100svh blocks - the
+   owner asked for those as single frames. They keep their nav
+   offset; only the bottom is tightened. */
+.cats{padding-bottom:clamp(14px,1.6vw,22px);}
+
+.sechead,.rechead,.mhead{margin-bottom:clamp(16px,2vw,26px);}
+.sechead .lede,.rechead .lede{margin-top:clamp(6px,.8vw,10px);}
+.range .rangesub{margin:clamp(8px,1vw,14px) 0 clamp(12px,1.4vw,18px);}
+.range .rangenote{margin-top:clamp(16px,2vw,26px);}
+.made .mnote{margin-top:clamp(8px,1vw,14px);}
+.recipes .recfoot{margin-top:clamp(18px,2vw,28px);}
+
+/* ---- 2. the range -----------------------------------------
+   THIS ONE CANNOT BE A SINGLE SCREEN AND STAY READABLE. Twenty-one
+   cards at four across is six rows; at 1000px of viewport that
+   would be a 150px card, which is a thumbnail, not a product.
+
+   What is done instead: five columns rather than four, and about
+   130px off every card - the picture goes from a 1:1 square to
+   4:3, and the body loses the padding it did not need. Measured:
+   the section falls from 3452px to roughly half that, and a
+   single shelf (Spices, twelve) now lands close to one screen.
+   Tap a shelf tab and it gets closer still. */
+.range .grid-p{
+  grid-template-columns:repeat(auto-fill,minmax(212px,1fr));
+  gap:clamp(12px,1.4vw,18px);
+}
+.range .pcard .jcard-film,.range .pcard .pthumb{aspect-ratio:4/3;}
+.range .pbody{padding:12px 14px 14px;}
+.range .pbody h3{font-size:1.02rem;}
+.range .pbody .dv{font-size:.86rem;margin-bottom:5px;}
+.range .pform{margin-bottom:7px;padding:2px 8px;}
+.range .pbody p{margin-bottom:10px;font-size:.85rem;}
+.range .pcard.is-cardjrn .jcard-kick{margin-bottom:2px;font-size:.58rem;}
+.range .pcard.is-cardjrn .pjourney{margin-top:6px;}
+.range .jcs-cap{padding:0 12px 14px;}
+.range .jcs-cap strong{font-size:clamp(.86rem,1vw,.96rem);}
+.range .jcs-meta b{font-size:1.15rem;}
+
+/* ---- 3. the blocks that only needed a trim ---------------- */
+.made .mstage{height:clamp(360px,50vh,520px);margin-bottom:clamp(8px,1vw,14px);}
+.mission .msgrid,.saheli .shgrid{gap:clamp(18px,2.4vw,34px);}
+.contact .cgrid{margin-top:clamp(16px,2vw,28px);gap:clamp(12px,1.6vw,22px);}
+.contact .ccard{padding:18px 18px;}
+
+@media (max-width:900px){
+  .range .grid-p{grid-template-columns:repeat(auto-fill,minmax(168px,1fr));}
+}
+
+/* ============================================================
+   THE FULL-HEIGHT BLOCKS, ACTUALLY FULL HEIGHT     21 Sep 2026
+   ------------------------------------------------------------
+   "Remove this space from here and fill it"
+
+   .categories and .reasons were built as `min-height:100svh` with
+   their content centred, and later given `padding-top:max(96px,…)`
+   so the centred content could not rise behind the sticky nav.
+   Both changes are individually right and together they are wrong:
+   a block that is a WHOLE screen tall, plus 96px of nav clearance,
+   is 81px taller than the screen actually has room for.
+
+   Measured at 1440x800, scrolled so the section meets the nav:
+     usable            719px   (800 less the 81px nav)
+     section          800px   → 81px over, cards clipped at the foot
+     gap above kicker 150px   → the centring pushing content down
+
+   So: the block is now `100svh − the nav`, and the photograph is
+   sized from what is left rather than from a fixed 56svh. The gap
+   at the top closes because the content finally fills the box. */
+
+/* NOTE: the section is <section class="cats" id="categories"> — the first
+   version of this block targeted `.categories`, which is the id and not a
+   class, so none of it applied and the measurement came back unchanged. */
+.cats,.reasons{
+  min-height:calc(100vh - 82px);
+  min-height:calc(100svh - 82px);
+  /* 84px is the floor: the nav is 81px deep and the kicker needs a few
+     pixels of air under it. Anything less and "Something for every shelf"
+     sits behind the header on a short window - the exact bug the note in
+     satva.css records. Whatever is saved here goes to the picture below. */
+  padding-top:84px;
+  padding-bottom:clamp(12px,2vh,24px);
+  scroll-margin-top:84px;
+}
+.cats .chead,.reasons .sechead{margin-bottom:clamp(10px,2vh,26px);}
+.cats .chead .lede{margin-top:clamp(6px,1.1vh,14px);}
+
+/* 350px is the measured chrome: the kicker and its margin, the card's
+   body under the picture, and the block's own padding. The 620px
+   ceiling lets a tall monitor fill rather than sit on a 520px picture
+   with 200px of slack centred around it. */
+.cats .catcard .cshot{
+  height:clamp(150px,calc(100vh - 344px),620px);
+  height:clamp(150px,calc(100svh - 344px),620px);
+}
+
+/* Below ~620px of window there is nothing sensible to fill with -
+   the picture would be a sliver - so these two scroll like any
+   other block instead. */
+@media (max-height:620px){
+  .cats,.reasons{min-height:0;}
+  .cats .catcard .cshot{height:230px;}
+}

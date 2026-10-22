@@ -1,0 +1,281 @@
+/* ============================================================
+   FIELD TO PLATE — the product journey overlay.      20 Sep 2026
+   ------------------------------------------------------------
+   Added for the turmeric card first; the markup is generated from
+   a data object in satva.js, so the other twenty products drop in
+   without touching this file.
+
+   WHY AN OVERLAY AND NOT A PAGE: the range grid is the thing the
+   owner wants people to browse. Sending them to /turmeric.html and
+   back loses their place in the grid and their filter. The overlay
+   opens over the grid, scrolls on its own, and closes back exactly
+   where they were.
+
+   WHY SCROLL-SNAP AND NOT A CAROUSEL: the point is that this is a
+   sequence with a direction - field at the top, packet at the
+   bottom. A carousel lets you arrive at stage 5 first. Snapping
+   down a single column makes the order unskippable, which is the
+   whole teaching job.
+
+   Deleting the <link> to this file and the #journey markup removes
+   the feature with no other edits.
+   ============================================================ */
+
+/* ---- the badge on the photograph ------------------------------
+   The first version of this feature put ONE quiet text link at the
+   foot of the card body. On a real screen that link fell below the
+   card's visible edge and read as fine print - the owner opened the
+   page and could not find it at all. So the primary trigger is now
+   ON the picture, where nothing can push it out of view, and it says
+   what it does in words rather than in small caps.
+
+   It sits bottom-right, clear of the veg mark at top-left and of the
+   5px accent bar .pthumb::after draws along the bottom. */
+.pjbadge{
+  position:absolute;z-index:3;right:12px;bottom:18px;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 15px 9px 11px;border:0;border-radius:999px;
+  /* White on --gold measures 3.06:1 - under AA for text this size.
+     --ink on --gold is 4.81:1, and it is the pairing the "Order on
+     WhatsApp" button already uses, so the badge reads as the same
+     family of control rather than a new one. */
+  background:var(--gold);color:var(--ink);cursor:pointer;
+  font:600 .74rem/1 "Jost",system-ui,sans-serif;letter-spacing:.02em;
+  box-shadow:0 8px 20px -8px rgba(30,44,22,.55);
+  transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.pjbadge svg{width:17px;height:17px;flex:none;}
+.pjbadge:hover,.pjbadge:focus-visible{
+  background:var(--gold-lt);transform:translateY(-2px);  /* --ink on --gold-lt: 7.57:1 */
+  box-shadow:0 12px 26px -8px rgba(30,44,22,.62);
+}
+/* A journey product with no photograph yet falls back to the tile, which
+   draws a mortar glyph in the same bottom-right corner. The badge wins -
+   it is the one that does something. Scoped with :has() so the mortar is
+   untouched on the other twenty cards. */
+.pthumb:has(.pjbadge) .mortar{display:none;}
+
+/* ---- the quieter text trigger in the card body ----------------
+   Kept as a second route for anyone reading the card rather than
+   scanning the pictures. */
+.pjourney{
+  display:inline-flex;align-items:center;gap:7px;
+  margin:10px 0 0;padding:0;border:0;background:none;
+  font:500 .74rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--sage-soft);cursor:pointer;
+  border-bottom:1px solid transparent;
+  transition:color .25s var(--ease),border-color .25s var(--ease);
+}
+.pjourney svg{width:15px;height:15px;flex:none;}
+.pjourney:hover,.pjourney:focus-visible{color:var(--acc-ink,var(--band));border-bottom-color:currentColor;}
+
+/* ---- the overlay shell --------------------------------------- */
+.jrn{
+  position:fixed;inset:0;z-index:120;
+  background:#11170c;
+  opacity:0;visibility:hidden;
+  transition:opacity .42s var(--ease),visibility .42s;
+}
+.jrn.is-open{opacity:1;visibility:visible;}
+body.jrn-lock{position:fixed;left:0;right:0;width:100%;overflow:hidden;}
+
+.jrn-scroll{
+  height:100%;overflow-y:auto;overflow-x:hidden;
+  scroll-snap-type:y mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.jrn-scroll::-webkit-scrollbar{display:none;}
+
+/* ---- close + label rail -------------------------------------- */
+.jrn-close{
+  position:absolute;top:18px;right:18px;z-index:6;
+  width:46px;height:46px;border:0;border-radius:50%;
+  background:rgba(17,23,12,.62);
+  -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);
+  color:#f4f3e7;cursor:pointer;display:grid;place-items:center;
+  transition:background .25s var(--ease),transform .25s var(--ease);
+}
+.jrn-close:hover{background:rgba(17,23,12,.88);transform:rotate(90deg);}
+.jrn-close svg{width:19px;height:19px;}
+
+/* The rail is decoration that happens to be useful: it tells you
+   how far through the process you are without a scrollbar. */
+.jrn-rail{
+  position:absolute;left:26px;top:50%;transform:translateY(-50%);z-index:6;
+  display:flex;flex-direction:column;gap:13px;
+}
+.jrn-rail button{
+  width:9px;height:9px;padding:0;border:0;border-radius:50%;cursor:pointer;
+  background:rgba(244,243,231,.26);
+  transition:background .3s var(--ease),transform .3s var(--ease);
+}
+.jrn-rail button:hover{background:rgba(244,243,231,.6);}
+.jrn-rail button.on{background:var(--gold-lt);transform:scale(1.5);}
+@media (max-width:820px){ .jrn-rail{display:none;} }
+
+/* ---- one stage ------------------------------------------------ */
+.jstage{
+  position:relative;min-height:100svh;
+  scroll-snap-align:start;scroll-snap-stop:always;
+  display:grid;place-items:center;
+  overflow:hidden;
+}
+.jstage-shot{position:absolute;inset:0;z-index:0;}
+.jstage-shot img,.jstage-shot video{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.06);
+  transition:transform 1.6s var(--ease);
+}
+.jstage.is-on .jstage-shot img,.jstage.is-on .jstage-shot video{transform:scale(1);}
+
+/* The scrim. Measured, not guessed: cream type (#f4f3e7) over a
+   WHITE photograph is the worst case, and it needs alpha .68 of
+   #11170c beneath it to clear 4.5:1. The gradient is heavier at the
+   bottom where the copy sits and lighter at the top so the picture
+   still reads as a picture. The floor never drops below .68 inside
+   the copy's own band. */
+.jstage-shot::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(17,23,12,.34) 0%,
+    rgba(17,23,12,.30) 26%,
+    rgba(17,23,12,.70) 58%,
+    rgba(17,23,12,.86) 100%);
+}
+/* The intro and the closing card centre their copy, which lands in the
+   LIGHTEST part of the gradient above. Measured over the brightest
+   photograph in the set (the leaves), cream at .9 opacity fell to
+   4.24:1 there - under AA. These two cards get their own ramp with a
+   .58 floor through the middle band, which brings the same type to
+   5.09:1. */
+.jstage.is-intro .jstage-shot::after,
+.jstage.is-end .jstage-shot::after{
+  background:linear-gradient(180deg,
+    rgba(17,23,12,.40) 0%,
+    rgba(17,23,12,.58) 30%,
+    rgba(17,23,12,.62) 70%,
+    rgba(17,23,12,.78) 100%);
+}
+
+.jstage-copy{
+  position:relative;z-index:2;
+  width:min(660px,88vw);
+  margin-left:clamp(0px,7vw,120px);
+  justify-self:start;
+  align-self:end;
+  padding:0 0 clamp(64px,10vh,116px);
+  color:#f4f3e7;
+}
+@media (max-width:820px){
+  .jstage-copy{justify-self:center;margin-left:0;width:min(660px,90vw);}
+}
+
+.jstage-no{
+  display:block;
+  font:300 clamp(3.4rem,10vw,6.2rem)/1 "Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  color:var(--gold-lt);opacity:.78;   /* .5 measured 2.00:1 - under the 3:1 large-text floor */
+  margin:0 0 -.12em;
+}
+.jstage-copy h3{
+  margin:0 0 12px;
+  font:400 clamp(1.9rem,4.4vw,3.05rem)/1.08 "Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  color:#f4f3e7;letter-spacing:-.012em;
+}
+.jstage-copy p{
+  margin:0;max-width:52ch;
+  font:300 clamp(1rem,1.5vw,1.12rem)/1.62 "Jost",system-ui,sans-serif;
+  color:rgba(244,243,231,.94);
+}
+.jstage-when{
+  display:inline-block;margin:0 0 16px;
+  padding:6px 13px;border-radius:999px;
+  border:1px solid rgba(223,180,89,.44);
+  font:500 .69rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-lt);
+}
+
+/* The copy rises once, when its stage comes into view. */
+.jstage-copy > *{opacity:0;transform:translateY(18px);}
+.jstage.is-on .jstage-copy > *{animation:jrise .8s var(--ease) forwards;}
+.jstage.is-on .jstage-copy > *:nth-child(1){animation-delay:.10s;}
+.jstage.is-on .jstage-copy > *:nth-child(2){animation-delay:.18s;}
+.jstage.is-on .jstage-copy > *:nth-child(3){animation-delay:.26s;}
+.jstage.is-on .jstage-copy > *:nth-child(4){animation-delay:.34s;}
+.jstage.is-on .jstage-copy > *:nth-child(5){animation-delay:.42s;}
+@keyframes jrise{to{opacity:1;transform:none;}}
+
+/* ---- the opening card ----------------------------------------- */
+.jstage.is-intro .jstage-copy{
+  justify-self:center;align-self:center;margin-left:0;text-align:center;
+  padding:0;width:min(720px,88vw);
+}
+.jstage.is-intro .jstage-copy p{margin-inline:auto;}
+.jkick{
+  display:block;margin:0 0 14px;
+  font:500 .74rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--gold-lt);
+}
+.jstage.is-intro h3{font-size:clamp(2.5rem,7vw,4.6rem);}
+.jscroll-hint{
+  display:inline-flex;align-items:center;gap:9px;margin-top:30px;
+  font:500 .7rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(244,243,231,.72);
+}
+.jscroll-hint svg{width:15px;height:15px;animation:jnudge 1.9s var(--ease) infinite;}
+@keyframes jnudge{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+
+/* ---- the closing card ----------------------------------------- */
+.jstage.is-end .jstage-copy{
+  justify-self:center;align-self:center;margin-left:0;text-align:center;
+  padding:0;width:min(640px,88vw);
+}
+.jstage.is-end .jstage-copy p{margin-inline:auto;}
+.jend-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px;}
+.jend-actions a,.jend-actions button{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 24px;border-radius:999px;cursor:pointer;
+  font:500 .78rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.09em;text-transform:uppercase;
+  text-decoration:none;border:1px solid rgba(244,243,231,.42);
+  background:none;color:#f4f3e7;
+  transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);
+}
+.jend-actions .j-primary{background:var(--gold-lt);border-color:var(--gold-lt);color:#221806;}
+.jend-actions .j-primary:hover{background:#f1ddab;border-color:#f1ddab;}
+.jend-actions a:hover,.jend-actions button:hover{background:rgba(244,243,231,.14);}
+
+/* ---- credits -------------------------------------------------- */
+.jcredit{
+  position:absolute;right:16px;bottom:14px;z-index:3;
+  max-width:44ch;text-align:right;
+  font:300 .62rem/1.45 "Jost",system-ui,sans-serif;
+  color:rgba(244,243,231,.64);  /* .5 measured 4.29:1 on the deepest scrim */
+}
+.jcredit a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+.jcredit a:hover{color:rgba(244,243,231,.82);}
+/* Below 820px the credit leaves its absolute corner and becomes a second
+   grid row, which is why the stage also stops being a centring grid and
+   becomes a bottom-anchored column - otherwise the copy floats in the
+   middle with dead space under it. */
+@media (max-width:820px){
+  .jcredit{position:static;margin:14px 0 0;text-align:left;max-width:none;}
+  .jstage{display:flex;flex-direction:column;justify-content:flex-end;}
+  .jstage-copy{width:100%;padding:0 5vw clamp(20px,4vh,40px);}
+  .jcredit{padding:0 5vw clamp(26px,5vh,52px);}
+  .jstage.is-intro,.jstage.is-end{justify-content:center;}
+  .jstage.is-intro .jstage-copy,.jstage.is-end .jstage-copy{width:100%;padding:0 5vw;}
+}
+
+/* Someone who has asked for less motion gets the sequence without
+   the motion: no snap, no zoom, no rise. The content is identical. */
+@media (prefers-reduced-motion:reduce){
+  .jrn-scroll{scroll-snap-type:none;}
+  .jstage-shot img,.jstage-shot video{transform:none;transition:none;}
+  .jstage-copy > *{opacity:1;transform:none;animation:none !important;}
+  .jscroll-hint svg{animation:none;}
+}

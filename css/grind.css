@@ -1,0 +1,28 @@
+/* ==========================================================
+   DS SATVA — "the grind" canvas
+   Kept in its own file so the whole effect can be removed by
+   deleting two lines in index.html. z-index 4 puts the powder
+   above the slide art and its photo band, below the arrows,
+   dots and "next up" card (z 6-7). pointer-events:none so it
+   never eats a click.
+   ========================================================== */
+
+#grind {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease 0.25s;
+}
+
+/* grind.js adds .on once it has sized itself and has grains to
+   draw, so the powder settles in rather than snapping on */
+#grind.on { opacity: 1; }
+
+/* The effect is decoration. Anyone who has asked for less
+   motion gets the hero exactly as it was — grind.js also
+   returns early on the same query, this is the belt and braces. */
+@media (prefers-reduced-motion: reduce) {
+  #grind { display: none; }
+}

@@ -1,0 +1,31 @@
+/* ============================================================
+   LEFT-ALIGNED LAYOUT                                6 Oct 2026
+   "i want it to be left aligned" - on a wide screen the 1280px
+   centred column left a wide empty band on the left and the page
+   read as pushed to the right. Content now runs the full width
+   with the same side gutter on both edges, so it starts at the
+   left. Delete this file's <link> to go back to the centred page.
+   ============================================================ */
+.wrap{max-width:none;margin-inline:0;}
+/* the shelf cards had their own 1720px cap - with the column no longer
+   centred that left a gap on the right only */
+.cats .wrap{max-width:none;}
+
+/* ---- one left edge for every section ------------------------------------
+   "Align all the contents and fix it to the page". Every heading, grid and
+   strip now starts on the same left gutter as the nav and the hero copy, and
+   runs to the same right gutter - no centred columns inside the page. */
+.chead,.reasons .rhead,.made .mhead,.ohead,.recipes .rechead{
+  text-align:left;margin-left:0;margin-right:0;
+}
+.chead .lede,.recipes .rechead .lede{margin-left:0;margin-right:0;}
+.reasons .rhead .rule{margin-inline:0;}
+.rgrid,.recgrid,.recipes .recgrid{max-width:none;margin-inline:0;}
+.rcta,.onote{text-align:left;margin-inline:0;}
+.recipes .recfoot{justify-content:flex-start;}
+.cats .catgrid{max-width:none;margin-inline:0;}
+.recipes .rechead .lede{text-align:left;}
+.recipes .rechead h2,.recipes .rechead::before{text-align:left;margin-left:0;margin-right:0;}
+/* the four "Why choose SATVA" arches were capped at 300px and centred in their
+   columns, so the first started ~70px in from everything else */
+.rgrid .reason{max-width:none;width:100%;margin-inline:0;}

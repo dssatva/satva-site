@@ -1,0 +1,42 @@
+/* ============================================================
+   SATVA SAHELI - the special hero slide.            7 Oct 2026
+   ------------------------------------------------------------
+   Linked from ports/8002/index.html only, so site-v3 (:8003),
+   which shares this css folder, is untouched.
+   Logo #11 "Reversed - deep green": bright mark, cream SATVA,
+   gold SAHELI, all in Cinzel as set in the logo PDF.
+   ============================================================ */
+
+/* Mirror the photograph so the woman stands on the right, in the
+   clear part of the scrim, instead of under the words. */
+.shelves.is-hero .shelf.is-sahspecial .sh-shot img{transform:scale(-1.06,1.06);}
+.shelves.is-hero .shelf.is-sahspecial.is-on .sh-shot img{transform:scale(-1,1);}
+@media (prefers-reduced-motion:reduce){
+  .shelves.is-hero .shelf.is-sahspecial .sh-shot img{transform:scaleX(-1);}
+}
+
+.is-sahspecial .sahlogo{
+  display:flex;align-items:center;gap:16px;margin:0 0 22px;
+}
+.is-sahspecial .sahlogo img{
+  width:clamp(64px,7vw,96px);height:auto;display:block;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.35));
+}
+.is-sahspecial .sahlogo-w{display:flex;flex-direction:column;line-height:1;}
+.is-sahspecial .sahlogo-w b{
+  font-family:"Cinzel",serif;font-weight:600;color:#f1e6cf;
+  font-size:clamp(1.9rem,3.2vw,2.9rem);letter-spacing:.04em;
+}
+.is-sahspecial .sahlogo-w i{
+  font-family:"Cinzel",serif;font-weight:500;font-style:normal;color:#d4a63c;
+  font-size:clamp(.8rem,1.25vw,1.12rem);letter-spacing:.34em;
+  margin-top:7px;padding-left:.18em;
+}
+
+.is-sahspecial .sahbtns{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;}
+.is-sahspecial .sahbtns .pill{margin:0;}
+.is-sahspecial .sahjoin{
+  color:#f1e6cf;font-weight:500;text-decoration:none;
+  border-bottom:1px solid #d4a63c;padding-bottom:2px;
+}
+.is-sahspecial .sahjoin:hover{color:#d4a63c;}

@@ -1,0 +1,37 @@
+Product card photographs, Unsplash License (free for commercial use, no permission needed).
+Downloaded 6 Oct 2026 for the still product cards.
+
+u-turmeric.jpg                   Turmeric               Valentin Balan - https://unsplash.com/photos/IG0aSfHhXxQ
+u-chilli-powder.jpg              Chilli Powder          Victoria Zakharchuk - https://unsplash.com/photos/xDjGxM8N4sY
+u-coriander-seeds.jpg            Coriander Seeds        Mockupo - https://unsplash.com/photos/nOyjlj-dse0
+u-cumin-seeds.jpg                Cumin Seeds            Umesh Soni - https://unsplash.com/photos/CfryyqgO9zc
+u-mustard-seeds.jpg              Mustard Seeds          Jaspreet Kalsi - https://unsplash.com/photos/Wcw3xd5Nk78
+u-black-pepper.jpg               Black Pepper           Nancy Hughes - https://unsplash.com/photos/6FulpMThQ00
+u-garam-masala.jpg               Garam Masala           Aditya Kulkarni - https://unsplash.com/photos/MCeNtqgbJUo
+u-biryani-masala.jpg             Biryani Masala         Timothy Newman - https://unsplash.com/photos/pBwMdofMxtU
+u-meat-masala.jpg                Meat Masala            Anju Ravindranath - https://unsplash.com/photos/Nihdo084Yos
+u-sambar-masala.jpg              Sambar Masala          Min Ling - https://unsplash.com/photos/36g2WADarDk
+u-chatpat-masala.jpg             Chatpat Masala         Prchi Palwe - https://unsplash.com/photos/4g3SAf9ZmYc
+u-toor-dal.jpg                   Toor Dal               Chandan Chaurasia - https://unsplash.com/photos/J5KMugvdP44
+u-chana-dal.jpg                  Chana Dal              Mrs Chimpanzeee - https://unsplash.com/photos/2nEDE_zt7rg
+u-chia-seeds.jpg                 Chia Seeds             Karyna Panchenko - https://unsplash.com/photos/jXEsLogwsIA
+u-flax-seeds.jpg                 Flax Seeds             Karyna Panchenko - https://unsplash.com/photos/sJcZCXb1K_Q
+u-quinoa.jpg                     Quinoa                 Dan Dennis - https://unsplash.com/photos/TwfuHcKKByw
+u-methi-seeds.jpg                Methi Seeds            Sara Hobbs - https://unsplash.com/photos/rQ0G2vh2Jvo
+u-himalayan-pink-salt.jpg        Himalayan Pink Salt    stephan de MARANTHI - https://unsplash.com/photos/rAXxoYtwkwk
+u-coconut-sugar.jpg              Coconut Sugar          Pea - https://unsplash.com/photos/GEd3UTVzCBY
+u-arch-chilli-powder.jpg         Hero arch (Spices)     engin akyurt - https://unsplash.com/photos/3b_pXi4E_VI
+
+Hero photographs, Wikimedia Commons. Downloaded 7 Oct 2026. Attribution and
+share-alike REQUIRED: the credit line in the :8002 footer must stay while these are used.
+
+hero-essentials-salt-mine.jpg    Healthy Essentials bg  Shikari7, CC BY-SA 3.0 - https://commons.wikimedia.org/wiki/File:Khewra_Salt_Mine_-_Crystal_Deposits_on_the_mine_walls.jpg
+arch-essentials-pink-salt.jpg    Healthy Essentials arch Ivar Leidus, CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Himalayan_salt_(coarse).jpg
+hero-pulses-market.jpg           Pulses bg              Adam Jones, CC BY-SA 2.0 - https://commons.wikimedia.org/wiki/File:Pulses_for_Sale_in_Market_-_Darjeeling_-_West_Bengal_-_India_(12431603075).jpg
+arch-pulses-toor-pods.jpg        Pulses arch            Nanditha Gogate, WELL Labs, CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Pigeon_pea_pods_in_Raichur,_Karnataka.jpg
+
+Replaced later on 7 Oct 2026 by the owner's picks from hero-variations.html (salt-mine
+photo no longer used; its credit is out of the footer):
+hero-pulses-all-colours.jpg      Pulses bg (composite)  Adam Jones, CC BY-SA 2.0 (Darjeeling) + Timothy A. Gonsalves, CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Pulses_Red_Chillies_Ooty_Market_Nilgiris_Aug25_A7CR_07122.jpg
+hero-essentials-pink-salt.jpg    Healthy Essentials bg  Ivar Leidus, CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Himalayan_salt_(coarse).jpg
+arch-essentials-monk-fruit.jpg   Healthy Essentials arch SamHolt6, CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Monkfruit_Sweetener.jpg

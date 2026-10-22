@@ -1,0 +1,1356 @@
+/* ============================================================
+   CENTRED HEADINGS, :8002 ONLY                       7 Oct 2026
+   ------------------------------------------------------------
+   Owner, on "Why choose SATVA": "keep the topics in the center".
+   css/left-align.css (shared with :8003) pulls these to the left
+   edge; this file, linked after it from ports/8002/index.html
+   only, puts the heading and the button under the arches back
+   in the middle. The four arches keep their full-width grid.
+   ============================================================ */
+.reasons .rhead{text-align:center;margin-left:auto;margin-right:auto;}
+.reasons .rhead .rule{margin-inline:auto;}
+.reasons .rcta{text-align:center;margin-inline:auto;}
+
+/* ============================================================
+   "SOMETHING FOR EVERY SHELF", :8002 ONLY             8 Oct 2026
+   ------------------------------------------------------------
+   Owner: "minimize the space and keep the title in the center".
+   .cats was a full-viewport flex box (min-height ~100vh, 84px top
+   padding) with the cards centred vertically, which left a large
+   empty band under the hero's tab strip. Let it size to its
+   content and centre the kicker heading over the cards.
+   ============================================================ */
+/* 8 Oct, second pass. Owner: "set the website to the page" - every
+   block is one screen tall, and dropping min-height let the next block
+   show under this one. So the screen height stays, and the space saved
+   at the top goes to the pictures, not to empty space. The cards stretch
+   to fill whatever is left (flex, not a pixel guess), so the block is
+   exactly one screen at every window size where four cards sit in one
+   row. Narrower or very short windows keep the stacked/scrolling rules
+   from satva.css and density.css. */
+.cats{padding-top:40px;justify-content:flex-start;}
+.cats .chead{text-align:center;margin-left:auto;margin-right:auto;}
+.cats .chead .kick{text-align:center;}
+@media (min-width:1081px) and (min-height:621px){
+  .cats .wrap{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
+  .cats .catgrid{flex:1 1 auto;min-height:0;}
+  .cats .catcard .cshot{flex:1 1 0;height:auto;min-height:150px;}
+  .cats .catcard .cmeta{flex:0 0 auto;}   /* words take their own height; the picture takes the rest */
+  /* two lines reserved for every blurb, so a one-line blurb (Seeds) does
+     not make its picture taller and drop its title below the others */
+  .cats .catcard .cblurb{display:block;min-height:2lh;}
+}
+
+/* ============================================================
+   HERO SHELF TABS ON ONE LINE, :8002 ONLY              8 Oct 2026
+   ------------------------------------------------------------
+   Owner: "bring the monk fruit sweetener in the same line". Nine
+   tabs need ~1054px with 26px gaps, so below a ~1300px window the
+   last one wrapped to a second row. The gap now shrinks with the
+   window, and the strip never wraps: if a window is too narrow for
+   even that, it scrolls sideways (scrollbar hidden, swipe/trackpad
+   still work) instead of starting a second row. Padding keeps the
+   focus ring and the gold underline from being clipped.
+   ============================================================ */
+.shtabs{
+  flex-wrap:nowrap;gap:clamp(10px,1.4vw,26px);
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none;
+  padding:4px 3px;margin:-4px -3px;
+}
+.shtabs::-webkit-scrollbar{display:none;}
+.shtabs .etab{flex:none;white-space:nowrap;}
+/* and the labels may go a touch smaller (.98rem floor -> .86rem) so all
+   nine still show in full down to the 1080px two-column breakpoint */
+.shtabs .etab{font-size:clamp(.86rem,1.1vw,1.1rem);}
+
+/* ============================================================
+   FIRST SCREEN FITS THE WINDOW, :8002 ONLY             8 Oct 2026
+   ------------------------------------------------------------
+   Owner: "the content is not yet fitting the page properly". The
+   hero was sized as the screen less the 81px nav, but the 39px
+   .topline sits above the nav too, and the slides' own floor
+   pushed it a further 17px - so on a 1245x657 window the tab strip
+   ended 56px below the fold. The hero is now exactly one window
+   tall (see the 88px note below), and the slides fill that
+   instead of setting a height of their own.
+   ============================================================ */
+/* 88px, not 81: html has scroll-snap with scroll-padding-top:88px
+   (satva.css), so every block - the hero included - comes to rest with
+   its top 88px down the window. A block that is to fill "the page" is
+   therefore the window less 88px. Desktop only: from 1024px down the
+   slides stack (picture over words) and must be free to grow. */
+@media (min-width:1025px){
+  /* The hero is the exception: it is what you see on arrival, at the
+     very top, with the 39px .topline above the 81px nav - so it is the
+     window less 120px, and it does not snap (snapping it would scroll
+     the topline away and hide the bottom 32px of the tab bar). */
+  .shelves.is-hero{height:calc(100vh - 120px);height:calc(100svh - 120px);min-height:0;scroll-snap-align:none;}
+  .shelves.is-hero .shelf{min-height:0;}
+  .cats,.reasons{min-height:calc(100vh - 88px);min-height:calc(100svh - 88px);}
+}
+/* the 16px top/bottom padding the short-window rule in satva.css gives
+   every block left a sand strip under the tab bar; the hero is a fixed
+   height now, so that space goes to the slides */
+@media (min-width:1025px){ .shelves.is-hero{padding-block:0;} }
+/* On a short window the tallest slides (Spices, Healthy Essentials) were
+   taller than the stage and lost their top and bottom lines. The gaps
+   between kicker, headline, paragraph and button close up instead. */
+@media (min-width:1025px) and (max-height:800px){
+  .shelves.is-hero .sh-copy{padding-block:8px;}
+  .shelves.is-hero .sh-copy .kick{margin-bottom:12px;}
+  .shelves.is-hero .sh-copy h2{margin:4px 0 10px;}
+  .shelves.is-hero .sh-copy > p:not(.kick):not(.sh-count){margin-bottom:16px;}
+  .shelves.is-hero .sh-copy .sh-count{margin-bottom:12px;}
+}
+
+/* "Our mission" at 1245x657 was 621px against a 569px screen: the
+   portrait is 74vh, and with the section padding and the dots/arrows
+   row (60px) under it, the controls were cut off at the bottom. The
+   picture now takes what is left of one screen (window - 88px snap
+   offset - 2x24px padding - 60px controls = 100svh - 196px), and the
+   block centres its content in one screen. Desktop only - the
+   stacked layout below 820px has its own picture height. */
+@media (min-width:821px){
+  .mission{padding-block:24px;min-height:calc(100vh - 88px);min-height:calc(100svh - 88px);
+    display:flex;flex-direction:column;justify-content:center;}
+  .mission .msshot{height:clamp(240px,calc(100vh - 196px),620px);height:clamp(240px,calc(100svh - 196px),620px);}
+}
+
+/* "How we make" was shorter than a screen on anything taller than a
+   laptop (81px short at 1366x768, 212px at 1920x1080), so the next
+   block showed under it. It fills one screen too, content centred. */
+@media (min-width:1025px) and (min-height:621px){
+  .made{min-height:calc(100vh - 88px);min-height:calc(100svh - 88px);
+    display:flex;flex-direction:column;justify-content:center;}
+  .made > .wrap{width:100%;}
+}
+
+/* "Cook something for someone" turns through five sets of four every
+   5s (js/recipes-rotate-8002.js). Each card has its own entrance and
+   exit, staggered left to right by 130ms (owner, 8 Oct: "some animation
+   for each pic how it's displayed"):
+   - in:   the photo wipes up from the bottom while easing out of a 1.18x
+           zoom, then the name and the product line rise into place;
+   - held: the photo creeps 1 -> 1.06 over the hold, a slow push-in;
+   - out:  the card lifts 14px and fades.
+   OUT_MS in the script must cover the last card's delay + its fade. */
+#recipes-grid .reccard.rc-in .rshot{
+  animation:rcWipe .9s cubic-bezier(.22,.8,.24,1) both;
+  animation-delay:calc(var(--i,0) * 130ms);
+}
+#recipes-grid .reccard.rc-in .rshot img{
+  animation:rcZoom 1.3s cubic-bezier(.22,.8,.24,1) both,
+            rcDrift 6s linear 1.3s both;
+  animation-delay:calc(var(--i,0) * 130ms), calc(var(--i,0) * 130ms + 1.3s);
+}
+#recipes-grid .reccard.rc-in h3,
+#recipes-grid .reccard.rc-in .ruses{
+  animation:rcRise .7s cubic-bezier(.22,.8,.24,1) both;
+  animation-delay:calc(var(--i,0) * 130ms + .45s);
+}
+#recipes-grid .reccard.rc-in .ruses{animation-delay:calc(var(--i,0) * 130ms + .55s);}
+#recipes-grid.is-swapping .reccard{
+  animation:rcOut .45s cubic-bezier(.5,0,.75,0) both;
+  animation-delay:calc(var(--i,0) * 90ms);
+}
+@keyframes rcWipe{ from{clip-path:inset(100% 0 0 0);} to{clip-path:inset(0 0 0 0);} }
+@keyframes rcZoom{ from{transform:scale(1.18);} to{transform:scale(1);} }
+@keyframes rcDrift{ from{transform:scale(1);} to{transform:scale(1.06);} }
+@keyframes rcRise{ from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:none;} }
+@keyframes rcOut{ to{opacity:0;transform:translateY(-14px);} }
+@media (prefers-reduced-motion:reduce){
+  #recipes-grid .reccard,#recipes-grid .reccard *{animation:none !important;}
+}
+
+/* ============================================================
+   "HOW WE MAKE", ONE CARD PER PRODUCT, :8002 ONLY      8 Oct 2026
+   ------------------------------------------------------------
+   Owner: take every product's "How it is made" and put it in
+   How we make, keep the product cards' buttons, and let it slide.
+   window.SATVA_MAKE_PER_PRODUCT (index.html) turns on the per-
+   product coverflow in js/satva.js. Its face styles normally live
+   in css/journey-card.css (card.html), which also resizes the
+   stage and would undo the one-screen fit here - so only the
+   rules the faces need are copied below.
+   ============================================================ */
+.mface.mfront .mstill{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.mkjrn{position:absolute;inset:0;overflow:hidden;}
+.mkjs{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;
+  transition:opacity .8s var(--ease),visibility .8s;}
+.mkjs[data-on]{opacity:1;visibility:visible;}
+.mkjs img,.mkjs video{width:100%;height:100%;object-fit:cover;display:block;}
+.mkjs figcaption{
+  position:absolute;left:0;right:0;top:0;padding:42px 16px 26px;
+  display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
+  font:500 .95rem/1.25 "Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  color:#f4f3e7;
+  background:linear-gradient(180deg,rgba(17,23,12,.90) 0%,rgba(17,23,12,.88) 80%,
+    rgba(17,23,12,.74) 92%,rgba(17,23,12,0) 100%);
+}
+.mkjs figcaption b{font:300 1.5rem/1 "Fraunces",Georgia,serif;color:var(--gold-lt);}
+.mkjs figcaption span{font:600 .58rem/1 "Jost",system-ui,sans-serif;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--gold-lt);}
+.mkjrn-rail{position:absolute;top:0;left:0;right:0;z-index:3;display:grid;grid-auto-flow:column;
+  grid-auto-columns:1fr;gap:3px;padding:10px 14px 0;}
+.mkjrn-rail i{display:block;height:3px;border-radius:2px;background:rgba(244,243,231,.34);
+  transition:background .35s var(--ease);}
+.mkjrn-rail i.on{background:var(--gold-lt);}
+/* three on screen, as the four-shelf row had; the rest wait behind */
+.made .mkrow .mcard[style*="--abs: 2"],
+.made .mkrow .mcard[style*="--abs:2"]{opacity:0;pointer-events:none;}
+/* the shelf tabs now carry a product count */
+.made #mtabs .etab sup{font-size:.62em;margin-left:2px;color:var(--gold-dk);}
+@media (prefers-reduced-motion:reduce){ .mkjs{transition:none;} }
+
+/* ---- bigger "How we make" cards (owner, 8 Oct: "would prefer bigger
+   cards as the content is not visible that much") --------------------
+   The section is held to one screen, so the cards can only grow by
+   taking space the chrome had: tighter padding and gaps, and the stage
+   takes the rest. --stg is that stage height - the window less the 88px
+   snap offset and ~150px of chrome (padding, heading, tabs, note) - and
+   the cards are sized off it, so the centre card always fills the stage
+   and the row can never spill. Centre card 4:3 at 96% of the stage (it
+   was 5:4 at ~87% of a smaller one), side cards 4:5 at 72%. Desktop
+   windows only; phones keep theirs. */
+@media (min-width:1025px) and (min-height:621px){
+  /* the chrome grows a little with the window (larger type), so tall
+     windows give back 10% of their height above 768px */
+  .made{--stg:calc(100vh - 238px - max(0px, (100vh - 768px) * .1));
+        --stg:calc(100svh - 238px - max(0px, (100svh - 768px) * .1));padding-block:14px;}
+  .made .mhead{margin-bottom:6px;}
+  .made .mstage{height:var(--stg);margin-bottom:8px;}
+  .made .mnote{margin-top:4px;}
+  .made .mcard{
+    width:auto;height:calc(var(--stg) * .72);aspect-ratio:4/5;
+    transform:
+      translate(-50%,-50%)
+      translateX(calc(var(--d,0) * min(var(--stg) * .82, 36vw)))
+      scale(calc(1 - (var(--abs,0) * .16)));
+    transition:transform .62s var(--ease),opacity .62s var(--ease),
+               height .62s var(--ease);
+  }
+  .made .mcard.is-on{width:auto;height:calc(var(--stg) * .96);aspect-ratio:4/3;max-width:62vw;}
+}
+
+/* "Cook something for someone" back on the range's peach, :8002 only
+   (owner, 8 Oct 2026: "this same background" - the Everything-we-pack
+   ground). recipes-seedlip.css turned it grey on 22 Sep for every page;
+   this overrides that here alone. Text is the same --ink/--band that
+   measured 13.3:1 and 7.90:1 on #fff1e4 before the grey. */
+.recipes{background:#fff1e4;background-image:none;}
+
+/* ============================================================
+   "COOK SOMETHING FOR SOMEONE": CENTRED, AND EVERY DISH OPENS
+   ITS RECIPE, :8002 ONLY                               8 Oct 2026
+   ------------------------------------------------------------
+   Owner: "bring the titles to the center" and "when I click the
+   pictures, the viewers should see the recipe". css/left-align.css
+   (shared with :8003) pulls this heading to the left edge; it comes
+   back to the middle here, with the dish names under the photos and
+   the button. The cards are buttons now (js/recipes-rotate-8002.js),
+   opening the recipe sheet from js/satva.js.
+   ============================================================ */
+.recipes .rechead,
+.recipes .rechead::before,
+.recipes .rechead h2,
+.recipes .rechead .lede{text-align:center;margin-left:auto;margin-right:auto;}
+#recipes-grid .reccard h3,
+#recipes-grid .reccard .ruses{text-align:center;}
+.recipes .recfoot{text-align:center;display:flex;justify-content:center;}
+
+#recipes-grid .reccard{cursor:pointer;outline:none;}
+#recipes-grid .reccard:focus-visible .rshot{outline:3px solid var(--gold);outline-offset:3px;}
+/* "See the recipe": small, gold, under the product line - and the photo
+   lifts a little under the pointer, so the card reads as something to open */
+#recipes-grid .rsee{
+  display:block;text-align:center;margin-top:4px;
+  font:600 .66rem/1 "Jost",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold-dk);
+}
+#recipes-grid .rsee::after{content:" \2192";}
+#recipes-grid .reccard.rc-in .rsee{
+  animation:rcRise .7s cubic-bezier(.22,.8,.24,1) both;
+  animation-delay:calc(var(--i,0) * 130ms + .65s);
+}
+#recipes-grid .reccard:hover .rshot{box-shadow:0 18px 36px -18px rgba(30,44,22,.55);}
+#recipes-grid .reccard .rshot{transition:box-shadow .4s var(--ease,ease);}
+
+/* Menu links (8 Oct 2026: Why SATVA, How It's Made and Recipes added).
+   html already has scroll-padding-top:88px; density.css also gives some
+   blocks scroll-margin-top:84px, and the two add up - those links landed
+   84px low, with the top of the next block showing. One offset only. */
+.cats,.reasons,.recipes,.made,.mission,.saheli,.range{scroll-margin-top:0;}
+
+/* the "Why SATVA" dropdown closes as soon as a pick is made (index.html) */
+.nav .hasmenu.is-shut .submenu{opacity:0 !important;visibility:hidden !important;pointer-events:none;}
+.nav .hasmenu.is-shut .caret{transform:none !important;}
+
+/* "Our story" picture, :8002 only (8 Oct 2026): chillies drying in the
+   sun, for the founder's roots (summers in the mother's village among
+   chilli, maize and paddy fields). One quiet line sits on the photo's
+   foot over a dark fade; the story text beside it is unchanged. */
+.msshot-roots{position:relative;}
+.msshot-roots img{object-position:50% 30%;}
+.msroots{
+  position:absolute;left:0;right:0;bottom:0;margin:0;
+  padding:48px 18px 16px;
+  font:italic 500 .92rem/1.35 "Fraunces",Georgia,serif;
+  color:#fbf3e4;text-shadow:0 1px 8px rgba(0,0,0,.35);
+  background:linear-gradient(180deg,rgba(25,14,8,0) 0%,rgba(25,14,8,.72) 100%);
+  border-radius:0 0 20px 20px;
+}
+/* in the opened "whole story" the picture shrinks to a thumbnail - the
+   caption would crowd it, so it steps out there */
+.msslide.is-open .msroots{display:none;}
+
+/* ============================================================
+   SATVA SAHELI WITH PHOTOGRAPHS, :8002 ONLY            8 Oct 2026
+   ------------------------------------------------------------
+   Owner: "update this section and make it interesting and
+   attractive". Every word stays; the section stops being all text:
+   - "Two ways to be a Saheli" become two photo cards - the Maker
+     beside a woman pounding spices by hand, the Promoter beside
+     neighbourhood women sitting together;
+   - "Become a Saheli" opens on a photograph across its top;
+   - the two numbers become badges.
+   Sized to keep the block one screen tall at 1245x657.
+   ============================================================ */
+.sahpage .sahroles{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sahpage .sahroles li{
+  display:grid;grid-template-columns:clamp(84px,9vw,118px) 1fr;grid-template-rows:auto 1fr;
+  column-gap:14px;align-items:start;
+  padding:0 14px 0 0;border:0;border-radius:16px;overflow:hidden;
+  background:#fffaf6;box-shadow:0 14px 30px -20px rgba(122,52,62,.45);
+  border:1px solid rgba(180,112,122,.22);
+}
+.sahpage .sahroles li img{
+  grid-row:1 / span 2;width:100%;height:100%;min-height:118px;object-fit:cover;display:block;
+  transition:transform .6s var(--ease,ease);
+}
+.sahpage .sahroles li:hover img{transform:scale(1.05);}
+.sahpage .sahroles li b{padding-top:12px;}
+.sahpage .sahroles li span{padding-bottom:12px;}
+.sahpage .sahroles li:first-child img{object-position:40% 55%;}
+
+.sahpage .sahstats{display:flex;gap:12px;flex-wrap:wrap;}
+.sahpage .sahstat{
+  display:flex;align-items:center;gap:12px;
+  padding:8px 18px 8px 10px;border-radius:999px;
+  background:#fffaf6;border:1px solid rgba(191,138,23,.35);
+  box-shadow:0 10px 24px -18px rgba(122,52,62,.5);
+}
+.sahpage .sahstat b{
+  display:grid;place-items:center;min-width:58px;height:46px;padding:0 10px;border-radius:999px;
+  background:linear-gradient(135deg,var(--gold-lt,#e3b64a),var(--gold-dk,#9c6d10));color:#fff;
+  font-size:1.15rem !important;line-height:1;
+}
+.sahpage .sahstat span{max-width:14ch;line-height:1.25;}
+
+/* the join card's photograph, bleeding to the card's edges */
+.sahpage .sahcard{overflow:hidden;}
+.sahpage .sahcard::before{z-index:2;}
+.sahpage .sahcard-shot{
+  position:relative;margin:calc(-1 * clamp(18px,3vh,30px)) calc(-1 * clamp(22px,2.4vw,32px)) 14px;
+  height:clamp(96px,17vh,170px);overflow:hidden;
+}
+.sahpage .sahcard-shot img{width:100%;height:100%;object-fit:cover;object-position:60% 35%;display:block;}
+.sahpage .sahcard-shot::after{   /* fades into the card */
+  content:"";position:absolute;left:0;right:0;bottom:0;height:40%;
+  background:linear-gradient(180deg,rgba(255,250,246,0),#fffaf6);
+}
+@media (max-width:900px){
+  .sahpage .sahroles{grid-template-columns:1fr;}
+}
+/* compacting, so the photos fit inside one screen (1245x657 = 569px) */
+@media (min-width:1025px){
+  .sahpage .sahlock img{height:clamp(70px,13vh,118px);width:auto;}
+  .sahpage .sahlock{margin-top:6px;}
+  .sahpage .sahh2{margin-top:clamp(10px,1.8vh,22px);}
+  .sahpage .sahroles span{font-size:clamp(.8rem,1.9vh,.9rem);line-height:1.4;}
+  .sahpage .sahroles li img{min-height:clamp(96px,17vh,150px);}
+  .sahpage .sahstats{margin-top:clamp(10px,1.8vh,18px);flex-wrap:nowrap;}
+  .sahpage .sahstat{padding:5px 14px 5px 5px;gap:10px;}
+  .sahpage .sahstat b{min-width:50px;height:clamp(30px,5.4vh,44px);font-size:clamp(.92rem,2.4vh,1.15rem) !important;margin:0;}
+  .sahpage .sahstat span{font-size:clamp(.6rem,1.5vh,.72rem);letter-spacing:.12em;margin:0;max-width:none;white-space:nowrap;}
+  .sahpage .sahcard{padding:clamp(14px,2.4vh,30px) clamp(20px,2vw,32px);}
+  .sahpage .sahcard-shot{margin:calc(-1 * clamp(14px,2.4vh,30px)) calc(-1 * clamp(20px,2vw,32px)) 10px;
+    height:clamp(78px,14vh,170px);}
+  .sahpage .sahsteps{margin-top:clamp(8px,1.6vh,18px);gap:clamp(6px,1.2vh,12px);}
+  .sahpage .sahsteps span{font-size:clamp(.8rem,1.9vh,.9rem);line-height:1.4;}
+  .sahpage .sahcta{margin-top:clamp(10px,1.8vh,22px);}
+}
+@media (min-width:1025px){
+  .sahpage .sahstat{flex-direction:row;}
+  .sahpage .sahlock img{height:clamp(64px,11vh,118px);}
+  .sahpage .sahroles li img{min-height:clamp(90px,15vh,150px);}
+}
+@media (min-width:1025px) and (max-height:760px){
+  .saheli.sahpage{padding-block:14px;}
+}
+@media (min-width:1025px) and (max-height:760px){
+  .sahpage .sahlock img{height:58px;}
+  .sahpage .sahh2{margin-top:8px;}
+  .sahpage .sahroles{margin-top:6px;}
+  .sahpage .sahstats{margin-top:8px;}
+}
+@media (min-width:1025px) and (max-height:760px){
+  .sahpage .sahroles li img{min-height:84px;}
+  .sahpage .sahbody{margin-top:4px;}
+}
+
+/* =============================================================
+   "SEE ALL RECIPES" GALLERY  8 Oct 2026
+   The button under "Cook something for someone" opens every dish
+   (js/recipes-rotate-8002.js). Same cream box, backdrop and close
+   button as the recipe sheet, so the two read as one family. The
+   box fills the window (1245x657 is the owner's) and only the grid
+   scrolls, so nothing runs off the page.
+   ============================================================= */
+html.rgal-open{overflow:hidden;}
+.recipes .recfoot button.btn-ghost{font:inherit;font-size:.86rem;letter-spacing:.05em;font-weight:500;cursor:pointer;}
+.rgal{
+  width:min(1180px,calc(100vw - 32px));height:calc(100vh - 32px);max-height:none;max-width:none;
+  padding:0;border:0;border-radius:24px;overflow:hidden;
+  background:var(--cream);color:var(--ink);
+  box-shadow:0 30px 80px -20px rgba(10,16,6,.6);
+}
+.rgal::backdrop{background:rgba(16,23,12,.62);backdrop-filter:blur(4px);}
+.rgal[open]{animation:rs-in .28s ease-out;}
+.rgal-box{display:flex;flex-direction:column;height:100%;}
+.rgal-head{position:relative;flex:none;text-align:center;padding:22px 64px 14px;border-bottom:1px solid rgba(30,44,22,.12);}
+.rgal-head h2{margin:0;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.1;color:var(--green);}
+.rgal-head p{margin:6px 0 0;font-size:.9rem;color:var(--sage);}
+.rgal-close{position:absolute;top:16px;right:18px;margin:0;float:none;}
+.rgal-grid{
+  flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 22px;
+  padding:22px clamp(18px,3vw,36px) 30px;
+}
+.rgal-card{cursor:pointer;outline:none;text-align:center;}
+.rgal-card .rshot{aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--ink);
+  transition:box-shadow .4s var(--ease,ease);}
+.rgal-card .rshot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease,ease);}
+.rgal-card:hover .rshot{box-shadow:0 18px 36px -18px rgba(30,44,22,.55);}
+.rgal-card:hover .rshot img{transform:scale(1.04);}
+.rgal-card:focus-visible .rshot{outline:3px solid var(--gold);outline-offset:3px;}
+.rgal-card h3{margin:12px 0 0;font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:1.08rem;color:var(--green);}
+.rgal-card .ruses{margin:4px 0 0;font:600 .66rem/1.4 "Jost",system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dk);}
+.rgal-desc{margin:8px 0 0;font-size:.84rem;line-height:1.5;color:var(--ink);opacity:.85;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.rgal-card .rsee{display:inline-block;margin-top:8px;font-size:.8rem;font-weight:500;color:var(--green);
+  border-bottom:1px solid currentColor;}
+.rgal-card .rsee::after{content:" \2192";}
+@media (max-width:1024px){.rgal-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media (max-width:720px){
+  .rgal{width:calc(100vw - 16px);height:calc(100vh - 16px);border-radius:18px;}
+  .rgal-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px;}
+  .rgal-head{padding:18px 56px 12px;}
+}
+@media (max-width:420px){.rgal-grid{grid-template-columns:1fr;}}
+@media (prefers-reduced-motion:reduce){.rgal[open]{animation:none;}}
+
+/* 9 Oct 2026 (owner): the "Prices are quoted per gram" line is gone from
+   the range, so close the gap between the last product row and
+   "Why choose SATVA". The section still fills one screen; the spare
+   room now sits under the reasons instead of above the heading. */
+.range{padding-bottom:14px;}
+.reasons{padding-top:28px;justify-content:flex-start;}
+
+/* 9 Oct 2026 (owner): "keep the full pic i gave along with the coat". The
+   mission picture is the whole portrait now, not a face in a circle: a
+   rounded portrait frame in the photo's own 2:3 shape, so nothing is cut,
+   sized to the screen's height like the story photo. */
+.msslide.brt{align-items:center;}
+/* 13:13 the same day: owner chose founder-variations-2.html #20 - photo on the
+   LEFT, cream-background photo, a thin gold line offset behind it instead of
+   the solid panel - and asked for the "Chhatrapati Sambhajinagar" sign-off
+   beside the photo to go (removed from index.html). */
+@media (min-width:761px){
+  .msslide.brt{grid-template-columns:auto minmax(0,1fr);}
+  .msslide.brt .msaside{order:-1;}
+}
+.msslide.brt .msshot.msportrait{
+  position:relative;aspect-ratio:3/4;border-radius:16px;width:auto;overflow:visible;
+  height:clamp(230px,calc(100svh - 270px),450px);
+  box-shadow:0 26px 50px -30px rgba(30,44,22,.55);
+  margin:0 0 16px 16px;background:none;isolation:isolate;
+}
+.msslide.brt .msshot.msportrait img{border-radius:16px;}
+.msslide.brt .msshot.msportrait::after{
+  content:"";position:absolute;inset:16px 16px -16px -16px;
+  border:1.5px solid #c99a2e;border-radius:16px;z-index:-1;pointer-events:none;
+}
+@media (max-width:760px){
+  .msslide.brt .msshot.msportrait{height:clamp(220px,70vw,320px);}
+}
+
+/* 9 Oct 2026 (owner): "DS Satva Foods on the left like before", minus the
+   Chhatrapati line, using the space beside the photo and set in a livelier
+   type mix - Devanagari, Fraunces italic, Cinzel, then three numbered facts. */
+.msbrand{
+  max-width:clamp(190px,17vw,235px);
+  padding-left:clamp(14px,1.4vw,20px);
+  border-left:1.5px solid rgba(201,154,46,.55);
+}
+.msb-mark{display:block;height:clamp(42px,6vh,58px);width:auto;opacity:.95;margin:0 0 8px;}
+.msb-dv{
+  margin:0;font-family:"Tiro Devanagari Hindi",serif;font-size:clamp(.95rem,1.25vw,1.12rem);
+  color:#b07d12;line-height:1.3;
+}
+.msb-name{
+  margin:2px 0 0;font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 100,"WONK" 1;font-weight:700;
+  font-size:clamp(1.45rem,2.2vw,1.9rem);line-height:1.05;color:var(--band);
+  letter-spacing:-.01em;
+}
+.msb-name em{display:block;font-style:italic;font-weight:400;color:#b07d12;}
+.msb-tag{
+  margin:8px 0 0;font-family:"Cinzel",Georgia,serif;font-weight:600;
+  font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sage);
+}
+.msb-tag span{font-size:.8em;letter-spacing:0;}
+.msb-rule{
+  display:block;width:56px;height:2px;margin:clamp(10px,1.8vh,16px) 0;
+  background:linear-gradient(90deg,#c99a2e,rgba(201,154,46,0));border-radius:2px;
+}
+.msb-facts{list-style:none;margin:0;padding:0;display:grid;gap:clamp(6px,1.2vh,10px);}
+.msb-facts li{display:grid;grid-template-columns:2.1ch 1fr;gap:10px;align-items:baseline;}
+.msb-facts b{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 100,"WONK" 1;
+  font-weight:700;font-size:1.35rem;line-height:1;color:#b07d12;text-align:right;
+}
+.msb-facts span{font-size:.8rem;line-height:1.4;color:var(--green);}
+@media (max-width:820px){
+  .msbrand{max-width:none;order:2;}
+}
+
+
+/* 9 Oct 2026, 13:34 (owner): "#11 with the logo on the right top and the
+   photo not exactly straight, but little tilted like [the polaroid]". The
+   founder photo becomes a white snapshot turned 3 degrees; the gold outline
+   goes (a snapshot is its own frame). The SATVA logo and the gold sprig sit
+   in the top-right corner of the slide. The DS Satva Foods panel (.msbrand)
+   stays, as the owner asked. */
+.msslide.brt{position:relative;}
+.msslide.brt .msshot.msportrait.mspol{
+  height:auto;aspect-ratio:auto;width:auto;flex:none;
+  background:#fff;padding:12px 12px 46px;border-radius:4px;
+  transform:rotate(-3deg);margin:6px 10px 14px 8px;overflow:visible;
+  box-shadow:0 26px 44px -22px rgba(30,44,22,.6);
+}
+.msslide.brt .msshot.msportrait.mspol::after{display:none;}
+.msslide.brt .msshot.mspol img{
+  display:block;border-radius:0;width:auto;aspect-ratio:3/4;object-fit:cover;
+  height:clamp(190px,calc(100svh - 340px),380px);
+}
+.mspol-cap{
+  position:absolute;left:0;right:0;bottom:13px;text-align:center;
+  font-family:"Fraunces",Georgia,serif;font-style:italic;font-weight:400;
+  font-size:clamp(.95rem,1.3vw,1.1rem);color:var(--gold-dk);
+}
+.mscorner{position:absolute;right:0;top:0;display:flex;align-items:flex-start;gap:8px;pointer-events:none;z-index:1;}
+.mssprig{width:clamp(44px,4.6vw,62px);height:auto;opacity:.85;}
+.mscorner-logo{height:clamp(46px,7vh,64px);width:auto;opacity:.95;}
+@media (max-width:820px){
+  .mscorner{display:none;}
+  .msslide.brt .msshot.mspol img{height:clamp(200px,60vw,300px);}
+}
+
+/* 9 Oct 2026, 13:48 (owner): "remove the leaf on the right top" (sprig taken
+   out of index.html; logo stays) and "align the photo and text spacing ... equally
+   distributed". The photo + copy pair is now one centred group with a
+   generous, even gap, so the empty band on the right is shared out evenly. */
+@media (min-width:761px){
+  .msslide.brt{
+    grid-template-columns:auto minmax(0,600px);
+    justify-content:center;column-gap:clamp(48px,7vw,110px);
+  }
+  .msslide.brt .msq{max-width:none;}
+}
+
+/* 9 Oct 2026, 15:11 (owner): founder-variations.html #14 on the site - the
+   mission words on the LEFT, the tilted snapshot on the RIGHT, and the
+   DS Satva Foods / Chhatrapati Sambhajinagar / Marathwada sign-off beside it.
+   Undoes the photo-left order set at 13:13. */
+@media (min-width:761px){
+  .msslide.brt{grid-template-columns:minmax(0,1fr) auto;}
+  .msslide.brt .msaside{order:0;}
+}
+.msslide.brt .msaside{align-items:flex-end;gap:clamp(22px,2.4vw,34px);}
+.msslide.brt .mssign{padding:0 0 18px 18px;border-left:2px solid var(--gold-pale,#f1ddab);}
+
+/* 10 Oct 2026 (owner): "place the photo inbetween and the statements aligned".
+   Three columns on wide screens - the mission words, the tilted photo in the
+   middle, the DS Satva Foods sign-off - with equal gaps, all three centred on
+   the same middle line. */
+@media (min-width:761px){
+  .msslide.brt{
+    grid-template-columns:minmax(0,600px) auto auto;
+    justify-content:center;align-items:center;
+    column-gap:clamp(40px,5.5vw,110px);
+  }
+  .msslide.brt .msaside{display:contents;}
+  .msslide.brt .msshot.mspol{justify-self:center;}
+  .msslide.brt .mssign{align-self:center;padding:14px 0 14px 18px;}
+}
+
+/* 10 Oct 2026: links-8002.js - every recipe ends with its product, and the
+   product card it leads to lights up for a moment. */
+.rs-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(30,44,22,.12);}
+.rs-links .btn-gold,.rs-links .btn-ghost{font-size:.85rem;}
+@keyframes lk-flash{0%,100%{box-shadow:0 0 0 0 rgba(201,154,46,0)}25%,70%{box-shadow:0 0 0 4px rgba(201,154,46,.85),0 18px 40px -18px rgba(30,44,22,.5)}}
+.lk-flash{animation:lk-flash 2.4s ease-in-out;}
+
+/* 10 Oct 2026, 11:11 (owner): "adjust the photo - not liking the spacing on
+   the left and right of the photo". The sign-off box was wider than its words
+   (199px box, ~130px of text), so the photo looked adrift between the quote
+   and the logo. Box now hugs its text, the two gaps beside the photo are equal
+   and tighter, and the whole row is centred so the outer margins match. */
+@media (min-width:761px){
+  .msslide.brt{
+    grid-template-columns:minmax(0,560px) auto auto;
+    column-gap:clamp(30px,3.4vw,54px);
+  }
+  .msslide.brt .mssign{width:max-content;max-width:none;}
+  .msslide.brt .msshot.mspol{margin:6px 0 14px;}
+}
+
+/* 10 Oct 2026 (owner): the dish banner in brightland.co's press-bar colour -
+   rgb(226,217,227), read off their .logo__bar_section. Their logos sit on it
+   in near-black, so the dish names go dark green here. */
+.marquee{background:#e2d9e3;color:var(--band);border-block:0;}
+.mtrack span{opacity:1;}
+.mtrack span::after{color:var(--gold-dk,#94660a);opacity:.8;}
+/* the second running band, just above the footer: runs the other way so the
+   two bands do not read as one repeated element */
+.mq-foot .mtrack{animation-direction:reverse;animation-duration:48s;}
+
+/* ============================================================
+   "SOMETHING FOR EVERY SHELF" WITH THREE SHELVES, :8002 ONLY
+                                                     13 Oct 2026
+   ------------------------------------------------------------
+   Pulses left the site (window.SATVA_HIDE_SHELVES), so the grid's four
+   columns held three cards and left an empty fourth slot on the right.
+   Owner: "fix this spacing ... no empty space but with the same
+   pictures". Three columns across the full width; 2x2 is no longer
+   right at tablet width either (it would strand Healthy Essentials on
+   its own row), so it stays three across down to 700px, then one.
+   ============================================================ */
+.catgrid{grid-template-columns:repeat(3,1fr);}
+@media (max-width:1080px){ .catgrid{grid-template-columns:repeat(3,1fr);} }
+@media (max-width:700px){ .catgrid{grid-template-columns:1fr;} }
+/* the 32ch cap was sized for a quarter-width card; at a third the blurb
+   wrapped two-thirds of the way across and left a blank strip beside it */
+.catcard .cblurb{max-width:none;}
+/* every blurb is one line at three across, so the second line reserved
+   above (min-height:2lh) was just a gap; give it to the pictures */
+@media (min-width:1081px) and (min-height:621px){
+  .cats .catcard .cblurb{min-height:0;}
+}
+
+/* ============================================================
+   SATVA SAHELI = OPTION 14, :8002 ONLY                13 Oct 2026
+   ------------------------------------------------------------
+   Owner: option 14 of saheli-variations-2.html "with bigger pictures
+   and a light pink shade for the background". One screen under the
+   nav (100svh - 88px), everything centred; the three round faces
+   are 120px in the review page and grow with the screen here.
+   ============================================================ */
+.saheli.sah14{
+  min-height:calc(100vh - 88px);min-height:calc(100svh - 88px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(14px,2.6vh,28px);text-align:center;
+  padding:clamp(18px,3vh,36px) 16px;
+  /* 13 Oct: owner picked 14 of saheli-pink-variations.html (two-tone),
+     then 09, "Peach blush (warmer)", then: keep 14's pale top half and
+     put the peach in the lower half only */
+  background:linear-gradient(180deg,#fdf4f2 0%,#fdf4f2 44%,#f9e7e0 44%,#f9e7e0 100%);color:#2c4220;
+}
+.sah14 .s14-mark{width:clamp(40px,7vh,56px);height:auto}
+.sah14 .s14-q{font:400 clamp(24px,min(3vw,5.6vh),38px)/1.2 "Fraunces",serif;color:#1e2c16;max-width:28ch;margin:0}
+.sah14 .s14-q em{color:#b4707a}
+.sah14 .s14-row{list-style:none;margin:0;padding:0;display:flex;justify-content:center;gap:clamp(28px,5vw,72px)}
+.sah14 .s14-row li{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:260px}
+.sah14 .s14-row img{
+  --d:clamp(130px,min(17vw,33vh),230px);width:var(--d);height:var(--d);
+  border-radius:50%;object-fit:cover;margin-bottom:6px;
+  border:5px solid #fff;box-shadow:0 18px 34px -20px rgba(120,60,60,.55);
+  transition:transform .4s ease;
+}
+.sah14 .s14-row li:hover img{transform:scale(1.04)}
+.sah14 .s14-row b{font:600 12px/1.2 "Jost",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#7f5a0f}
+.sah14 .s14-row span{font-size:15px;line-height:1.5;font-weight:300;color:#2c4220}
+.sah14 .s14-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center}
+.sah14 .s14-link{display:inline-flex;align-items:center;font:500 15px/1 "Jost",sans-serif;letter-spacing:.05em;color:#2c4220;padding:15px 22px;border-radius:999px;border:1.5px solid rgba(44,66,32,.25);background:rgba(255,255,255,.45);text-decoration:none}
+.sah14 .s14-link:hover{background:#fff}
+@media (max-width:700px){
+  .sah14 .s14-row{flex-direction:column;align-items:center;gap:22px}
+}
+
+/* ============================================================
+   WHY SATVA HERO SLIDE, :8002 ONLY                     13 Oct 2026
+   ------------------------------------------------------------
+   Option 06 of why-variations.html in the hero: kicker and heading
+   across the top, four photograph cards below; the chosen card is
+   wider and shows its promise. Cream ground (--sg on the article),
+   so none of the .plant scrim rules apply.
+   ============================================================ */
+.whyhero .wrap{height:100%;display:flex;flex-direction:column;padding-top:clamp(14px,3vh,26px);padding-bottom:clamp(14px,3vh,26px);gap:clamp(10px,2.2vh,20px)}
+.whyhero .wh-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+.whyhero .kick{color:#94660a;margin:0}
+.whyhero .wh-h{font:600 clamp(22px,min(2.6vw,5vh),36px)/1.1 "Fraunces",serif;color:#1f3a26;margin:6px 0 0}
+.whyhero .wh-head .pill{flex:0 0 auto}
+.whyhero .wh-row{list-style:none;margin:0;padding:0;flex:1 1 auto;min-height:0;display:flex;gap:clamp(10px,1.3vw,18px)}
+.whyhero .wh-card{position:relative;flex:1 1 0;min-width:0;border-radius:18px;overflow:hidden;cursor:pointer;outline:none;
+  transition:flex .7s cubic-bezier(.6,0,.2,1),filter .5s ease;filter:saturate(.65) brightness(.82)}
+.whyhero .wh-card.on{flex:2.6 1 0;filter:none}
+.whyhero .wh-card:focus-visible{box-shadow:0 0 0 3px #b5832a}
+.whyhero .wh-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 3s ease}
+.whyhero .wh-card.on img{transform:scale(1.04)}
+.whyhero .wh-card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,20,12,.88) 0%,rgba(14,20,12,.15) 62%)}
+.whyhero .wh-tx{position:absolute;z-index:2;left:clamp(14px,1.6vw,24px);right:clamp(14px,1.6vw,24px);bottom:clamp(14px,1.6vw,22px);color:#f4f3e7}
+.whyhero .wh-tx b{font:500 clamp(16px,1.6vw,22px)/1 "Fraunces",serif;color:#e9cf98}
+.whyhero .wh-tx h3{font:600 clamp(15px,1.25vw,18px)/1.15 "Fraunces",serif;margin:6px 0 0;color:#f4f3e7}
+.whyhero .wh-card.on .wh-tx h3{font-size:clamp(20px,1.9vw,28px)}
+.whyhero .wh-tx p{margin:0;max-height:0;opacity:0;overflow:hidden;font-size:clamp(13px,1.1vw,16px);line-height:1.55;font-weight:300;color:#efe6d4;transition:opacity .3s ease}
+.whyhero .wh-card.on .wh-tx p{max-height:8em;opacity:1;margin-top:8px;transition:opacity .6s ease .45s}
+/* the tab's countdown line runs for the 12s this slide is held (2nd tab) */
+.shtabs .etab:nth-child(2).is-timing::after{animation-duration:8s}  /* Why SATVA, data-hold 8000 */
+@media (max-width:760px){
+  .whyhero .wh-row{flex-direction:column}
+  .whyhero .wh-card.on{flex:3 1 0}
+  .whyhero .wh-head .pill{display:none}
+}
+/* hero-dark.css paints every hero slide #0e120d; this one keeps its cream */
+.shelves.is-hero .shelf.whyhero::before{background:var(--sg)}
+.shelves.is-hero .shelf.whyhero::after{display:none}
+.whyhero .wh-head .pill{color:#1f3a26;border-color:rgba(31,58,38,.35)}
+/* 13 Oct, second pass. Owner: "too congested with pictures ... reduce the
+   size of the pictures so that the screen has some clarity". The row no
+   longer fills the slide: it is a fixed, shorter band, and the heading and
+   the row sit together in the middle of the slide with air above and below. */
+.whyhero .wrap{justify-content:center;gap:clamp(16px,3.6vh,34px)}
+.whyhero .wh-row{flex:0 0 auto;height:clamp(190px,40vh,290px);max-width:1080px;gap:clamp(10px,1.2vw,16px)}
+.whyhero .wh-card{border-radius:14px}
+.whyhero .wh-card.on{flex:2.2 1 0}
+.whyhero .wh-card.on .wh-tx h3{font-size:clamp(18px,1.6vw,24px)}
+.whyhero .wh-tx p{font-size:clamp(12.5px,1vw,15px)}
+.whyhero .wh-head{max-width:1080px}
+/* full width again, so the row lines up with the tabs and arrows below it;
+   the clarity comes from the shorter band, not a narrower one */
+.whyhero .wh-row,.whyhero .wh-head{max-width:none}
+.whyhero .wh-row{height:clamp(180px,37vh,260px)}
+/* 13 Oct (owner): "let the logo be big and the letters below that, a
+   little smaller" - mark ~46px -> ~86px, quote ~37px -> ~29px */
+.sah14 .s14-mark{width:clamp(60px,13vh,96px)}
+.sah14 .s14-q{font-size:clamp(20px,min(2.4vw,4.4vh),30px)}
+/* the bigger mark cost ~23px; won back so the section stays one screen */
+.saheli.sah14{gap:clamp(10px,2vh,22px)}
+.sah14 .s14-row img{--d:clamp(130px,min(17vw,30vh),220px)}
+
+/* ============================================================
+   WHY SATVA SWAP, :8002 ONLY                           13 Oct 2026
+   ------------------------------------------------------------
+   The arch cards (were #why) are a hero slide now, and the photo
+   cards (were the hero slide) are #why. The .whyhero rules above
+   still style the photo cards; these size them as a page section.
+   ============================================================ */
+/* -- #why: the photograph cards, one screen under the nav -- */
+.reasons.whysec{display:flex;flex-direction:column;justify-content:center;
+  background:linear-gradient(180deg,#f6efe0 0%,#eadcbe 100%);padding:0}
+.reasons.whysec .wrap{flex:1 1 auto;height:auto;width:100%}
+.reasons.whysec .wh-row{height:clamp(220px,52vh,380px)}
+
+/* -- the hero: the arch cards on their own cream -- */
+.shelves.is-hero .shelf.whyarch::before{background:var(--sg)}
+.shelves.is-hero .shelf.whyarch::after{display:none}
+.whyarch .wrap{height:100%;display:flex;flex-direction:column;justify-content:center;
+  gap:clamp(10px,2.4vh,22px);padding-block:clamp(10px,2vh,20px)}
+.whyarch .rhead{text-align:center}
+.whyarch .kick{color:#94660a;margin:0}
+.whyarch .wa-h{font:600 clamp(22px,min(2.4vw,4.6vh),34px)/1.1 "Fraunces",serif;color:#1f3a26;margin:6px 0 0}
+.whyarch .rgrid{gap:clamp(14px,2vw,32px)}
+.whyarch .reason{height:clamp(190px,40vh,290px);max-width:none;
+  padding:clamp(22px,4.4vh,40px) clamp(14px,1.4vw,24px) clamp(12px,2vh,22px)}
+.whyarch .reason .art{--icon:clamp(34px,7vh,52px);margin-bottom:clamp(6px,1.2vh,12px)}
+.whyarch .reason p{min-height:0;max-width:26ch}
+.whyarch .rcta{margin:0}
+/* the arch slide's copy must not wait for the .sh-copy entrance animation */
+.whyarch .reason,.whyarch .rhead,.whyarch .rcta{opacity:1}
+.whyarch .rcta{text-align:center;display:flex;justify-content:center}
+/* 13 Oct, owner: just the title and the small drawing in each arch, the
+   heading "Why choose SATVA", no button - so the arches are shorter and the
+   drawing and title a little larger in the room the words left */
+.whyarch .wa-h{font-size:clamp(26px,min(3vw,5.6vh),42px)}
+.whyarch .reason{height:clamp(170px,34vh,250px);justify-content:center}
+.whyarch .reason .art{--icon:clamp(44px,9vh,64px)}
+.whyarch .reason h3{font-size:clamp(15px,1.4vw,20px);margin:0}
+.whyarch .wrap{gap:clamp(18px,4.4vh,40px)}
+.shelves.is-hero .whyarch .reason .art{--icon:clamp(48px,10vh,72px)}
+.shelves.is-hero .whyarch .reason{height:clamp(190px,42vh,300px)}
+
+/* ============================================================
+   WHY HERO, OPTION 2 (14 Oct 2026). Owner picked option 2 from
+   why-hero-variations.html for the Why SATVA hero slide: each arch is
+   a photograph (img.wa-ph in index.html), tinted top-to-bottom in the
+   arch's own dark colour (--rc), with the drawing and title in white
+   at the foot. The arches are a little taller than before, as in the
+   preview (310 of 465px).
+   ============================================================ */
+.whyarch .reason{position:relative;overflow:hidden;justify-content:flex-end;
+  padding-bottom:clamp(18px,4vh,30px)}
+.whyarch .reason .wa-ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.whyarch .reason::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--rc) 25%,transparent),
+    color-mix(in srgb,var(--rc) 88%,black) 92%)}
+.whyarch .reason .art,.whyarch .reason h3{position:relative;z-index:2;color:#fff}
+.shelves.is-hero .whyarch .reason{height:clamp(200px,48vh,320px)}
+
+/* ============================================================
+   HEALTHY GROCERY KIT SLIDE (14 Oct 2026). Third hero slide, after
+   Why SATVA. Dark slate photograph and the usual left scrim, the copy
+   on the left as on every shelf, and on the right a kraft "kit box"
+   with the thirteen items in round windows, 5 / 4 / 4.
+   ============================================================ */
+.shelves.is-hero .shelf.kit .sh-shot img{filter:brightness(.62) saturate(.9)}
+.shelves.is-hero .shelf.kit .sh-copy{max-width:min(460px,40%)}
+.kitbox{position:absolute;right:clamp(16px,4vw,60px);top:50%;transform:translateY(-50%);z-index:3;
+  width:min(560px,47%);padding:clamp(12px,2.4vh,20px) clamp(14px,1.6vw,22px) clamp(10px,2vh,16px);
+  background:linear-gradient(160deg,#e9d3ad 0%,#d9bb8a 100%);border-radius:20px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 30px 60px -30px rgba(0,0,0,.85);color:#3a2a14}
+.kitbox::before{content:"";position:absolute;inset:7px;border:1.5px dashed rgba(90,60,25,.38);border-radius:14px;pointer-events:none}
+.kitbox .kb-t{display:flex;justify-content:space-between;align-items:baseline;margin:0 4px clamp(6px,1.4vh,12px);
+  font:600 clamp(15px,min(1.5vw,3vh),20px)/1 "Fraunces",serif;color:#3a2a14}
+.kitbox .kb-t em{font:500 11px/1 "Jost",sans-serif;letter-spacing:.24em;text-transform:uppercase;font-style:normal;color:#7a5418}
+.kitbox ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;row-gap:clamp(4px,1vh,10px)}
+.kitbox li{flex:0 0 20%;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.kitbox .kp{display:block;width:clamp(44px,min(5.6vw,10.4vh),76px);aspect-ratio:1;border-radius:50%;overflow:hidden;
+  border:3px solid #fffaf0;box-shadow:0 6px 14px -8px rgba(60,35,5,.7);background:#fffaf0}
+.kitbox .kp img{width:100%;height:100%;object-fit:cover;display:block}
+.kitbox b{font:600 clamp(10px,.95vw,12.5px)/1.15 "Jost",sans-serif;margin-top:4px;color:#2e2210}
+.kitbox i{font:400 clamp(9px,.8vw,11px)/1.1 "Jost",sans-serif;font-style:normal;color:#7a5418}
+.shelves.is-hero .kitbox{opacity:0}
+.shelves.is-hero .shelf.kit.is-on .kitbox{animation:kitIn .8s var(--ease) .5s forwards}
+@keyframes kitIn{from{opacity:0;transform:translateY(-48%)}to{opacity:1;transform:translateY(-50%)}}
+@media (prefers-reduced-motion:reduce){.shelves.is-hero .shelf.kit.is-on .kitbox{opacity:1;animation:none}}
+@media (max-width:900px){.kitbox{display:none}.shelves.is-hero .shelf.kit .sh-copy{max-width:none}}
+
+/* ============================================================
+   PRODUCT CARD NAMES ON ONE LINE (14 Oct 2026). Owner: "Im seeing some
+   alignment issues in the names of the masalas ... Set it right so that
+   all names are in the same line". satva.css gives every .pbody p
+   flex:1 (meant for the description, so "Ask about this" sits at the
+   foot); that also stretched the small kicker and the Hindi name in the
+   shorter cards (the masalas have no Whole/Ground pill), pushing their
+   names down. Only the description should take the slack.
+   ============================================================ */
+.pbody p.jcard-kick,.pbody p.dv{flex:0 0 auto}
+
+/* 14 Oct 2026, owner: "remove the how its made button from these sections"
+   - the "How it is made" button on every product card in Our Range. The
+   stories themselves are still in the How it's made section below. */
+.range .pcard .pjourney{display:none}
+
+/* ============================================================
+   SAHELI CALL CARD (14 Oct 2026). "Become a Saheli" opens a small card
+   with the DS SATVA logo and the phone number, tap to call. Markup and
+   script at the foot of index.html.
+   ============================================================ */
+.sahcall{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:16px;
+  background:rgba(20,26,16,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:sahFade .25s ease}
+.sahcall[hidden]{display:none}
+.sahcall-card{position:relative;width:min(400px,100%);padding:34px 30px 30px;border-radius:22px;text-align:center;
+  background:linear-gradient(170deg,#fffaf0,#f4ead3);box-shadow:0 30px 60px -20px rgba(0,0,0,.55);animation:sahUp .3s cubic-bezier(.2,.8,.2,1)}
+.sahcall-x{position:absolute;right:12px;top:10px;width:38px;height:38px;border:0;border-radius:50%;background:transparent;
+  font:400 28px/1 "Jost",sans-serif;color:#3c4a35;cursor:pointer}
+.sahcall-x:hover{background:rgba(31,58,38,.08)}
+.sahcall-logo{width:110px;height:auto;display:block;margin:0 auto 12px}
+.sahcall-k{font:500 12px/1 "Jost",sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#94660a;margin:0}
+.sahcall-card h2{font:600 30px/1.1 "Fraunces",serif;color:#1f3a26;margin:8px 0 8px}
+.sahcall-d{font:300 15px/1.5 "Jost",sans-serif;color:#3c4a35;margin:0 0 16px}
+.sahcall-no{display:block;font:600 28px/1.2 "Fraunces",serif;color:#1f3a26;text-decoration:none;letter-spacing:.02em;margin-bottom:18px}
+.sahcall-no:hover{color:#94660a}
+.sahcall-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%}
+html.sahcall-on{overflow:hidden}
+@keyframes sahFade{from{opacity:0}to{opacity:1}}
+@keyframes sahUp{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.sahcall,.sahcall-card{animation:none}}
+
+/* ============================================================
+   SAHELI STORY DIALOG (14 Oct 2026). "Read the Saheli story" opens the
+   whole of saheli.html in a dialog: the story on the left, joining on the
+   right. Scrolls inside itself on a short window. Markup at the foot of
+   index.html; the close button reuses .sahcall-x.
+   ============================================================ */
+.sahstory{position:fixed;inset:0;z-index:999;display:grid;place-items:center;padding:16px;overflow-y:auto;
+  background:rgba(20,26,16,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:sahFade .25s ease}
+.sahstory[hidden]{display:none}
+html.sahstory-on{overflow:hidden}
+.sahstory-card{position:relative;width:min(980px,100%);max-height:calc(100svh - 32px);overflow-y:auto;border-radius:22px;
+  background:linear-gradient(170deg,#fffaf0,#f6ecd8);box-shadow:0 30px 60px -20px rgba(0,0,0,.55);animation:sahUp .3s cubic-bezier(.2,.8,.2,1)}
+.sahstory-x{z-index:2}
+.sahstory-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:0}
+.sahstory-main{padding:30px 32px 28px}
+.sahstory-k{font:500 11px/1 "Jost",sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#94660a;margin:0 0 12px}
+.sahstory-lock{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.sahstory-lock img{width:64px;height:64px;flex:0 0 auto}
+.sahstory-lock h2{font:600 32px/1 "Fraunces",serif;color:#1f3a26;margin:0}
+.sahstory-lock h2 span{color:#b5832a;font-style:italic}
+.sahstory-tag{font:500 13px/1.3 "Jost",sans-serif;color:#3c4a35;margin:6px 0 2px}
+.sahstory-dv{font-size:14px;color:#94660a;margin:0}
+.sahstory-lede{font:400 16px/1.55 "Fraunces",serif;color:#1e2c16;margin:0 0 10px}
+.sahstory-p{font:300 14.5px/1.55 "Jost",sans-serif;color:#3c4a35;margin:0 0 16px}
+.sahstory-h3{font:600 18px/1.2 "Fraunces",serif;color:#1f3a26;margin:0 0 10px}
+.sahstory-roles{list-style:none;margin:0 0 16px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sahstory-roles li{background:#fffdf7;border:1px solid rgba(31,58,38,.12);border-radius:14px;padding:12px 14px}
+.sahstory-roles b{display:block;font:600 14.5px/1.2 "Fraunces",serif;color:#1f3a26;margin-bottom:4px}
+.sahstory-roles span{font:300 13px/1.45 "Jost",sans-serif;color:#3c4a35}
+.sahstory-stats{display:flex;gap:28px}
+.sahstory-stats b{display:block;font:600 28px/1 "Fraunces",serif;color:#b5832a}
+.sahstory-stats span{font:400 12.5px/1.3 "Jost",sans-serif;color:#3c4a35}
+.sahstory-join{background:#1f3a26;color:#f4efe6;padding:30px 28px 26px;border-radius:0 22px 22px 0;display:flex;flex-direction:column}
+.sahstory-join .sahstory-k{color:#e9cf98}
+.sahstory-join h3{font:600 26px/1.1 "Fraunces",serif;color:#f4efe6;margin:0 0 8px}
+.sahstory-jl{font:300 14.5px/1.5 "Jost",sans-serif;color:#d8ceb8;margin:0 0 16px}
+.sahstory-join ol{list-style:none;counter-reset:st;margin:0 0 20px;padding:0;display:grid;gap:12px}
+.sahstory-join li{counter-increment:st;position:relative;padding-left:40px}
+/* 20 Oct 2026, owner: no numbers - the numbered circles are now plain gold dots. */
+.sahstory-join li::before{content:"";position:absolute;left:9px;top:5px;width:10px;height:10px;border-radius:50%;
+  background:#e9cf98}
+.sahstory-join li b{display:block;font:600 15px/1.2 "Fraunces",serif;color:#f4efe6;margin-bottom:3px}
+.sahstory-join li span{font:300 13px/1.45 "Jost",sans-serif;color:#d8ceb8}
+.sahstory-cta{margin-top:auto;display:flex;justify-content:center;width:100%}
+.sahstory-tel{display:block;text-align:center;margin-top:12px;font:500 14px/1 "Jost",sans-serif;color:#e9cf98;text-decoration:none;letter-spacing:.04em}
+.sahstory-tel:hover{text-decoration:underline}
+@media (max-width:760px){
+  .sahstory-grid{grid-template-columns:1fr}
+  .sahstory-join{border-radius:0 0 22px 22px}
+  .sahstory-main{padding:26px 20px 22px}
+  .sahstory-roles{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.sahstory,.sahstory-card{animation:none}}
+/* story dialog, pass 2: the page's li rules were spacing the small lines
+   out (inline spans in a tall line box), the close button sat dark on the
+   green, and it overran a 657px window by ~27px */
+.sahstory-roles span,.sahstory-join li span{display:block}
+.sahstory-x{color:#f4efe6}.sahstory-x:hover{background:rgba(255,255,255,.12)}
+.sahstory-main,.sahstory-join{padding-top:26px;padding-bottom:22px}
+.sahstory-lock{margin-bottom:10px}.sahstory-p{margin-bottom:12px}.sahstory-roles{margin-bottom:12px}
+@media (max-width:760px){.sahstory-x{color:#3c4a35}.sahstory-x:hover{background:rgba(31,58,38,.08)}}
+/* story dialog, pass 3 (14 Oct 2026), owner: "i prefer this to be in that
+   light peach shade" - the Join us panel goes from dark green to the
+   Saheli section's own peach (#fdf4f2 / #f9e7e0), with the ink to match */
+.sahstory-join{background:linear-gradient(170deg,#fbece6 0%,#f6dccf 100%);color:#1e2c16;border-left:1px solid rgba(160,90,70,.12)}
+.sahstory-join .sahstory-k{color:#94660a}
+.sahstory-join h3{color:#1f3a26}
+.sahstory-jl{color:#3c4a35}
+.sahstory-join li::before{background:#1f3a26;color:#f4efe6}
+.sahstory-join li b{color:#1f3a26}
+.sahstory-join li span{color:#4a5a42}
+.sahstory-tel{color:#7f5a0f}
+.sahstory-x{color:#3c4a35}.sahstory-x:hover{background:rgba(31,58,38,.08)}
+
+/* 14 Oct 2026, owner: "Let this how its made background be like the cook
+   for someone - same colour". #made takes the recipes section's peach
+   (#fff1e4) instead of the sand (#e8dcc6). */
+#made.made{background:#fff1e4}
+/* 14 Oct 2026, owner: "Why choose SATVA also be in same colour like cook
+   for someone". #why drops its cream-to-sand gradient for the recipes
+   section's peach (#fff1e4). */
+.reasons.whysec#why{background:#fff1e4}
+
+/* 14 Oct 2026, owner: "keep this colourful divider for dividing the
+   sections ... which are of the same shade ... not the others". The spice
+   spectrum (filled by js/satva.js) sits on the top edge of the two
+   sections whose neighbour above is the same peach: #why (under #range)
+   and #recipes (under #made). Inside the section, not between, so it is
+   still showing when the section snaps up under the nav. */
+#why,#recipes{position:relative}
+.spectrum.sec-div{position:absolute;left:0;right:0;top:0}
+
+/* ============================================================
+   HEALTHY GROCERY KIT BLOCK (14 Oct 2026). Between #saheli and #made:
+   what a Saheli sells is the kit. Deep green, so it reads as the place
+   to buy between two peach blocks; words left, the kraft kit box right
+   with the thirteen in three groups. One screen under the nav on desktop.
+   ============================================================ */
+.kitsec{position:relative;background:radial-gradient(120% 140% at 85% 20%,#2d5236 0%,#1c3322 55%,#15261a 100%);color:#f4efe6;
+  display:flex;align-items:center;padding:clamp(28px,5vh,56px) 0}
+@media (min-width:1025px){.kitsec{min-height:calc(100vh - 88px);min-height:calc(100svh - 88px)}}
+.kk-wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center;width:100%}
+.kk-kick{font:500 12px/1.3 "Jost",sans-serif;letter-spacing:.26em;text-transform:uppercase;color:#e9cf98;margin:0}
+.kk-h{font:600 clamp(30px,min(3.4vw,7vh),46px)/1.06 "Fraunces",serif;color:#f4efe6;margin:12px 0 14px}
+.kk-h em{display:block;color:#e9cf98}
+.kk-d{font:300 clamp(14px,1.25vw,16.5px)/1.55 "Jost",sans-serif;color:#d8ceb8;margin:0 0 clamp(14px,2.6vh,22px);max-width:46ch}
+.kk-steps{list-style:none;counter-reset:kk;margin:0 0 clamp(16px,3vh,26px);padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kk-steps li{counter-increment:kk;border-top:1px solid rgba(233,207,152,.35);padding-top:10px}
+/* 20 Oct 2026, owner: no numbers on the site - the 01/02/03 above the kit steps are gone. */
+.kk-steps li::before{content:none}
+.kk-steps b{display:block;font:600 15px/1.2 "Fraunces",serif;color:#f4efe6}
+.kk-steps span{display:block;font:300 12.5px/1.4 "Jost",sans-serif;color:#c9bfa8;margin-top:3px}
+.kk-cta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.kk-tel{font:500 15px/1 "Jost",sans-serif;color:#e9cf98;text-decoration:none;letter-spacing:.03em}
+.kk-tel:hover{text-decoration:underline}
+/* the kit box */
+.kk-box{position:relative;border-radius:22px;padding:clamp(16px,3vh,26px) clamp(16px,2vw,26px) clamp(12px,2.4vh,20px);color:#3a2a14;
+  background:linear-gradient(160deg,#ecd7b1 0%,#dcbf8f 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 34px 60px -30px rgba(0,0,0,.85)}
+.kk-box::before{content:"";position:absolute;inset:8px;border:1.5px dashed rgba(90,60,25,.38);border-radius:16px;pointer-events:none}
+.kk-tag{position:absolute;top:-14px;right:22px;display:flex;align-items:center;gap:7px;padding:6px 14px 6px 8px;border-radius:999px;
+  background:#fdf4f2;color:#7f3a2a;font:600 11px/1 "Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 8px 18px -10px rgba(0,0,0,.6)}
+.kk-tag img{width:20px;height:20px}
+.kk-bt{display:flex;justify-content:space-between;align-items:baseline;margin:0 4px clamp(6px,1.4vh,12px);font:600 clamp(17px,min(1.6vw,3.4vh),22px)/1 "Fraunces",serif}
+.kk-bt em{font:500 11px/1 "Jost",sans-serif;letter-spacing:.24em;text-transform:uppercase;font-style:normal;color:#7a5418}
+.kk-grp{position:relative;padding:clamp(6px,1.2vh,10px) 4px}
+.kk-grp + .kk-grp{border-top:1px solid rgba(90,60,25,.2)}
+.kk-gl{font:600 10.5px/1 "Jost",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#7a5418;margin:0 0 clamp(5px,1vh,8px)}
+.kk-home .kk-gl{color:#a0442e}
+.kk-grp ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.kk-home ul{grid-template-columns:repeat(5,1fr)}
+.kk-grp li{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.kk-p{display:block;width:clamp(40px,min(4.8vw,9.4vh),62px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:3px solid #fffaf0;
+  box-shadow:0 6px 14px -8px rgba(60,35,5,.7);background:#fffaf0}
+.kk-home .kk-p{border-color:#fdf4f2;box-shadow:0 0 0 2px #d98a7a,0 6px 14px -8px rgba(60,35,5,.7)}
+.kk-p img{width:100%;height:100%;object-fit:cover;display:block}
+.kk-grp b{font:600 clamp(10.5px,.95vw,12.5px)/1.15 "Jost",sans-serif;color:#2e2210;margin-top:4px}
+.kk-grp i{font:400 clamp(9.5px,.8vw,11px)/1.1 "Jost",sans-serif;font-style:normal;color:#7a5418}
+/* entrance: the items drop into the box once the block is in view */
+.kitsec.kk-wait .kk-grp li{opacity:0;transform:translateY(-14px) scale(.9)}
+.kitsec.kk-in .kk-grp li{animation:kkIn .55s cubic-bezier(.2,.8,.2,1) forwards}
+.kitsec.kk-in .kk-grp:nth-of-type(2) li{animation-delay:calc(var(--d,0) + .1s)}
+.kitsec.kk-in .kk-grp li:nth-child(1){--d:.05s}.kitsec.kk-in .kk-grp li:nth-child(2){--d:.12s}
+.kitsec.kk-in .kk-grp li:nth-child(3){--d:.19s}.kitsec.kk-in .kk-grp li:nth-child(4){--d:.26s}.kitsec.kk-in .kk-grp li:nth-child(5){--d:.33s}
+.kitsec.kk-in .kk-grp li{animation-delay:var(--d,0s)}
+.kitsec.kk-in .kk-home li{animation-delay:calc(var(--d,0s) + .35s)}
+.kitsec.kk-in .kk-grp:last-child li{animation-delay:calc(var(--d,0s) + .6s)}
+@keyframes kkIn{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.kitsec.kk-wait .kk-grp li{opacity:1;transform:none;animation:none}}
+@media (max-width:900px){
+  .kk-wrap{grid-template-columns:1fr}
+  .kk-steps{grid-template-columns:1fr}
+}
+.kk-grp ul,.kk-home ul{display:flex;justify-content:center;gap:0}
+.kk-grp li{flex:0 0 20%}
+
+/* ============================================================
+   KIT HERO - TOTE PHOTO (15 Oct 2026). The Grocery Kit hero slide shows
+   the owner's own DS SATVA tote photo instead of the kraft kit box, with
+   the kraft "Healthy Grocery Kit" tag hanging on it and the round
+   "Packed by Satva Sahelis" stamp - the same pieces as the potli designs.
+   ============================================================ */
+.kitphoto{position:absolute;right:clamp(16px,4vw,64px);top:50%;transform:translateY(-50%);z-index:3;
+  width:min(500px,42%);aspect-ratio:641/516}
+.kph-img{display:block;width:100%;height:100%;object-fit:cover;border-radius:24px;border:6px solid #fbf6ee;
+  box-shadow:0 34px 60px -28px rgba(0,0,0,.85)}
+.kph-stamp{position:absolute;left:-34px;bottom:-26px;width:clamp(96px,9vw,122px);aspect-ratio:1;border-radius:50%;
+  background:#fffaf4;border:1.5px dashed #c98d84;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  transform:rotate(-10deg);box-shadow:0 14px 26px -14px rgba(0,0,0,.6)}
+.kph-stamp img{width:32%}
+.kph-stamp b{font:600 clamp(9.5px,.85vw,11px)/1.15 "Jost",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8f3a4c;margin-top:5px}
+.kph-tag{position:absolute;right:8%;top:6%;width:clamp(86px,8vw,110px);padding:22px 8px 12px;background:#e3c595;text-align:center;
+  border-radius:4px 4px 10px 10px;transform:rotate(-8deg);transform-origin:50% 0;box-shadow:0 12px 18px -10px rgba(0,0,0,.55);
+  clip-path:polygon(18% 0,82% 0,100% 14%,100% 100%,0 100%,0 14%)}
+.kph-tag::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(90,60,20,.06) 0 1px,transparent 1px 4px)}
+.kph-tag i{position:absolute;left:50%;top:7px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#6b4a14}
+.kph-tag b{display:block;font:600 clamp(12px,1.05vw,14px)/1.08 "Fraunces",serif;color:#3a2a14}
+.kph-tag span{display:block;font:500 10px/1.2 "Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#7a5418;margin-top:5px}
+.kitphoto::before{content:"";position:absolute;right:calc(8% + clamp(43px,4vw,55px));top:-4%;width:1.5px;height:11%;background:#f4ead6;z-index:1;transform:rotate(-8deg)}
+.kph-tag{z-index:2}
+.shelves.is-hero .kitphoto{opacity:0}
+.shelves.is-hero .shelf.kit.is-on .kitphoto{animation:kitIn .8s var(--ease) .5s forwards}
+@media (prefers-reduced-motion:reduce){.shelves.is-hero .shelf.kit.is-on .kitphoto{opacity:1;animation:none}}
+@media (max-width:900px){.kitphoto{display:none}}
+
+/* 15 Oct 2026, owner: remove "Ask about this" from every product card in
+   Our Range (the "How it is made" button there is already hidden). */
+.range .pcard .ask{display:none}
+
+/* 15 Oct 2026, owner: phone number with a WhatsApp symbol under "Prices are
+   quoted per gram" in the footer's brand block */
+.fphone{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:10px 20px 10px 12px;border-radius:999px;
+  background:#25d366;color:#fff;text-decoration:none;font:600 18px/1 "Jost",sans-serif;letter-spacing:.03em;
+  box-shadow:0 12px 24px -14px rgba(20,120,60,.7);transition:transform .2s,box-shadow .2s}
+.fphone svg{width:26px;height:26px;flex:0 0 auto}
+.fphone:hover{transform:translateY(-2px);box-shadow:0 16px 28px -14px rgba(20,120,60,.8)}
+/* 15 Oct 2026, owner: the footer phone button in dark green (the brand
+   green, #1f3a26) instead of WhatsApp green */
+.fphone{background:#1f3a26;box-shadow:0 12px 24px -14px rgba(31,58,38,.75)}
+.fphone:hover{background:#2a4d33;box-shadow:0 16px 28px -14px rgba(31,58,38,.85)}
+/* same day, owner: exactly the footer band's green below it (#2c4220) */
+.fphone{background:#2c4220;box-shadow:0 12px 24px -14px rgba(44,66,32,.75)}
+.fphone:hover{background:#38532a}
+
+/* ============================================================
+   KIT HERO - ORBIT (15 Oct 2026). The Grocery Kit hero slide in the look
+   of kit-potli-hero.html option 01: blush ground, the rose potli with the
+   thirteen ingredients circling it. Replaces KIT HERO - TOTE PHOTO.
+   The orbit is a square sized off the slide height; everything inside is
+   in cqw of that square so it scales as one.
+   ============================================================ */
+.shelves.is-hero .shelf.kit::before{background:radial-gradient(80% 90% at 70% 50%,#fff6f2,#f6e2db 60%,#efd3ca)}
+.shelves.is-hero .shelf.kit .sh-shot{display:none}
+.shelves.is-hero .shelf.kit .sh-copy .kick{color:#a6475b}
+.shelves.is-hero .shelf.kit .sh-copy h2{color:#1f3a26}
+.shelves.is-hero .shelf.kit .sh-copy h2 em,.shelves.is-hero .shelf.kit .sh-copy h2 .goldtext{color:#a6475b}
+.shelves.is-hero .shelf.kit .sh-copy p{color:#4f4044}
+.shelves.is-hero .shelf.kit .sh-copy .pill{background:#1f3a26;border-color:#1f3a26;color:#fbf1ec}
+.shelves.is-hero .shelf.kit .sh-copy .pill .parrow{background:#fbf1ec;color:#1f3a26}
+.kitorbit{position:absolute;right:clamp(10px,3vw,50px);top:50%;transform:translateY(-50%);z-index:3;
+  height:min(96%,560px);aspect-ratio:1;container-type:inline-size}
+.ko-ring{position:absolute;left:50%;top:50%;width:0;height:0;animation:koSpin 70s linear infinite}
+.ko-ring::before{content:"";position:absolute;left:-40cqw;top:-40cqw;width:80cqw;height:80cqw;border-radius:50%;border:1.5px dashed rgba(166,71,91,.4)}
+.ko-orb{position:absolute;left:0;top:0;transform:rotate(var(--a)) translate(40cqw) rotate(calc(-1 * var(--a)))}
+.ko-it{display:block;width:15cqw;height:15cqw;margin:-7.5cqw 0 0 -7.5cqw;border-radius:50%;overflow:hidden;border:.9cqw solid #fffaf4;
+  box-shadow:0 2cqw 4cqw -2cqw rgba(80,40,30,.6);animation:koSpin 70s linear infinite reverse}
+.ko-it img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes koSpin{to{transform:rotate(360deg)}}
+.ko-sh{position:absolute;left:28%;bottom:16%;width:44%;height:6cqw;border-radius:50%;background:radial-gradient(closest-side,rgba(90,45,35,.35),transparent)}
+.ko-potli{position:absolute;left:50%;top:50%;width:50cqw;height:calc(50cqw * 470 / 400);transform:translate(-50%,-52%);
+  container-type:inline-size;filter:drop-shadow(0 3cqw 3cqw rgba(80,40,30,.25))}
+.ko-potli svg{width:100%;height:100%;display:block;overflow:visible}
+.ko-lk{position:absolute;left:50%;top:47%;width:40%;transform:translateX(-50%);text-align:center;container-type:inline-size;pointer-events:none}
+.ko-m,.ko-lk span img{mix-blend-mode:multiply}
+.ko-m{display:block;width:60%;margin:0 auto}
+.ko-lk b{display:block;font:400 22cqw/1 "Jost",sans-serif;letter-spacing:.2em;margin:5cqw 0 0 .2em;color:#3d4529}
+.ko-lk span{display:flex;align-items:center;justify-content:center;gap:3cqw;margin-top:3cqw}
+.ko-lk span img{height:6.5cqw;width:auto}
+.ko-lk i{font:400 10cqw/1 "Jost",sans-serif;font-style:normal;color:#3d4529}
+.ko-tag{position:absolute;left:79%;top:40%;width:24%;padding:9% 2% 6%;background:#e3c595;border-radius:4px 4px 10px 10px;text-align:center;
+  transform:rotate(-8deg);box-shadow:0 2cqw 3cqw -1.5cqw rgba(0,0,0,.5);clip-path:polygon(18% 0,82% 0,100% 14%,100% 100%,0 100%,0 14%)}
+.ko-tag i{position:absolute;left:50%;top:6%;width:10%;aspect-ratio:1;margin-left:-5%;border-radius:50%;background:#6b4a14}
+.ko-tag b{display:block;font:600 4.6cqw/1.08 "Fraunces",serif;color:#3a2a14}
+.ko-stamp{position:absolute;left:4%;top:6%;width:21cqw;aspect-ratio:1;border-radius:50%;background:#fffaf4;border:2px dashed #c98d84;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(-10deg);
+  box-shadow:0 2.5cqw 5cqw -2.5cqw rgba(80,40,30,.6);z-index:2}
+.ko-stamp img{width:34%}
+.ko-stamp b{font:600 2.5cqw/1.15 "Jost",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8f3a4c;margin-top:.8cqw}
+.shelves.is-hero .kitorbit{opacity:0}
+.shelves.is-hero .shelf.kit.is-on .kitorbit{animation:kitIn .8s var(--ease) .4s forwards}
+@media (prefers-reduced-motion:reduce){.ko-ring,.ko-it{animation:none}.shelves.is-hero .shelf.kit.is-on .kitorbit{opacity:1;animation:none}}
+@media (max-width:900px){.kitorbit{display:none}}
+/* orbit, pass 2: as big as the slide allows, and the stamp moved off the ring */
+.kitorbit{height:auto;width:min(520px,40vw,calc(100svh - 205px))}
+.ko-stamp{left:-16%;top:auto;bottom:10%;width:22cqw}
+/* 15 Oct, owner: the stamp reads "Packed by Satva Sahelis" like the sticker */
+.ko-stamp b{font-size:2.7cqw}
+.ko-stamp b{font-size:2.35cqw;letter-spacing:.04em;white-space:nowrap}
+
+/* ============================================================
+   SEEDS SLIDE - OPTION 04 (15 Oct 2026), from seeds-variations.html:
+   two arches side by side (flax, chia) instead of one, and the two
+   names as small outlined tags under the paragraph.
+   ============================================================ */
+.shelves.is-hero .shelf.seeds04 .sh-arch.sd-l{right:21%;width:13%}
+.shelves.is-hero .shelf.seeds04 .sh-arch.sd-r{right:6%;width:13%}
+.shelves.is-hero .shelf.seeds04.is-on .sh-arch.sd-r{animation-delay:.75s}
+.seeds04 .sd-tags{display:flex;gap:10px;margin:0 0 clamp(12px,2vh,18px);flex-wrap:wrap}
+.seeds04 .sd-tags span{font:500 11px/1 "Jost",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#e8dcc6;
+  border:1px solid rgba(232,220,198,.5);border-radius:99px;padding:6px 12px}
+.shelves.is-hero .shelf.seeds04 .sh-copy h2 em .dv{font-size:.58em;color:var(--gold-pale);font-weight:500}
+
+/* 15 Oct 2026, owner: "Why choose SATVA / What we will not do to your food"
+   centred over the photo cards */
+.whyhero .wh-head{justify-content:center;text-align:center}
+.whyhero .wh-head > div{margin:0 auto}
+/* 15 Oct 2026: Why SATVA slide on background 10 "Dark slate" - heading in cream */
+.shelves.is-hero .whyarch .wa-h{color:#f4efe6}
+.shelves.is-hero .shelf.whyarch::before{background:linear-gradient(rgba(10,12,9,.58),rgba(10,12,9,.58)),#121612 url(../assets/hero-dark-slate.jpg) center/cover no-repeat}
+
+/* 15 Oct 2026, owner: "The range / Everything we pack" in the middle */
+.range .sechead{justify-content:center;text-align:center}
+.range .sechead>div{flex:0 1 auto}
+.range .sechead .rule{margin-inline:auto}
+.range .sechead>div{flex:1 1 auto}
+
+/* 15 Oct 2026: Grocery Kit slide in option 02 "Ivory & gold" of
+   kit-potli-photo.html - rendered potli image, ivory ground, gold accents */
+.shelves.is-hero .shelf.kit::before{background:radial-gradient(80% 90% at 70% 50%,#fffaf0,#f1e4c8)}
+.shelves.is-hero .shelf.kit .sh-copy .kick{color:#94660a}
+.shelves.is-hero .shelf.kit .sh-copy h2 em,.shelves.is-hero .shelf.kit .sh-copy h2 .goldtext{color:#94660a}
+.ko-ring::before{border-color:rgba(181,131,42,.5)}
+.ko-potli.ko-photo{height:auto;width:54cqw;filter:drop-shadow(0 3cqw 3cqw rgba(60,30,20,.28))}
+.ko-potli.ko-photo img{display:block;width:100%;height:auto}
+.ko-potli.ko-photo .ko-tag{left:66%;top:45%;width:26%;padding:7% 2% 5%}
+.ko-potli.ko-photo .ko-tag b{font-size:5cqw}
+
+
+/* 16 Oct 2026, owner: the Grocery Kit block under Satva Saheli (#kit) is too
+   dark - lighter sage green instead of the deep forest green, words in the
+   brand dark green, gold kept for accents */
+.kitsec{background:radial-gradient(120% 140% at 85% 20%,#eef3e4 0%,#dfe8cf 55%,#cfdcbc 100%);color:#1f3a26}
+.kitsec .kk-kick{color:#7f5a0f}
+.kitsec .kk-h{color:#1f3a26}.kitsec .kk-h em{color:#94660a}
+.kitsec .kk-d{color:#3c4a35}
+.kitsec .kk-steps li{border-top-color:rgba(31,58,38,.25)}
+.kitsec .kk-steps li::before{color:#94660a}
+.kitsec .kk-steps b{color:#1f3a26}.kitsec .kk-steps span{color:#4a5a42}
+.kitsec .kk-tel{color:#7f5a0f}
+.kitsec .kk-box{box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 30px 50px -30px rgba(60,70,40,.55)}
+/* 16 Oct 2026, owner: the kit block in the same light cream as the top menu bar */
+.kitsec{background:#fef7f0}
+/* 16 Oct 2026, owner: kit block in the logo's green (#55714e, sampled from
+   logo-stack-dark.png), the "Inside every kit" box in cream */
+.kitsec{background:#55714e;color:#fbf6ec}
+.kitsec .kk-kick{color:#f1ddab}
+.kitsec .kk-h{color:#fffaf2}.kitsec .kk-h em{color:#f1ddab}
+.kitsec .kk-d{color:#eef1e6}
+.kitsec .kk-steps li{border-top-color:rgba(255,250,242,.35)}
+.kitsec .kk-steps li::before{color:#f1ddab}
+.kitsec .kk-steps b{color:#fffaf2}.kitsec .kk-steps span{color:#e2e8d8}
+.kitsec .kk-tel{color:#f1ddab}
+.kitsec .kk-box{background:#fef7f0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 30px 50px -30px rgba(20,35,15,.6)}
+.kitsec .kk-box::before{border-color:rgba(85,113,78,.35)}
+.kitsec .kk-grp + .kk-grp{border-top-color:rgba(85,113,78,.22)}
+/* 16 Oct 2026, owner: footer in the same logo green (#55714e) as the kit
+   blocks; the WhatsApp phone button keeps matching the footer */
+footer#contact{background:#55714e}
+.fphone{background:#55714e;box-shadow:0 12px 24px -14px rgba(40,60,35,.75)}
+.fphone:hover{background:#4a6444}
+
+/* 20 Oct 2026, owner: the DS SATVA FOODS words under the mission-slide logo removed, logo made bigger. */
+.msslide.brt .mssign img{height:clamp(96px,15vh,150px);opacity:1;}
+.msslide.brt .mssign{padding-bottom:0;}
+
+/* ===== CHILLI VARIETIES (20 Oct 2026) - js/chilli-varieties-8002.js ===== */
+.range .pcard.has-cvar{cursor:pointer}
+.cvar-hint{display:block;white-space:nowrap;margin-top:8px;font:600 .72rem/1 "Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#a52a13}
+.cvar-hint i{font-style:normal;transition:transform .3s}
+.pcard.has-cvar:hover .cvar-hint i{transform:translateX(3px)}
+html.cvar-open{overflow:hidden}
+.cvar{position:fixed;inset:0;z-index:200;background:rgba(18,22,14,.72);display:grid;place-items:center;padding:16px}
+.cvar[hidden]{display:none}
+.cvar-card{position:relative;width:min(1120px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fdf6ec;border-radius:22px;padding:clamp(18px,2.6vh,28px) clamp(16px,2.4vw,32px);box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.cvar-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:#fff;color:#1e2c16;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 14px -6px rgba(0,0,0,.3)}
+.cvar-x svg{width:20px;height:20px}
+.cvar-k{letter-spacing:.3em;text-transform:uppercase;font:600 .75rem/1 "Jost",sans-serif;color:#7f5a0f;text-align:center}
+.cvar-h{font:600 clamp(1.5rem,2.4vw,2.1rem)/1.1 "Fraunces",Georgia,serif;color:#1e2c16;text-align:center;margin:8px 0 6px}
+.cvar-l{text-align:center;color:#4e6848;font:300 .95rem/1.5 "Jost",sans-serif;margin:0 0 clamp(12px,2vh,20px)}
+.cvar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cvar-c{background:#fff;border:1px solid #e8ddc6;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 38px -26px rgba(60,81,40,.5)}
+.cvar-ph{position:relative;height:clamp(150px,26vh,240px);overflow:hidden}
+.cvar-ph img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.1)}
+.cvar-ph span{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.94);color:#a52a13;font:600 .7rem/1 "Jost",sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;border-radius:999px}
+.cvar-b{padding:14px 16px 16px}
+.cvar-b h3{font:600 1.35rem/1.1 "Fraunces",Georgia,serif;color:#1e2c16;margin:0 0 6px}
+.cvar-b p{font:300 .9rem/1.5 "Jost",sans-serif;color:#4e6848;margin:0}
+.cvar-b .cvar-u{margin-top:10px;padding-top:10px;border-top:1px dashed rgba(30,44,22,.18);color:#3c3533}
+.cvar-u b{display:block;font:600 .68rem/1 "Jost",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7f5a0f;margin-bottom:5px}
+@media (max-width:820px){.cvar-grid{grid-template-columns:1fr}.cvar-ph{height:180px}}
+/* 20 Oct 2026: four chilli varieties now - two by two so the photos stay large */
+.cvar-grid{grid-template-columns:repeat(4,1fr);gap:14px}
+.cvar-ph{height:clamp(130px,22vh,200px)}
+@media (max-width:1000px){.cvar-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.cvar-grid{grid-template-columns:1fr}}
+
+/* ===== SAHELI STORY - 20 OCT (owner's copy, made livelier; fits 1245x657) ===== */
+.sahstory-card:has(.sx){width:min(1180px,100%)}
+.sx{grid-template-columns:1.55fr 1fr}
+.sx-main{padding:24px 30px 22px !important}
+.sx-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.sx-head img{width:54px;height:54px;flex:0 0 auto}
+.sx-head .sahstory-k{margin:0 0 6px}
+.sx-head h2{font:600 27px/1.08 "Fraunces",serif;color:#1f3a26;margin:0}
+.sx-head h2 span{color:#b5832a;font-style:italic}
+.sx-sub{font:400 14.5px/1.5 "Fraunces",serif;color:#1e2c16;margin:0 0 12px;padding-left:12px;border-left:3px solid #e2b85c}
+.sx-h3{font:600 16.5px/1.2 "Fraunces",serif;color:#1f3a26;margin:0 0 6px}
+.sx-h3 em{color:#b5832a}
+.sx-p{font:300 13px/1.5 "Jost",sans-serif;color:#3c4a35;margin:0 0 8px}
+.sx-ic{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#1f3a26;color:#f1ddab;flex:0 0 auto}
+.sx-ic svg{width:17px;height:17px}
+.sx-pillars{list-style:none;margin:0 0 12px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sx-pillars li{background:#fffdf7;border:1px solid rgba(31,58,38,.12);border-radius:14px;padding:10px 11px;transition:transform .3s,box-shadow .3s}
+.sx-pillars li:hover{transform:translateY(-3px);box-shadow:0 12px 24px -16px rgba(31,58,38,.5)}
+.sx-pillars b{display:block;font:600 13.5px/1.2 "Fraunces",serif;color:#1f3a26;margin:7px 0 3px}
+.sx-pillars li>span:last-child{display:block;font:300 12px/1.42 "Jost",sans-serif;color:#3c4a35}
+.sx-roles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sx-roles li{display:flex;gap:11px;align-items:center;background:linear-gradient(135deg,#1f3a26,#2f5236);border-radius:14px;padding:9px 12px 9px 9px}
+.sx-roles img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #e9cf98;flex:0 0 auto}
+.sx-roles b{display:block;font:600 14px/1.2 "Fraunces",serif;color:#f1ddab;margin-bottom:2px}
+.sx-roles span{display:block;font:300 12px/1.4 "Jost",sans-serif;color:#e4dccb}
+.sx-join{padding:24px 26px 18px !important}
+.sx-join h3{font:600 25px/1.1 "Fraunces",serif;margin:0 0 4px}
+.sx-jsub{font:italic 500 15px/1.3 "Fraunces",serif;color:#b5832a;margin:0 0 8px}
+.sx-join .sahstory-jl{font-size:13px;line-height:1.5;margin:0 0 10px}
+.sx-perks{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:9px}
+.sx-perks li{display:flex;gap:11px;align-items:flex-start;padding:0 !important}
+.sx-perks li::before{display:none !important}
+.sx-perks b{display:block;font:600 14px/1.2 "Fraunces",serif;color:#1f3a26;margin-bottom:2px}
+.sx-perks span:not(.sx-ic){display:block;font:300 12.5px/1.4 "Jost",sans-serif;color:#3c4a35}
+.sx-apply{gap:9px;align-items:center;font-size:15px;padding:13px 18px}
+.sx-apply svg{width:19px;height:19px}
+.sx-join .sahstory-tel{margin-top:9px;color:#94660a}
+.sx-tag{margin:12px 0 0;padding-top:10px;border-top:1px dashed rgba(148,102,10,.35);text-align:center}
+.sx-tag b{display:block;font:600 11px/1 "Jost",sans-serif;letter-spacing:.3em;color:#1f3a26}
+.sx-tag i{display:block;font:italic 500 14px/1.3 "Fraunces",serif;color:#b5832a;margin-top:4px}
+@media (max-width:900px){.sx-pillars{grid-template-columns:1fr}.sx-roles{grid-template-columns:1fr}}
+.sahstory-join .sx-perks li span.sx-ic{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#1f3a26;color:#f1ddab;font-size:0;margin-top:1px}
+.sahstory-join .sx-perks li span.sx-ic svg{width:17px;height:17px}
+
+/* ===== SAHELI + KIT - 20 OCT (owner's new Satva Saheli copy) ===== */
+.saheli.sah20{display:flex;align-items:center;justify-content:center}
+.s20-in{width:min(1180px,100%);margin:0 auto;padding:0 clamp(16px,3vw,40px);display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+.s20-head{display:flex;align-items:center;gap:12px}
+.s20-head img{width:clamp(40px,7vh,54px);height:auto}
+.s20-k{font:600 12px/1.2 "Jost",sans-serif;letter-spacing:.26em;text-transform:uppercase;color:#7f5a0f;margin:0}
+.s20-h{font:600 clamp(22px,min(2.4vw,4.6vh),32px)/1.12 "Fraunces",serif;color:#1e2c16;margin:clamp(8px,1.4vh,14px) 0 clamp(6px,1.2vh,12px)}
+.s20-h em{display:block;color:#b4707a}
+.s20-lede{font:300 clamp(13px,1.1vw,15px)/1.55 "Jost",sans-serif;color:#2c4220;margin:0 0 clamp(10px,1.8vh,16px);padding-left:12px;border-left:3px solid #e2b85c}
+.s20-pill{list-style:none;margin:0;padding:0;display:grid;gap:clamp(6px,1.2vh,10px)}
+.s20-pill li,.kk-perks li{display:flex;gap:12px;align-items:flex-start}
+.s20-ic{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#1f3a26;color:#f1ddab;flex:0 0 auto}
+.s20-ic svg{width:17px;height:17px}
+.s20-pill b{display:block;font:600 clamp(13.5px,1.15vw,15.5px)/1.2 "Fraunces",serif;color:#1f3a26}
+.s20-pill span:not(.s20-ic){display:block;font:300 clamp(12px,1vw,13.5px)/1.45 "Jost",sans-serif;color:#3c4a35;margin-top:2px}
+.s20-r{display:flex;flex-direction:column;align-items:center;gap:clamp(10px,2vh,18px);text-align:center}
+.s20-k2{font:600 clamp(16px,1.5vw,20px)/1.2 "Fraunces",serif;letter-spacing:0;text-transform:none;color:#1e2c16}
+.s20-k2 em{color:#b4707a}
+.sah20 .s20-row{gap:clamp(18px,3vw,40px)}
+.sah20 .s20-row img{--d:clamp(120px,min(14vw,26vh),190px)}
+.sah20 .s20-row span{font-size:clamp(12.5px,1vw,14px)}
+@media (max-width:900px){.s20-in{grid-template-columns:1fr}}
+.kk-perks{list-style:none;margin:0 0 clamp(14px,2.6vh,22px);padding:0;display:grid;gap:clamp(7px,1.4vh,12px)}
+.kitsec .s20-ic{background:#e9cf98;color:#1f3a26}
+.kk-perks b{display:block;font:600 15px/1.2 "Fraunces",serif;color:#f4efe6}
+.kk-perks span:not(.s20-ic){display:block;font:300 12.5px/1.4 "Jost",sans-serif;color:#c9bfa8;margin-top:2px}
+.kk-h em{font-size:.55em;font-style:italic;margin-top:6px}
+.kk-buy{display:inline-flex;align-items:center;padding:13px 22px;border-radius:999px;border:1.5px solid #e9cf98;color:#f4efe6;font:500 15px/1 "Jost",sans-serif;text-decoration:none}
+.kk-buy:hover{background:rgba(233,207,152,.12)}
+.kk-sign{margin:clamp(12px,2vh,18px) 0 0;font:300 13px/1.4 "Jost",sans-serif;color:#c9bfa8}
+.kk-sign b{font:600 11px/1 "Jost",sans-serif;letter-spacing:.26em;color:#e9cf98;margin-right:6px}
+.kk-sign i{font-family:"Fraunces",serif;color:#f1ddab;margin-right:10px}
+.kk-sign .kk-tel{font-size:13px}
+.sah20 .s20-l{text-align:left;justify-self:stretch}.sah20 .s20-pill li>div{text-align:left}
+/* 20 Oct 2026, owner: "too cramped - crisp and attractive": shorter copy, more air */
+.s20-h{font-size:clamp(26px,min(2.9vw,5.4vh),38px);margin:clamp(12px,2vh,18px) 0 clamp(10px,1.8vh,16px)}
+.s20-lede{font-size:clamp(14.5px,1.25vw,17px);margin-bottom:clamp(18px,3.2vh,28px)}
+.s20-pill{gap:clamp(12px,2.2vh,18px)}
+.s20-pill li{align-items:center;gap:14px}
+.s20-ic{width:38px;height:38px}.s20-ic svg{width:19px;height:19px}
+.s20-pill b{font-size:clamp(15px,1.3vw,17px)}
+.s20-pill span:not(.s20-ic){font-size:clamp(13px,1.05vw,14.5px)}
+.sah20 .s20-row img{--d:clamp(140px,min(16vw,30vh),210px)}
+.sah20 .s20-row span{font-size:clamp(13.5px,1.1vw,15px)}
+.s20-r{gap:clamp(14px,2.6vh,24px)}
+.kk-d{font-size:clamp(15px,1.3vw,17.5px);margin-bottom:clamp(18px,3vh,26px)}
+.kk-perks{gap:clamp(12px,2.2vh,18px);margin-bottom:clamp(20px,3.4vh,30px)}
+.kk-perks li{align-items:center;gap:14px}
+.kk-perks b{font-size:16.5px}
+.kk-perks span:not(.s20-ic){font-size:13.5px}
+.kk-h{margin-bottom:clamp(12px,2vh,18px)}
+
+/* ===== SAHELI STORY - 21 OCT (no repeats of the Saheli section; crisp) ===== */
+.sx21{display:flex;flex-direction:column}
+.sx21 .sx-head{margin-bottom:14px}
+.sx21 .sx-head h2{font-size:30px}
+.sx21 .sx-sub{font-size:16px;line-height:1.55;margin:0 0 18px}
+.sx-photo{position:relative;flex:1 1 auto;min-height:240px;margin:0;border-radius:18px;overflow:hidden}
+.sx-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%} /* 21 Oct: 28% keeps all three faces in the wide frame (owner's sah-mary-friends.jpg) */
+.sx-photo figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;gap:14px;padding:46px 20px 16px;background:linear-gradient(to top,rgba(20,38,25,.92),rgba(20,38,25,0))}
+.sx-photo figcaption div{flex:1;display:flex;align-items:baseline;gap:10px}
+.sx-photo b{font:600 32px/1 "Fraunces",serif;color:#f1ddab}
+.sx-photo span{font:400 13px/1.35 "Jost",sans-serif;color:#efe7d6}
+@media (max-width:900px){.sx-photo{min-height:200px}.sx-photo figcaption{flex-direction:column;gap:6px}}
+
+/* ===== KIT BOX FOOT - 21 OCT ("Customise your kit" in the white box) ===== */
+.kk-foot{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:clamp(8px,1.6vh,14px);padding-top:clamp(8px,1.6vh,14px);border-top:1px solid rgba(85,113,78,.2)}
+.kk-foot p{margin:0;font:italic 500 clamp(13px,1.1vw,15px)/1.3 "Fraunces",serif;color:#55714e}
+.kk-cust{font-size:14px;padding:10px 20px;cursor:pointer;border:0;white-space:nowrap}

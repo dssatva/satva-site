@@ -1,0 +1,230 @@
+/* ============================================================================
+   DARK HERO — variant C, 19 Sep 2026
+   Loaded AFTER css/satva.css and overriding only the hero. Everything below the
+   shelf slider is untouched, which is why this is a separate file rather than a
+   fork of the stylesheet: the whole change is legible in one place and deleting
+   one <link> puts the site back.
+
+   satva.css already anticipated this. The note above .sh-shot img says every
+   hero photograph "is shot on a pale ground ... A photo shot on a dark ground
+   would need its own handling." This is that handling.
+   ========================================================================== */
+
+/* 1. The photograph goes full-bleed. The inset right-hand frame and its two
+      masks exist to dissolve a pale photo into cream; on a dark photo there is
+      nothing to dissolve into, and the taper only ate the picture. */
+.shelves.is-hero .sh-shot{
+  inset:0;width:100%;
+  -webkit-mask-image:none;mask-image:none;
+}
+.shelves.is-hero .sh-shot img{
+  -webkit-mask-image:none;mask-image:none;
+  object-position:var(--shot-pos,center);
+}
+
+/* 2. The ground behind is near-black rather than the per-shelf gradient, so the
+      letterboxing while a slide loads matches the photograph instead of flashing
+      cream. */
+.shelves.is-hero .shelf::before{background:#0e120d;}
+
+/* 3. The scrim. This is the load-bearing part: it is what the type sits on.
+      Heavy at the left where the words are, gone by 88% so the right end of the
+      photograph is at full strength.
+      MEASURED: cream #e8dcc6 over rgba(10,13,9,.80) on the worst case - a white
+      blowout in the photograph - is 6.8:1. The floor for cream over any
+      photograph is α 0.68; this runs at .80 where the copy sits, for margin.
+      --gold-lt is NOT usable here at any sane strength (3.4:1 at α .70), which
+      is why the accent below is --gold-pale. */
+.shelves.is-hero .sh-shot::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,
+    rgba(10,13,9,.80) 0%,rgba(10,13,9,.74) 34%,rgba(10,13,9,.40) 56%,
+    rgba(10,13,9,.12) 74%,rgba(10,13,9,0) 88%);
+}
+
+/* 4. Every ink in the hero inverts. Same exercise the footer went through on
+      18 Sep, in the same direction. */
+.shelves.is-hero .sh-copy .kick{color:var(--gold-pale);}
+.shelves.is-hero .sh-copy h2{color:#f4f3e7;}
+.shelves.is-hero .sh-copy h2 .goldtext{
+  background:none;-webkit-text-fill-color:currentColor;color:var(--gold-pale);
+}
+.shelves.is-hero .sh-copy p{color:var(--cream);}
+.shelves.is-hero .sh-copy .sh-count{color:#cdbfa4;}
+.shelves.is-hero .sh-copy .pill{border-color:var(--cream);color:#f4f3e7;}
+.shelves.is-hero .sh-copy .pill:hover{border-color:var(--gold-pale);}
+.shelves.is-hero .sh-copy .pill .parrow{background:var(--cream);color:#16200f;}
+
+/* 5. The three shelves with no dark photograph of their own. Pulses and Healthy
+      Essentials are pale category shots pushed down to sit with the others;
+      Seeds uses p-flax.jpg, which is genuinely dark already and needs less.
+      These are STAND-INS - see README-v3.md. */
+.shelves.is-hero .shelf.graded .sh-shot img{
+  filter:saturate(1.16) contrast(1.14) brightness(.62);
+}
+.shelves.is-hero .shelf.graded-soft .sh-shot img{
+  filter:saturate(1.1) contrast(1.06) brightness(.86);
+}
+
+/* ============================================================================
+   THE SET, 19 Sep 2026 — all four shelves, not just Spices.
+
+   WHY A TREATMENT AND NOT FOUR PHOTOGRAPHS: there is no dark, dramatic,
+   topic-matched picture of dal, or of an oil bottle, available under any licence
+   that permits commercial use. That is not a guess - CC0 first, then every
+   commercial licence Openverse indexes, about twenty-five queries across the
+   four shelves. It returned coffee beans, a bulldog on a bean bag, and a salt
+   pond in New Zealand. Spices and Seeds are fine because the library already
+   holds dark shots of them; Pulses and Healthy Essentials have nothing.
+
+   So the pale category photographs are pushed into a DUOTONE instead of merely
+   being darkened. Darkening alone gave a muddy, underexposed-looking picture -
+   the thing that reads as a mistake. A duotone reads as a decision: the
+   photograph is reduced to one hue and re-lit, which is a real editorial style
+   and, crucially, makes all four slides look like one set rather than two good
+   photographs and two bad ones.
+   ========================================================================== */
+.shelves.is-hero .shelf.duo .sh-shot img{
+  filter:grayscale(1) contrast(1.28) brightness(.74);
+}
+.shelves.is-hero .shelf.duo .sh-shot::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  /* the hue the grey is re-lit with: the brand green in the shadows, gold in
+     the highlights, which is the same pairing the rest of the page runs on */
+  background:linear-gradient(150deg,#2c4220 0%,#6f5433 52%,#bf8a17 100%);
+  mix-blend-mode:color;opacity:.92;
+}
+.shelves.is-hero .shelf.duo .sh-shot::after{z-index:2;}
+
+/* The pink salt was tried here first and had to go: a duotone reduces the whole
+   picture to one hue, and the one thing that identifies Himalayan salt IS its
+   pink. The copy leads with the four oils in any case, so the bottle is both the
+   better topic match and the subject that survives the treatment - the oil is
+   already gold, which is the hue the duotone lands on. */
+
+
+/* ============================================================================
+   THE PLANTS, 19 Sep 2026 — "it would be good to have green pictures related to
+   what plants they are".
+
+   This replaces the duotone on Pulses and Healthy Essentials and the graded
+   bowl on Seeds. Those were disguises for the fact that no dark studio shot of
+   dal or of oil exists; the answer turned out to be to stop looking for one.
+   Each of the three now carries its own crop, growing:
+     Pulses             pigeon pea standing in the field
+     Seeds              flax in flower, overhead
+     Healthy Essentials a coconut grove - the oils lead that shelf's copy
+   All CC0. Spices keeps its dark studio photograph, which is the one the owner
+   approved.
+
+   These need NO grade. They are bright where the dark shots were dark, and the
+   left-hand scrim is what holds the two kinds together: it darkens the third of
+   the picture the type sits on and leaves the rest at full strength, so a green
+   field and a black spice box read as the same hero rather than two designs.
+   Cream on that scrim over the worst case - a white blowout in a sunlit field -
+   is still 6.8:1.
+   ========================================================================== */
+.shelves.is-hero .shelf.plant .sh-shot img{
+  filter:saturate(1.12) contrast(1.04);
+}
+
+/* ============================================================================
+   THE ARCH — 20 Sep 2026, at the size and position the owner picked off the
+   bright.html comparison: 16% of the wrap wide, 7% in from its right edge.
+
+   It holds a SECOND crop from the same shelf, so the hero shows the field and a
+   detail of it at once: chilli against the turmeric field, chana against the
+   toor, flax wide against flax close, groundnut against the coconut grove.
+
+   The radius is in PIXELS, not percentages. As a percentage the dome grew
+   proportionally taller as the frame narrowed and went pointy at these sizes -
+   that was visible on the 18% sample of the earlier comparison page.
+   ========================================================================== */
+.shelves.is-hero .shelf .wrap{position:relative;}
+.shelves.is-hero .sh-arch{
+  position:absolute;right:7%;top:50%;transform:translateY(-50%);
+  width:16%;aspect-ratio:4/5;overflow:hidden;z-index:3;
+  border-radius:120px 120px 20px 20px;
+  box-shadow:0 26px 58px -34px rgba(20,26,16,.66);
+}
+.shelves.is-hero .sh-arch img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(1.14) contrast(1.04);
+}
+/* Below 1100px the copy column and the arch start fighting for the same space,
+   and the arch is the one that can go: it is a second view of a crop the hero is
+   already showing, not information. */
+@media (max-width:1100px){ .shelves.is-hero .sh-arch{display:none;} }
+
+/* The arch gets its own entrance, on their picture's beat rather than their
+   text's: kovaikisan animates the slide image at +0.6s and the words at +0.9s.
+   Ours lands between the photograph settling and the headline rising, so the
+   three things arrive in order instead of together. */
+.shelves.is-hero .sh-arch{opacity:0;transform:translateY(-50%) scale(.965);}
+.shelves.is-hero .shelf.is-on .sh-arch{
+  animation:archIn .8s var(--ease) .6s forwards;
+}
+@keyframes archIn{
+  from{opacity:0;transform:translateY(-50%) scale(.965);}
+  to  {opacity:1;transform:translateY(-50%) scale(1);}
+}
+@media (prefers-reduced-motion:reduce){
+  .shelves.is-hero .sh-arch,
+  .shelves.is-hero .shelf.is-on .sh-arch{opacity:1;transform:translateY(-50%);animation:none;}
+}
+
+/* The image credit. Deliberately the quietest thing in the footer - it is a
+   legal obligation, not a design element - but it uses --f-muted, which measures
+   7.04:1 on the plum ground, so "quiet" never means "unreadable". */
+footer .fcredit{
+  margin:18px 0 0;font-size:.72rem;line-height:1.5;color:var(--f-muted);
+  max-width:60ch;
+}
+footer .fcredit a{color:var(--gold-pale);text-decoration:underline;text-underline-offset:2px;}
+
+/* ============================================================
+   THE SATWA SAHELI SLIDE — dark-ink fallback.       22 Sep 2026
+   ------------------------------------------------------------
+   KEPT, BUT CURRENTLY UNUSED. The fifth slide was first built
+   without a photograph, standing on its own pink ground, and
+   everything above in this file assumes there IS one: the copy
+   is cream and sits on a dark scrim, which would be invisible on
+   pale pink. These rules put the ink back to dark for that case.
+
+   The slide now HAS a photograph, so it takes the ordinary cream
+   treatment and none of this applies. It is left here because
+   the picture is a placeholder - a stranger winnowing, not one
+   of our Sahelis - and if it is ever pulled before the owner's
+   own photograph arrives, adding `is-saheli` back to the article
+   makes the slide readable again with one word.
+
+   Measured on the palest stop, #fdf3f1: --ink 13.9:1,
+   --band 8.2:1, --gold-dk 6.0:1. On the deepest, #f3dfdc:
+   12.6:1, 7.5:1, 5.5:1.
+   ============================================================ */
+.shelves.is-hero .shelf.is-saheli .sh-copy .kick{color:var(--gold-dk);}
+.shelves.is-hero .shelf.is-saheli .sh-copy h2{color:var(--ink);}
+.shelves.is-hero .shelf.is-saheli .sh-copy h2 .goldtext{color:var(--gold-dk);}
+.shelves.is-hero .shelf.is-saheli .sh-copy p{color:var(--band);}
+.shelves.is-hero .shelf.is-saheli .sh-copy .sh-count{
+  color:var(--gold-dk);font-style:italic;
+}
+.shelves.is-hero .shelf.is-saheli .sh-copy .pill{
+  border-color:var(--band);color:var(--green);
+}
+.shelves.is-hero .shelf.is-saheli .sh-copy .pill:hover{border-color:var(--gold-dk);}
+.shelves.is-hero .shelf.is-saheli .sh-copy .pill .parrow{
+  background:var(--band);color:#fdf3f1;
+}
+/* Without a .sh-shot there is no full-bleed picture to sit on, so the
+   slide's own --sg gradient is what the eye sees. It needs to fill the
+   article the way the photograph does on the other four. */
+.shelves.is-hero .shelf.is-saheli{background:var(--sg);}
+
+/* The copy column is half-width on the photographic slides because the
+   arch sits beside it. There is no arch here, so it would otherwise
+   leave half the slide empty. */
+.shelves.is-hero .shelf.is-saheli .sh-copy{max-width:min(720px,72%);}
+@media (max-width:1100px){
+  .shelves.is-hero .shelf.is-saheli .sh-copy{max-width:none;}
+}

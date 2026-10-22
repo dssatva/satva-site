@@ -1,0 +1,179 @@
+/* ============================================================
+   CUSTOMISE YOUR KIT, :8002 only (15 Oct 2026) - the block at the end
+   of the Our Range grid and its picker / order-slip dialog.
+   Script: js/kit-custom-8002.js.
+   ============================================================ */
+.kitcust{min-width:0;container-type:inline-size;overflow:hidden;
+  border-radius:22px;background:linear-gradient(135deg,#fdf1ea 0%,#f6dccf 100%);border:1px solid rgba(160,90,70,.18);
+  box-shadow:0 18px 36px -26px rgba(90,50,30,.45)}
+.kc-in{display:flex;align-items:stretch;height:100%}
+.kc-art{position:relative;flex:0 0 42%;min-height:240px;overflow:hidden}
+.kc-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.kc-badge{position:absolute;left:16px;bottom:16px;padding:10px 14px;border-radius:14px;background:#fffaf4;color:#8f3a4c;
+  font:600 13px/1.2 "Fraunces",serif;box-shadow:0 10px 20px -12px rgba(0,0,0,.5);transform:rotate(-4deg)}
+.kc-copy{flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,3vw,40px)}
+.kc-kick{font:500 11px/1.3 "Jost",sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#a0442e;margin:0}
+.kc-h{font:600 clamp(24px,2.6vw,34px)/1.08 "Fraunces",serif;color:#1f3a26;margin:10px 0 10px}
+.kc-d{font:300 15px/1.55 "Jost",sans-serif;color:#4a3f38;margin:0 0 18px;max-width:46ch}
+.kc-btn{align-self:flex-start;display:inline-flex;gap:10px;align-items:center;cursor:pointer;border:0}
+.kc-count{font:500 13px/1.3 "Jost",sans-serif;color:#7f3a2a;margin:10px 0 0;min-height:1em}
+@container (max-width:460px){
+  .kc-in{flex-direction:column}
+  .kc-art{flex:0 0 auto;height:170px;min-height:0}
+}
+
+/* ---- dialog ---- */
+.kcdlg{position:fixed;inset:0;z-index:1001;display:grid;place-items:center;padding:16px;
+  background:rgba(20,26,16,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.kcdlg[hidden]{display:none}
+html.kc-on{overflow:hidden}
+.kc-card{position:relative;width:min(860px,100%);max-height:calc(100svh - 32px);display:flex;flex-direction:column;border-radius:22px;
+  background:linear-gradient(170deg,#fffaf3,#f8eee2);box-shadow:0 30px 60px -20px rgba(0,0,0,.55);overflow:hidden}
+.kc-x{position:absolute;right:12px;top:10px;z-index:3;width:38px;height:38px;border:0;border-radius:50%;background:transparent;
+  font:400 28px/1 "Jost",sans-serif;color:#3c4a35;cursor:pointer}
+.kc-x:hover{background:rgba(31,58,38,.08)}
+.kc-view{display:flex;flex-direction:column;min-height:0;flex:1}
+.kc-top{padding:24px 28px 10px}
+.kc-top h2,.kc-slip h2{font:600 28px/1.1 "Fraunces",serif;color:#1f3a26;margin:6px 0 4px}
+.kc-sub{font:300 14px/1.4 "Jost",sans-serif;color:#4a4636;margin:0}
+.kc-list{overflow-y:auto;padding:4px 28px 12px;flex:1;min-height:0}
+.kc-grp h3{font:600 12px/1 "Jost",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#94660a;margin:16px 0 8px}
+.kc-grp ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:8px}
+.kc-item{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:14px;background:#fff;border:1.5px solid rgba(31,58,38,.1);transition:border-color .2s,background .2s}
+.kc-item.is-on{border-color:#1f3a26;background:#f3f7ef}
+.kc-item img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:0 0 auto}
+.kc-nm{flex:1;min-width:0}
+.kc-nm b{display:block;font:600 14.5px/1.2 "Jost",sans-serif;color:#1e2c16}
+.kc-nm i{display:block;font:400 12px/1.2 "Jost",sans-serif;font-style:normal;color:#7a5418}
+.kc-opts{display:flex;gap:5px;flex:0 0 auto}
+.kc-opt{min-width:52px;padding:8px 0;border-radius:999px;border:1.5px solid rgba(31,58,38,.3);background:#fff;color:#1f3a26;
+  font:600 13px/1 "Jost",sans-serif;cursor:pointer}
+.kc-opt:hover{border-color:#1f3a26}
+.kc-opt[aria-pressed="true"]{background:#1f3a26;border-color:#1f3a26;color:#f4efe6}
+.kc-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 28px;border-top:1px solid rgba(31,58,38,.12);background:#fffaf3}
+.kc-tally{font:400 14px/1.3 "Jost",sans-serif;color:#3c4a35;margin:0}
+.kc-tally b{color:#1f3a26}
+.kc-done{border:0;cursor:pointer;min-width:140px;justify-content:center}
+.kc-done:disabled{opacity:.45;cursor:not-allowed}
+/* ---- order slip ---- */
+.kc-slip{overflow-y:auto;padding:24px 28px 14px;flex:1;min-height:0}
+.kc-slip-h{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.kc-slip-h img{width:74px;height:auto}
+.kc-when{font:400 13px/1 "Jost",sans-serif;color:#7a6a48;margin:0}
+.kc-tbl{width:100%;border-collapse:collapse;font:400 15px/1.3 "Jost",sans-serif;color:#1e2c16}
+.kc-tbl th{text-align:left;font:600 11px/1 "Jost",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#94660a;padding:8px 6px;border-bottom:1.5px solid rgba(31,58,38,.2)}
+.kc-tbl th:last-child,.kc-tbl td:last-child{text-align:right;white-space:nowrap}
+.kc-tbl td{padding:7px 6px;border-bottom:1px solid rgba(31,58,38,.08)}
+.kc-tbl td img{width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:10px}
+.kc-tbl tfoot td{font-weight:600;border-bottom:0;padding-top:10px}
+.kc-msg{margin-top:16px;padding:16px 18px;border-radius:16px;background:#e9f7ee;border:1.5px dashed #25a35a;text-align:center}
+.kc-msg b{display:block;font:700 17px/1.3 "Jost",sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#14713b}
+.kc-msg span{display:block;font:500 15px/1.3 "Jost",sans-serif;color:#1e2c16;margin-top:6px}
+.kc-edit{border:0;background:transparent;font:500 14px/1 "Jost",sans-serif;color:#1f3a26;cursor:pointer;padding:10px 4px}
+.kc-wa{text-decoration:none}
+@media (max-width:640px){
+  .kc-grp ul{grid-template-columns:1fr}
+  .kc-item{flex-wrap:wrap}.kc-opts{width:100%;justify-content:flex-end}
+  .kc-top,.kc-list,.kc-slip,.kc-foot{padding-left:16px;padding-right:16px}
+}
+.kc-tbl td:first-child{display:flex;align-items:center;gap:10px}
+.kc-tbl td img{display:inline-block;margin:0;flex:0 0 auto}
+.kc-tbl tfoot td:first-child{display:table-cell}
+
+/* 16 Oct 2026, owner: the ivory potli (as on the Grocery Kit slide) here,
+   in place of the tote photo - whole potli, on a soft ivory glow */
+.kc-art.kc-potli{background:radial-gradient(70% 70% at 50% 55%,#fffaf0,#f1e4c8)}
+.kc-art.kc-potli img{inset:8% 10% 12%;width:80%;height:80%;object-fit:contain;filter:drop-shadow(0 14px 14px rgba(60,30,20,.28))}
+.kc-art.kc-potli .kc-badge{left:12px;bottom:12px}
+.kc-art.kc-potli img{inset:4% 6% 4%;width:88%;height:92%}
+@container (max-width:460px){.kc-in .kc-art.kc-potli{height:230px}}
+
+/* ============================================================
+   16 Oct 2026 - option 13, lighter terracotta, scrolling strip
+   ============================================================ */
+.kitcust{background:linear-gradient(150deg,#e4a385 0%,#d4876a 55%,#c97a5c 100%);border-color:rgba(150,70,40,.25);display:flex;flex-direction:column}
+.kitcust .kc-in{flex:1 1 auto;min-height:0}
+.kc-art.kc-disc{background:none;display:grid;place-items:center;min-height:250px}
+.kc-d{width:min(78%,240px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#fffaf0,#f1e4c8);display:grid;place-items:center;
+  box-shadow:0 22px 40px -24px rgba(90,35,15,.7)}
+.kc-d img{width:72%;height:auto;filter:drop-shadow(0 10px 12px rgba(60,30,20,.3))}
+.kitcust .kc-kick{color:#fff1dc}
+.kitcust .kc-h{color:#fffaf2}
+.kitcust .kc-d2{font:300 15px/1.55 "Jost",sans-serif;color:#fff3e6;margin:0 0 12px;max-width:46ch}
+.kc-sz{display:flex;gap:7px;margin:0 0 16px}
+.kc-sz span{padding:5px 12px;border-radius:99px;border:1.3px solid #fffaf2;font:600 12px/1 "Jost",sans-serif;color:#fffaf2}
+.kitcust .kc-count{color:#fff1dc}
+.kc-strip{flex:0 0 auto;overflow:hidden;background:rgba(255,248,240,.9);padding:8px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.kc-track{display:flex;gap:8px;width:max-content;animation:kcScroll 38s linear infinite}
+.kc-track span{flex:0 0 auto;width:96px;height:64px;border-radius:12px;overflow:hidden}
+.kc-track img{width:100%;height:100%;object-fit:cover;display:block}
+.kitcust:hover .kc-track{animation-play-state:paused}
+@keyframes kcScroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.kc-track{animation:none}}
+@container (max-width:460px){.kc-art.kc-disc{min-height:0;height:220px}.kc-d{width:190px}}
+.kc-art.kc-disc .kc-d img{position:static;inset:auto;width:72%;height:auto;object-fit:contain}
+.kc-art.kc-disc{position:relative;flex:0 0 42%}
+.kitcust{height:auto;align-self:start}
+@container (max-width:460px){.kc-art.kc-disc{height:175px;flex:0 0 auto}.kc-d{width:160px}.kitcust .kc-copy{padding:18px 24px 16px}}
+/* the kit block is taller than a product card - don't stretch the cards beside it */
+.range #pgrid{align-items:start}
+
+/* 16 Oct 2026, owner: the block exactly the height of the product cards.
+   It contributes no height of its own (height:0) and fills its grid row
+   (min-height:100%), so the row is sized by the cards; contents compacted. */
+.range #pgrid{align-items:stretch}
+.kitcust{height:0;min-height:100%;align-self:stretch}
+.kitcust .kc-in{min-height:0;overflow:hidden}
+.kc-art.kc-disc{min-height:0}
+.kc-d{width:auto;height:min(78%,230px);max-width:82%}
+.kitcust .kc-copy{padding:14px 22px 10px}
+.kitcust .kc-kick{font-size:10px;letter-spacing:.2em}
+.kitcust .kc-h{font-size:clamp(22px,2.1vw,30px);margin:6px 0}
+.kitcust .kc-d2{font-size:13.5px;line-height:1.45;margin-bottom:10px}
+.kc-sz{margin-bottom:12px}.kc-sz span{font-size:11px;padding:4px 10px}
+.kitcust .kc-btn{padding:11px 20px;font-size:13px}
+.kitcust .kc-count{margin-top:6px;font-size:12px}
+.kc-strip{padding:6px 0}.kc-track span{width:78px;height:48px;border-radius:10px}
+@container (max-width:460px){.kc-art.kc-disc{height:120px}.kc-d{height:110px;width:auto}}
+/* side by side at every block width (stacking made it too tall) */
+@container (max-width:460px){
+  .kitcust .kc-in{flex-direction:row}
+  .kc-art.kc-disc{height:auto;flex:0 0 36%}
+  .kc-d{height:auto;width:86%}
+  .kitcust .kc-copy{padding:10px 14px 8px 4px}
+  .kitcust .kc-kick{font-size:8.5px;letter-spacing:.14em}
+  .kitcust .kc-h{font-size:21px;margin:4px 0}
+  .kitcust .kc-d2{font-size:11.5px;line-height:1.4;margin-bottom:8px}
+  .kc-sz{margin-bottom:9px;gap:5px}.kc-sz span{font-size:10px;padding:3px 8px}
+  .kitcust .kc-btn{padding:9px 15px;font-size:12px}
+  .kitcust .kc-count{font-size:10.5px;margin-top:4px}
+}
+
+/* 16 Oct 2026, owner: option 03 of kit-custom-variations.html - deep green,
+   cream words, gold button, potli glowing (no disc); strip and card height kept */
+.kitcust{background:radial-gradient(90% 120% at 20% 50%,#2d5236,#15261a);border-color:rgba(20,40,25,.4)}
+.kc-d{background:radial-gradient(closest-side,rgba(255,226,170,.38),rgba(255,226,170,0) 72%);box-shadow:none}
+.kc-d img{width:84%}
+.kitcust .kc-kick{color:#e9cf98}
+.kitcust .kc-h{color:#f6f1e6}
+.kitcust .kc-d2{color:#e4d9c5}
+.kc-sz span{border-color:#e9cf98;color:#f6f1e6}
+.kitcust .kc-count{color:#e9cf98}
+.kc-strip{background:rgba(246,241,230,.1)}
+/* 16 Oct 2026, owner: same logo green as the kit section under Satva Saheli */
+.kitcust{background:#55714e;border-color:rgba(40,60,35,.35)}
+.kc-strip{background:rgba(255,250,242,.12)}
+
+/* ---- "Your WhatsApp number" box (16 Oct 2026) ---- */
+.kcask{position:fixed;inset:0;z-index:1002;display:grid;place-items:center;padding:16px;background:rgba(20,26,16,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.kcask[hidden]{display:none}
+.kcask-card{position:relative;width:min(400px,100%);padding:30px 28px 26px;border-radius:22px;background:linear-gradient(170deg,#fffaf3,#f8eee2);box-shadow:0 30px 60px -20px rgba(0,0,0,.55);text-align:center}
+.kcask-card h2{font:600 26px/1.1 "Fraunces",serif;color:#1f3a26;margin:6px 0 6px}
+.kcask-d{font:300 14.5px/1.45 "Jost",sans-serif;color:#4a4636;margin:0 0 16px}
+.kcask-f{display:flex;align-items:center;border:1.5px solid rgba(31,58,38,.35);border-radius:14px;background:#fff;overflow:hidden}
+.kcask-f:focus-within{border-color:#1f3a26;box-shadow:0 0 0 3px rgba(31,58,38,.12)}
+.kcask-f span{padding:0 12px;font:600 16px/48px "Jost",sans-serif;color:#1f3a26;background:#f3f0e6;border-right:1px solid rgba(31,58,38,.15)}
+.kcask-f input{flex:1;min-width:0;border:0;outline:0;padding:0 12px;font:500 17px/48px "Jost",sans-serif;color:#1e2c16;letter-spacing:.04em;background:transparent}
+.kcask-err{min-height:1.2em;margin:8px 0 6px;font:500 13px/1.3 "Jost",sans-serif;color:#b8342a}
+.kcask-go{width:100%;justify-content:center;border:0;cursor:pointer}

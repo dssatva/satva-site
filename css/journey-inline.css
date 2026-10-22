@@ -1,0 +1,151 @@
+/* ============================================================
+   THE INLINE VARIANT — inline.html only.            20 Sep 2026
+   ------------------------------------------------------------
+   The overlay on index.html costs a click, and the owner's
+   objection was exactly that: "I'm not sure how many customers
+   will open and see." So here the turmeric card spans the whole
+   grid row and carries all six stages in the open. Scroll past
+   the range and you have read the process whether you meant to
+   or not.
+
+   Loaded ONLY by inline.html, on top of journey.css - the overlay
+   still exists here and the strip can open it, but nothing depends
+   on anyone doing that.
+   ============================================================ */
+
+/* ---- the band --------------------------------------------- */
+.pcard.is-journey{
+  grid-column:1 / -1;          /* the grid is auto-fill; this takes the row */
+  padding:clamp(20px,2.4vw,30px);
+  gap:clamp(18px,2vw,26px);
+  background:linear-gradient(168deg,#fffdf8 0%,var(--sand) 100%);
+  border-color:var(--clay);
+}
+/* It is a band, not a tile — the tile hover lift reads as a mistake at
+   this width, and there is no single thing to click any more. */
+.pcard.is-journey:hover{transform:none;box-shadow:var(--sh-sm);}
+
+/* ---- the head: who it is, and what the strip is ------------ */
+.jinline-head{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);
+  gap:clamp(20px,3vw,52px);align-items:start;
+}
+@media (max-width:860px){ .jinline-head{grid-template-columns:1fr;gap:16px;} }
+
+.jinline-id .kick{
+  margin:0 0 6px;font:600 .68rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dk);
+}
+.jinline-id h3{
+  margin:0 0 8px;font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.12;
+  color:var(--acc-ink);font-weight:600;letter-spacing:normal;text-transform:none;
+}
+.jinline-id h3 .dv{font-size:.72em;color:var(--sage-soft);font-weight:400;}
+/* --sage-soft is 4.84:1 on white, which is what the ordinary card uses it
+   on. This band is a gradient that ENDS on --sand, where the same ink
+   measures 3.93:1 - under AA. --sage is 5.02:1 there. Same rule the
+   stylesheet already states for --sage-mist grounds. */
+.jinline-id > p{margin:10px 0 14px;font-size:.93rem;color:var(--sage);max-width:38ch;}
+.jinline-id .ask{
+  font-size:.82rem;letter-spacing:.04em;color:var(--band);font-weight:600;
+  display:inline-flex;align-items:center;gap:7px;
+}
+.jinline-id .ask svg{width:15px;height:15px;color:var(--acc-ink);}
+.jinline-id .ask:hover{color:var(--acc-ink);}
+
+.jinline-lede h4{
+  margin:0 0 10px;
+  font:400 clamp(1.3rem,2.3vw,1.85rem)/1.16 "Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  color:var(--ink);letter-spacing:-.01em;
+}
+.jinline-lede p{margin:0;font-size:.98rem;line-height:1.6;color:var(--sage);max-width:56ch;}
+
+/* ---- the filmstrip ----------------------------------------- */
+/* Six across on a wide screen. Below that it becomes a swipeable
+   rail rather than a wrap, because a 2x3 wrap loses the sense of
+   one thing following another, which is the entire point. */
+.jfilmstrip{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:clamp(10px,1.1vw,16px);
+}
+@media (max-width:1100px){
+  .jfilmstrip{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    gap:12px;padding-bottom:10px;
+    margin-inline:calc(-1 * clamp(20px,2.4vw,30px));
+    padding-inline:clamp(20px,2.4vw,30px);
+    scrollbar-width:thin;
+  }
+  .jfilm{flex:0 0 min(240px,68vw);scroll-snap-align:start;}
+}
+
+.jfilm{
+  display:flex;flex-direction:column;text-align:left;
+  padding:0;border:0;background:none;cursor:pointer;font:inherit;
+  border-radius:14px;
+}
+.jfilm-shot{
+  position:relative;display:block;aspect-ratio:4/5;overflow:hidden;
+  border-radius:14px;background:var(--oat);margin-bottom:11px;
+  box-shadow:0 10px 24px -18px rgba(30,44,22,.7);
+}
+.jfilm-shot img,.jfilm-shot video{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s var(--ease);
+}
+.jfilm-shot video{position:absolute;inset:0;}
+.jfilm:hover .jfilm-shot img{transform:scale(1.06);}
+
+/* the play mark on the one stage that has footage */
+.jfilm-play{
+  position:absolute;right:9px;bottom:9px;z-index:2;
+  width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--gold);color:var(--ink);   /* 4.81:1 */
+  box-shadow:0 6px 14px -6px rgba(30,44,22,.6);
+}
+.jfilm-play svg{width:17px;height:17px;}
+.jfilm-shot:has(video) .jfilm-play{display:none;}
+
+.jfilm-no{
+  display:block;
+  font:300 1.5rem/1 "Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  color:var(--gold-dk);margin-bottom:2px;
+}
+.jfilm-when{
+  display:inline-block;margin:0 0 7px;
+  font:600 .6rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dk);
+}
+.jfilm b{
+  display:block;margin:0 0 5px;font-weight:600;font-size:.94rem;line-height:1.24;
+  color:var(--ink);
+}
+.jfilm i{
+  display:block;font-style:normal;font-size:.82rem;line-height:1.45;
+  color:var(--sage);   /* --sage-soft is 3.93:1 down here - see the note above */
+}
+.jfilm:hover b{color:var(--acc-ink);}
+.jfilm:focus-visible{outline:2px solid var(--gold-dk);outline-offset:3px;}
+
+/* ---- the foot --------------------------------------------- */
+.jinline-foot{
+  margin:0;padding-top:clamp(12px,1.4vw,18px);
+  border-top:1px solid var(--line);
+  font-size:.86rem;color:var(--sage);
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+}
+.jinline-more{
+  padding:0;border:0;background:none;cursor:pointer;
+  font:600 .86rem/1 "Jost",system-ui,sans-serif;
+  color:var(--band);border-bottom:1px solid currentColor;
+  transition:color .25s var(--ease);
+}
+.jinline-more:hover{color:var(--gold-dk);}
+
+@media (prefers-reduced-motion:reduce){
+  .jfilm-shot img,.jfilm-shot video{transition:none;}
+  .jfilm:hover .jfilm-shot img{transform:none;}
+}

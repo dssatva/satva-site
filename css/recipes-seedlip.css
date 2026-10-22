@@ -1,0 +1,254 @@
+/* ============================================================
+   "COOK SOMETHING FOR SOMEONE", after seedlipdrinks.com
+   card.html only.                                  21 Sep 2026
+   ------------------------------------------------------------
+   The owner pointed at the Seedlip recipes row and asked for
+   "this background colour and arranged like this".
+
+   MEASURED, NOT EYEBALLED. Their stylesheet was pulled
+   (/_next/static/immutable/chunks/1a8q11noxsezb.css) and the two
+   colours read straight off it:
+     ground  #fff1e4   a warm cream, slightly pink
+     green   #154734   their dark bottle green
+   Those two against each other measure 9.56:1.
+
+   WHAT IS BORROWED: the ground, and the arrangement - a centred
+   kicker over a centred serif headline, then four TALL portrait
+   photographs with squared corners, the name under each in caps
+   and the product under that in italic.
+
+   WHAT IS NOT: their green. We keep --ink and --band, which on
+   #fff1e4 measure 13.3:1 and 7.90:1 - both better than Seedlip's
+   own pairing, and still our brand rather than theirs.
+
+   This replaces the mint gradient this block has carried since
+   18 Sep. Deleting the <link> on card.html puts the mint back.
+   ============================================================ */
+
+.recipes{
+  /* the two older .recipes rules in satva.css both set a gradient;
+     this file loads last, so one flat declaration wins outright */
+  background:#fff1e4;
+  background-image:none;
+  border-top:1px solid rgba(21,71,52,.22);
+  padding:clamp(52px,7vw,104px) 0 clamp(46px,6vw,88px);
+}
+
+/* ---- the head: centred, kicker first ----------------------- */
+.recipes .rechead{
+  display:block;text-align:center;
+  max-width:none;margin:0 auto clamp(34px,4.4vw,62px);
+}
+/* Seedlip puts a small-caps line above the headline. Ours is
+   generated rather than marked up, because the markup is shared
+   with index.html and inline.html and they should not inherit a
+   stray element they do not style. It is decorative - the <h2>
+   below still carries the section's actual heading. */
+.recipes .rechead::before{
+  content:"Satva recipes";
+  display:block;margin:0 0 clamp(14px,1.8vw,22px);
+  font:600 .74rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--band);            /* 7.90:1 on #fff1e4 */
+}
+.recipes .rechead h2{
+  margin:0 auto;color:var(--ink);   /* 13.3:1 */
+  font-weight:400;                  /* Seedlip's headline is light, not bold */
+  font-size:clamp(1.7rem,3.4vw,2.85rem);
+  line-height:1.16;letter-spacing:-.005em;
+  max-width:18ch;
+}
+.recipes .rechead .lede{
+  margin:clamp(12px,1.5vw,18px) auto 0;text-align:center;
+  max-width:46ch;color:var(--band);
+}
+
+/* ---- the row: four tall photographs ------------------------ */
+.recipes .recgrid{
+  grid-template-columns:repeat(4,1fr);
+  gap:clamp(16px,2vw,30px);
+  max-width:1320px;
+}
+/* Squared off and portrait. The squircle "bowl" clip this block
+   has used since sweetgreen is the opposite of what Seedlip does -
+   theirs are plain rectangles, taller than they are wide, and the
+   height is what gives the row its rhythm. 2:3 measured off their
+   cards. */
+.recipes .recgrid .rshot{
+  aspect-ratio:2/3;
+  clip-path:none;
+  border-radius:0;
+  background:#f4e3d2;
+}
+.recipes .recgrid .rshot img{filter:none;}
+.recipes .recgrid .reccard:hover .rshot img{transform:scale(1.03);}
+
+/* ---- the words under each card ----------------------------- */
+.recipes .recgrid .reccard h3{
+  margin:clamp(14px,1.6vw,20px) 0 0;
+  font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-weight:600;font-size:clamp(.9rem,1.15vw,1.02rem);
+  letter-spacing:.06em;text-transform:uppercase;
+  line-height:1.2;color:var(--ink);
+}
+/* Seedlip sets the drink's base spirit in italic serif under the
+   name. Ours is the SATVA product the dish is built on, which is
+   the same job and the more useful line of the two. */
+.recipes .recgrid .ruses{
+  margin:6px 0 0;
+  font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-style:italic;font-weight:400;
+  font-size:clamp(.88rem,1.12vw,1rem);
+  letter-spacing:normal;text-transform:none;
+  color:var(--band);            /* 7.90:1 - the accent mix is dropped */
+}
+
+.recipes .recfoot{justify-content:center;margin-top:clamp(34px,4vw,58px);}
+
+@media (max-width:900px){
+  .recipes .recgrid{grid-template-columns:repeat(2,1fr);}
+  .recipes .rechead h2{max-width:22ch;}
+}
+@media (max-width:520px){
+  .recipes .recgrid{grid-template-columns:1fr;gap:26px;}
+  .recipes .recgrid .rshot{aspect-ratio:3/4;}  /* 2:3 is too tall at one-up */
+}
+
+/* ============================================================
+   ONE FRAME, AND THE SAME GROUND ON THE RANGE      21 Sep 2026
+   ------------------------------------------------------------
+   "Resize this to one frame … also delete all the different
+   colours in the pictures and keep only the dishes"
+   "even for this everything we pack, keep the same background
+   as cook for someone"
+   ============================================================ */
+
+/* ---- the row fits the screen ------------------------------- */
+/* 2:3 was Seedlip's ratio and it made the block 1130px tall -
+   taller than the viewport, so the names fell off the bottom.
+   4:5 takes ~120px off each card and the whole section lands
+   inside one screen with the head and the names visible. */
+.recipes .recgrid .rshot{aspect-ratio:4/5;}
+.recipes{padding:clamp(34px,4.2vw,58px) 0 clamp(30px,3.6vw,48px);}
+.recipes .rechead{margin-bottom:clamp(22px,2.6vw,34px);}
+.recipes .rechead h2{font-size:clamp(1.5rem,2.9vw,2.3rem);}
+.recipes .rechead::before{margin-bottom:clamp(10px,1.2vw,15px);}
+.recipes .rechead .lede{margin-top:clamp(8px,1vw,12px);}
+.recipes .recgrid .reccard h3{margin-top:clamp(10px,1.2vw,14px);}
+.recipes .recfoot{margin-top:clamp(22px,2.6vw,36px);}
+
+/* The photographs themselves were re-cropped rather than restyled -
+   tight to the dish, so the pink card table, the blue plate rim, the
+   grey slate and the red restaurant wall are simply out of frame.
+   Originals kept in assets/_orig/ if any crop needs redoing. */
+
+/* ---- "Everything we pack" takes the same ground ------------ */
+.range{
+  background:#fff1e4;
+  background-image:none;
+}
+/* The product cards are white and sat on a sand ground before; on
+   this cream they need their edge back or they float. --line is
+   already the token for that hairline everywhere else. */
+.range .pcard{border-color:var(--line);}
+/* The tab strip's underline and the count superscripts were picked
+   against sand. Measured on #fff1e4: --ink 13.3:1, --band 7.90:1,
+   --gold-dk 5.74:1 - all clear, nothing to change. */
+
+/* ============================================================
+   ACTUALLY ONE FRAME — sized against viewport HEIGHT
+   ------------------------------------------------------------
+   The previous pass measured the section against window.innerHeight
+   and called it fixed at 754px in a 1000px viewport. That was wrong
+   twice over:
+
+     1. It ignored the STICKY NAV. The header floats over the content,
+        so the usable height is 100svh MINUS 81px, not 100svh.
+     2. It only ever tested a tall window. Re-measured at 1440x800 —
+        a normal laptop — usable was 719px and the section 750px.
+        Thirty-one pixels over, which is exactly the clipped headline
+        and the cut-off button in the owner's screenshot.
+
+   The fix is to stop sizing the photograph from the column WIDTH and
+   size it from what is actually left of the viewport HEIGHT. Every
+   spacing value below is now in vh/svh for the same reason. */
+
+.recipes{
+  padding-top:clamp(16px,2.6vh,40px);
+  padding-bottom:clamp(14px,2.2vh,34px);
+  /* so a jump to #recipes lands below the sticky header, not under it */
+  scroll-margin-top:86px;
+}
+.recipes .rechead{margin-bottom:clamp(10px,1.8vh,24px);}
+.recipes .rechead::before{margin-bottom:clamp(6px,1vh,13px);font-size:clamp(.62rem,1.1vh,.74rem);}
+.recipes .rechead h2{
+  font-size:clamp(1.25rem,3.1vh,2.1rem);
+  max-width:22ch;   /* wider, so it stays two short lines instead of three */
+}
+.recipes .rechead .lede{
+  margin-top:clamp(5px,.9vh,11px);
+  font-size:clamp(.82rem,1.5vh,.98rem);
+}
+
+/* The photograph takes whatever height is left and no more.
+   500px is the measured chrome: head 144 + name and product 66 +
+   button 49 + the paddings above, plus the 81px nav. */
+.recipes .recgrid .rshot{
+  aspect-ratio:auto;
+  /* Re-measured after the chrome above was trimmed: head, names, button
+     and padding now come to ~303px, plus the 81px nav. 400 is that total
+     with a small safety margin, so the photograph takes everything left
+     rather than leaving 116px of dead space as the first attempt did. */
+  height:clamp(150px,calc(100svh - 400px),430px);
+}
+.recipes .recgrid .reccard h3{
+  margin-top:clamp(7px,1.2vh,14px);
+  font-size:clamp(.8rem,1.5vh,1rem);
+}
+.recipes .recgrid .ruses{
+  margin-top:clamp(2px,.5vh,6px);
+  font-size:clamp(.8rem,1.4vh,.98rem);
+}
+.recipes .recfoot{margin-top:clamp(12px,2vh,26px);}
+
+/* Under about 620px of viewport height there is no honest way to show
+   a head, four photographs and a button at once — the photograph would
+   be a 100px strip. Below that it simply scrolls, which is better than
+   an unreadable row. */
+@media (max-height:620px){
+  .recipes .recgrid .rshot{height:190px;}
+}
+@media (max-width:520px){
+  .recipes .recgrid .rshot{height:clamp(220px,42vh,340px);}
+}
+
+/* ============================================================
+   GROUND CHANGED TO GREY.                           22 Sep 2026
+   ------------------------------------------------------------
+   Picked by the owner from eight tints of the footer's plum
+   (#372e35) shown at /tints.html: #dbd9db, the plum mixed 82%
+   toward white. Replaces the Seedlip cream #fff1e4 this block
+   has carried since earlier today.
+
+   A CORRECTION TO THAT COMPARISON PAGE: it tested the kicker as
+   --gold-dk and warned that this tint would need it switched to
+   --band. That warning was wrong — the kicker on this site has
+   been --band all along. Nothing needs switching; it measures
+   6.23:1 here.
+
+   Measured on #dbd9db:
+     --ink heading            10.48:1
+     --band kicker and body    6.23:1
+     --green on the button     9.34:1   (its face is white .5
+                                         over the ground, #edeced)
+   ============================================================ */
+.recipes{background:#dbd9db;background-image:none;}
+
+/* The ghost button's border is --clay, which was picked for warm
+   grounds and measures 1.07:1 here - the outline would simply
+   disappear and leave the label floating. WCAG 1.4.11 wants 3:1
+   for a control's boundary. --sage is 4.40:1 and keeps the button
+   quiet; --band at 6.23 read as too heavy beside the italic line. */
+.recipes .btn-ghost{border-color:var(--sage);}

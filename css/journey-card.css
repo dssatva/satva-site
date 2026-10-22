@@ -1,0 +1,285 @@
+/* ============================================================
+   THE ONE-CARD VARIANT — card.html only.            21 Sep 2026
+   ------------------------------------------------------------
+   inline.html answered "nobody will click" by giving turmeric the
+   whole grid row. The objection to THAT is scale: it works for one
+   product and falls apart at five, because five full-width bands
+   is no longer a range, it is five essays.
+
+   Here the same six stages live inside the card's own square. The
+   tile keeps its place in the grid beside the other twenty; the
+   picture area cycles through the process by itself. Nothing is
+   hidden, and nothing is bigger than a card.
+
+   Loaded ONLY by card.html, on top of journey.css. The overlay
+   still exists and the card can open it; nothing depends on that.
+   ============================================================ */
+
+/* ---- the film, in place of .pthumb ------------------------- */
+/* aspect-ratio:1 matches .pthumb exactly, so this card sits in the
+   grid at the same height as the twenty ordinary ones. */
+.jcard-film{
+  position:relative;aspect-ratio:1;overflow:hidden;
+  background:var(--oat);isolation:isolate;
+}
+.jcard-film::after{   /* the accent bar every other card has */
+  content:"";position:absolute;left:0;right:0;bottom:0;height:5px;
+  background:var(--acc);z-index:4;
+}
+/* satva.css positions .veg against .pthumb, which this element is not,
+   so it arrives here unstyled. It also has to clear the rail that now
+   occupies the top strip - hence 30px rather than the usual 12px. */
+.jcard-film .veg{
+  position:absolute;top:30px;left:12px;z-index:4;
+  width:18px;height:18px;border:2px solid #1f7a34;
+  background:#fff;display:grid;place-items:center;border-radius:2px;
+}
+.jcard-film .veg i{width:8px;height:8px;border-radius:50%;background:#1f7a34;display:block;}
+
+.jcs{
+  position:absolute;inset:0;margin:0;
+  opacity:0;visibility:hidden;
+  transition:opacity .9s var(--ease),visibility .9s;
+}
+.jcs[data-on]{opacity:1;visibility:visible;}
+.jcs img,.jcs video{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.05);
+  transition:transform 5s linear;
+}
+/* A slow drift while a stage is on screen. It is 5% over three
+   seconds - enough that the card is never quite still, not enough
+   to read as movement in its own right. */
+.jcs[data-on] img,.jcs[data-on] video{transform:scale(1);}
+
+/* The caption's ground. Worst case is a WHITE frame underneath -
+   stage 03 is a studio shot on white, and the cycle lands on it.
+   Measured there, the first ramp (.70 at the caption line) gave
+   cream 6.07:1 but the gold meta line only 2.08:1, because the meta
+   sits HIGHER in the caption where the gradient was still thin.
+
+   So the ramp now reaches .82 by 74% - above where the caption
+   block starts on a square tile - and holds to .93 at the foot:
+     cream #f4f3e7   9.42:1
+     --gold-lt       5.41:1
+   Both clear AA for the 9.6px meta line, which is the smallest
+   type in here and the one that set the floor. */
+.jcs::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    rgba(17,23,12,0) 40%,
+    rgba(17,23,12,.08) 46%,
+    rgba(17,23,12,.46) 62%,
+    rgba(17,23,12,.82) 74%,
+    rgba(17,23,12,.93) 100%);
+}
+
+.jcs-cap{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:0 14px 20px;color:#f4f3e7;
+}
+.jcs-meta{
+  display:flex;align-items:baseline;gap:8px;margin:0 0 5px;
+  font:600 .6rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gold-lt);
+}
+.jcs-meta b{
+  font:300 1.32rem/1 "Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  letter-spacing:normal;color:var(--gold-lt);
+}
+.jcs-cap strong{
+  display:block;font-weight:500;
+  font-size:clamp(.95rem,1.15vw,1.06rem);line-height:1.22;
+  color:#f4f3e7;
+  font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+}
+
+/* ---- the rail --------------------------------------------- */
+/* Six segments across the top, one per stage, filling as each
+   plays. It doubles as the only control when the cycle is off. */
+.jcard-rail{
+  position:absolute;top:0;left:0;right:0;z-index:4;
+  display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
+  gap:4px;padding:10px 12px 0;
+}
+.jcr{
+  padding:6px 0 0;border:0;background:none;cursor:pointer;
+  display:block;
+}
+.jcr i{
+  display:block;height:3px;border-radius:2px;
+  background:rgba(244,243,231,.42);
+  box-shadow:0 1px 2px rgba(17,23,12,.35);
+  transition:background .35s var(--ease);
+}
+.jcr[aria-current] i{background:var(--gold-lt);}
+.jcr:hover i{background:rgba(244,243,231,.78);}
+.jcr:focus-visible{outline:2px solid var(--gold-lt);outline-offset:2px;border-radius:3px;}
+
+/* ---- the body --------------------------------------------- */
+.pcard.is-cardjrn .jcard-kick{
+  margin:0 0 4px;font:600 .62rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dk);
+}
+/* The card body carries one more line than its neighbours, so the
+   gap under the description closes up to keep the grid even. */
+.pcard.is-cardjrn .pbody p:not(.dv):not(.jcard-kick){margin-bottom:12px;}
+.pcard.is-cardjrn .pjourney{margin-top:8px;}
+
+@media (prefers-reduced-motion:reduce){
+  .jcs{transition:none;}
+  .jcs img,.jcs video{transform:none;transition:none;}
+}
+
+/* ============================================================
+   "HOW WE MAKE", PER PRODUCT — card.html only.      21 Sep 2026
+   ------------------------------------------------------------
+   The tabs choose a shelf and the coverflow carries that shelf's
+   products: twelve cards under Spices instead of one. Everything
+   about the card's shape, flip and coverflow position is already
+   in satva.css — only the turmeric front face is new.
+   ============================================================ */
+
+/* the still used when a product has no film of its own */
+.mface.mfront .mstill{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+
+/* ---- turmeric's front: the six stages, cycling -------------- */
+.mkjrn{position:absolute;inset:0;overflow:hidden;}
+.mkjs{
+  position:absolute;inset:0;margin:0;
+  opacity:0;visibility:hidden;
+  transition:opacity .8s var(--ease),visibility .8s;
+}
+.mkjs[data-on]{opacity:1;visibility:visible;}
+.mkjs img,.mkjs video{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* The stage caption sits ABOVE the card's own .mcopy, which already
+   carries the product name and the make line at the foot. So this one
+   is small, high, and pinned to the top — two blocks of type at the
+   bottom of one card would fight. */
+.mkjs figcaption{
+  position:absolute;left:0;right:0;top:0;
+  padding:52px 16px 26px;
+  display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
+  font:500 .95rem/1.25 "Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  color:#f4f3e7;
+  /* The caption text occupies roughly 58-90% of this band, so the ramp
+     has to stay heavy that far down and only release at the very foot.
+     An earlier version faded from .86 to .72 by 58% and the 9.3px gold
+     "10-15 DAYS" measured 3.75:1 over a bright frame - under AA.
+     At .88 through the text: --gold-lt 6.69:1, cream 11.6:1. */
+  background:linear-gradient(180deg,
+    rgba(17,23,12,.90) 0%,
+    rgba(17,23,12,.88) 80%,
+    rgba(17,23,12,.74) 92%,
+    rgba(17,23,12,0) 100%);
+}
+.mkjs figcaption b{
+  font:300 1.5rem/1 "Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  color:var(--gold-lt);
+}
+.mkjs figcaption span{
+  font:600 .58rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt);
+}
+
+/* one hairline per stage across the very top */
+.mkjrn-rail{
+  position:absolute;top:0;left:0;right:0;z-index:3;
+  display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
+  gap:3px;padding:10px 14px 0;
+}
+.mkjrn-rail i{
+  display:block;height:3px;border-radius:2px;
+  background:rgba(244,243,231,.34);
+  transition:background .35s var(--ease);
+}
+.mkjrn-rail i.on{background:var(--gold-lt);}
+
+/* The "How it is made" tag sits top-left and the stage caption would
+   land on top of it. The tag stays put - it is the label for the whole
+   face - and the caption starts below it. */
+.mcard.has-jrn .mkjs figcaption{padding-top:58px;}
+
+/* satva.css hides the coverflow's --abs:3 cards, which leaves five on
+   screen. That was tuned for a four-card row where [data-count="4"]
+   also hid --abs:2, so only three ever showed. A twelve-card shelf
+   re-exposes the --abs:2 pair and they run off both edges.
+   Held at three, which is the density this section was designed at -
+   the extra cards are behind, not gone. */
+.made .mkrow .mcard[style*="--abs: 2"],
+.made .mkrow .mcard[style*="--abs:2"]{opacity:0;pointer-events:none;}
+
+@media (prefers-reduced-motion:reduce){
+  .mkjs{transition:none;}
+}
+
+/* ---- a taller card, so the picture has a middle -------------
+   The owner: "I'm not able to see the picture inside the card
+   clearly. Make the card little longer and the letters aligned to
+   the top and bottom so that the process is clearly seen."
+
+   The stage caption is already pinned to the top and .mcopy to the
+   bottom, and both are sized by their own content - so they do NOT
+   grow when the card does. Turning the selected card from 5:4
+   LANDSCAPE to 5:6 portrait therefore spends every new pixel on the
+   clear band between them, which is where the process actually is.
+
+   Measured at 1440x1000: the centre card was 570x456 with a ~250px
+   clear band; it is now 460x552 with a ~330px one. Neither scrim
+   was touched, so the contrast numbers already recorded for .mcopy
+   and for the stage caption still hold.
+
+   The stage grows to match. The side cards come down a step so the
+   selected one still reads as the chosen one now that both are
+   portrait - it no longer has a different shape to do that job. */
+/* 58vh, not 66: at 66 the stage stood 132px taller than the card and
+   opened a dead gap above the tabs. This leaves ~26px top and bottom. */
+.made .mstage{height:clamp(400px,58vh,620px);}
+.made .mcard.is-on{width:clamp(330px,44vh,500px);aspect-ratio:5/6;}
+.made .mcard{width:clamp(200px,26vh,300px);}
+
+/* The caption hugs the top now: the "How it is made" tag ends at
+   34px, so 42px clears it with a hair to spare instead of 58px. */
+.mcard.has-jrn .mkjs figcaption{padding-top:42px;}
+
+/* On a phone the card was 281x337 and the two text blocks left only a
+   75px strip of picture - 22% of the card, which is not a photograph,
+   it is a gap between two captions. The stage already had 180px spare,
+   so the card takes it: wider (84vw) and a taller ratio (5/7), which
+   brings the clear band to ~180px. */
+@media (max-width:700px){
+  .made .mstage{height:clamp(430px,64vh,540px);}
+  .made .mcard.is-on{width:clamp(260px,84vw,340px);aspect-ratio:5/7;}
+  .made .mcard{width:clamp(150px,40vw,210px);}
+}
+
+/* ---- Satwa Saheli, in the section ------------------------- */
+/* The owner's "Dual Pillars" as a list rather than two boxes: on a phone
+   two boxes become two stacked cards saying almost the same thing, and
+   the distinction between the roles is the only reason the block exists. */
+.sahroles{
+  list-style:none;margin:clamp(14px,1.8vw,22px) 0 0;padding:0;
+  display:grid;gap:clamp(10px,1.4vw,16px);
+}
+.sahroles li{
+  padding-left:16px;border-left:2px solid rgba(180,112,122,.5);
+}
+.sahroles b{
+  display:block;margin:0 0 3px;
+  font:600 .74rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dk);
+}
+.sahroles span{display:block;color:var(--sage);font-size:.93rem;line-height:1.55;}
+.sahjoin{
+  margin:clamp(16px,2vw,24px) 0 0;color:var(--sage);
+  font-size:.95rem;line-height:1.6;
+}

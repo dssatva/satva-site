@@ -1,0 +1,108 @@
+/* ============================================================
+   FOOTER — COMPACT RAIL.                            22 Sep 2026
+   ------------------------------------------------------------
+   Chosen by the owner from three frameworks compared side by
+   side at /footers.html, after: "I dont like the background part
+   of this part, the pictures which are inside.. I want a
+   different framework also".
+
+   THE BACKGROUND PHOTOGRAPH IS GONE. The footer stood on
+   assets/footer-collage.jpg — our own contact sheet of twelve
+   site photographs, pinned with background-attachment:fixed and
+   washed to 92-95% of the plum. It was doing nothing but muddying
+   the ground, and at a 95% wash it was barely a picture anyway.
+   The plum grey the owner chose on 18 Sep stays; it is just flat
+   now, which is the whole point of the change.
+
+   THE FRAMEWORK: one band of three columns - mark and tagline
+   left, the three link groups across the middle, the WhatsApp
+   button and the credit right - then a rule and the legal line.
+   Roughly a third the height of the version it replaces, which is
+   why it was the right pick after the density pass.
+
+   Deleting this one <link> leaves the markup readable in the old
+   four-column grid; nothing here is load-bearing for content.
+   ============================================================ */
+
+footer{
+  /* Flat. The two background-image layers, the fixed attachment and
+     the wash gradient all go - one colour declaration replaces them.
+     background-image:none is explicit because satva.css sets a
+     two-layer image and a shorthand here would not clear it. */
+  background-color:#372e35;
+  background-image:none;
+  background-attachment:scroll;
+  padding:clamp(30px,3.4vw,50px) 0 clamp(14px,1.6vw,22px);
+}
+
+/* ---- the band --------------------------------------------- */
+.frail{
+  display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(0,2.05fr) minmax(0,.95fr);
+  gap:clamp(22px,3.6vw,58px);
+  align-items:start;
+}
+
+.frail .fbrand .logo{width:clamp(88px,8vw,112px);display:block;margin:0 0 14px;}
+.frail .ftag{
+  margin:0;font-size:.85rem;line-height:1.55;max-width:30ch;
+  color:var(--f-muted);          /* #c9bda4 — 7.04:1 on #372e35 */
+}
+
+/* the three link groups, side by side inside the middle column */
+.frail .flinks{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,2vw,30px);
+}
+.frail .fcol h3{
+  margin:0 0 11px;
+  font:600 .62rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-pale);        /* 9.77:1 */
+}
+/* satva.css makes .fcol ul a GRID with gap:10px, so a margin on the li
+   stacks on top of it - measured 17px between rows where 7 was asked for.
+   Setting the grid's own gap is the only thing that controls this. */
+.frail .fcol ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;}
+.frail .fcol li{margin:0;}
+.frail .fcol a,.frail .fcol span{
+  font-size:.87rem;line-height:1.45;
+  color:var(--cream);            /* 9.65:1 */
+}
+.frail .fcol a:hover{color:var(--gold-lt);}   /* 6.74:1 */
+
+/* the action column */
+.frail .fact .fwa{margin:0;}
+.frail .fact .fnote{
+  margin:12px 0 0;font-size:.78rem;line-height:1.5;
+  color:var(--f-muted);
+}
+.frail .fact .fcredit{
+  margin:8px 0 0;font-size:.72rem;line-height:1.5;
+  color:#b3a891;                 /* 5.52:1 — quieter than the note, still AA */
+}
+.frail .fact .fcredit a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+.frail .fact .fcredit a:hover{color:var(--gold-lt);}
+
+/* ---- the rule and the legal line -------------------------- */
+.frule{
+  height:1px;background:rgba(232,220,198,.16);
+  margin:clamp(20px,2.6vw,32px) 0 clamp(11px,1.4vw,16px);
+}
+
+@media (max-width:980px){
+  .frail{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+  .frail .fact{grid-column:1 / -1;}
+  .frail .flinks{grid-template-columns:repeat(3,1fr);}
+}
+@media (max-width:700px){
+  .frail{grid-template-columns:1fr;}
+  .frail .flinks{grid-template-columns:repeat(2,1fr);gap:20px;}
+}
+/* 460px was too early a surrender: at 390px it stacked all fourteen links
+   in one column and the footer came to 1018px. Two columns hold fine down
+   to about 360px, where the longest label ("Healthy Essentials") finally
+   needs the full width. */
+@media (max-width:360px){
+  .frail .flinks{grid-template-columns:1fr;}
+}

@@ -1,0 +1,95 @@
+/* ============================================================
+   FOOTER — SPLIT BAND.        split.html only, 22 Sep 2026
+   ------------------------------------------------------------
+   "Keep this colour combination in the end after the site with the
+   same colour combination … give me a new website. and keep the
+   old one like itself."
+
+   So this is Option B from /footers.html, built on its own page.
+   index.html is untouched and still carries the compact plum rail.
+
+   TWO GROUNDS:
+     cream  #fff1e4  the same ground the recipes and the range
+                     carry, so the page CLOSES in the colour it has
+                     been using instead of introducing a new one
+     green  --green  #2c4220, which puts real weight at the foot
+
+   The collage photograph is gone here too - both grounds are flat.
+   ============================================================ */
+
+footer{
+  background-color:var(--green);
+  background-image:none;
+  background-attachment:scroll;
+  padding:0 0 clamp(14px,1.6vw,22px);   /* the cream band brings its own top */
+}
+
+/* ---- the cream invitation ---------------------------------- */
+/* A direct child of <footer>, NOT of footer > .wrap - it has to run
+   edge to edge, and a .wrap would have capped it at 1280px with a
+   green margin either side. Its own inner .wrap centres the content. */
+.fsplit-top{
+  background:#fff1e4;
+  padding:clamp(34px,4.4vw,64px) 0;
+  text-align:center;
+}
+.fsplit-top .logo{
+  width:clamp(96px,9vw,124px);display:block;margin:0 auto clamp(12px,1.6vw,20px);
+}
+.fsplit-top h2{
+  margin:0 auto clamp(8px,1.2vw,14px);max-width:26ch;
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-weight:400;font-size:clamp(1.3rem,2.7vw,2.05rem);line-height:1.2;
+  color:var(--ink);                 /* 13.3:1 on #fff1e4 */
+  letter-spacing:-.008em;
+}
+.fsplit-top p{
+  margin:0 auto clamp(18px,2.4vw,28px);max-width:52ch;
+  font-size:clamp(.88rem,1.5vw,.98rem);line-height:1.6;
+  color:var(--band);                /* 7.90:1 */
+}
+.fsplit-top .fwa{margin:0;}
+
+/* ---- the green directory ----------------------------------- */
+.fsplit-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(16px,2.4vw,34px);
+  padding-top:clamp(28px,3.4vw,48px);
+}
+.fsplit-row .fcol h3{
+  margin:0 0 12px;
+  font:600 .64rem/1 "Jost",system-ui,sans-serif;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-lt);             /* 5.67:1 on --green */
+}
+/* satva.css makes .fcol ul a grid with gap:10px - set the gap, not a
+   margin on the li, or the two stack. Same trap as the rail footer. */
+.fsplit-row .fcol ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+.fsplit-row .fcol li{margin:0;}
+.fsplit-row .fcol a,.fsplit-row .fcol span{
+  font-size:.9rem;line-height:1.45;
+  color:var(--cream);               /* 8.11:1 on --green */
+}
+.fsplit-row .fcol a:hover{color:var(--gold-pale);}   /* 9.14:1 */
+
+/* ---- rule, credit, legal ----------------------------------- */
+.frule{
+  height:1px;background:rgba(232,220,198,.18);
+  margin:clamp(22px,2.8vw,36px) 0 clamp(11px,1.4vw,15px);
+}
+footer .fcredit{
+  margin:0 0 clamp(10px,1.3vw,14px);
+  font-size:.72rem;line-height:1.5;color:#bcb29b;   /* 6.13:1 on --green */
+}
+footer .fcredit a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+footer .fcredit a:hover{color:var(--gold-lt);}
+
+@media (max-width:900px){
+  .fsplit-row{grid-template-columns:repeat(2,1fr);gap:22px;}
+}
+/* 420px collapsed a 390px phone to one column and made the footer 1152px.
+   Two columns hold to about 360px, which is where "Healthy Essentials"
+   finally needs the full width. Same correction as footer-rail.css. */
+@media (max-width:360px){
+  .fsplit-row{grid-template-columns:1fr;}
+}
