@@ -1374,3 +1374,21 @@ html.cvar-open{overflow:hidden}
   .sx-head h2{font-size:24px}
   .sahstory-card{max-height:calc(100svh - 24px)}
 }
+
+/* 22 Oct 2026, owner: "is this mobile compatible, check everything and set it right".
+   1) Hero slider on phones: every slide sat in one grid cell, so the stage took the
+      height of the TALLEST slide and the short ones left a big blank band under them.
+      On phones only the shown slide keeps its place in the flow.
+   2) How it's made: the open card was 481px wide on a 390px phone, cut off both sides. */
+@media (max-width:760px){
+  .shelves.is-hero .shstage > .shelf:not(.is-on){position:absolute;left:0;right:0;top:0}
+  .made .mkrow .mcard.is-on{width:calc(100vw - 40px) !important;max-width:420px !important;height:auto !important;aspect-ratio:4/5 !important}
+}
+/* Why SATVA hero slide on phones: four full-width arches made it ~1430px tall.
+   2 x 2 on phones keeps the slide close to the others' height. */
+@media (max-width:760px){
+  .shelves.is-hero .shelf .rgrid{grid-template-columns:1fr 1fr !important;gap:12px !important}
+  .shelves.is-hero .shelf .rgrid .reason{height:auto !important;min-height:0 !important;aspect-ratio:3/4}
+  .shelves.is-hero .shelf .rgrid .reason h3{font-size:14px !important;line-height:1.25}
+  .shelves.is-hero .shelf .rgrid .reason svg{width:40px;height:40px}
+}
