@@ -1358,3 +1358,19 @@ html.cvar-open{overflow:hidden}
 .shelves.is-hero .shelf.kit .sh-copy .pill.kitpill{background:#55714e;border-color:#55714e;color:#fffaf0}
 .shelves.is-hero .shelf.kit .sh-copy .pill.kitpill:hover{background:#4a6444;border-color:#4a6444}
 .shelves.is-hero .shelf.kit .sh-copy .pill.kitpill .parrow{background:#fffaf0;color:#55714e}
+
+/* 22 Oct 2026, owner on a phone: "Read the Saheli story" showed only a sliver of
+   the photo (the curtain). The .sx two-column grid above outranked the old
+   760px single-column rule, so on a phone both columns were squeezed side by
+   side. One column on phones; the photo gets a wide frame so all three women show. */
+@media (max-width:760px){
+  .sahstory-grid.sx{grid-template-columns:1fr}
+  .sx-main{padding:22px 18px 18px !important}
+  .sx-join{border-radius:0 0 22px 22px;border-left:0;border-top:1px solid rgba(160,90,70,.12);padding:22px 18px 20px !important}
+  .sx-photo{flex:none;min-height:0;aspect-ratio:16/10}
+  .sx-photo img{object-position:18% 30%}
+  .sx-photo figcaption{padding:30px 14px 10px}
+  .sx-photo b{font-size:24px}.sx-photo span{font-size:12px}
+  .sx-head h2{font-size:24px}
+  .sahstory-card{max-height:calc(100svh - 24px)}
+}
