@@ -205,7 +205,17 @@
     '<button type="submit" class="btn-gold kcask-go">Continue on WhatsApp</button></form>';
   document.body.appendChild(ask);
   var askMsg = "", askLast = null, inp = ask.querySelector("input"), err = ask.querySelector(".kcask-err");
-  function askNumber(msg) {
+  /* 22 Oct 2026, owner: the Saheli "Apply" buttons should not say "confirm your
+     order" - a second argument "saheli" swaps the dialog's words. */
+  var ASKW = {
+    order:  ["Almost done", "Your WhatsApp number", "We will confirm your order on this number."],
+    saheli: ["Join us", "Connect with us to become a Satva Saheli", "Share your WhatsApp number and our team will reach out to you."]
+  };
+  function askNumber(msg, kind) {
+    var w = ASKW[kind] || ASKW.order;
+    ask.querySelector(".kc-kick").textContent = w[0];
+    ask.querySelector("#kcask-t").textContent = w[1];
+    ask.querySelector(".kcask-d").textContent = w[2];
     askMsg = msg; askLast = document.activeElement;
     var saved = ""; try { saved = localStorage.getItem("satva-wa-no") || ""; } catch (e) {}
     inp.value = saved; err.textContent = "";

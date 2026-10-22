@@ -1354,3 +1354,7 @@ html.cvar-open{overflow:hidden}
 .kk-foot{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:clamp(8px,1.6vh,14px);padding-top:clamp(8px,1.6vh,14px);border-top:1px solid rgba(85,113,78,.2)}
 .kk-foot p{margin:0;font:italic 500 clamp(13px,1.1vw,15px)/1.3 "Fraunces",serif;color:#55714e}
 .kk-cust{font-size:14px;padding:10px 20px;cursor:pointer;border:0;white-space:nowrap}
+/* 22 Oct 2026, owner: Grocery Kit slide button in the footer green (#55714e) */
+.shelves.is-hero .shelf.kit .sh-copy .pill.kitpill{background:#55714e;border-color:#55714e;color:#fffaf0}
+.shelves.is-hero .shelf.kit .sh-copy .pill.kitpill:hover{background:#4a6444;border-color:#4a6444}
+.shelves.is-hero .shelf.kit .sh-copy .pill.kitpill .parrow{background:#fffaf0;color:#55714e}

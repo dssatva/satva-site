@@ -98,8 +98,9 @@
         <a href="#why">Why SATVA<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
         <ul class="submenu" id="whymenu" aria-label="Why SATVA">
           <li><a href="#why">Why choose SATVA</a></li>
-          <li><a href="#made">How it&rsquo;s made</a></li>
           <li><a href="#story">Our story</a></li>
+          <!-- 22 Oct 2026, owner: How it's made moved to the last place in this menu. -->
+          <li><a href="#made">How it&rsquo;s made</a></li>
         </ul>
       </li>
       <!-- 7 Oct 2026, owner's pick: Satva Saheli in the top menu. -->
@@ -294,11 +295,10 @@
       <div class="sh-shot"><img src="assets/hero-dark-slate.jpg" alt="" loading="lazy"></div>
       <div class="wrap">
         <div class="sh-copy">
-          <!-- 20 Oct 2026, owner: "remove new, one box, sorted". -->
-          <p class="kick">Whole kitchen</p>
-          <h2 class="dsp">Healthy Grocery Kit<em>Your <span class="goldtext">Kitchen</span></em></h2>
-          <p>Everyday essentials, packed together &mdash; the spices, home-made masalas, salt, sweeteners and seeds a kitchen goes through every week, all pure and packed by SATVA.</p>
-          <a class="pill" href="https://wa.me/919689888822?text=Namaskar%21%20I%20would%20like%20to%20order%20the%20Satva%20Healthy%20Grocery%20Kit." target="_blank" rel="noopener">
+          <!-- 22 Oct 2026, owner: title only "Healthy Grocery Kit" (Whole kitchen / Your Kitchen removed), "kitchen essentials" in the paragraph, button in the footer green. -->
+          <h2 class="dsp">Healthy Grocery <span class="goldtext">Kit</span></h2>
+          <p>Everyday kitchen essentials, packed together &mdash; the spices, home-made masalas, salt, sweeteners and seeds a kitchen goes through every week, all pure and packed by SATVA.</p>
+          <a class="pill kitpill" href="https://wa.me/919689888822?text=Namaskar%21%20I%20would%20like%20to%20order%20the%20Satva%20Healthy%20Grocery%20Kit." target="_blank" rel="noopener">
             <span>Order the kit on WhatsApp</span>
             <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
           </a>
@@ -1073,7 +1073,7 @@ document.addEventListener("click", function (e) {
      applicant's WhatsApp number first (js/kit-custom-8002.js), then WhatsApp. */
   [].forEach.call(document.querySelectorAll("[data-sahapply-page]"), function (a) {
     a.addEventListener("click", function (e) {
-      if (window.satvaAskNumber) { e.preventDefault(); window.satvaAskNumber("Namaskar! I would like to become a Satva Saheli."); }
+      if (window.satvaAskNumber) { e.preventDefault(); window.satvaAskNumber("Namaskar! I would like to become a Satva Saheli.", "saheli"); }
     });
   });
 </script>
@@ -1223,7 +1223,7 @@ document.addEventListener("click", function (e) {
   // 20 Oct 2026: "Apply" asks the applicant's WhatsApp number (js/kit-custom-8002.js), then opens WhatsApp
   var ap = m.querySelector("[data-sahapply]");
   if (ap) ap.addEventListener("click", function (e) {
-    if (window.satvaAskNumber) { e.preventDefault(); window.satvaAskNumber("Namaskar! I would like to become a Satva Saheli."); }
+    if (window.satvaAskNumber) { e.preventDefault(); window.satvaAskNumber("Namaskar! I would like to become a Satva Saheli.", "saheli"); }
   });
   m.addEventListener("click", function (e) { if (e.target === m) close(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !m.hidden) close(); });
