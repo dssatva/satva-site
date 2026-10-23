@@ -141,7 +141,7 @@ h2.big{font-size:clamp(2.1rem,4.6vw,3.7rem);margin:0 0 16px;}
 
 /* the sticker's gold rule + fleuron, as a section ornament */
 .orn{
-  height:46px;background:url("../assets/rule-gold.png") center/auto 100% no-repeat;
+  height:46px;background:url("../assets/rule-gold.webp") center/auto 100% no-repeat;
   margin:0 auto 18px;opacity:.9;
 }
 .orn.sm{height:34px;}
@@ -156,7 +156,7 @@ section{position:relative;}
 }
 .leaf{
   position:absolute;pointer-events:none;
-  -webkit-mask-image:url("../assets/leaf-mask.png");mask-image:url("../assets/leaf-mask.png");
+  -webkit-mask-image:url("../assets/leaf-mask.webp");mask-image:url("../assets/leaf-mask.webp");
   -webkit-mask-size:cover;mask-size:cover;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
 }
 
@@ -1158,7 +1158,7 @@ section{position:relative;}
    background-attachment:fixed with background-size:cover, so the image holds
    still in the viewport and the section scrolls over it like a window.
 
-   The picture is ours: assets/footer-collage.jpg is a contact sheet built from
+   The picture is ours: assets/footer-collage.webp is a contact sheet built from
    twelve photographs already on this site - the six category shots and six of
    the recipe shots - laid out 4x3 with band-green gutters and desaturated to
    0.86 so the spice colour does not fight the gold in the type.
@@ -1207,7 +1207,7 @@ footer{
   background-color:#372e35;
   background-image:
     linear-gradient(rgba(55,46,53,.92),rgba(55,46,53,.95)),
-    url("../assets/footer-collage.jpg");
+    url("../assets/footer-collage.webp");
   background-repeat:no-repeat,no-repeat;
   background-position:center,center;
   background-size:cover,cover;
@@ -1865,7 +1865,7 @@ footer .btm .dv{color:var(--gold-pale);}
 .saheli{padding:clamp(38px,4.6vw,66px) 0;background:#f3dfdc;color:var(--green);position:relative;overflow:hidden;}
 .saheli::before{
   content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;
-  background:url("../assets/leaf-mask.png") center/contain no-repeat;
+  background:url("../assets/leaf-mask.webp") center/contain no-repeat;
 }
 .sahgrid{
   display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,58px);align-items:stretch;

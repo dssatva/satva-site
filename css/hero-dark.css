@@ -57,7 +57,7 @@
 
 /* 5. The three shelves with no dark photograph of their own. Pulses and Healthy
       Essentials are pale category shots pushed down to sit with the others;
-      Seeds uses p-flax.jpg, which is genuinely dark already and needs less.
+      Seeds uses p-flax.webp, which is genuinely dark already and needs less.
       These are STAND-INS - see README-v3.md. */
 .shelves.is-hero .shelf.graded .sh-shot img{
   filter:saturate(1.16) contrast(1.14) brightness(.62);

@@ -44,15 +44,15 @@
     { acc:"#e8a713", ink:"#94660a", en:"Turmeric", hi:"हल्दी", cat:"spices", form:"Ground", glyph:"हल",
       d:"The everyday base — dal, sabzi and every tadka starts here.",
       make:"Boiled, sun-dried, polished and stone-ground. Six steps, nine months.", mfilm:"turmeric",
-      img:"assets/p-haldi.jpg", photo:true, tint:"linear-gradient(150deg,#e3ae3c,#c1860f)" },
+      img:"assets/p-haldi.webp", photo:true, tint:"linear-gradient(150deg,#e3ae3c,#c1860f)" },
     { acc:"#c3341a", ink:"#a52a13", en:"Chilli Powder", hi:"लाल मिर्च", cat:"spices", form:"Ground", glyph:"मि",
       d:"Colour and heat, ground from whole dried chillies.",
       make:"Whole dried chillies, stems off, ground with the seed left in for the heat.", mfilm:"chilli",
-      img:"assets/p-mirchi.jpg", photo:true, tint:"linear-gradient(150deg,#cf5238,#a8321b)" },
+      img:"assets/p-mirchi.webp", photo:true, tint:"linear-gradient(150deg,#cf5238,#a8321b)" },
     { acc:"#93a04b", ink:"#5f6a26", en:"Coriander Powder", hi:"धनिया पावडर", cat:"spices", form:"Ground", glyph:"ध",
       d:"Warm and nutty — the quiet base under a good curry.",
       make:"Sun-dried seed, roasted lightly, then stone-ground so the oils stay in.", mfilm:"dhaniya",
-      img:"assets/p-dhane.jpg", photo:true, tint:"linear-gradient(150deg,#bcae63,#948537)" },
+      img:"assets/p-dhane.webp", photo:true, tint:"linear-gradient(150deg,#bcae63,#948537)" },
 
     /* ---- SPICES · whole, for tadka ---- */
     { acc:"#a3763f", ink:"#6b5029", en:"Cumin Seeds", hi:"जीरा", cat:"spices", form:"Whole", glyph:"जी",
@@ -66,17 +66,17 @@
     { acc:"#6b6259", ink:"#413b34", en:"Black Pepper", hi:"काली मिर्च", cat:"spices", form:"Whole", glyph:"का",
       d:"Whole peppercorns — grind them over the dish, not into the pot.",
       make:"Picked green, blanched, then sun-dried until the skin wrinkles black.",
-      img:"assets/p-pepper.jpg", photo:true, tint:"linear-gradient(150deg,#847a6f,#57504a)" },
+      img:"assets/p-pepper.webp", photo:true, tint:"linear-gradient(150deg,#847a6f,#57504a)" },
 
     /* ---- SPICES · masala blends ---- */
     { acc:"#7d5630", ink:"#634324", en:"Garam Masala", hi:"गरम मसाला", cat:"spices", glyph:"गर",
       d:"The finishing spoon — stirred in at the end, not boiled away.",
       make:"Each spice roasted on its own, then ground together. No filler, no colour.",
-      img:"assets/p-garam.jpg", photo:true, tint:"linear-gradient(150deg,#a38055,#74562f)" },
+      img:"assets/p-garam.webp", photo:true, tint:"linear-gradient(150deg,#a38055,#74562f)" },
     { acc:"#e2912b", ink:"#94590c", en:"Biryani Masala", hi:"बिरयानी मसाला", cat:"spices", glyph:"बि",
       d:"For layered rice — whole spices ground for aroma, not just heat.",
       make:"Whole spices roasted and ground in small batches, not held in a warehouse.",
-      img:"assets/p-biryani.jpg", photo:true, tint:"linear-gradient(150deg,#e8a750,#c07a17)" },
+      img:"assets/p-biryani.webp", photo:true, tint:"linear-gradient(150deg,#e8a750,#c07a17)" },
     { acc:"#8f2e28", ink:"#7a2620", en:"Meat Masala", hi:"मीट मसाला", cat:"spices", glyph:"मी",
       d:"Built for slow-cooked mutton and chicken curry.",
       make:"Heavier on the warm spices. Roasted, ground, then blended by weight.",
@@ -116,7 +116,7 @@
     { acc:"#a08256", ink:"#6a4a33", en:"Flax Seeds", hi:"अलसी", cat:"seeds", glyph:"अल",
       d:"Roast and grind for chutney, or stir into roti dough.",
       make:"Cleaned cold and left whole, so the oil stays in the seed until you grind it.", mfilm:"seeds",
-      img:"assets/p-flax.jpg", photo:true, tint:"linear-gradient(150deg,#b39468,#8a6244)" },
+      img:"assets/p-flax.webp", photo:true, tint:"linear-gradient(150deg,#b39468,#8a6244)" },
     /* 20 Oct 2026, owner: "remove quinoa ... and keep coriander seeds here" -
        Quinoa is off the whole site; Coriander Seeds moved from Spices into its place. */
     { acc:"#8a9a52", ink:"#57632a", en:"Coriander Seeds", hi:"धनिया", cat:"seeds", form:"Whole", glyph:"ध",
@@ -249,7 +249,7 @@
         title: "How turmeric becomes haldi",
         text: "Nine months in the ground, then six steps by hand. Nothing here is a " +
               "metaphor — this is the process every honest packet of haldi goes through.",
-        shot: "assets/j-turmeric-1-field.jpg"
+        shot: "assets/j-turmeric-1-field.webp"
       },
       stages: [
         { when: "Month 7–9",
@@ -258,7 +258,7 @@
                 "For seven to nine months you see only these broad green leaves. " +
                 "When they yellow and begin to dry, the crop underneath is ready.",
           short: "Seven to nine months underground, until the leaves yellow.",
-          shot: "assets/j-turmeric-1-field.jpg",
+          shot: "assets/j-turmeric-1-field.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Turmeric_plants_images.jpg" target="_blank" rel="noopener">Turmeric plants</a>, CC0.' },
 
         { when: "Harvest",
@@ -268,7 +268,7 @@
                 "Cut one open and the inside is already this orange — that is the " +
                 "curcumin, and everything that follows is about keeping it.",
           short: "Snapped off the mother bulb and washed clean.",
-          shot: "assets/j-turmeric-2-lifted.jpg",
+          shot: "assets/j-turmeric-2-lifted.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Turmeric_Root.jpg" target="_blank" rel="noopener">Turmeric root</a> by Liat Portal, CC BY-SA 4.0.' },
 
         { when: "40–60 minutes",
@@ -280,7 +280,7 @@
                 "cut open beside the powder it becomes — no photograph of the boiling " +
                 "itself exists that we are free to use.",
           short: "Boiled soft — the step that fixes the colour. (Root shown cut, not boiling.)",
-          shot: "assets/j-turmeric-3-cured.jpg",
+          shot: "assets/j-turmeric-3-cured.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Curcuma_longa_roots.jpg" target="_blank" rel="noopener">Curcuma longa roots</a>, CC BY-SA 3.0.' },
 
         { when: "10–15 days",
@@ -290,7 +290,7 @@
                 "and snap cleanly instead of bending. Rush this with heat and the " +
                 "colour dulls. There is no shortcut that does not cost you something.",
           short: "Turned by hand on mats until a finger snaps clean.",
-          shot: "assets/j-turmeric-4-drying.jpg",
+          shot: "assets/j-turmeric-4-drying.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Drying_Turmeric.jpg" target="_blank" rel="noopener">Drying turmeric</a>, CC BY-SA 4.0.' },
 
         { when: "Polishing",
@@ -300,7 +300,7 @@
                 "where the trade often adds lead chromate for a brighter yellow. " +
                 "We do not. The colour you see is the colour the root had.",
           short: "Tumbled smooth. No lead chromate, not ever.",
-          shot: "assets/j-turmeric-5-polished.jpg",
+          shot: "assets/j-turmeric-5-polished.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Dry_Turmeric_at_temple.jpg" target="_blank" rel="noopener">Dry turmeric</a>, CC BY-SA 4.0.' },
 
         { when: "The last step",
@@ -318,14 +318,14 @@
              free commercially, no attribution required. */
           short: "Stone-ground cool, so the aroma stays in the powder.",
           video: "assets/proc-turmeric.mp4",
-          shot: "assets/proc-turmeric.jpg",
+          shot: "assets/proc-turmeric.webp",
           credit: 'Film: turmeric on a stone grinder. Pexels, free for commercial use.' }
       ],
       end: {
         title: "And that is what is in the packet",
         text: "One root, nine months, six steps, nothing added at any of them. " +
               "That is the whole reason this is worth paying for.",
-        shot: "assets/j-turmeric-6-ground.jpg",
+        shot: "assets/j-turmeric-6-ground.webp",
         credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Turmeric_(Haldi)_(49696132012).jpg" target="_blank" rel="noopener">Turmeric (Haldi)</a>, CC BY 2.0.'
       }
     },
@@ -349,38 +349,38 @@
       intro: { kick: "Field to plate", title: "How chilli becomes colour and heat",
         text: "Two things come out of a chilli - the red and the burn - and they come " +
               "from different parts of it. Everything below is about keeping both.",
-        shot: "assets/j-chilli-1-field.jpg" },
+        shot: "assets/j-chilli-1-field.webp" },
       stages: [
         { when: "Month 4–5", title: "Picked red, never green",
           text: "Chillies ripen on the bush from green through orange to deep red. Only " +
                 "the fully red ones are cut — an underripe chilli gives you neither the " +
                 "colour nor the heat, and no amount of processing puts them back.",
           short: "Only the fully red ones are cut.",
-          shot: "assets/j-chilli-1-field.jpg",
+          shot: "assets/j-chilli-1-field.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Mirci_ready_in_the_field.JPG" target="_blank" rel="noopener">Mirci ready in the field</a>, public domain.' },
         { when: "7–10 days", title: "Dried in the open, not in a kiln",
           text: "Spread out until the skin wrinkles and the moisture falls below a tenth " +
                 "of its weight. Sun holds the red. A hot kiln is faster and turns the " +
                 "whole crop brown, which is then corrected with dye.",
           short: "Sun holds the red. A kiln browns it.",
-          shot: "assets/j-chilli-2-drying.jpg",
+          shot: "assets/j-chilli-2-drying.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Red_chili_processing.jpg" target="_blank" rel="noopener">Red chili processing</a>, CC BY-SA 4.0.' },
         { when: "Sorting", title: "Every stalk snapped off by hand",
           text: "Stalks go into the mill as grit and come out as specks. Taking them off " +
                 "first is slow, unskilled, unglamorous work, and it is the difference " +
                 "between a clean powder and a gritty one.",
           short: "Stalk in the mill means grit in the powder.",
-          shot: "assets/j-chilli-3-baskets.jpg",
+          shot: "assets/j-chilli-3-baskets.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Sun_dry_red_chilli.jpg" target="_blank" rel="noopener">Sun dry red chilli</a>, CC BY 2.0.' },
         { when: "The last step", title: "Ground with the seed left in",
           text: "The heat lives in the seed and the white pith, not the skin. Sieving " +
                 "them out gives a bright powder that does nothing. We grind them in.",
           short: "The heat is in the seed. We grind it in.",
-          shot: "assets/arch-spices-chilli-powder.jpg" }
+          shot: "assets/arch-spices-chilli-powder.webp" }
       ],
       end: { title: "Red you can see, heat you can taste",
         text: "No dye, no stalk, no seed thrown away. That is the whole recipe.",
-        shot: "assets/arch-spices-chilli-powder.jpg" }
+        shot: "assets/arch-spices-chilli-powder.webp" }
     },
 
     "Coriander Powder": {
@@ -388,30 +388,30 @@
       intro: { kick: "Field to plate", title: "How dhaniya becomes powder",
         text: "The quietest spice in the box, and the one that goes stale fastest once " +
               "it is ground. Three steps, and the last one is the one that matters.",
-        shot: "assets/j-coriander-1-flower.jpg" },
+        shot: "assets/j-coriander-1-flower.webp" },
       stages: [
         { when: "Month 3", title: "It flowers before it seeds",
           text: "Coriandrum sativum throws small white umbels across the field. When " +
                 "they fade, the green seed sets behind them — two to a stalk, in pairs.",
           short: "White umbels first; the seed sets behind them.",
-          shot: "assets/j-coriander-1-flower.jpg",
+          shot: "assets/j-coriander-1-flower.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Coriandrum_sativum_flower.jpg" target="_blank" rel="noopener">Coriandrum sativum flower</a>, CC BY-SA 4.0.' },
         { when: "Harvest", title: "Cut whole, dried, then threshed",
           text: "The crop is cut standing and dried on the field before it is beaten to " +
                 "free the seed. Cut it a week late and the seed shatters on the ground.",
           short: "Cut standing, dried, then beaten free.",
-          shot: "assets/j-coriander-2-seed.jpg",
+          shot: "assets/j-coriander-2-seed.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Koriander-spice.jpg" target="_blank" rel="noopener">Koriander-spice</a>, CC BY-SA 1.0.' },
         { when: "The last step", title: "Roasted short, ground cool",
           text: "A brief dry roast wakes the oils; a long one turns the nuttiness bitter. " +
                 "Then a cool grind, because this is the spice that loses most to heat.",
           short: "A short roast wakes it. A long one ruins it.",
-          shot: "assets/j-coriander-3-powder.jpg",
+          shot: "assets/j-coriander-3-powder.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Coriander_Powder.jpg" target="_blank" rel="noopener">Coriander Powder</a>, CC BY-SA 4.0.' }
       ],
       end: { title: "Buy it small, use it fast",
         text: "Ground coriander is at its best for weeks, not years. We pack it small on purpose.",
-        shot: "assets/p-dhane.jpg" }
+        shot: "assets/p-dhane.webp" }
     },
 
     "Coriander Seeds": {
@@ -419,31 +419,31 @@
       intro: { kick: "Field to plate", title: "How dhaniya is left whole",
         text: "The same crop as the powder, stopped one step earlier — and that one step " +
               "is worth more than anything we could do to it.",
-        shot: "assets/j-coriander-1-flower.jpg" },
+        shot: "assets/j-coriander-1-flower.webp" },
       stages: [
         { when: "Month 3", title: "It flowers before it seeds",
           text: "Small white umbels across the field. When they fade, the green seed sets " +
                 "behind them in pairs and slowly goes from green to straw.",
           short: "White umbels first; the seed sets behind them.",
-          shot: "assets/j-coriander-1-flower.jpg",
+          shot: "assets/j-coriander-1-flower.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Coriandrum_sativum_flower.jpg" target="_blank" rel="noopener">Coriandrum sativum flower</a>, CC BY-SA 4.0.' },
         { when: "Harvest", title: "Threshed, winnowed, graded",
           text: "Beaten free of the stalk, fanned clean of chaff, then sieved by size. " +
                 "Nothing is roasted and nothing is ground.",
           short: "Beaten free, fanned clean, sieved by size.",
-          shot: "assets/j-coriander-4-whole.jpg",
+          shot: "assets/j-coriander-4-whole.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Whole_Coriander.jpg" target="_blank" rel="noopener">Whole coriander</a>, CC0.' },
         { when: "Whole", title: "The grinding is yours to do",
           text: "A whole seed holds its aroma for a year; the moment it is ground the " +
                 "clock starts. Crush it in your hand the day you cook and you get what " +
                 "the powder was like on the day it was made.",
           short: "Whole holds a year. Ground starts a clock.",
-          shot: "assets/j-coriander-2-seed.jpg",
+          shot: "assets/j-coriander-2-seed.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Koriander-spice.jpg" target="_blank" rel="noopener">Koriander-spice</a>, CC BY-SA 1.0.' }
       ],
       end: { title: "We stopped one step early on purpose",
         text: "The last step belongs in your kitchen, not our mill.",
-        shot: "assets/j-coriander-4-whole.jpg" }
+        shot: "assets/j-coriander-4-whole.webp" }
     },
 
     "Mustard Seeds": {
@@ -451,31 +451,31 @@
       intro: { kick: "Field to plate", title: "How rai gets its bite",
         text: "A mustard seed is not hot. It has no heat at all until you break it in " +
               "something hot or wet — which is the whole trick of the tadka.",
-        shot: "assets/j-mustard-1-field.jpg" },
+        shot: "assets/j-mustard-1-field.webp" },
       stages: [
         { when: "Month 2–3", title: "A field of yellow, all at once",
           text: "Brassica juncea flowers across the whole field before a single pod sets. " +
                 "It is the loudest three weeks in the crop year and then it is over.",
           short: "The whole field flowers before a pod sets.",
-          shot: "assets/j-mustard-1-field.jpg",
+          shot: "assets/j-mustard-1-field.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Mustard_Field-1.jpg" target="_blank" rel="noopener">Mustard Field</a>, CC BY-SA 4.0.' },
         { when: "Harvest", title: "Brown seed out of a yellow field",
           text: "The crop stays standing until the pods rattle — cut it green and the " +
                 "seed shrivels in storage. What falls out is this: small, hard and dark, " +
                 "nothing like the flower it came from.",
           short: "Small, hard and dark. Nothing like the flower.",
-          shot: "assets/j-mustard-2-pods.jpg",
+          shot: "assets/j-mustard-2-pods.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Mustard_black.JPG" target="_blank" rel="noopener">Mustard black</a>, public domain.' },
         { when: "Whole", title: "Threshed, winnowed, and left alone",
           text: "Beaten out, fanned clean, graded by size. Never ground, because a " +
                 "ground mustard seed has already spent its heat before it reaches you.",
           short: "Never ground — it would spend its heat early.",
-          shot: "assets/j-mustard-3-seed.jpg",
+          shot: "assets/j-mustard-3-seed.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Mustard_Seeds.JPG" target="_blank" rel="noopener">Mustard Seeds</a>, CC BY-SA 3.0.' }
       ],
       end: { title: "It waits for your hot oil",
         text: "Everything we do to rai is about making sure nothing has happened to it yet.",
-        shot: "assets/j-mustard-3-seed.jpg" }
+        shot: "assets/j-mustard-3-seed.webp" }
     },
 
     "Toor Dal": {
@@ -483,31 +483,31 @@
       intro: { kick: "Field to plate", title: "How toor is split, not polished",
         text: "Almost every dal on a shelf has been given a coat to make it shine. " +
               "Ours has not, and this is what that means.",
-        shot: "assets/j-toor-1-plant.jpg" },
+        shot: "assets/j-toor-1-plant.webp" },
       stages: [
         { when: "Month 5–9", title: "Flowers and pods at the same time",
           text: "Cajanus cajan carries yellow flowers on one branch and filling pods on " +
                 "another, so a field is never all at one stage. It is picked over, not cleared.",
           short: "Never all at one stage. Picked over, not cleared.",
-          shot: "assets/j-toor-1-plant.jpg",
+          shot: "assets/j-toor-1-plant.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:%E0%A4%A4%E0%A5%82%E0%A4%B0_%E0%A4%AA%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%9A%E0%A5%8D%E0%A4%AF%E0%A4%BE_%E0%A4%B6%E0%A5%87%E0%A4%82%E0%A4%97%E0%A4%BE_%E0%A4%B5_%E0%A4%AB%E0%A5%81%E0%A4%B2%E0%A4%82_Pods_%26_flowers_of_Pigeon_pea_(Cajanus_cajan).jpg" target="_blank" rel="noopener">Pods &amp; flowers of pigeon pea</a>, CC BY-SA 4.0.' },
         { when: "Harvest", title: "Dried on the plant, then threshed",
           text: "Left until the pods go brown and brittle, then beaten to free the whole " +
                 "pea. Dry it off the plant and the pea case hardens unevenly.",
           short: "Left until the pods go brown and brittle.",
-          shot: "assets/j-toor-2-pods.jpg",
+          shot: "assets/j-toor-2-pods.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Pigeon_pea_pods_dried.jpg" target="_blank" rel="noopener">Pigeon pea pods dried</a>, CC0.' },
         { when: "The last step", title: "Split — and nothing after that",
           text: "Milled to take the skin off and split the pea in two. Here most dal gets " +
                 "oil, water or leather-polished to a shine. A dull dal is an honest one; " +
                 "the shine is a coat you then wash down your sink.",
           short: "A dull dal is an honest one.",
-          shot: "assets/j-toor-3-dal.jpg",
+          shot: "assets/j-toor-3-dal.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Tur_Dal.JPG" target="_blank" rel="noopener">Tur Dal</a>, public domain.' }
       ],
       end: { title: "It will not shine, and that is the point",
         text: "Rinse it once and the water runs almost clear. That is how you can tell.",
-        shot: "assets/j-toor-3-dal.jpg" }
+        shot: "assets/j-toor-3-dal.webp" }
     },
 
     "Flax Seeds": {
@@ -515,31 +515,31 @@
       intro: { kick: "Field to plate", title: "How alsi stays sealed",
         text: "Flax oil turns rancid faster than almost anything in a kitchen. Every " +
               "step below exists to keep the seed shut until you open it.",
-        shot: "assets/j-flax-1-flower.jpg" },
+        shot: "assets/j-flax-1-flower.webp" },
       stages: [
         { when: "Month 2", title: "Blue for a single morning",
           text: "Linum usitatissimum opens pale blue flowers that each last one morning " +
                 "and are gone by afternoon. The field flowers for weeks, one day at a time.",
           short: "Each flower lasts one morning.",
-          shot: "assets/j-flax-1-flower.jpg",
+          shot: "assets/j-flax-1-flower.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Linum_usitatissimum,_Findlay_Township,_2024-10-22.jpg" target="_blank" rel="noopener">Linum usitatissimum</a>, CC0.' },
         { when: "Harvest", title: "Bolls, not pods",
           text: "Each flower becomes a round boll holding up to ten seeds. The crop is " +
                 "cut when the bolls turn gold and rattle.",
           short: "Each flower becomes a boll of ten seeds.",
-          shot: "assets/j-flax-2-bolls.jpg",
+          shot: "assets/j-flax-2-bolls.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Linum_usitatissimum_field,_Vlasveld_(1).jpg" target="_blank" rel="noopener">Flax field</a>, CC BY-SA 3.0.' },
         { when: "Whole", title: "Cleaned cold, and never ground",
           text: "No heat anywhere in the cleaning. Ground flax starts oxidising in days, " +
                 "which is why we sell the seed whole and tell you to grind it the morning " +
                 "you use it.",
           short: "Ground flax starts turning in days.",
-          shot: "assets/j-flax-3-seed.jpg",
+          shot: "assets/j-flax-3-seed.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Brown_Flax_Seeds.jpg" target="_blank" rel="noopener">Brown flax seeds</a>, CC BY-SA.' }
       ],
       end: { title: "Grind it the morning you use it",
         text: "A coffee grinder, ten seconds. That is the freshest flax you will ever eat.",
-        shot: "assets/j-flax-3-seed.jpg" }
+        shot: "assets/j-flax-3-seed.webp" }
     },
 
     "Monk Fruit Sweetener": {
@@ -547,31 +547,31 @@
       intro: { kick: "Field to plate", title: "How a gourd becomes sweetness",
         text: "It is sweet without being sugar — the sweetness is a different molecule " +
               "altogether, and getting it out takes drying, not refining.",
-        shot: "assets/j-monk-1-fruit.jpg" },
+        shot: "assets/j-monk-1-fruit.webp" },
       stages: [
         { when: "Autumn", title: "A small melon, picked hard",
           text: "Siraitia grosvenorii grows on a climbing vine in Guangxi and is cut while " +
                 "the fruit is still green and firm. Split one open fresh and it is barely " +
                 "sweet at all — the sweetness is made later, in the drying.",
           short: "Cut green and firm. The sweetness comes later.",
-          shot: "assets/j-monk-1-fruit.jpg",
+          shot: "assets/j-monk-1-fruit.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Siraitia_grosvenorii_%E7%BE%85%E6%BC%A2%E6%9E%9C.jpg" target="_blank" rel="noopener">Siraitia grosvenorii</a>, CC BY 2.0.' },
         { when: "Days", title: "Dried slowly, in its own skin",
           text: "Dried low and slow while still whole. This is where the sweetness " +
                 "concentrates; rush it with heat and the fruit scorches and turns bitter.",
           short: "Dried whole and slow. Heat makes it bitter.",
-          shot: "assets/j-monk-2-dried.jpg",
+          shot: "assets/j-monk-2-dried.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Dried_monk_fruit.jpg" target="_blank" rel="noopener">Dried monk fruit</a>, CC0.' },
         { when: "The last step", title: "Juiced, then dried to a powder",
           text: "The sweetness is mogrosides, not sugar — which is why it does not feed " +
                 "a blood sugar spike. No sugar alcohols are added to bulk it out.",
           short: "Mogrosides, not sugar. Nothing added to bulk it.",
-          shot: "assets/j-monk-3-powder.jpg",
+          shot: "assets/j-monk-3-powder.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Monkfruit_Sweetener.jpg" target="_blank" rel="noopener">Monkfruit Sweetener</a>, CC BY-SA 4.0.' }
       ],
       end: { title: "Sweet, from a fruit nobody eats",
         text: "Far sweeter than sugar by weight, so a very little goes a long way.",
-        shot: "assets/j-monk-3-powder.jpg" }
+        shot: "assets/j-monk-3-powder.webp" }
     },
 
     /* ---- the seven recovered on the second pass -------------------
@@ -592,30 +592,30 @@
       intro: { kick: "Field to plate", title: "How jeera is grown and left alone",
         text: "A hundred days from sowing to harvest, and almost nothing done to it " +
               "afterwards. The flavour is already finished when it comes off the plant.",
-        shot: "assets/j-cumin-1-field.jpg" },
+        shot: "assets/j-cumin-1-field.webp" },
       stages: [
         { when: "Month 3", title: "A field of small white flowers",
           text: "Cuminum cyminum is an umbellifer, cousin to carrot and coriander. It " +
                 "flowers white across the whole field, then sets seed in feathery heads.",
           short: "An umbellifer. White flowers, then feathery heads.",
-          shot: "assets/j-cumin-1-field.jpg",
+          shot: "assets/j-cumin-1-field.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Beautiful_fields_of_cumin_._Photo_By_Raju_Odedra_Mo_07698787895.jpg" target="_blank" rel="noopener">Fields of cumin</a> by Raju Odedra, CC BY.' },
         { when: "Harvest", title: "Pulled whole, dried, threshed",
           text: "The plant is pulled rather than cut, dried in small stacks, then beaten " +
                 "to free the seed. It is a short, dry crop and it does not wait.",
           short: "Pulled whole, stacked to dry, then beaten.",
-          shot: "assets/j-cumin-3-threshed.jpg",
+          shot: "assets/j-cumin-3-threshed.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Cuminum_cyminum_JEERA.jpg" target="_blank" rel="noopener">Cuminum cyminum</a>, CC BY-SA.' },
         { when: "Whole", title: "Sieved, graded, and nothing more",
           text: "No roasting and no grinding. Jeera gives up its oil in a hot pan in " +
                 "about four seconds — that is your job, not ours.",
           short: "No roasting, no grinding. That is your pan's job.",
-          shot: "assets/j-cumin-2-seed.jpg",
+          shot: "assets/j-cumin-2-seed.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Cuminum_cyminum_JEERA.jpg" target="_blank" rel="noopener">Cuminum cyminum</a>, CC BY-SA.' }
       ],
       end: { title: "Four seconds in hot ghee",
         text: "That is the entire point of buying it whole.",
-        shot: "assets/j-cumin-2-seed.jpg" }
+        shot: "assets/j-cumin-2-seed.webp" }
     },
 
     "Methi Seeds": {
@@ -623,32 +623,32 @@
       intro: { kick: "Field to plate", title: "How methi keeps its bitterness",
         text: "The only spice we sell where the bitterness is the product. Everything " +
               "below is about not losing it.",
-        shot: "assets/j-methi-1-plant.jpg" },
+        shot: "assets/j-methi-1-plant.webp" },
       stages: [
         { when: "Month 3", title: "A clover, not a grass",
           text: "Trigonella foenum-graecum grows low and bushy with three-part leaves and " +
                 "small pale flowers. The leaf is a vegetable in its own right — this is " +
                 "the same plant as kasuri methi.",
           short: "Same plant as the leaf you cook as a vegetable.",
-          shot: "assets/j-methi-1-plant.jpg",
+          shot: "assets/j-methi-1-plant.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Trigonella_foenum_graecum-1-bangalore-India.jpg" target="_blank" rel="noopener">Trigonella foenum-graecum</a>, CC BY-SA 4.0.' },
         { when: "Harvest", title: "It grows low, and close together",
           text: "A dense, low crop cut whole at ground level. The pods it carries are slim " +
                 "and easy to miss, ten to twenty seeds in each — left a week too long they " +
                 "split and the crop is on the floor.",
           short: "Cut whole at ground level, pods and all.",
-          shot: "assets/j-methi-3-crop.jpg",
+          shot: "assets/j-methi-3-crop.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Trigonella_foenum_graecum-3-xavier_cottage-yercaud-salem-India.jpg" target="_blank" rel="noopener">Trigonella foenum-graecum</a>, CC BY-SA 4.0.' },
         { when: "Whole", title: "Dried, cleaned, graded",
           text: "Bitter on purpose. That bitterness is what it is for in a tadka, in a " +
                 "pickle and in sambar — and it is the first thing lost if the seed is " +
                 "over-dried to make it grind easily.",
           short: "Bitter on purpose. Over-drying kills it.",
-          shot: "assets/j-methi-2-seed.jpg" }
+          shot: "assets/j-methi-2-seed.webp" }
       ],
       end: { title: "A little goes a long way",
         text: "Half a teaspoon is a decision. A whole one is a mistake.",
-        shot: "assets/j-methi-2-seed.jpg" }
+        shot: "assets/j-methi-2-seed.webp" }
     },
 
     "Black Pepper": {
@@ -656,31 +656,31 @@
       intro: { kick: "Field to plate", title: "How pepper turns black",
         text: "Black, green, white and red pepper are the same berry. What separates " +
               "them is when it is picked and what is done to it next.",
-        shot: "assets/j-pepper-1-vine.jpg" },
+        shot: "assets/j-pepper-1-vine.webp" },
       stages: [
         { when: "Year 3–7", title: "It climbs, and it waits",
           text: "Piper nigrum is a vine trained up a living support tree. It gives nothing " +
                 "for three years, then bears for decades.",
           short: "Three years to the first crop, then decades.",
-          shot: "assets/j-pepper-1-vine.jpg",
+          shot: "assets/j-pepper-1-vine.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Base_Pepper_Vines_Tree_Balamuri_Feb24_D72_25936.jpg" target="_blank" rel="noopener">Pepper vines</a>, CC BY-SA 4.0.' },
         { when: "7–10 days", title: "Picked green, dried black",
           text: "The spikes come off green and are blanched, then spread in the sun. The " +
                 "skin darkens and wrinkles as an enzyme in it oxidises. Nothing is added " +
                 "— that black is the berry doing it to itself.",
           short: "The black is the berry oxidising, not a dye.",
-          shot: "assets/j-pepper-2-whole.jpg",
+          shot: "assets/j-pepper-2-whole.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Black_pepper_whole.JPG" target="_blank" rel="noopener">Black pepper whole</a>, public domain.' },
         { when: "Whole", title: "Graded, never ground",
           text: "Sorted so the light hollow berries are blown out. Sold whole because " +
                 "piperine — the heat — starts leaving a ground pepper within weeks.",
           short: "Ground pepper loses its bite within weeks.",
-          shot: "assets/j-pepper-3-corns.jpg",
+          shot: "assets/j-pepper-3-corns.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Black_peppercorns_with_mortar_and_pestle.jpg" target="_blank" rel="noopener">Black peppercorns</a>, CC BY-SA.' }
       ],
       end: { title: "Grind it at the table",
         text: "The difference between a mill and a packet is not subtle. It is the whole spice.",
-        shot: "assets/j-pepper-3-corns.jpg" }
+        shot: "assets/j-pepper-3-corns.webp" }
     },
 
     "Chana Dal": {
@@ -688,32 +688,32 @@
       intro: { kick: "Field to plate", title: "How chana is split",
         text: "The skin does not come off with a polish. It comes off in the splitting, " +
               "which is a different machine and a different result.",
-        shot: "assets/j-chana-1-field.jpg" },
+        shot: "assets/j-chana-1-field.webp" },
       stages: [
         { when: "Month 3–4", title: "One pink flower, one pod",
           text: "Cicer arietinum flowers pink or white, and each flower makes a single " +
                 "short pod holding one or two seeds. It is grown on stored soil moisture " +
                 "through the cool months and gives nitrogen back to the field.",
           short: "Each flower makes one short pod. Feeds the soil back.",
-          shot: "assets/j-chana-2-pods.jpg",
+          shot: "assets/j-chana-2-pods.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:CSIRO_ScienceImage_3196_Chickpeas_in_glasshouse.jpg" target="_blank" rel="noopener">Chickpea plant</a>, CC BY.' },
         { when: "Harvest", title: "Left until the whole field goes brown",
           text: "Nothing is cut while it is green. The crop stands until the plant is " +
                 "brown and brittle right through, and is then beaten to free the whole gram.",
           short: "Nothing is cut green. It stands until brittle.",
-          shot: "assets/j-chana-1-field.jpg",
+          shot: "assets/j-chana-1-field.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Chickpea_field,_Ni%C4%9Fde_2017-08-05_01-1.jpg" target="_blank" rel="noopener">Chickpea field</a>, CC BY-SA 4.0.' },
         { when: "The last step", title: "Split, and left dull",
           text: "Milled so the skin comes away as the gram splits. Most chana dal on a " +
                 "shelf has then been polished with oil or water to make it shine. Ours " +
                 "has not, which is why it looks like a pulse and not a bead.",
           short: "Polished dal is a bead. This is a pulse.",
-          shot: "assets/j-chana-3-dal.jpg",
+          shot: "assets/j-chana-3-dal.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Split_Chickpeas.jpg" target="_blank" rel="noopener">Split chickpeas</a>, CC BY-SA.' }
       ],
       end: { title: "Dull, and honest about it",
         text: "The shine is a coat. You would only wash it off again.",
-        shot: "assets/j-chana-3-dal.jpg" }
+        shot: "assets/j-chana-3-dal.webp" }
     },
 
     "Chia Seeds": {
@@ -721,20 +721,20 @@
       intro: { kick: "Field to plate", title: "How chia is cleaned and nothing else",
         text: "The shortest process of anything we sell. There is no step here that " +
               "changes the seed — and that is the whole claim.",
-        shot: "assets/j-chia-1-plant.jpg" },
+        shot: "assets/j-chia-1-plant.webp" },
       stages: [
         { when: "Month 3–4", title: "A sage, with blue flowers",
           text: "Salvia hispanica is a true sage — the same family as the herb — and it " +
                 "flowers blue and white in spikes before it sets seed.",
           short: "A true sage. It flowers blue before it seeds.",
-          shot: "assets/j-chia-1-plant.jpg",
+          shot: "assets/j-chia-1-plant.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Salvia_hispanica_kz1.jpg" target="_blank" rel="noopener">Salvia hispanica</a>, CC BY-SA.' },
         { when: "Growing", title: "Square stems, and a mint's leaf",
           text: "The giveaway that this is a mint-family plant: paired leaves, a square " +
                 "stem, and that scent when you crush one. The seed sets in spikes above " +
                 "these leaves and is cut once it goes brown and brittle.",
           short: "Paired leaves, square stem — a mint, botanically.",
-          shot: "assets/j-chia-2-leaf.jpg",
+          shot: "assets/j-chia-2-leaf.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Chia_plant_leafs_3.jpg" target="_blank" rel="noopener">Chia plant leaves</a>, CC BY-SA.' },
         { when: "Whole", title: "Sieved, and that is the end of it",
           text: "Not roasted, not ground, not treated. Chia's oil is protected inside a " +
@@ -749,12 +749,12 @@
              in a white dish on slate, cropped so the dish fills the arch. The
              rim gives it a shape and the slate gives it depth, which the flat
              texture could not. */
-          shot: "assets/j-chia-3-seed.jpg",
+          shot: "assets/j-chia-3-seed.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Chia_Seed.jpg" target="_blank" rel="noopener">Chia Seed</a> by Jubair Bin Iqbal, CC BY-SA 4.0.' }
       ],
       end: { title: "Nothing happened to it",
         text: "Which, for a seed this fragile, is the most you can ask.",
-        shot: "assets/j-chia-3-seed.jpg" }
+        shot: "assets/j-chia-3-seed.webp" }
     },
 
     "Himalayan Pink Salt": {
@@ -762,32 +762,32 @@
       intro: { kick: "Rock to plate", title: "How pink salt is mined, not made",
         text: "This one has no field. It is rock, cut out of a hill that was a sea about " +
               "six hundred million years ago.",
-        shot: "assets/j-salt-1-range.jpg" },
+        shot: "assets/j-salt-1-range.webp" },
       stages: [
         { when: "600 million years", title: "The Salt Range, in Punjab",
           text: "A ridge of folded hills south of the Himalaya where an ancient inland sea " +
                 "dried out and was buried. The pink is iron oxide, left in the crystal as " +
                 "the water went.",
           short: "An ancient sea, dried out and buried.",
-          shot: "assets/j-salt-1-range.jpg",
+          shot: "assets/j-salt-1-range.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Khewra_Salt_Mines_landscape_IMG_3127.jpg" target="_blank" rel="noopener">Khewra Salt Mines landscape</a>, CC BY-SA.' },
         { when: "Underground", title: "Cut by room and pillar",
           text: "Half the salt in any chamber is left standing as a pillar to hold the " +
                 "roof up. Nothing is pumped, dissolved or evaporated — it is quarried dry.",
           short: "Quarried dry. Half is left holding the roof up.",
-          shot: "assets/j-salt-2-mine.jpg",
+          shot: "assets/j-salt-2-mine.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Khewra_Salt_Mine_-_Crystal_Deposits_on_the_mine_wall.jpg" target="_blank" rel="noopener">Khewra Salt Mine crystal deposits</a>, CC BY-SA.' },
         { when: "The last step", title: "Crushed and graded. Nothing else.",
           text: "Not washed, not bleached, not iodised, not anti-caked. What is in the " +
                 "packet is the rock, broken smaller. The colour varies between batches " +
                 "because rock does.",
           short: "Not washed, bleached, iodised or anti-caked.",
-          shot: "assets/j-salt-3-rock.jpg",
+          shot: "assets/j-salt-3-rock.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Rock_salt_(halitite)_(Billianwala_Salt_Member,_Salt_Range_Formation).jpg" target="_blank" rel="noopener">Rock salt, Salt Range Formation</a>, CC BY.' }
       ],
       end: { title: "If it is all one colour, ask why",
         text: "Real rock salt is uneven. Uniform pink has usually been helped.",
-        shot: "assets/j-salt-3-rock.jpg" }
+        shot: "assets/j-salt-3-rock.webp" }
     },
 
     "Coconut Sugar": {
@@ -795,13 +795,13 @@
       intro: { kick: "Tree to plate", title: "How sap becomes sugar",
         text: "It does not come from the coconut. It comes from the flower, before the " +
               "coconut ever forms.",
-        shot: "assets/j-coco-1-flower.jpg" },
+        shot: "assets/j-coco-1-flower.webp" },
       stages: [
         { when: "Daily", title: "The flower, not the fruit",
           text: "The palm throws a long flower spike. Tapped for sap, that spike will " +
                 "never become a nut — every litre of sap is a coconut the tree did not grow.",
           short: "Every litre of sap is a coconut not grown.",
-          shot: "assets/j-coco-1-flower.jpg",
+          shot: "assets/j-coco-1-flower.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Coconut_Flower_01.jpg" target="_blank" rel="noopener">Coconut flower</a>, CC BY-SA.' },
         { when: "Twice a day", title: "Cut, and collected",
           text: "The spike is sliced a sliver at a time and a pot hung under it, emptied " +
@@ -809,7 +809,7 @@
                 "in this photograph are DATE palms, not coconut: the tapping is the same " +
                 "job done the same way, but we are not going to caption it as ours.",
           short: "Tapped twice a day. (Photograph: date palms, same method.)",
-          shot: "assets/j-coco-2-sap.jpg",
+          shot: "assets/j-coco-2-sap.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Sweet_sap_from_date_palm.JPG" target="_blank" rel="noopener">Sweet sap from date palm</a>, CC BY-SA — <strong>date palm, not coconut</strong>; shown for the tapping method.' },
       ],
       /* TWO stages, not three. The boiling-down step is real and is described
@@ -822,7 +822,7 @@
               "up. Nothing is refined out of it, which is why it stays brown and tastes " +
               "of caramel — white sugar is what is left when you remove everything that " +
               "had a flavour.",
-        shot: "assets/j-coco-1-flower.jpg" }
+        shot: "assets/j-coco-1-flower.webp" }
     },
 
     /* ---- the five blends ------------------------------------------
@@ -863,25 +863,25 @@
       intro: { kick: "Whole to ground", title: "How garam masala is built",
         text: "“Garam” is warming, not hot. There is no chilli in a true garam " +
               "masala — the heat you taste is cinnamon, clove and black pepper.",
-        shot: "assets/cat-whole.jpg" },
+        shot: "assets/cat-whole.webp" },
       stages: [
         { when: "Weighed out", title: "Eight or nine spices, whole",
           text: "Cinnamon, clove, green and black cardamom, bay, black pepper, cumin, " +
                 "mace. Each is roasted separately, because they do not brown at the same " +
                 "speed — clove is done long before cumin has started.",
           short: "Each roasted separately. They brown at different speeds.",
-          shot: "assets/cat-whole.jpg" },
+          shot: "assets/cat-whole.webp" },
         { when: "The last step", title: "Ground cool, in small batches",
           text: "A stone or a slow mortar rather than a fast steel mill. The aroma of a " +
                 "garam masala is volatile oil, and a hot grind drives it off before the " +
                 "packet is even sealed.",
           short: "A hot grind drives the aroma off before it is packed.",
-          video: "assets/proc-seeds.mp4", shot: "assets/proc-seeds.jpg",
+          video: "assets/proc-seeds.mp4", shot: "assets/proc-seeds.webp",
           credit: "Film: a pestle working spice to powder. Pexels, free for commercial use. Not our mill." }
       ],
       end: { title: "No chilli, no colour, no filler",
         text: "If a garam masala is bright red, something has been added that does not belong.",
-        shot: "assets/cat-whole.jpg" }
+        shot: "assets/cat-whole.webp" }
     },
 
     "Biryani Masala": {
@@ -889,23 +889,23 @@
       intro: { kick: "Whole to ground", title: "How biryani masala is built",
         text: "Built for aroma rather than heat, because in a biryani the masala has to " +
               "carry through rice, meat and a sealed lid.",
-        shot: "assets/p-biryani.jpg" },
+        shot: "assets/p-biryani.webp" },
       stages: [
         { when: "Weighed out", title: "Cardamom and cinnamon lead",
           text: "Green cardamom, cinnamon, clove, bay, mace and star anise — the " +
                 "perfumed end of the spice box. Chilli is a small part of it, not the point.",
           short: "The perfumed end of the box. Chilli is a small part.",
-          shot: "assets/p-biryani.jpg" },
+          shot: "assets/p-biryani.webp" },
         { when: "The last step", title: "Ground on stone, in small batches",
           text: "Ground to order rather than held in a warehouse. A biryani masala that " +
                 "has sat a year smells of dust, and no amount of it will fix a biryani.",
           short: "Ground to order. A year-old blend smells of dust.",
-          video: "assets/proc-dhaniya.mp4", shot: "assets/proc-dhaniya.jpg",
+          video: "assets/proc-dhaniya.mp4", shot: "assets/proc-dhaniya.webp",
           credit: "Film: a sil-batta, the flat Indian grinding stone. Pexels, free for commercial use. Not our mill." }
       ],
       end: { title: "Aroma first, heat second",
         text: "Add your own chilli. You cannot take ours out.",
-        shot: "assets/cat-blend.jpg" }
+        shot: "assets/cat-blend.webp" }
     },
 
     "Meat Masala": {
@@ -913,25 +913,25 @@
       intro: { kick: "Whole to ground", title: "How meat masala is built",
         text: "Heavier and darker than a garam masala, because it has to survive an hour " +
               "in the pot without disappearing.",
-        shot: "assets/p-chilli-whole.jpg" },
+        shot: "assets/p-chilli-whole.webp" },
       stages: [
         { when: "Weighed out", title: "Chilli, coriander and cumin, by weight",
           text: "The base is coriander and cumin in quantity, with dried chilli, black " +
                 "pepper and the warm spices behind them. Blended by weight, not by scoop, " +
                 "so one batch tastes like the last.",
           short: "Blended by weight so one batch matches the last.",
-          shot: "assets/p-chilli-whole.jpg" },
+          shot: "assets/p-chilli-whole.webp" },
         { when: "The last step", title: "Pounded, not pulverised",
           text: "Ground slightly coarser than a garam masala. A coarse grind holds up " +
                 "through a long braise; a fine one dissolves in the first ten minutes " +
                 "and leaves you with colour and nothing else.",
           short: "Coarser on purpose. A fine grind dissolves.",
-          video: "assets/proc-salt.mp4", shot: "assets/proc-salt.jpg",
+          video: "assets/proc-salt.mp4", shot: "assets/proc-salt.webp",
           credit: "Film: a wooden mortar and pestle. Pexels, free for commercial use. Not our mill." }
       ],
       end: { title: "Built for an hour in the pot",
         text: "Put it in early. This one is meant to cook, not to finish.",
-        shot: "assets/cat-ground.jpg" }
+        shot: "assets/cat-ground.webp" }
     },
 
     "Sambar Masala": {
@@ -939,26 +939,26 @@
       intro: { kick: "Whole to ground", title: "How sambar masala is built",
         text: "The one blend with lentils in it. That is not a filler — it is the " +
               "thing that makes sambar taste like sambar.",
-        shot: "assets/j-chana-3-dal.jpg" },
+        shot: "assets/j-chana-3-dal.webp" },
       stages: [
         { when: "Roasted first", title: "The dal goes in the pan too",
           text: "Chana dal and toor dal are dry-roasted alongside the coriander, chilli " +
                 "and methi until they turn nutty and gold. Leave them out and you have a " +
                 "curry powder, not a sambar podi.",
           short: "Roasted dal is what makes it sambar, not curry powder.",
-          shot: "assets/j-chana-3-dal.jpg",
+          shot: "assets/j-chana-3-dal.webp",
           credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Split_Chickpeas.jpg" target="_blank" rel="noopener">Split chickpeas</a>, CC BY-SA.' },
         { when: "The last step", title: "Stone-ground, so the dal does not gum",
           text: "Roasted dal turns pasty in a hot mill. Ground cool and slow between " +
                 "stones it stays a powder — which is why this blend is the one that " +
                 "most repays doing it the old way.",
           short: "Roasted dal gums up in a hot mill. Stone keeps it powder.",
-          video: "assets/proc-chakki-stone.mp4", shot: "assets/proc-chakki-stone.jpg",
+          video: "assets/proc-chakki-stone.mp4", shot: "assets/proc-chakki-stone.webp",
           credit: 'Film: a water-driven stone chakki at Sakyur, Tawang — grinding <em>millet</em>, not masala, and not our mill. <a href="https://commons.wikimedia.org/wiki/File:Flour_mill_running_on_water_in_Tawang_district.webm" target="_blank" rel="noopener">Source</a>, CC BY-SA 4.0, Research Institute of World’s Ancient Traditions, Cultures and Heritage.' }
       ],
       end: { title: "Lentils in the blend, on purpose",
         text: "It is what thickens the sambar and what makes it smell like a South Indian kitchen.",
-        shot: "assets/j-chana-3-dal.jpg" }
+        shot: "assets/j-chana-3-dal.webp" }
     },
 
     "Chatpat Masala": {
@@ -966,25 +966,25 @@
       intro: { kick: "Whole to ground", title: "How chatpat masala is built",
         text: "The only blend here that is meant to be sprinkled on at the end rather " +
               "than cooked. Everything about it is built for that.",
-        shot: "assets/cat-blend.jpg" },
+        shot: "assets/cat-blend.webp" },
       stages: [
         { when: "Weighed out", title: "Cumin, black salt, and the sour one",
           text: "Roasted cumin, kala namak, black pepper, ajwain — and amchur, dried " +
                 "green mango, which is where the sourness comes from. No tamarind, no " +
                 "citric acid.",
           short: "Amchur for the sour, not citric acid.",
-          shot: "assets/cat-blend.jpg" },
+          shot: "assets/cat-blend.webp" },
         { when: "The last step", title: "Ground, with the amchur folded in last",
           text: "Amchur is hygroscopic — it pulls water out of the air and cakes. It " +
                 "goes in at the end, after everything else is ground and cool, so the " +
                 "blend stays loose in the jar.",
           short: "Amchur last, or the whole jar cakes solid.",
-          video: "assets/proc-chakki-flour.mp4", shot: "assets/proc-chakki-flour.jpg",
+          video: "assets/proc-chakki-flour.mp4", shot: "assets/proc-chakki-flour.webp",
           credit: 'Film: flour lifted from the stone at a water-driven chakki in Tawang — <em>millet</em>, not masala, and not our mill. <a href="https://commons.wikimedia.org/wiki/File:Flour_mill_running_on_water_in_Tawang_district.webm" target="_blank" rel="noopener">Source</a>, CC BY-SA 4.0, Research Institute of World’s Ancient Traditions, Cultures and Heritage.' }
       ],
       end: { title: "Sprinkle it on, do not cook it",
         text: "Heat kills the amchur and the kala namak. This one goes on last.",
-        shot: "assets/cat-blend.jpg" }
+        shot: "assets/cat-blend.webp" }
     }
   };
 
@@ -1228,26 +1228,26 @@
      Coriander Powder and Monk Fruit keep their journey photographs:
      Unsplash had nothing true to the product for either. */
   var STILL_SHOT = {
-    "Turmeric":             "assets/u-turmeric.jpg",
-    "Chilli Powder":        "assets/u-chilli-powder.jpg",
-    "Coriander Powder":     "assets/j-coriander-3-powder.jpg",
-    "Coriander Seeds":      "assets/u-coriander-seeds.jpg",
-    "Cumin Seeds":          "assets/u-cumin-seeds.jpg",
-    "Mustard Seeds":        "assets/u-mustard-seeds.jpg",
-    "Black Pepper":         "assets/u-black-pepper.jpg",
-    "Garam Masala":         "assets/u-garam-masala.jpg",
-    "Biryani Masala":       "assets/u-biryani-masala.jpg",
-    "Meat Masala":          "assets/u-meat-masala.jpg",
-    "Sambar Masala":        "assets/u-sambar-masala.jpg",
-    "Chatpat Masala":       "assets/u-chatpat-masala.jpg",
-    "Toor Dal":             "assets/u-toor-dal.jpg",
-    "Chana Dal":            "assets/u-chana-dal.jpg",
-    "Chia Seeds":           "assets/u-chia-seeds.jpg",
-    "Flax Seeds":           "assets/u-flax-seeds.jpg",
-    "Methi Seeds":          "assets/u-methi-seeds.jpg",
-    "Himalayan Pink Salt":  "assets/u-himalayan-pink-salt.jpg",
-    "Coconut Sugar":        "assets/u-coconut-sugar.jpg",
-    "Monk Fruit Sweetener": "assets/j-monk-3-powder.jpg"
+    "Turmeric":             "assets/u-turmeric.webp",
+    "Chilli Powder":        "assets/u-chilli-powder.webp",
+    "Coriander Powder":     "assets/j-coriander-3-powder.webp",
+    "Coriander Seeds":      "assets/u-coriander-seeds.webp",
+    "Cumin Seeds":          "assets/u-cumin-seeds.webp",
+    "Mustard Seeds":        "assets/u-mustard-seeds.webp",
+    "Black Pepper":         "assets/u-black-pepper.webp",
+    "Garam Masala":         "assets/u-garam-masala.webp",
+    "Biryani Masala":       "assets/u-biryani-masala.webp",
+    "Meat Masala":          "assets/u-meat-masala.webp",
+    "Sambar Masala":        "assets/u-sambar-masala.webp",
+    "Chatpat Masala":       "assets/u-chatpat-masala.webp",
+    "Toor Dal":             "assets/u-toor-dal.webp",
+    "Chana Dal":            "assets/u-chana-dal.webp",
+    "Chia Seeds":           "assets/u-chia-seeds.webp",
+    "Flax Seeds":           "assets/u-flax-seeds.webp",
+    "Methi Seeds":          "assets/u-methi-seeds.webp",
+    "Himalayan Pink Salt":  "assets/u-himalayan-pink-salt.webp",
+    "Coconut Sugar":        "assets/u-coconut-sugar.webp",
+    "Monk Fruit Sweetener": "assets/j-monk-3-powder.webp"
   };
   /* a page can swap single card pictures: window.SATVA_STILL_SHOT =
      {"Name": "assets/x.jpg"} (ports/8002, 15 Oct 2026: Sambar Masala in
@@ -1426,7 +1426,7 @@
         v.muted = v.loop = v.playsInline = true;
         v.setAttribute("muted", "");
         v.setAttribute("playsinline", "");
-        v.poster = "assets/proc-turmeric.jpg";
+        v.poster = "assets/proc-turmeric.webp";
         v.innerHTML = '<source src="assets/proc-turmeric.mp4" type="video/mp4">';
         shot.appendChild(v);
         var pr = v.play();
@@ -1536,7 +1536,7 @@
         /* A page may name its own card pictures (window.SATVA_CAT_IMG, set
            before this script, e.g. ports/8002). Without it: cat-<id>.jpg. */
         probe.src = (window.SATVA_CAT_IMG && window.SATVA_CAT_IMG[g.id]) ||
-                    ("assets/cat-" + g.id + ".jpg");
+                    ("assets/cat-" + g.id + ".webp");
       })(card);
 
       /* There IS a listing again (20 Sep 2026), so the card does the obvious
@@ -2022,21 +2022,21 @@
     { id:"spices",     en:"Spices",             hi:"मसाले",
       film:"turmeric",                       // turmeric on the grinding stone
       step:"Stone-ground slowly, or left whole for the tadka.",
-      back:"assets/cat-spices.jpg",
+      back:"assets/cat-spices.webp",
       note:"Ground, whole and blended. Colour from the spice." },
     /* No pulses footage and no second pulses photograph exist yet, so this card
        shows one still on both faces and only its words change on the turn. It
        is the weakest of the four and the first to fix - see the shelf
        photographs table above. */
     { id:"pulses",     en:"Pulses",             hi:"डाळ",
-      film:null, still:"assets/cat-pulses.jpg",
+      film:null, still:"assets/cat-pulses.webp",
       step:"Cleaned and graded. Never polished.",
-      back:"assets/cat-pulses.jpg",
+      back:"assets/cat-pulses.webp",
       note:"Toor and chana, exactly as they grew." },
     { id:"seeds",      en:"Seeds",              hi:"बिया",
       film:"seeds",
       step:"Cleaned, and left whole. Never ground.",
-      back:"assets/cat-seeds.jpg",
+      back:"assets/cat-seeds.webp",
       note:"Roast them the day you use them." },
     /* The oil press left with the oils on 20 Sep 2026. proc-salt.mp4 was the
        unused film in this set and is now the right one: rock salt is what this
@@ -2044,7 +2044,7 @@
     { id:"essentials", en:"Healthy Essentials", hi:"मीठ · गोडवा",
       film:"salt",
       step:"Rock salt crushed and graded. Sweetness dried, not refined.",
-      back:"assets/cat-pantry.jpg",
+      back:"assets/cat-pantry.webp",
       note:"Pink salt, coconut sugar, monk fruit." }
   ];
   MAKING = MAKING.filter(function (m) { return HIDE.indexOf(m.id) < 0; });
@@ -2068,7 +2068,7 @@
       card.className = "mcard";
       card.dataset.i = i;
       // the poster is the film's own still unless the shelf has no film yet
-      var poster = m.still || ("assets/proc-" + m.film + ".jpg");
+      var poster = m.still || ("assets/proc-" + m.film + ".webp");
       // no <source> at all when there is no footage, so nothing asks the server
       // for an mp4 that was never shot
       var source = m.film
@@ -2279,7 +2279,7 @@
       }
       /* No film for this one. Its own photograph if it has one, else the
          shelf's - never another product's film. */
-      var still = (p.img && p.photo) ? p.img : ("assets/cat-" + p.cat + ".jpg");
+      var still = (p.img && p.photo) ? p.img : ("assets/cat-" + p.cat + ".webp");
       return '<img class="mstill" src="' + still + '" alt="" loading="lazy">';
     }
 
@@ -2311,7 +2311,7 @@
               /* the ingredient itself (STILL_SHOT), never the shelf picture -
                  owner, 8 Oct 2026: coriander, cumin and mustard all turned
                  over to turmeric powder */
-              '<img src="' + (STILL_SHOT[p.en] || ((p.img && p.photo) ? p.img : "assets/cat-" + p.cat + ".jpg")) + '" alt="' + p.en + '" loading="lazy">' +
+              '<img src="' + (STILL_SHOT[p.en] || ((p.img && p.photo) ? p.img : "assets/cat-" + p.cat + ".webp")) + '" alt="' + p.en + '" loading="lazy">' +
               '<div class="mcopy">' +
                 "<h3>" + p.en + "</h3>" +
                 "<p>" + p.d + "</p>" +
@@ -3077,7 +3077,7 @@
       f.querySelector("svg").remove();
       f.classList.add("has-photo");
     };
-    probe.src = "assets/recipe-" + r.id + ".jpg";
+    probe.src = "assets/recipe-" + r.id + ".webp";
 
     return card;
   }
@@ -3139,7 +3139,7 @@
         shot.classList.add("has-photo");
       };
       probe.src = (window.SATVA_RECIPE_IMG && window.SATVA_RECIPE_IMG[r.id]) ||
-                  ("assets/recipe-" + r.id + ".jpg");
+                  ("assets/recipe-" + r.id + ".webp");
 
       recGrid.appendChild(card);
     });

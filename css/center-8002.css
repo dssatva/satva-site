@@ -1153,7 +1153,7 @@ html.sahstory-on{overflow:hidden}
 .whyhero .wh-head > div{margin:0 auto}
 /* 15 Oct 2026: Why SATVA slide on background 10 "Dark slate" - heading in cream */
 .shelves.is-hero .whyarch .wa-h{color:#f4efe6}
-.shelves.is-hero .shelf.whyarch::before{background:linear-gradient(rgba(10,12,9,.58),rgba(10,12,9,.58)),#121612 url(../assets/hero-dark-slate.jpg) center/cover no-repeat}
+.shelves.is-hero .shelf.whyarch::before{background:linear-gradient(rgba(10,12,9,.58),rgba(10,12,9,.58)),#121612 url(../assets/hero-dark-slate.webp) center/cover no-repeat}
 
 /* 15 Oct 2026, owner: "The range / Everything we pack" in the middle */
 .range .sechead{justify-content:center;text-align:center}
@@ -1343,7 +1343,7 @@ html.cvar-open{overflow:hidden}
 .sx21 .sx-head h2{font-size:30px}
 .sx21 .sx-sub{font-size:16px;line-height:1.55;margin:0 0 18px}
 .sx-photo{position:relative;flex:1 1 auto;min-height:240px;margin:0;border-radius:18px;overflow:hidden}
-.sx-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%} /* 21 Oct: 28% keeps all three faces in the wide frame (owner's sah-mary-friends.jpg) */
+.sx-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%} /* 21 Oct: 28% keeps all three faces in the wide frame (owner's sah-mary-friends.webp) */
 .sx-photo figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;gap:14px;padding:46px 20px 16px;background:linear-gradient(to top,rgba(20,38,25,.92),rgba(20,38,25,0))}
 .sx-photo figcaption div{flex:1;display:flex;align-items:baseline;gap:10px}
 .sx-photo b{font:600 32px/1 "Fraunces",serif;color:#f1ddab}

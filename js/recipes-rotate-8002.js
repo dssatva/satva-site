@@ -50,7 +50,7 @@
   var grid = document.getElementById("recipes-grid");
   if (!grid) return;
 
-  function src(id) { return "assets/rec-" + id + ".jpg"; }
+  function src(id) { return "assets/rec-" + id + ".webp"; }
 
   // animate: false for the first draw, which sits still until there is a
   // second set to bring in; every later set gets the staggered entrance

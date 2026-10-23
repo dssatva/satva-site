@@ -15,20 +15,20 @@
   "use strict";
 
   var VARIETIES = [
-    { name: "Teja", tag: "Hot · bright red", img: "assets/cv-teja.jpg",
+    { name: "Teja", tag: "Hot · bright red", img: "assets/cv-teja.webp",
       alt: "A heap of long, thin, bright red Teja chillies",
       d: "Long, thin and sharp. A little gives real heat, so it is the chilli for food that should be spicy.",
       uses: "Andhra chicken curry, mutton and fish curry, pickles, misal kat, vada pav garlic chutney" },
     /* 20 Oct 2026: 341 added, owner's own photo (WhatsApp Image 12.56.02 PM, feet cropped out) */
-    { name: "341", tag: "Hot \u00b7 rich red", img: "assets/cv-341.jpg",
+    { name: "341", tag: "Hot \u00b7 rich red", img: "assets/cv-341.webp",
       alt: "A heap of dark red 341 chillies",
       d: "Heat and colour together. A thick-skinned, dark crimson chilli that makes a powder both spicy and red.",
       uses: "Everyday chicken and egg curry, kolhapuri rassa, misal, usal, pickles" },
-    { name: "Byadgi", tag: "Mild · deep red", img: "assets/cv-byadgi.jpg",
+    { name: "Byadgi", tag: "Mild · deep red", img: "assets/cv-byadgi.webp",
       alt: "Wrinkled, dark red Byadgi chillies",
       d: "Wrinkled and deep maroon. Gives food a rich red colour with gentle heat — the chilli of South Indian home cooking.",
       uses: "Sambar, rasam, red chutney for dosa, idli podi, fish fry, ghee roast" },
-    { name: "Kashmiri", tag: "Very mild · brightest red", img: "assets/cv-kashmiri.jpg",
+    { name: "Kashmiri", tag: "Very mild · brightest red", img: "assets/cv-kashmiri.webp",
       alt: "A plate of short, glossy Kashmiri chillies",
       d: "Short, smooth and glossy. The brightest red with almost no heat, so children enjoy the food too.",
       uses: "Butter chicken, paneer makhani, tandoori marinades, rogan josh, pav bhaji" }

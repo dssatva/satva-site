@@ -22,28 +22,28 @@
   var SIZES = [100, 200, 500];
   var GROUPS = [
     { name: "Spices", items: [
-      ["Turmeric", "हल्दी", "u-turmeric.jpg"],
-      ["Coriander Powder", "धनिया पावडर", "j-coriander-3-powder.jpg"], ["Coriander Seeds", "धनिया", "u-coriander-seeds.jpg"],
-      ["Cumin Seeds", "जीरा", "u-cumin-seeds.jpg"], ["Mustard Seeds", "राई", "u-mustard-seeds.jpg"],
-      ["Black Pepper", "काली मिर्च", "u-black-pepper.jpg"] ] },
+      ["Turmeric", "हल्दी", "u-turmeric.webp"],
+      ["Coriander Powder", "धनिया पावडर", "j-coriander-3-powder.webp"], ["Coriander Seeds", "धनिया", "u-coriander-seeds.webp"],
+      ["Cumin Seeds", "जीरा", "u-cumin-seeds.webp"], ["Mustard Seeds", "राई", "u-mustard-seeds.webp"],
+      ["Black Pepper", "काली मिर्च", "u-black-pepper.webp"] ] },
     /* 20 Oct 2026, owner: "even in the customizing kit, add the varieties of
        chilli so that they can select and place the order" - one Chilli Powder
        became three, the same three as js/chilli-varieties-8002.js. */
     { name: "Chilli powder \u00b7 pick your chilli", items: [
-      ["Teja Chilli Powder", "Hot \u00b7 bright red", "cv-teja.jpg"],
-      ["341 Chilli Powder", "Hot \u00b7 rich red", "cv-341.jpg"],
-      ["Byadgi Chilli Powder", "Mild \u00b7 deep red", "cv-byadgi.jpg"],
-      ["Kashmiri Chilli Powder", "Very mild \u00b7 brightest red", "cv-kashmiri.jpg"] ] },
+      ["Teja Chilli Powder", "Hot \u00b7 bright red", "cv-teja.webp"],
+      ["341 Chilli Powder", "Hot \u00b7 rich red", "cv-341.webp"],
+      ["Byadgi Chilli Powder", "Mild \u00b7 deep red", "cv-byadgi.webp"],
+      ["Kashmiri Chilli Powder", "Very mild \u00b7 brightest red", "cv-kashmiri.webp"] ] },
     { name: "Home-made masalas", items: [
-      ["Garam Masala", "गरम मसाला", "u-garam-masala.jpg"], ["Biryani Masala", "बिरयानी मसाला", "u-biryani-masala.jpg"],
-      ["Meat Masala", "मीट मसाला", "u-meat-masala.jpg"], ["Sambar Masala", "सांबार मसाला", "u-sambar-masala-8002.jpg"],
-      ["Chatpat Masala", "चटपट मसाला", "u-chatpat-masala.jpg"] ] },
+      ["Garam Masala", "गरम मसाला", "u-garam-masala.webp"], ["Biryani Masala", "बिरयानी मसाला", "u-biryani-masala.webp"],
+      ["Meat Masala", "मीट मसाला", "u-meat-masala.webp"], ["Sambar Masala", "सांबार मसाला", "u-sambar-masala-8002.webp"],
+      ["Chatpat Masala", "चटपट मसाला", "u-chatpat-masala.webp"] ] },
     { name: "Seeds", items: [
-      ["Chia Seeds", "चिया बीज", "u-chia-seeds.jpg"], ["Flax Seeds", "अलसी", "u-flax-seeds.jpg"],
-      ["Methi Seeds", "मेथी दाना", "u-methi-seeds.jpg"] ] },
+      ["Chia Seeds", "चिया बीज", "u-chia-seeds.webp"], ["Flax Seeds", "अलसी", "u-flax-seeds.webp"],
+      ["Methi Seeds", "मेथी दाना", "u-methi-seeds.webp"] ] },
     { name: "Healthy essentials", items: [
-      ["Himalayan Pink Salt", "गुलाबी नमक", "u-himalayan-pink-salt.jpg"], ["Coconut Sugar", "नारियल शक्कर", "u-coconut-sugar.jpg"],
-      ["Monk Fruit Sweetener", "मंक फ्रूट", "j-monk-3-powder.jpg"] ] }
+      ["Himalayan Pink Salt", "गुलाबी नमक", "u-himalayan-pink-salt.webp"], ["Coconut Sugar", "नारियल शक्कर", "u-coconut-sugar.webp"],
+      ["Monk Fruit Sweetener", "मंक फ्रूट", "j-monk-3-powder.webp"] ] }
   ];
 
   var KEY = "satva-kit-picks";
@@ -67,7 +67,7 @@
                "u-himalayan-pink-salt", "u-chia-seeds", "u-sambar-masala-8002", "u-methi-seeds", "u-mustard-seeds", "u-coconut-sugar", "u-black-pepper"];
   var stripHTML = STRIP.map(function (f) { return '<span><img src="assets/' + f + '.jpg" alt="" loading="lazy"></span>'; }).join("");
   block.innerHTML = '<div class="kc-in">' +
-    '<div class="kc-art kc-disc" aria-hidden="true"><div class="kc-d"><img src="assets/kit-potli-ivory.png" alt="" loading="lazy"></div></div>' +
+    '<div class="kc-art kc-disc" aria-hidden="true"><div class="kc-d"><img src="assets/kit-potli-ivory.webp" alt="" loading="lazy"></div></div>' +
     '<div class="kc-copy"><p class="kc-kick">Healthy Grocery Kit &middot; made to order</p>' +
       '<h3 class="kc-h">Build your own kit</h3>' +
       '<p class="kc-d2">Pick only the masalas and staples your kitchen uses, in the size you need. Our Sahelis pack it fresh, just for you.</p>' +
