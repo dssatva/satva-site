@@ -1409,6 +1409,7 @@ html.cvar-open{overflow:hidden}
    card's own height (width x 5/4, as set above) plus a clear gap each side. */
 @media (max-width:760px){
   .made .mhead{margin-bottom:14px}
-  .made .mstage{height:calc(min(100vw - 40px, 420px) * 1.25 + 32px) !important;margin-bottom:14px !important}
-  .made .mbar{position:relative;z-index:2}
+  .made .mstage{height:calc(min(100vw - 40px, 420px) * 1.25 + 32px) !important;margin-bottom:34px !important}
+  /* owner, 11:02 pm: "a little more spacing down" so the shelf links read clearly */
+  .made .mbar{position:relative;z-index:2;padding-top:4px}
 }
