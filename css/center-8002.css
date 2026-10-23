@@ -1413,3 +1413,42 @@ html.cvar-open{overflow:hidden}
   /* owner, 11:02 pm: "a little more spacing down" so the shelf links read clearly */
   .made .mbar{position:relative;z-index:2;padding-top:4px}
 }
+
+/* 23 Oct 2026, owner: "the small arch pics are not visible in the mobile".
+   hero-dark.css hides .sh-arch below 1100px. On phones the slide is the photo
+   above and the words in a panel below, so the arch sits small at the photo's
+   bottom-right corner, its foot just touching the top of the panel - clear of
+   the words. Flax & Chia keep their two arches side by side. */
+@media (max-width:760px){
+  .shelves.is-hero .shelf .sh-arch{display:block;top:-104px;right:18px;width:92px;
+    transform:scale(.965);border-radius:60px 60px 14px 14px;
+    border:2px solid rgba(255,248,236,.9);box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}
+  .shelves.is-hero .shelf.seeds04 .sh-arch.sd-r{right:18px;width:80px}
+  .shelves.is-hero .shelf.seeds04 .sh-arch.sd-l{right:108px;width:80px}
+  .shelves.is-hero .shelf.is-on .sh-arch{animation:archInM .8s var(--ease) .6s forwards}
+  @keyframes archInM{from{opacity:0;transform:scale(.965)}to{opacity:1;transform:none}}
+}
+@media (max-width:760px) and (prefers-reduced-motion:reduce){
+  .shelves.is-hero .shelf .sh-arch,
+  .shelves.is-hero .shelf.is-on .sh-arch{opacity:1;transform:none;animation:none}
+}
+
+/* 23 Oct 2026, owner: "reduce the slider timing as it takes a long time to
+   slide from one to another". Hero slides now held 3s (Why SATVA 5s) through
+   data-hold in index.html, and each change is quicker: crossfade .7s -> .4s,
+   words in from .2s (were .62s), the arch from .25s (was .6s), so a slide is
+   complete in under a second. js/satva.js and satva.css are shared with
+   site-v3, so the change lives here. The tab line runs for the same hold. */
+.shelves.is-hero .shelf{transition:opacity .4s var(--ease),visibility .4s step-end}
+.shelves.is-hero .shelf.is-on{transition:opacity .4s var(--ease),visibility 0s}
+.shelves.is-hero .shelf.is-on .sh-copy > *{animation-duration:.55s}
+.shelves.is-hero .shelf.is-on .sh-copy > *:nth-child(1){animation-delay:.2s}
+.shelves.is-hero .shelf.is-on .sh-copy > *:nth-child(2){animation-delay:.26s}
+.shelves.is-hero .shelf.is-on .sh-copy > *:nth-child(3){animation-delay:.32s}
+.shelves.is-hero .shelf.is-on .sh-copy > *:nth-child(4){animation-delay:.38s}
+.shelves.is-hero .shelf.is-on .sh-copy > *:nth-child(5){animation-delay:.44s}
+.shelves.is-hero .shelf.is-on .sh-copy > *:nth-child(6){animation-delay:.5s}
+.shelves.is-hero .shelf.is-on .sh-arch{animation-duration:.55s !important;animation-delay:.25s !important}
+.shelves.is-hero .shelf.seeds04.is-on .sh-arch.sd-r{animation-delay:.35s !important}
+.shtabs .etab.is-timing::after{animation-duration:3s}
+.shtabs .etab:nth-child(2).is-timing::after{animation-duration:5s}
