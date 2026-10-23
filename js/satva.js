@@ -85,8 +85,9 @@
       d:"For sambar and the South Indian pot — roasted dal in the blend.",
       make:"The dals are roasted with the chillies before grinding. That is what makes it sambar.",
       img:"assets/p-sambar.jpg", tint:"linear-gradient(150deg,#d4703a,#a24a14)" },
-    { acc:"#b8453c", ink:"#96332b", en:"Chatpat Masala", hi:"चटपट मसाला", cat:"spices", glyph:"चट",
-      d:"Sharp and tangy — for chivda, raw mango, anything that needs a lift.",
+    /* 23 Oct 2026, owner: renamed from "Chatpat Masala" to "Chatpat / Kanda Lasun Masala"; it is also our chaat masala. */
+    { acc:"#b8453c", ink:"#96332b", en:"Chatpat / Kanda Lasun Masala", hi:"चटपट / कांदा लसूण मसाला", cat:"spices", glyph:"चट",
+      d:"Our chaat masala — sharp and tangy, with kanda-lasun depth. For chivda, raw mango, bhel, anything that needs a lift.",
       make:"Dry-roasted and ground, with the amchur folded in last so it stays sharp.",
       img:"assets/p-chatpat.jpg", tint:"linear-gradient(150deg,#c9605a,#a3352c)" },
 
@@ -961,9 +962,9 @@
         shot: "assets/j-chana-3-dal.webp" }
     },
 
-    "Chatpat Masala": {
-      hi: "चटपट मसाला",
-      intro: { kick: "Whole to ground", title: "How chatpat masala is built",
+    "Chatpat / Kanda Lasun Masala": {
+      hi: "चटपट / कांदा लसूण मसाला",
+      intro: { kick: "Whole to ground", title: "How chatpat / kanda lasun masala is built",
         text: "The only blend here that is meant to be sprinkled on at the end rather " +
               "than cooked. Everything about it is built for that.",
         shot: "assets/cat-blend.webp" },
@@ -1239,7 +1240,7 @@
     "Biryani Masala":       "assets/u-biryani-masala.webp",
     "Meat Masala":          "assets/u-meat-masala.webp",
     "Sambar Masala":        "assets/u-sambar-masala.webp",
-    "Chatpat Masala":       "assets/u-chatpat-masala.webp",
+    "Chatpat / Kanda Lasun Masala":       "assets/u-chatpat-masala.webp",
     "Toor Dal":             "assets/u-toor-dal.webp",
     "Chana Dal":            "assets/u-chana-dal.webp",
     "Chia Seeds":           "assets/u-chia-seeds.webp",
@@ -1272,7 +1273,7 @@
     "Biryani Masala":       "biryani",
     "Meat Masala":          "rassa",
     "Sambar Masala":        "sambar",
-    "Chatpat Masala":       "bhel",
+    "Chatpat / Kanda Lasun Masala":       "bhel",
     "Toor Dal":             "varan-bhaat",
     "Chana Dal":            "chana-dal",
     "Chia Seeds":           "chia",
@@ -2570,12 +2571,12 @@
     { id:"bhel", group:"masala", name:"Bhel", hi:"भेळ", time:"10 min",
       icon:PAN, tint:"linear-gradient(150deg,#f0d7a8,#c98b2c)",
       desc:"Mix it at the table, eat it in five minutes, and never before — bhel waits for nobody. Chatpat masala goes on last, over everything.",
-      uses:"Chatpat Masala" },
+      uses:"Chatpat / Kanda Lasun Masala" },
 
     { id:"shengdana", group:"masala", name:"Masala Shengdana", hi:"मसाला शेंगदाणे", time:"15 min",
       icon:PAN, tint:"linear-gradient(150deg,#e9c98f,#b06a22)",
-      desc:"Peanuts roasted dry, tossed hot with chatpat masala and a squeeze of lime. The thing that disappears off the counter before dinner is served.",
-      uses:"Chatpat Masala" },
+      desc:"Peanuts roasted dry, tossed hot with chatpat / kanda lasun masala and a squeeze of lime. The thing that disappears off the counter before dinner is served.",
+      uses:"Chatpat / Kanda Lasun Masala" },
 
     { id:"misal", group:"masala", name:"Misal", hi:"मिसळ", time:"1 hr",
       icon:POT, tint:"linear-gradient(150deg,#e0a07f,#a32d10)",
@@ -2824,12 +2825,12 @@
     "bhel": { serves:"4",
       ing:[["4 cups","puffed rice (kurmura)"],["1 cup","fine sev"],["1","boiled potato, diced"],["1","onion, finely chopped"],
            ["1","tomato, finely chopped"],["¼ cup","roasted peanuts"],["3 tbsp","green chutney"],["3 tbsp","tamarind-date chutney"],
-           ["1½ tsp","Satva Chatpat Masala"],["½","lemon"],["¼ cup","coriander leaves, chopped"]],
+           ["1½ tsp","Satva Chatpat / Kanda Lasun Masala"],["½","lemon"],["¼ cup","coriander leaves, chopped"]],
       steps:["If the puffed rice is not crisp, dry-roast it for 2-3 minutes and let it cool.",
              "Have everything chopped and ready before you start mixing. Bhel waits for nobody.",
              "In a big bowl, toss the puffed rice with the potato, onion, tomato and peanuts.",
              "Add both chutneys and toss quickly.",
-             "Top with sev and coriander, squeeze over the lemon, and dust the chatpat masala over everything last. Eat straight away."] },
+             "Top with sev and coriander, squeeze over the lemon, and dust the chatpat / kanda lasun masala over everything last. Eat straight away."] },
 
     "varan-bhaat": { serves:"4",
       ing:[["¾ cup","Satva Toor Dal"],["2½ cups","water"],["½ tsp","Satva Turmeric"],["1 tsp","salt"],
