@@ -36,7 +36,7 @@
       ["Kashmiri Chilli Powder", "Very mild \u00b7 brightest red", "cv-kashmiri.webp"] ] },
     { name: "Home-made masalas", items: [
       ["Garam Masala", "गरम मसाला", "u-garam-masala.webp"], ["Biryani Masala", "बिरयानी मसाला", "u-biryani-masala.webp"],
-      ["Meat Masala", "मीट मसाला", "u-meat-masala.webp"], ["Sambar Masala", "सांबार मसाला", "u-sambar-masala-8002.webp"],
+      ["Chaat Masala", "चाट मसाला", "u-chaat-masala.webp"], ["Sambar Masala", "सांबार मसाला", "u-sambar-masala-8002.webp"],
       ["Chatpat / Kanda Lasun Masala", "चटपट / कांदा लसूण मसाला", "u-chatpat-masala.webp"] ] },
     { name: "Seeds", items: [
       ["Chia Seeds", "चिया बीज", "u-chia-seeds.webp"], ["Flax Seeds", "अलसी", "u-flax-seeds.webp"],

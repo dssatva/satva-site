@@ -77,17 +77,18 @@
       d:"For layered rice — whole spices ground for aroma, not just heat.",
       make:"Whole spices roasted and ground in small batches, not held in a warehouse.",
       img:"assets/p-biryani.webp", photo:true, tint:"linear-gradient(150deg,#e8a750,#c07a17)" },
-    { acc:"#8f2e28", ink:"#7a2620", en:"Meat Masala", hi:"मीट मसाला", cat:"spices", glyph:"मी",
-      d:"Built for slow-cooked mutton and chicken curry.",
-      make:"Heavier on the warm spices. Roasted, ground, then blended by weight.",
-      img:"assets/p-meat.jpg", tint:"linear-gradient(150deg,#a7473f,#7c2721)" },
+    /* 23 Oct 2026, owner: "replace meat masala with chaat masala in the website". */
+    { acc:"#8f2e28", ink:"#7a2620", en:"Chaat Masala", hi:"चाट मसाला", cat:"spices", glyph:"चा",
+      d:"Tangy and salty — for fruit, salads, raita, chaat and nimbu pani.",
+      make:"Cumin dry-roasted, then ground fine with amchur and black salt, so it clings to whatever you sprinkle it on.",
+      img:"assets/p-chaat.webp", tint:"linear-gradient(150deg,#a7473f,#7c2721)" },
     { acc:"#c05a24", ink:"#8a3d10", en:"Sambar Masala", hi:"सांबार मसाला", cat:"spices", glyph:"सां",
       d:"For sambar and the South Indian pot — roasted dal in the blend.",
       make:"The dals are roasted with the chillies before grinding. That is what makes it sambar.",
       img:"assets/p-sambar.jpg", tint:"linear-gradient(150deg,#d4703a,#a24a14)" },
-    /* 23 Oct 2026, owner: renamed from "Chatpat Masala" to "Chatpat / Kanda Lasun Masala"; it is also our chaat masala. */
+    /* 23 Oct 2026, owner: renamed from "Chatpat Masala" to "Chatpat / Kanda Lasun Masala"; */
     { acc:"#b8453c", ink:"#96332b", en:"Chatpat / Kanda Lasun Masala", hi:"चटपट / कांदा लसूण मसाला", cat:"spices", glyph:"चट",
-      d:"Our chaat masala — sharp and tangy, with kanda-lasun depth. For chivda, raw mango, bhel, anything that needs a lift.",
+      d:"Sharp, tangy and full of kanda-lasun depth — for chivda, raw mango, peanuts, anything that needs a lift.",
       make:"Dry-roasted and ground, with the amchur folded in last so it stays sharp.",
       img:"assets/p-chatpat.jpg", tint:"linear-gradient(150deg,#c9605a,#a3352c)" },
 
@@ -909,29 +910,28 @@
         shot: "assets/cat-blend.webp" }
     },
 
-    "Meat Masala": {
-      hi: "मीट मसाला",
-      intro: { kick: "Whole to ground", title: "How meat masala is built",
-        text: "Heavier and darker than a garam masala, because it has to survive an hour " +
-              "in the pot without disappearing.",
+    "Chaat Masala": {
+      hi: "चाट मसाला",
+      intro: { kick: "Whole to ground", title: "How chaat masala is built",
+        text: "Sour, salty and a little smoky. Amchur and black salt do the talking; " +
+              "roasted cumin holds it together.",
         shot: "assets/p-chilli-whole.webp" },
       stages: [
-        { when: "Weighed out", title: "Chilli, coriander and cumin, by weight",
-          text: "The base is coriander and cumin in quantity, with dried chilli, black " +
-                "pepper and the warm spices behind them. Blended by weight, not by scoop, " +
+        { when: "Weighed out", title: "Cumin, amchur and black salt, by weight",
+          text: "Cumin is dry-roasted until it smells nutty, then weighed with amchur, " +
+                "black salt, dried mint and a little chilli. Blended by weight, not by scoop, " +
                 "so one batch tastes like the last.",
           short: "Blended by weight so one batch matches the last.",
           shot: "assets/p-chilli-whole.webp" },
-        { when: "The last step", title: "Pounded, not pulverised",
-          text: "Ground slightly coarser than a garam masala. A coarse grind holds up " +
-                "through a long braise; a fine one dissolves in the first ten minutes " +
-                "and leaves you with colour and nothing else.",
-          short: "Coarser on purpose. A fine grind dissolves.",
+        { when: "The last step", title: "Ground fine, so it clings",
+          text: "Chaat masala is sprinkled, not cooked, so it is ground fine enough to " +
+                "stick to cut fruit, sev and chana. The amchur goes in last so it stays sharp.",
+          short: "Fine on purpose, so it sticks.",
           video: "assets/proc-salt.mp4", shot: "assets/proc-salt.webp",
           credit: "Film: a wooden mortar and pestle. Pexels, free for commercial use. Not our mill." }
       ],
-      end: { title: "Built for an hour in the pot",
-        text: "Put it in early. This one is meant to cook, not to finish.",
+      end: { title: "Sprinkle it last",
+        text: "Over the plate, just before you eat. Heat dulls the amchur.",
         shot: "assets/cat-ground.webp" }
     },
 
@@ -1238,7 +1238,7 @@
     "Black Pepper":         "assets/u-black-pepper.webp",
     "Garam Masala":         "assets/u-garam-masala.webp",
     "Biryani Masala":       "assets/u-biryani-masala.webp",
-    "Meat Masala":          "assets/u-meat-masala.webp",
+    "Chaat Masala":         "assets/u-chaat-masala.webp",
     "Sambar Masala":        "assets/u-sambar-masala.webp",
     "Chatpat / Kanda Lasun Masala":       "assets/u-chatpat-masala.webp",
     "Toor Dal":             "assets/u-toor-dal.webp",
@@ -1271,9 +1271,9 @@
     "Black Pepper":         "miri-rasam",
     "Garam Masala":         "chole",
     "Biryani Masala":       "biryani",
-    "Meat Masala":          "rassa",
+    "Chaat Masala":         "bhel",
     "Sambar Masala":        "sambar",
-    "Chatpat / Kanda Lasun Masala":       "bhel",
+    "Chatpat / Kanda Lasun Masala":       "shengdana",
     "Toor Dal":             "varan-bhaat",
     "Chana Dal":            "chana-dal",
     "Chia Seeds":           "chia",
@@ -2561,7 +2561,7 @@
     { id:"rassa", group:"masala", name:"Aitwarcha Rassa", hi:"आयतवारचा रस्सा", time:"1 hr 15 min",
       icon:POT, tint:"linear-gradient(150deg,#c98a63,#8c3a1c)",
       desc:"Onion and dry coconut browned properly before anything else goes in — that browning is the whole gravy. Mutton on the bone, and the thinnest rassa you can still call thick.",
-      uses:"Meat Masala" },
+      uses:"Garam Masala" },
 
     { id:"chole", group:"masala", name:"Chole", hi:"छोले", time:"45 min",
       icon:POT, tint:"linear-gradient(150deg,#e3c98d,#a4761f)",
@@ -2570,8 +2570,8 @@
 
     { id:"bhel", group:"masala", name:"Bhel", hi:"भेळ", time:"10 min",
       icon:PAN, tint:"linear-gradient(150deg,#f0d7a8,#c98b2c)",
-      desc:"Mix it at the table, eat it in five minutes, and never before — bhel waits for nobody. Chatpat masala goes on last, over everything.",
-      uses:"Chatpat / Kanda Lasun Masala" },
+      desc:"Mix it at the table, eat it in five minutes, and never before — bhel waits for nobody. Chaat masala goes on last, over everything.",
+      uses:"Chaat Masala" },
 
     { id:"shengdana", group:"masala", name:"Masala Shengdana", hi:"मसाला शेंगदाणे", time:"15 min",
       icon:PAN, tint:"linear-gradient(150deg,#e9c98f,#b06a22)",
@@ -2800,14 +2800,14 @@
              "Leave it sealed for 10 minutes off the heat. Open it at the table."] },
 
     "rassa": { serves:"4",
-      ing:[["750 g","mutton, bone-in"],["½ cup","yogurt"],["3 tbsp","Satva Meat Masala"],["½ tsp","Satva Turmeric"],
+      ing:[["750 g","mutton, bone-in"],["½ cup","yogurt"],["3 tbsp","Satva Garam Masala"],["½ tsp","Satva Turmeric"],
            ["1½ tsp","salt"],["3","onions - 2 sliced, 1 chopped"],["½ cup","dry coconut, grated"],["8 cloves","garlic"],
            ["1 inch","ginger"],["½ cup","coriander leaves"],["4 tbsp","oil"],["4 cups","water"]],
-      steps:["Marinate the mutton with the yogurt, turmeric, salt and 1 tbsp of the meat masala for an hour.",
+      steps:["Marinate the mutton with the yogurt, turmeric, salt and 1 tbsp of the garam masala for an hour.",
              "Roast the sliced onions in 1 tbsp oil until deep brown, then add the coconut and roast until brown too - about 12 minutes. This browning is the whole gravy; do not hurry it.",
              "Grind the onion and coconut with the garlic, ginger, coriander leaves and a little water to a smooth paste.",
              "Heat the remaining oil, fry the chopped onion until golden, add the mutton and sear for 8 minutes.",
-             "Add the paste and the rest of the meat masala. Fry 5 minutes until the oil shows at the edges.",
+             "Add the paste and the rest of the garam masala. Fry 5 minutes until the oil shows at the edges.",
              "Add the water and pressure-cook 6-7 whistles (or simmer, covered, 1¼ hours) until the meat is tender. Thin it to taste. Serve with bhakri or rice."] },
 
     "sambar": { serves:"4-5",
@@ -2825,7 +2825,7 @@
     "bhel": { serves:"4",
       ing:[["4 cups","puffed rice (kurmura)"],["1 cup","fine sev"],["1","boiled potato, diced"],["1","onion, finely chopped"],
            ["1","tomato, finely chopped"],["¼ cup","roasted peanuts"],["3 tbsp","green chutney"],["3 tbsp","tamarind-date chutney"],
-           ["1½ tsp","Satva Chatpat / Kanda Lasun Masala"],["½","lemon"],["¼ cup","coriander leaves, chopped"]],
+           ["1½ tsp","Satva Chaat Masala"],["½","lemon"],["¼ cup","coriander leaves, chopped"]],
       steps:["If the puffed rice is not crisp, dry-roast it for 2-3 minutes and let it cool.",
              "Have everything chopped and ready before you start mixing. Bhel waits for nobody.",
              "In a big bowl, toss the puffed rice with the potato, onion, tomato and peanuts.",

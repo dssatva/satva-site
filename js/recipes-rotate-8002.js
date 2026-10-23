@@ -31,7 +31,7 @@
       ["nimbu-pani",    "Nimbu Pani",        "Himalayan Pink Salt"] ],
     [ ["idli-sambar",   "Idli Sambar",       "Sambar Masala"],
       ["varan-bhaat",   "Varan Bhaat",       "Turmeric"],
-      ["rassa",         "Aitwarcha Rassa",   "Meat Masala"],
+      ["rassa",         "Aitwarcha Rassa",   "Garam Masala"],
       ["haldi-doodh",   "Haldi Doodh",       "Turmeric"] ],
     [ ["paneer-tikka",  "Paneer Tikka",      "Chilli Powder"],
       ["chana-dal",     "Chana Dal Fry",     "Chilli Powder"],
