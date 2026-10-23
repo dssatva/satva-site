@@ -1402,3 +1402,13 @@ html.cvar-open{overflow:hidden}
   /* the "Packed by Satva Sahelis" stamp sat off the left edge of the phone */
   .shelves.is-hero .shelf.kit .ko-stamp{left:-6%;bottom:-4%}
 }
+
+/* 23 Oct 2026, owner on a phone: in How it's made the open (centre) card was
+   taller than its stage, so it ran over the heading above and the
+   Spices / Seeds / Healthy Essentials tabs below. The stage now takes the
+   card's own height (width x 5/4, as set above) plus a clear gap each side. */
+@media (max-width:760px){
+  .made .mhead{margin-bottom:14px}
+  .made .mstage{height:calc(min(100vw - 40px, 420px) * 1.25 + 32px) !important;margin-bottom:14px !important}
+  .made .mbar{position:relative;z-index:2}
+}
