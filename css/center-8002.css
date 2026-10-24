@@ -1452,3 +1452,17 @@ html.cvar-open{overflow:hidden}
 .shelves.is-hero .shelf.seeds04.is-on .sh-arch.sd-r{animation-delay:.35s !important}
 .shtabs .etab.is-timing::after{animation-duration:3s}
 .shtabs .etab:nth-child(2).is-timing::after{animation-duration:5s}
+
+/* ---- EASIER-TO-READ TEXT ON THE LOGO GREEN (24 Oct 2026, owner) ----------
+   Small gold / sand / grey text on #55714e measured 2.8-4.1:1, under the 4.5:1
+   that small text needs. Each colour is lifted toward cream, keeping its warm
+   tint, to 4.6:1. Delete this block to undo. */
+.kitsec .kk-kick,.kitsec .kk-h em,.kitsec .kk-tel,.kitsec .kk-sign i{color:#f7eccf}
+.kitsec .kk-steps span,.kitsec .kk-perks span:not(.s20-ic),.kitsec .kk-sign{color:#efece5}
+.kitsec .kk-sign b{color:#f6ebd4}
+#pgrid .kitcust .kc-kick{color:#f6ebd4}
+#pgrid .kitcust .kc-d2{color:#f3ede2}
+footer#contact .fcol h3{color:#f7ecd4}
+footer#contact .fcol a,footer#contact .fcol span{color:#f2ece0}
+footer#contact .btm,footer#contact .btm span,footer#contact .btm a,footer#contact .fveg{color:#efece5}
+footer#contact .btm .dv{color:#f7eccf}
