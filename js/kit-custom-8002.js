@@ -87,6 +87,9 @@
     var cols = getComputedStyle(grid).gridTemplateColumns.split(" ").filter(Boolean).length || 1;
     var used = (grid.children.length - 1) % cols;
     block.style.gridColumn = "span " + (used ? cols - used : cols);
+    /* 24 Oct 2026: alone in its row there is no card to take its height from,
+       so it sizes itself (kit-custom-8002.css, .kc-alone) */
+    block.classList.toggle("kc-alone", !used);
   }
   addEventListener("resize", fit);
   function place() {
