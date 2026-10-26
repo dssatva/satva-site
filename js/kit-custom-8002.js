@@ -79,7 +79,9 @@
   /* 21 Oct 2026, owner: the "Customise your kit" button at the foot of the
      kit box (#kit) opens this same picker, starting empty like the one above. */
   [].forEach.call(document.querySelectorAll("[data-kitcustom]"), function (b) {
-    b.addEventListener("click", function (e) { picks = {}; openPicker(e); });
+    /* 27 Oct 2026: the hero kit slide's WhatsApp link opens the picker too;
+       preventDefault keeps it from also opening WhatsApp. */
+    b.addEventListener("click", function (e) { e.preventDefault(); picks = {}; openPicker(e); });
   });
 
   /* span the columns left over in the last row (all of them if it is full) */

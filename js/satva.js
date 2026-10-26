@@ -1677,12 +1677,24 @@
       if (shTabs) [].forEach.call(shTabs.children, function (b) { b.classList.remove("is-timing"); });
     }
     function shPause() { clearTimeout(shTimer); shTimer = null; shPaint(); }
+    function shPhoneHold() {
+      return window.SATVA_HERO_HOLD_PHONE && window.matchMedia("(max-width: 900px)").matches
+        ? +window.SATVA_HERO_HOLD_PHONE : 0;
+    }
+    /* a finger on a phone fires pointerenter/leave too; with a phone hold set,
+       a touch while scrolling must not pause and restart the countdown */
+    function shHover(fn) {
+      return function (e) { if (e && e.pointerType === "touch" && shPhoneHold()) return; fn(); };
+    }
     function shPlay() {
       if (shStopped || reduce || shelves.length < 2) return;
       clearTimeout(shTimer);
       /* a slide may ask to be held longer with data-hold="ms" - ports/8002's
          "Why SATVA" slide steps through four cards of its own (13 Oct 2026) */
-      shTimer = setTimeout(function () { shGo(shCur + 1); shPlay(); }, +shelves[shCur].dataset.hold || SH_DELAY);
+      /* 27 Oct 2026, ports/8002 owner: on phones every slide the same time
+         (window.SATVA_HERO_HOLD_PHONE, ms), not 3s for some and 5s for others */
+      var hold = shPhoneHold() || +shelves[shCur].dataset.hold || SH_DELAY;
+      shTimer = setTimeout(function () { shGo(shCur + 1); shPlay(); }, hold);
       shPaint();
     }
     /* A slide that runs a sequence of its own can hand on to the next slide
@@ -1690,14 +1702,14 @@
     window.SATVA_HERO_NEXT = function () { shGo(shCur + 1); shPlay(); };
 
     if (!reduce && shelves.length > 1) {
-      shStage.addEventListener("pointerenter", shPause);
-      shStage.addEventListener("pointerleave", function () { shPlay(); });
+      shStage.addEventListener("pointerenter", shHover(shPause));
+      shStage.addEventListener("pointerleave", shHover(function () { shPlay(); }));
       var shSection = shStage.closest(".shelves");
       if (shSection) {
         shSection.addEventListener("focusin", shPause);
         shSection.addEventListener("focusout", function () { shPlay(); });
-        shSection.addEventListener("pointerenter", shPause);
-        shSection.addEventListener("pointerleave", function () { shPlay(); });
+        shSection.addEventListener("pointerenter", shHover(shPause));
+        shSection.addEventListener("pointerleave", shHover(function () { shPlay(); }));
       }
       document.addEventListener("visibilitychange", function () {
         if (document.hidden) shPause(); else shPlay();

@@ -60,7 +60,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site-index.css?v=202610262256">
+<link rel="stylesheet" href="css/site-index.css?v=202610270004">
 </head>
 <body class="jrn-still">
 <!-- 23 Oct 2026: one page heading for search engines and screen readers; hidden on screen. -->
@@ -307,7 +307,8 @@
           <!-- 22 Oct 2026, owner: title only "Healthy Grocery Kit" (Whole kitchen / Your Kitchen removed), "kitchen essentials" in the paragraph, button in the footer green. -->
           <h2 class="dsp">Healthy Grocery <span class="goldtext">Kit</span></h2>
           <p>Everyday kitchen essentials, packed together &mdash; the spices, home-made masalas, salt, sweeteners and seeds a kitchen goes through every week, all pure and packed by SATVA.</p>
-          <a class="pill kitpill" href="https://wa.me/919689888822?text=Namaskar%21%20I%20would%20like%20to%20order%20the%20Satva%20Healthy%20Grocery%20Kit." target="_blank" rel="noopener">
+          <!-- 27 Oct 2026, owner: this button opens the "Customise your kit" picker (data-kitcustom); the WhatsApp link stays as the fallback. -->
+          <a class="pill kitpill" href="https://wa.me/919689888822?text=Namaskar%21%20I%20would%20like%20to%20order%20the%20Satva%20Healthy%20Grocery%20Kit." target="_blank" rel="noopener" data-kitcustom>
             <span>Order the kit on WhatsApp</span>
             <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
           </a>
@@ -1043,6 +1044,8 @@ document.addEventListener("click", function (e) {
      pulses section from the whole website"). js/satva.js drops the shelf and
      its products everywhere it builds from GROUPS/PRODUCTS. */
   window.SATVA_HIDE_SHELVES = ["pulses"];
+  /* 27 Oct 2026, owner: on phones all hero slides change at the same, fairly quick pace */
+  window.SATVA_HERO_HOLD_PHONE = 3000;
   /* 14 Oct 2026, owner: remove the third mustard picture in How it's made
      (the close-up of seeds on wood); the other mustard pictures stay. */
   window.SATVA_DROP_SHOTS = ["assets/j-mustard-3-seed.webp"];
@@ -1077,9 +1080,9 @@ document.addEventListener("click", function (e) {
      day: the "Order on WhatsApp" buttons in the menu and footer removed. */
   window.SATVA_WA_NUMBER = "919689888822";
 </script>
-<script src="js/satva.js?v=202610262256"></script>
-<script src="js/kit-custom-8002.js?v=202610262256"></script>
-<script src="js/chilli-varieties-8002.js?v=202610262256"></script>
+<script src="js/satva.js?v=202610270004"></script>
+<script src="js/kit-custom-8002.js?v=202610270004"></script>
+<script src="js/chilli-varieties-8002.js?v=202610270004"></script>
 <script>
   /* 20 Oct 2026: "Apply to Become a Satva Saheli" on the page asks the
      applicant's WhatsApp number first (js/kit-custom-8002.js), then WhatsApp. */
@@ -1145,9 +1148,9 @@ document.addEventListener("click", function (e) {
     }, { threshold: 0.4 }).observe(sec);
   })();
 </script>
-<script src="js/recipes-rotate-8002.js?v=202610262256"></script>
-<script src="js/links-8002.js?v=202610262256"></script>
-<script src="js/grind.js?v=202610262256"></script>
+<script src="js/recipes-rotate-8002.js?v=202610270004"></script>
+<script src="js/links-8002.js?v=202610270004"></script>
+<script src="js/grind.js?v=202610270004"></script>
 
 <script>
 (function () {
