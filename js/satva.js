@@ -3374,7 +3374,7 @@
     };
     addEventListener("scroll", onMScroll, { passive: true });
     addEventListener("resize", onMScroll);
-    mShift();
+    requestAnimationFrame(mShift);   // 26 Oct 2026: not during load - measuring here forced a whole-page layout early (slow on phones)
   }
 
   /* ---------------------------------------------------------

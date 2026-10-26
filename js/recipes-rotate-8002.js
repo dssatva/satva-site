@@ -57,8 +57,8 @@
   function render(n, animate) {
     grid.innerHTML = SETS[n].map(function (d, i) {
       return '<article class="reccard' + (animate ? ' rc-in' : '') + '" style="--i:' + i + '"' +
-        ' data-rec="' + d[0] + '" role="button" tabindex="0" aria-label="' + d[1] + ' - see the recipe">' +
-        '<div class="rshot has-photo"><img src="' + src(d[0]) + '" alt="' + d[1] + '"></div>' +
+        ' data-rec="' + d[0] + '" role="button" tabindex="0">' +
+        '<div class="rshot has-photo"><img src="' + src(d[0]) + '" alt=""></div>' +
         '<h3>' + d[1] + '</h3>' +
         '<p class="ruses">Made with ' + d[2] + '</p>' +
         '<span class="rsee">See the recipe</span>' +
@@ -116,8 +116,8 @@
         '<div class="rgal-grid">' +
           dishes.map(function (d) {
             var info = window.SATVA_recipeInfo ? window.SATVA_recipeInfo(RECIPE_ID[d[0]] || d[0]) : null;
-            return '<article class="reccard rgal-card" data-rec="' + d[0] + '" role="button" tabindex="0" aria-label="' + d[1] + ' - see the recipe">' +
-              '<div class="rshot has-photo"><img src="' + src(d[0]) + '" alt="' + d[1] + '" loading="lazy"></div>' +
+            return '<article class="reccard rgal-card" data-rec="' + d[0] + '" role="button" tabindex="0">' +
+              '<div class="rshot has-photo"><img src="' + src(d[0]) + '" alt="" loading="lazy"></div>' +
               '<h3>' + d[1] + '</h3>' +
               '<p class="ruses">Made with ' + d[2] + (info ? ' &middot; ' + info.time : '') + '</p>' +
               (info ? '<p class="rgal-desc">' + info.desc + '</p>' : '') +

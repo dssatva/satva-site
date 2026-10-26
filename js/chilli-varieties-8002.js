@@ -88,7 +88,7 @@
       c.classList.add("has-cvar");
       c.setAttribute("tabindex", "0");
       c.setAttribute("role", "button");
-      c.setAttribute("aria-label", "Chilli Powder - see the chilli varieties");
+      c.removeAttribute("aria-label");   // 26 Oct 2026: name comes from the visible text (screen readers, voice control)
       var b = c.querySelector(".pbody");
       if (b) b.insertAdjacentHTML("beforeend", '<span class="cvar-hint">Chilli varieties <i aria-hidden="true">&rarr;</i></span>');
     });

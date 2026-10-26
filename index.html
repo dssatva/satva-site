@@ -17,6 +17,9 @@
 
 <head>
 <meta charset="UTF-8">
+<!-- 26 Oct 2026: browser security rules. Only this site, Google Fonts and inline code may load; no plug-ins, no other sites. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- 23 Oct 2026: search and sharing tags for the live site (dssatva.com). The old
      noindex,nofollow tag from the preview days was removed so Google can list the site. -->
@@ -30,7 +33,7 @@
 <meta name="twitter:image" content="https://dssatva.com/assets/og-dssatva.jpg">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "@id": "https://dssatva.com/#business", "name": "DS Satva Foods Pvt. Ltd.", "alternateName": "DS Satva", "slogan": "Dil Se Pure", "description": "Pure, stone-ground spices, home-blended masalas, seeds and healthy kitchen essentials, packed in small batches with the Satva Saheli women's network.", "url": "https://dssatva.com/", "logo": "https://dssatva.com/assets/logo-stack-dark.png", "image": "https://dssatva.com/assets/og-dssatva.jpg", "telephone": "+91-9689888822", "email": "dssatva@gmail.com", "address": {"@type": "PostalAddress", "streetAddress": "Plot No.-31W, MIDC Chikalthana", "addressLocality": "Chhatrapati Sambhaji Nagar", "addressRegion": "Maharashtra", "postalCode": "431001", "addressCountry": "IN"}, "areaServed": [{"@type": "City", "name": "Chhatrapati Sambhajinagar"}, {"@type": "City", "name": "Aurangabad"}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "DS Satva range", "itemListElement": [{"@type": "OfferCatalog", "name": "Spices & masalas", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Turmeric"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Chilli Powder (Teja, 341, Byadgi, Kashmiri)"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Coriander Powder"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Cumin Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Mustard Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Black Pepper"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Garam Masala"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Biryani Masala"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Chaat Masala"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Sambar Masala"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Chatpat / Kanda Lasun Masala"}}]}, {"@type": "OfferCatalog", "name": "Pulses", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Toor Dal"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Chana Dal"}}]}, {"@type": "OfferCatalog", "name": "Seeds", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Chia Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Flax Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Coriander Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Methi Seeds"}}]}, {"@type": "OfferCatalog", "name": "Healthy essentials", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Himalayan Pink Salt"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Coconut Sugar"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Monk Fruit Sweetener"}}]}, {"@type": "OfferCatalog", "name": "Kits", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Healthy Grocery Kit"}}]}]}, "knowsLanguage": ["en", "mr", "hi"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "@id": "https://dssatva.com/#business", "name": "DS Satva Foods Pvt. Ltd.", "alternateName": "DS Satva", "slogan": "Dil Se Pure", "description": "Pure, stone-ground spices, home-blended masalas, seeds and healthy kitchen essentials, packed in small batches with the Satva Saheli women's network.", "url": "https://dssatva.com/", "logo": "https://dssatva.com/assets/logo-stack-dark.png", "image": "https://dssatva.com/assets/og-dssatva.jpg", "telephone": "+91-9689888822", "email": "dssatva@gmail.com", "address": {"@type": "PostalAddress", "streetAddress": "Plot No.-31W, MIDC Chikalthana", "addressLocality": "Chhatrapati Sambhaji Nagar", "addressRegion": "Maharashtra", "postalCode": "431001", "addressCountry": "IN"}, "areaServed": [{"@type": "City", "name": "Chhatrapati Sambhajinagar"}, {"@type": "City", "name": "Aurangabad"}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "DS Satva range", "itemListElement": [{"@type": "OfferCatalog", "name": "Spices & masalas", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Turmeric"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Chilli Powder (Teja, 341, Byadgi, Kashmiri)"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Coriander Powder"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Cumin Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Mustard Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Black Pepper"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Garam Masala"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Biryani Masala"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Chaat Masala"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Sambar Masala"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Chatpat / Kanda Lasun Masala"}}]}, {"@type": "OfferCatalog", "name": "Seeds", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Chia Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Flax Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Coriander Seeds"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Methi Seeds"}}]}, {"@type": "OfferCatalog", "name": "Healthy essentials", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Himalayan Pink Salt"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Coconut Sugar"}}, {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Monk Fruit Sweetener"}}]}, {"@type": "OfferCatalog", "name": "Kits", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Healthy Grocery Kit"}}]}]}, "knowsLanguage": ["en", "mr", "hi"]}</script>
 <!-- ============================================================
      THE DARK HERO. All four slides follow one rule - the crop
      growing in the background, the thing in the packet inside the
@@ -56,20 +59,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/satva.css?v=202610261244">
-<link rel="stylesheet" href="css/grind.css?v=202610261244">
-<link rel="stylesheet" href="css/hero-dark.css?v=202610261244">
-<link rel="stylesheet" href="css/journey.css?v=202610261244">
-<link rel="stylesheet" href="css/journey-still.css?v=202610261244">
-<link rel="stylesheet" href="css/recipes-seedlip.css?v=202610261244">
-<link rel="stylesheet" href="css/density.css?v=202610261244">
-<link rel="stylesheet" href="css/footer-split.css?v=202610261244">
-<link rel="stylesheet" href="css/left-align.css?v=202610261244">
-<link rel="stylesheet" href="css/saheli.css?v=202610261244">
-<link rel="stylesheet" href="css/saheli-slide.css?v=202610261244">
-<link rel="stylesheet" href="css/center-8002.css?v=202610261244">
-<link rel="stylesheet" href="css/kit-custom-8002.css?v=202610261244">
+<!-- 26 Oct 2026: fonts load without holding up the page (faster first paint on phones) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&family=Cinzel:wght@500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&family=Cinzel:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&family=Cinzel:wght@500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="css/site-index.css?v=202610261318">
 </head>
 <body class="jrn-still">
 <!-- 23 Oct 2026: one page heading for search engines and screen readers; hidden on screen. -->
@@ -165,6 +159,7 @@
      five-slide brand hero, which is saved in the scratchpad as
      REMOVED-old-hero.html if any of its copy is wanted back. It carries
      id="top" because the logo links there. -->
+<main id="main">
 <section class="shelves is-hero" id="top" aria-roledescription="carousel" aria-label="Our shelves">
   <div class="shstage" id="shstage">
 
@@ -916,6 +911,7 @@
 </section>
 
 <div class="spectrum" aria-hidden="true"></div>
+</main>
 
 <!-- ============ footer ============ -->
 <!-- Four columns in the manner of a shop footer, but adapted: where a retailer
@@ -1011,7 +1007,7 @@
       <span>&copy; <span id="yr">2026</span> DS Satva Foods &middot; <span class="dv">दिल से शुद्ध</span></span>
       <span>FSSAI Lic. No. 21526044005691 &middot; GSTIN 27AANCD0378A1ZT</span>
       <span class="fveg"><i></i> All products vegetarian</span>
-      <span>Made in Chhatrapati Sambhajinagar, Maharashtra &middot; <a href="credits.html" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Photo credits</a> &middot; <a href="privacy.html" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Privacy</a></span>
+      <span>Made in Chhatrapati Sambhajinagar, Maharashtra &middot; <a href="recipes/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All recipes</a> &middot; <a href="credits.html" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Photo credits</a> &middot; <a href="privacy.html" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Privacy</a></span>
     </div>
   </div>
 </footer>
@@ -1085,9 +1081,9 @@ document.addEventListener("click", function (e) {
      day: the "Order on WhatsApp" buttons in the menu and footer removed. */
   window.SATVA_WA_NUMBER = "919689888822";
 </script>
-<script src="js/satva.js?v=202610261244"></script>
-<script src="js/kit-custom-8002.js?v=202610261244"></script>
-<script src="js/chilli-varieties-8002.js?v=202610261244"></script>
+<script src="js/satva.js?v=202610261318"></script>
+<script src="js/kit-custom-8002.js?v=202610261318"></script>
+<script src="js/chilli-varieties-8002.js?v=202610261318"></script>
 <script>
   /* 20 Oct 2026: "Apply to Become a Satva Saheli" on the page asks the
      applicant's WhatsApp number first (js/kit-custom-8002.js), then WhatsApp. */
@@ -1153,9 +1149,9 @@ document.addEventListener("click", function (e) {
     }, { threshold: 0.4 }).observe(sec);
   })();
 </script>
-<script src="js/recipes-rotate-8002.js?v=202610261244"></script>
-<script src="js/links-8002.js?v=202610261244"></script>
-<script src="js/grind.js?v=202610261244"></script>
+<script src="js/recipes-rotate-8002.js?v=202610261318"></script>
+<script src="js/links-8002.js?v=202610261318"></script>
+<script src="js/grind.js?v=202610261318"></script>
 
 <script>
 (function () {
