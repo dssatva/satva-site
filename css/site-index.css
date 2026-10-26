@@ -5370,6 +5370,9 @@ footer#contact .btm .dv{color:#f7eccf}
      footer's last line, "Photo credits · Privacy"; room for it under the footer */
   footer#contact{padding-bottom:88px}
 }
+/* 26 Oct 2026, client: all five masalas in the kit -> 15 circles on the orbit;
+   a touch smaller so they don't touch (was 15cqw for 13). */
+.ko-it{width:13.5cqw;height:13.5cqw;margin:-6.75cqw 0 0 -6.75cqw}
 
 /* ---- kit-custom-8002.css ---- */
 /* ============================================================
