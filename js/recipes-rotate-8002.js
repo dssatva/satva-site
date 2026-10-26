@@ -58,7 +58,7 @@
     grid.innerHTML = SETS[n].map(function (d, i) {
       return '<article class="reccard' + (animate ? ' rc-in' : '') + '" style="--i:' + i + '"' +
         ' data-rec="' + d[0] + '" role="button" tabindex="0">' +
-        '<div class="rshot has-photo"><img src="' + src(d[0]) + '" alt=""></div>' +
+        '<div class="rshot has-photo"><img src="' + src(d[0]) + '" alt="" loading="lazy"></div>' +
         '<h3>' + d[1] + '</h3>' +
         '<p class="ruses">Made with ' + d[2] + '</p>' +
         '<span class="rsee">See the recipe</span>' +
@@ -71,7 +71,14 @@
 
   var cur = 0;
   render(cur);
-  preload(1);
+  /* the next set is fetched once the row is near the screen, not while the
+     page is still opening (26 Oct 2026, phone speed) */
+  if ("IntersectionObserver" in window) {
+    var near = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { near.disconnect(); preload(1); }
+    }, { rootMargin: "700px 0px" });
+    near.observe(grid);
+  } else preload(1);
 
   /* Clicking a dish opens its recipe - the sheet js/satva.js already has,
      with this card's own photograph (owner, 8 Oct 2026). */

@@ -183,6 +183,17 @@
      category cards, the range listing and "How we make" all lose it at once.
      Unset - every other page - nothing changes. */
   var HIDE = window.SATVA_HIDE_SHELVES || [];
+
+  /* Run fn once el comes within ~a screen of view (26 Oct 2026). The photo
+     checks below used to download every category and recipe picture while
+     the page was still opening, competing with the hero photo on phones. */
+  function whenNear(el, fn) {
+    if (!("IntersectionObserver" in window)) { fn(); return; }
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { io.disconnect(); fn(); }
+    }, { rootMargin: "700px 0px" });
+    io.observe(el);
+  }
   // names of the products that went with it - a recipe that calls for
   // "Satva Toor Dal" then reads plain "toor dal", not as something we sell
   var HIDDEN = PRODUCTS.filter(function (p) { return HIDE.indexOf(p.cat) > -1; })
@@ -1536,8 +1547,10 @@
         };
         /* A page may name its own card pictures (window.SATVA_CAT_IMG, set
            before this script, e.g. ports/8002). Without it: cat-<id>.jpg. */
-        probe.src = (window.SATVA_CAT_IMG && window.SATVA_CAT_IMG[g.id]) ||
-                    ("assets/cat-" + g.id + ".webp");
+        whenNear(c, function () {
+          probe.src = (window.SATVA_CAT_IMG && window.SATVA_CAT_IMG[g.id]) ||
+                      ("assets/cat-" + g.id + ".webp");
+        });
       })(card);
 
       /* There IS a listing again (20 Sep 2026), so the card does the obvious
@@ -3139,8 +3152,10 @@
         shot.appendChild(probe);
         shot.classList.add("has-photo");
       };
-      probe.src = (window.SATVA_RECIPE_IMG && window.SATVA_RECIPE_IMG[r.id]) ||
-                  ("assets/recipe-" + r.id + ".webp");
+      whenNear(card, function () {
+        probe.src = (window.SATVA_RECIPE_IMG && window.SATVA_RECIPE_IMG[r.id]) ||
+                    ("assets/recipe-" + r.id + ".webp");
+      });
 
       recGrid.appendChild(card);
     });
