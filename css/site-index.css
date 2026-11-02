@@ -5375,6 +5375,27 @@ footer#contact .btm .dv{color:#f7eccf}
 .ko-it{width:13.5cqw;height:13.5cqw;margin:-6.75cqw 0 0 -6.75cqw}
 /* 27 Oct 2026, owner: phones - every hero slide the same 3s, so the progress line too */
 @media (max-width:900px){.shtabs .etab.is-timing::after,.shtabs .etab:nth-child(2).is-timing::after{animation-duration:3s}}
+/* 2 Nov 2026, owner: phone slides are 5s now (SATVA_HERO_HOLD_PHONE = 5000), so the tab progress line too */
+@media (max-width:900px){.shtabs .etab.is-timing::after,.shtabs .etab:nth-child(2).is-timing::after{animation-duration:5s}}
+/* 2 Nov 2026, owner picked "bigger text on phones": nothing readable under 12.5px on a phone.
+   Computer sizes are untouched. Labels that were 11-11.5px go to 12.5-13px. */
+@media (max-width:760px){
+  .mcard span,.mcard .mturn,.mcard .mtag,.mcard .mrecipe{font-size:12.5px}
+  .pcard .jcard-kick,.pcard .pform,.pcard .cvar-hint,.pcard i{font-size:12.5px}
+  #kit b,#kit i.dv,#kit .kk-gl,#kit .kk-tag{font-size:12.5px}
+  .reccard .rsee,.kitcust span,.kitcust .kc-kick,.kitcust .kc-d2{font-size:12.5px}
+  #contact h3{font-size:13px}
+  #tickline .tmsg{font-size:12.5px}
+  .kick,p.kick,h2.kick{font-size:12.5px}
+  .msslide b,#msfull .heart{font-size:12.5px}
+}
+/* (same owner request) stronger selectors for the labels whose older rules win */
+@media (max-width:760px){
+  #pgrid .jcard-kick,#pgrid .pform,#pgrid .kc-kick,#pgrid .kc-d2,#pgrid .kitcust span{font-size:12.5px!important}
+  #mkrow span{font-size:12.5px!important}
+  #recipes-grid .rsee{font-size:12.5px!important}
+  #contact h3{font-size:13px!important}
+}
 
 /* ---- kit-custom-8002.css ---- */
 /* ============================================================
