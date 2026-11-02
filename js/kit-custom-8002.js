@@ -42,7 +42,7 @@
       ["Chia Seeds", "चिया बीज", "u-chia-seeds.webp"], ["Flax Seeds", "अलसी", "u-flax-seeds.webp"],
       ["Methi Seeds", "मेथी दाना", "u-methi-seeds.webp"] ] },
     { name: "Healthy essentials", items: [
-      ["Himalayan Pink Salt", "गुलाबी नमक", "u-himalayan-pink-salt.webp"], ["Coconut Sugar", "नारियल शक्कर", "u-coconut-sugar.webp"],
+      ["Himalayan Pink Salt", "गुलाबी नमक", "u-himalayan-pink-salt.webp", [500, 1000]], ["Coconut Sugar", "नारियल शक्कर", "u-coconut-sugar.webp"],
       ["Monk Fruit Sweetener", "मंक फ्रूट", "j-monk-3-powder.webp"] ] }
   ];
 
@@ -144,8 +144,10 @@
         h += '<li class="kc-item' + (sel ? ' is-on' : '') + '"><img src="assets/' + it[2] + '" alt="" loading="lazy">' +
              '<div class="kc-nm"><b>' + esc(it[0]) + '</b><i class="dv">' + esc(it[1]) + '</i></div>' +
              '<div class="kc-opts" role="group" aria-label="' + esc(it[0]) + ' size">' +
-             SIZES.map(function (s) {
-               return '<button type="button" class="kc-opt" data-n="' + esc(it[0]) + '" data-g="' + s + '" aria-pressed="' + (sel === s) + '">' + s + 'g</button>';
+             /* 2 Nov 2026, owner: pink salt only in 500 g and 1 kg - an item's
+                optional 4th entry lists its own sizes instead of SIZES. */
+             (it[3] || SIZES).map(function (s) {
+               return '<button type="button" class="kc-opt" data-n="' + esc(it[0]) + '" data-g="' + s + '" aria-pressed="' + (sel === s) + '">' + grams(s).replace(" ", "") + '</button>';
              }).join("") + '</div></li>';
       });
       h += '</ul></section>';
@@ -179,12 +181,12 @@
     var c = chosen(), tot = c.reduce(function (a, x) { return a + x.g; }, 0);
     var d = new Date(), when = d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
     var text = "Namaskar! I would like to order my Healthy Grocery Kit:\n" +
-      c.map(function (x) { return "- " + x.name + " - " + x.g + "g"; }).join("\n") + "\nTotal: " + grams(tot);
+      c.map(function (x) { return "- " + x.name + " - " + grams(x.g).replace(" ", ""); }).join("\n") + "\nTotal: " + grams(tot);
     view.innerHTML =
       '<div class="kc-slip"><div class="kc-slip-h"><img src="assets/logo-stack-dark.png" alt="DS SATVA">' +
         '<div><p class="kc-kick">My Healthy Grocery Kit</p><h2 id="kc-title">Your order</h2><p class="kc-when">' + when + '</p></div></div>' +
         '<table class="kc-tbl"><thead><tr><th>Item</th><th>Qty</th></tr></thead><tbody>' +
-        c.map(function (x) { return '<tr><td><img src="assets/' + x.img + '" alt="">' + esc(x.name) + '</td><td>' + x.g + ' g</td></tr>'; }).join("") +
+        c.map(function (x) { return '<tr><td><img src="assets/' + x.img + '" alt="">' + esc(x.name) + '</td><td>' + grams(x.g) + '</td></tr>'; }).join("") +
         '</tbody><tfoot><tr><td>' + c.length + (c.length === 1 ? ' item' : ' items') + '</td><td>' + grams(tot) + '</td></tr></tfoot></table>' +
         '<div class="kc-msg"><b>Take a pic &amp; send via WhatsApp to place the order</b><span>WhatsApp ' + WA_SHOW + '</span></div>' +
       '</div>' +
