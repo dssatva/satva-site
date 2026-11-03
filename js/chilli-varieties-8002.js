@@ -24,7 +24,7 @@
       alt: "A heap of dark red 341 chillies",
       d: "Heat and colour together. A thick-skinned, dark crimson chilli that makes a powder both spicy and red.",
       uses: "Everyday chicken and egg curry, kolhapuri rassa, misal, usal, pickles" },
-    { name: "Byadgi", tag: "Mild · deep red", img: "assets/cv-byadgi.webp",
+    { name: "Byadgi", tag: "Mild · deep red", img: "assets/cv-byadgi.webp?v=20261103",
       alt: "Wrinkled, dark red Byadgi chillies",
       d: "Wrinkled and deep maroon. Gives food a rich red colour with gentle heat — the chilli of South Indian home cooking.",
       uses: "Sambar, rasam, red chutney for dosa, idli podi, fish fry, ghee roast" },
