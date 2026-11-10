@@ -5397,6 +5397,196 @@ footer#contact .btm .dv{color:#f7eccf}
   #contact h3{font-size:13px!important}
 }
 
+/* ---- SHORTER, SWIPEABLE PHONE PAGE (10 Nov 2026, owner: "everyone says the
+   website is nice but on mobile it's not mobile friendly ... fix everything").
+   Phones only (max-width:760px); computer layout untouched. The page was
+   ~13,000px (about 15 phone screens). Undo: delete this block, or restore
+   center-8002.css.bak-1110-mobile.
+   1) No section snapping on phones - it tugged against the thumb.
+   2) Shelf tiles: three small tiles in one row (were three full-screen pictures).
+   3) The range: two rows that swipe sideways (were 4 screens of cards).
+   4) Recipes: one row that swipes sideways.
+   5) WhatsApp button a little smaller and tighter to the corner. */
+@media (max-width:760px){
+  /* 1 */
+  html{scroll-snap-type:none !important}
+
+  /* 2 */
+  .cats .catgrid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:10px !important}
+  .cats .catcard{min-height:0 !important;height:auto !important;border-radius:16px}
+  .cats .catcard .cshot{flex:none !important;height:auto !important;min-height:0 !important;aspect-ratio:3/4;border-radius:16px}
+  .cats .catcard .cmeta,.cats .catcard .carrow{display:none !important}
+  .cats .catcard .cname{left:8px;right:8px;bottom:9px;font-size:15px;line-height:1.15}
+
+  /* 3 + 4: a sideways strip that runs to the screen edges, so the next card peeks in */
+  #pgrid,#recipes-grid{
+    overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none;
+    margin-inline:-18px !important;padding:4px 18px 10px !important;scroll-padding-inline:18px}
+  #pgrid::-webkit-scrollbar,#recipes-grid::-webkit-scrollbar{display:none}
+  #pgrid > *,#recipes-grid > *{scroll-snap-align:start}
+
+  #pgrid{display:grid !important;grid-auto-flow:column !important;
+    grid-template-rows:auto auto !important;grid-template-columns:none !important;
+    grid-auto-columns:44vw !important;gap:12px !important;align-items:stretch}
+  #pgrid .kitcust{grid-column:auto / span 2 !important;grid-row:1 / span 2 !important;width:auto !important}
+
+  #recipes-grid{display:grid !important;grid-auto-flow:column !important;
+    grid-template-columns:none !important;grid-auto-columns:76vw !important;gap:14px !important}
+  #recipes-grid .reccard .rshot{aspect-ratio:4/3;height:auto !important}
+
+  /* "swipe" hint under each strip */
+  #range .wrap::after,#recipes .recgrid + .recfoot::before{
+    content:"Swipe for more  \2192";display:block;text-align:center;
+    font-size:12.5px;letter-spacing:.06em;color:#7a6a4f;margin-top:8px}
+  #recipes .recgrid + .recfoot::before{margin:0 0 14px}
+
+  /* 5 */
+  .wafab{width:46px !important;height:46px !important;right:12px !important;
+    bottom:calc(12px + env(safe-area-inset-bottom)) !important}
+  .wafab svg{width:24px;height:24px}
+}
+/* (same 10 Nov pass) the shelf section kept its one-screen height under the tiles;
+   cards a bit narrower so the next column clearly peeks in; recipe hint on its own line */
+@media (max-width:760px){
+  section.cats{min-height:0 !important;height:auto !important;padding-block:44px 36px !important}
+  section.cats .wrap{min-height:0 !important;justify-content:flex-start !important}
+  #pgrid{grid-auto-columns:41vw !important}
+  #recipes .recfoot{flex-wrap:wrap;justify-content:center}
+  #recipes .recgrid + .recfoot::before{flex:0 0 100%}
+}
+/* (same 10 Nov pass) the kit card fills two rows of the strip: pouch on top, words
+   below, instead of a tall green slab; the four shelf tabs stay on one line */
+@media (max-width:760px){
+  #pgrid .kitcust .kc-in{flex-direction:column !important;justify-content:center;align-items:stretch}
+  #pgrid .kitcust .kc-art{flex:0 0 auto !important;width:auto !important;height:auto !important;min-height:0 !important;padding-top:26px}
+  #pgrid .kitcust .kc-art .kc-d{width:120px !important;height:120px !important;margin:0 auto}
+  #pgrid .kitcust .kc-copy{flex:0 0 auto !important;padding:16px 20px 24px !important;text-align:left}
+  #pgrid .kitcust .kc-h{font-size:24px !important}
+  #rtabs{flex-wrap:nowrap !important;overflow-x:auto;scrollbar-width:none;gap:16px !important}
+  #rtabs::-webkit-scrollbar{display:none}
+  #rtabs .etab{flex:0 0 auto;white-space:nowrap}
+}
+@media (max-width:760px){
+  #rtabs{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);
+         mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);padding-right:36px}
+}
+
+/* ---- PHONE MENU: MAIN TOPICS ONLY (10 Nov 2026) ----
+   Owner: "keep only the main topics here". The burger menu (<=900px) showed
+   every sub-item of Why SATVA and Our Range; now it lists just the six main
+   topics. Computer hover dropdowns are untouched. */
+@media (max-width:900px){
+  .nav.open .submenu{display:none !important;}
+  .nav.open ul{padding-top:6px !important;}   /* the empty band kept for .navcta, which 8002 does not show */
+}
+
+/* ---- PHONE: OUR MISSION LOGO + PHOTO CENTRED (10 Nov 2026) ----
+   Owner: "reduce the size of the logo and move the contents to the center".
+   On phones the sign-off logo and the founder photo sat against the right
+   edge (.msaside align-items:flex-end) and the logo was ~180px tall. */
+@media (max-width:760px){
+  .msslide.brt .msaside{align-items:center !important;}
+  .msslide.brt .mssign{align-self:center !important;text-align:center;border-left:0 !important;
+    padding:0 !important;display:flex;flex-direction:column;align-items:center;}
+  .msslide.brt .mssign img{height:84px !important;width:auto;}
+  .msslide.brt .mssign .mssigcap{margin-top:6px;}
+  .msslide.brt .msshot.mspol{align-self:center !important;justify-self:center !important;margin-left:auto !important;margin-right:auto !important;}
+}
+
+/* ---- PHONE: LESS EMPTY SPACE ABOVE ADD TO CART (10 Nov 2026) ----
+   Owner: "clear up all the wastage of space just above the add to cart button".
+   One long description (Chatpat, 6 lines) made its whole strip row tall, and
+   the tall kit card stretched both rows, so most cards had a blank band above
+   the button. Descriptions now stop at 3 lines and the kit card's disc is
+   smaller: gaps went from up to 163px (avg 83) to up to ~90px (avg ~47). */
+@media (max-width:760px){
+  #pgrid .pcard .pbody > p:not([class]){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+    overflow:hidden;flex:0 0 auto !important;margin-bottom:12px !important;}
+  #pgrid .kitcust .kc-art{padding-top:14px !important;}
+  #pgrid .kitcust .kc-art .kc-d{width:96px !important;height:96px !important;}
+}
+
+/* ---- PHONE: FOUNDER PHOTO WITH DS SATVA BESIDE IT (10 Nov 2026) ----
+   Owner: "this area of the picture and the logo doesn't look good.. keep the
+   picture and bring ds satva details to the side of the picture". Phones only:
+   the photo sits on the left, and the logo + DS Satva Foods sit to its right
+   in one row, instead of the logo stacked above the photo. Overrides the
+   "OUR MISSION LOGO + PHOTO CENTRED" block above. */
+@media (max-width:760px){
+  .msslide.brt .msaside{display:flex !important;flex-direction:row !important;align-items:center !important;
+    justify-content:center !important;gap:14px !important;flex-wrap:nowrap !important;}
+  .msslide.brt .msaside .msshot.mspol{order:0 !important;flex:0 0 50% !important;width:50% !important;max-width:210px;
+    margin:6px 0 10px !important;align-self:center !important;}
+  .msslide.brt .msaside .msshot.mspol img{height:auto !important;aspect-ratio:3/4;width:100%;}
+  .msslide.brt .msaside .mssign{order:1 !important;flex:0 1 auto !important;align-self:center !important;
+    display:flex;flex-direction:column;align-items:flex-start !important;text-align:left !important;
+    padding:6px 0 6px 12px !important;border-left:2px solid var(--gold-pale,#f1ddab) !important;}
+  .msslide.brt .msaside .mssign img{height:64px !important;width:auto;}
+  .msslide.brt .msaside .mssign .mssigcap{margin-top:6px;font-size:.72rem;letter-spacing:.12em;line-height:1.35;}
+}
+@media (max-width:380px){   /* small phones: a little narrower so the tilted photo stays inside */
+  .msslide.brt .msaside{gap:10px !important;}
+  .msslide.brt .msaside .msshot.mspol{flex-basis:46% !important;width:46% !important;}
+  .msslide.brt .msaside .mssign img{height:56px !important;}
+  .msslide.brt .msaside .mssign .mssigcap{font-size:.66rem;}
+}
+
+/* ---- PHONE: NO EMPTY SPACES (10 Nov 2026) ----
+   Owner: "take away all the empty spaces in the mobile site". Phones only.
+   - Our mission: its two slides share one box as tall as the taller slide, so
+     the founder slide had ~170px of blank sage above and below it. On phones
+     the two slides now simply sit one under the other (no slider, no dots),
+     each only as tall as its own content.
+   - Section top/bottom padding trimmed where it read as a hole. */
+@media (max-width:760px){
+  #mission .msview{display:block !important;}
+  #mission .msslide{grid-area:auto !important;opacity:1 !important;visibility:visible !important;
+    pointer-events:auto !important;transform:none !important;transition:none !important;align-content:start !important;}
+  #mission .msslide + .msslide{margin-top:26px;}
+  #mission .msnav,#mission .msdots,#mission .msarrows{display:none !important;}
+  #mission{padding-top:18px !important;padding-bottom:18px !important;}
+
+  #categories{padding-top:24px !important;padding-bottom:18px !important;}
+  #range{padding-top:18px !important;padding-bottom:6px !important;}
+  #kit{padding-top:28px !important;padding-bottom:28px !important;}
+  #made,#recipes{padding-top:18px !important;padding-bottom:18px !important;}
+  #contact{padding-bottom:64px !important;}
+}
+@media (max-width:760px){   /* inner spacing that added to the section gaps */
+  #why > .wrap:first-child,#why .wrap{padding-top:12px !important;}
+  #kit .kk-box{padding-bottom:8px !important;}
+  #recipes .recfoot{margin-top:6px !important;}
+  #contact .fsplit-top{padding-bottom:18px !important;}
+  #contact .fsplit-row{padding-top:16px !important;}
+  #range #pgrid{padding-bottom:4px !important;}
+}
+
+/* ---- PHONE FOOTER: TIGHTER LINK LISTS (10 Nov 2026) ----
+   Owner: "rearrange with less space for the subitems with clarity". Phones
+   only. Links had 11px above and below each (tall gaps between items); now 5px,
+   which still leaves a ~31px tap height. Headings get a hairline under them so
+   each group reads as one block, and the two rows of groups sit closer. */
+@media (max-width:760px){
+  #contact .fsplit-row{row-gap:22px !important;column-gap:18px !important;}
+  #contact .fcol h3{margin:0 0 8px !important;padding-bottom:6px;border-bottom:1px solid rgba(244,239,230,.22);}
+  #contact .fcol ul{margin:0 !important;padding:0 !important;}
+  #contact .fcol li{margin:0 !important;}
+  #contact .fcol li a{padding:5px 0 !important;font-size:.88rem !important;line-height:1.3 !important;}
+  #contact .fcol li span{display:block;padding-top:5px;font-size:.86rem !important;line-height:1.45 !important;}
+}
+@media (max-width:760px){   /* 10 Nov, owner: "reduce the spacing between the subitems in the footer" - tighter still */
+  #contact .fcol li a{padding:2px 0 !important;line-height:1.25 !important;}
+  #contact .fcol h3{margin-bottom:5px !important;padding-bottom:4px;}
+  #contact .fcol li span{padding-top:2px;line-height:1.35 !important;}
+  #contact .fsplit-row{row-gap:16px !important;}
+}
+@media (max-width:760px){
+  #contact .fcol ul{gap:2px !important;row-gap:2px !important;}
+  #contact .fcol li{display:block !important;line-height:1.25 !important;}
+  #contact .fcol li a{display:block !important;padding:3px 0 !important;margin:0 !important;}
+}
+
 /* ---- kit-custom-8002.css ---- */
 /* ============================================================
    CUSTOMISE YOUR KIT, :8002 only (15 Oct 2026) - the block at the end
@@ -5584,4 +5774,96 @@ html.kc-on{overflow:hidden}
    tall and the whole block, button included, was clipped away. The script adds
    .kc-alone then, and the block sizes itself. */
 .kitcust.kc-alone{height:auto;min-height:0;align-self:start}
+
+/* 10 Nov 2026: "Your qty" - any amount in grams (js/kit-custom-8002.js). Phones and computers. */
+.kc-opt.kc-own{min-width:72px;padding-inline:10px;border-style:dashed;}
+.kc-opt.kc-own[aria-pressed="true"]{border-style:solid;}
+.kc-item{flex-wrap:wrap;}
+.kc-ownrow{flex:1 0 100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px;margin-top:6px;}
+.kc-ownrow[hidden]{display:none;}
+.kc-ownrow label{display:flex;align-items:center;gap:8px;font-size:.82rem;color:#1f3a26;}
+.kc-ownrow input{width:96px;padding:8px 10px;border-radius:10px;border:1.5px solid rgba(31,58,38,.35);font:inherit;font-size:16px;color:#1f3a26;background:#fff;}
+.kc-ownrow input:focus{outline:2px solid #1f3a26;outline-offset:1px;}
+.kc-ownrow em{font-style:normal;font-weight:600;margin-left:-4px;}
+.kc-ownok{padding:8px 16px;border-radius:999px;border:0;background:#1f3a26;color:#f4efe6;font:inherit;font-weight:600;cursor:pointer;}
+.kc-ownerr{flex:1 0 100%;margin:0;text-align:right;font-size:.78rem;color:#a3311f;}
+.kc-ownerr:empty{display:none;}
+
+/* ---- cart-8002.css ---- */
+/* 10 Nov 2026: Add to cart on every product card (js/cart-8002.js). 8002 only. */
+
+/* the card button - sits at the foot of the card body */
+#pgrid .pcard .pbody{display:flex;flex-direction:column;}
+#pgrid .pcard .cart-add{
+  order:99;margin-top:auto;align-self:stretch;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 14px;border-radius:999px;border:0;cursor:pointer;
+  background:var(--green,#2c4220);color:#fff;font-family:inherit;font-weight:600;font-size:.78rem;line-height:1;
+  letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .15s;
+}
+#pgrid .pcard .pbody > p:last-of-type{margin-bottom:16px;}
+#pgrid .pcard .cart-add:hover{background:#3d5a2c;}
+#pgrid .pcard .cart-add:active{transform:scale(.97);}
+#pgrid .pcard .cart-add:focus-visible{outline:3px solid var(--gold,#bf8a17);outline-offset:2px;}
+#pgrid .pcard .cart-add svg{width:18px;height:18px;flex:0 0 auto;}
+
+/* sheet */
+.cartdlg{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  background:rgba(16,23,12,.55);padding:16px;}
+.cartdlg[hidden]{display:none;}
+.cart-card{position:relative;width:min(420px,100%);max-height:calc(100svh - 32px);overflow:auto;
+  background:#fffdf7;border-radius:20px;padding:26px 22px 22px;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);color:var(--green,#2c4220);}
+.cart-x{position:absolute;top:10px;right:12px;width:38px;height:38px;border:0;background:none;font-size:28px;line-height:1;color:inherit;cursor:pointer;border-radius:50%;}
+.cart-x:hover{background:rgba(44,66,32,.08);}
+.cart-kick{margin:0 0 4px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk,#7f5a0f);font-weight:600;}
+.cart-card h2{margin:0 0 10px;font-size:1.45rem;line-height:1.2;padding-right:30px;}
+.cart-ph{display:flex;gap:14px;align-items:center;margin-bottom:8px;}
+.cart-ph img{width:64px;height:64px;border-radius:12px;object-fit:cover;flex:0 0 auto;}
+.cart-ph h2{margin:0;}
+.cart-lbl{margin:16px 0 8px;font-size:.85rem;font-weight:600;}
+.cart-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.cart-chip{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line,#e8ddc6);background:#fff;color:inherit;font:inherit;font-size:.9rem;cursor:pointer;}
+.cart-chip[aria-pressed="true"]{border-color:var(--green,#2c4220);background:var(--green,#2c4220);color:#fff;}
+.cart-qty{display:inline-flex;align-items:center;border:1.5px solid var(--line,#e8ddc6);border-radius:999px;background:#fff;}
+.cart-qty button{width:42px;height:40px;border:0;background:none;font-size:1.3rem;color:inherit;cursor:pointer;border-radius:999px;}
+.cart-qty output{min-width:28px;text-align:center;font-weight:600;}
+.cart-qty.sm button{width:34px;height:34px;font-size:1.1rem;}
+.cart-go{display:block;width:100%;margin-top:22px;}
+.cart-list{list-style:none;margin:8px 0 0;padding:0;}
+.cart-list li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line,#e8ddc6);}
+.cart-list img{width:46px;height:46px;border-radius:10px;object-fit:cover;flex:0 0 auto;}
+.cart-nm{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;font-size:.92rem;}
+.cart-nm span{font-size:.8rem;opacity:.75;}
+.cart-note,.cart-empty{font-size:.85rem;opacity:.8;margin:14px 0 0;}
+.cart-foot{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:16px;flex-wrap:wrap;}
+.cart-clear{border:0;background:none;color:inherit;text-decoration:underline;font:inherit;font-size:.85rem;cursor:pointer;padding:8px 0;}
+.cart-order{flex:1 1 auto;}
+
+/* floating cart button - just above the WhatsApp button */
+.cartfab{position:fixed;right:18px;bottom:84px;z-index:71;width:54px;height:54px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--green,#2c4220);color:#fff;display:grid;place-items:center;box-shadow:0 12px 26px -10px rgba(0,0,0,.45);}
+.cartfab[hidden]{display:none;}
+.cartfab svg{width:26px;height:26px;}
+.cartfab-n{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;padding:0 6px;border-radius:11px;
+  background:var(--gold,#bf8a17);color:#fff;font-size:.75rem;font-weight:700;display:grid;place-items:center;}
+.cartfab.bump{animation:cart-bump .45s ease;}
+@keyframes cart-bump{40%{transform:scale(1.18)}}
+
+.carttoast{position:fixed;left:50%;bottom:22px;z-index:210;transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  background:var(--green,#2c4220);color:#fff;padding:10px 12px 10px 18px;border-radius:999px;font-size:.88rem;
+  display:flex;align-items:center;gap:10px;white-space:nowrap;max-width:calc(100vw - 32px);transition:.25s;box-shadow:0 12px 26px -10px rgba(0,0,0,.45);}
+.carttoast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto;}
+.carttoast button{border:0;background:var(--gold,#bf8a17);color:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;}
+
+@media (max-width:760px){
+  #pgrid .pcard .cart-add{padding:10px 8px;font-size:.72rem;letter-spacing:.05em;gap:6px;}
+  #pgrid .pcard .cart-add svg{width:15px;height:15px;}
+  .cartfab{right:12px;bottom:66px;width:46px;height:46px;}
+  .cartfab svg{width:22px;height:22px;}
+  .cart-card{border-radius:18px;padding:22px 16px 18px;}
+  .carttoast{bottom:16px;font-size:.82rem;}
+}
+@media (prefers-reduced-motion:reduce){ .cartfab.bump{animation:none;} .carttoast{transition:none;} }
+
+/* 10 Nov 2026, owner: other changes are phones only, "except the add to cart
+   button" - the cart shows on computers and phones alike. */
 

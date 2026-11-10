@@ -184,3 +184,17 @@ html.kc-on{overflow:hidden}
    tall and the whole block, button included, was clipped away. The script adds
    .kc-alone then, and the block sizes itself. */
 .kitcust.kc-alone{height:auto;min-height:0;align-self:start}
+
+/* 10 Nov 2026: "Your qty" - any amount in grams (js/kit-custom-8002.js). Phones and computers. */
+.kc-opt.kc-own{min-width:72px;padding-inline:10px;border-style:dashed;}
+.kc-opt.kc-own[aria-pressed="true"]{border-style:solid;}
+.kc-item{flex-wrap:wrap;}
+.kc-ownrow{flex:1 0 100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px;margin-top:6px;}
+.kc-ownrow[hidden]{display:none;}
+.kc-ownrow label{display:flex;align-items:center;gap:8px;font-size:.82rem;color:#1f3a26;}
+.kc-ownrow input{width:96px;padding:8px 10px;border-radius:10px;border:1.5px solid rgba(31,58,38,.35);font:inherit;font-size:16px;color:#1f3a26;background:#fff;}
+.kc-ownrow input:focus{outline:2px solid #1f3a26;outline-offset:1px;}
+.kc-ownrow em{font-style:normal;font-weight:600;margin-left:-4px;}
+.kc-ownok{padding:8px 16px;border-radius:999px;border:0;background:#1f3a26;color:#f4efe6;font:inherit;font-weight:600;cursor:pointer;}
+.kc-ownerr{flex:1 0 100%;margin:0;text-align:right;font-size:.78rem;color:#a3311f;}
+.kc-ownerr:empty{display:none;}

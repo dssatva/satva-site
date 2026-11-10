@@ -1,0 +1,76 @@
+/* 10 Nov 2026: Add to cart on every product card (js/cart-8002.js). 8002 only. */
+
+/* the card button - sits at the foot of the card body */
+#pgrid .pcard .pbody{display:flex;flex-direction:column;}
+#pgrid .pcard .cart-add{
+  order:99;margin-top:auto;align-self:stretch;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 14px;border-radius:999px;border:0;cursor:pointer;
+  background:var(--green,#2c4220);color:#fff;font-family:inherit;font-weight:600;font-size:.78rem;line-height:1;
+  letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .15s;
+}
+#pgrid .pcard .pbody > p:last-of-type{margin-bottom:16px;}
+#pgrid .pcard .cart-add:hover{background:#3d5a2c;}
+#pgrid .pcard .cart-add:active{transform:scale(.97);}
+#pgrid .pcard .cart-add:focus-visible{outline:3px solid var(--gold,#bf8a17);outline-offset:2px;}
+#pgrid .pcard .cart-add svg{width:18px;height:18px;flex:0 0 auto;}
+
+/* sheet */
+.cartdlg{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  background:rgba(16,23,12,.55);padding:16px;}
+.cartdlg[hidden]{display:none;}
+.cart-card{position:relative;width:min(420px,100%);max-height:calc(100svh - 32px);overflow:auto;
+  background:#fffdf7;border-radius:20px;padding:26px 22px 22px;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);color:var(--green,#2c4220);}
+.cart-x{position:absolute;top:10px;right:12px;width:38px;height:38px;border:0;background:none;font-size:28px;line-height:1;color:inherit;cursor:pointer;border-radius:50%;}
+.cart-x:hover{background:rgba(44,66,32,.08);}
+.cart-kick{margin:0 0 4px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk,#7f5a0f);font-weight:600;}
+.cart-card h2{margin:0 0 10px;font-size:1.45rem;line-height:1.2;padding-right:30px;}
+.cart-ph{display:flex;gap:14px;align-items:center;margin-bottom:8px;}
+.cart-ph img{width:64px;height:64px;border-radius:12px;object-fit:cover;flex:0 0 auto;}
+.cart-ph h2{margin:0;}
+.cart-lbl{margin:16px 0 8px;font-size:.85rem;font-weight:600;}
+.cart-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.cart-chip{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line,#e8ddc6);background:#fff;color:inherit;font:inherit;font-size:.9rem;cursor:pointer;}
+.cart-chip[aria-pressed="true"]{border-color:var(--green,#2c4220);background:var(--green,#2c4220);color:#fff;}
+.cart-qty{display:inline-flex;align-items:center;border:1.5px solid var(--line,#e8ddc6);border-radius:999px;background:#fff;}
+.cart-qty button{width:42px;height:40px;border:0;background:none;font-size:1.3rem;color:inherit;cursor:pointer;border-radius:999px;}
+.cart-qty output{min-width:28px;text-align:center;font-weight:600;}
+.cart-qty.sm button{width:34px;height:34px;font-size:1.1rem;}
+.cart-go{display:block;width:100%;margin-top:22px;}
+.cart-list{list-style:none;margin:8px 0 0;padding:0;}
+.cart-list li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line,#e8ddc6);}
+.cart-list img{width:46px;height:46px;border-radius:10px;object-fit:cover;flex:0 0 auto;}
+.cart-nm{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;font-size:.92rem;}
+.cart-nm span{font-size:.8rem;opacity:.75;}
+.cart-note,.cart-empty{font-size:.85rem;opacity:.8;margin:14px 0 0;}
+.cart-foot{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:16px;flex-wrap:wrap;}
+.cart-clear{border:0;background:none;color:inherit;text-decoration:underline;font:inherit;font-size:.85rem;cursor:pointer;padding:8px 0;}
+.cart-order{flex:1 1 auto;}
+
+/* floating cart button - just above the WhatsApp button */
+.cartfab{position:fixed;right:18px;bottom:84px;z-index:71;width:54px;height:54px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--green,#2c4220);color:#fff;display:grid;place-items:center;box-shadow:0 12px 26px -10px rgba(0,0,0,.45);}
+.cartfab[hidden]{display:none;}
+.cartfab svg{width:26px;height:26px;}
+.cartfab-n{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;padding:0 6px;border-radius:11px;
+  background:var(--gold,#bf8a17);color:#fff;font-size:.75rem;font-weight:700;display:grid;place-items:center;}
+.cartfab.bump{animation:cart-bump .45s ease;}
+@keyframes cart-bump{40%{transform:scale(1.18)}}
+
+.carttoast{position:fixed;left:50%;bottom:22px;z-index:210;transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  background:var(--green,#2c4220);color:#fff;padding:10px 12px 10px 18px;border-radius:999px;font-size:.88rem;
+  display:flex;align-items:center;gap:10px;white-space:nowrap;max-width:calc(100vw - 32px);transition:.25s;box-shadow:0 12px 26px -10px rgba(0,0,0,.45);}
+.carttoast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto;}
+.carttoast button{border:0;background:var(--gold,#bf8a17);color:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;}
+
+@media (max-width:760px){
+  #pgrid .pcard .cart-add{padding:10px 8px;font-size:.72rem;letter-spacing:.05em;gap:6px;}
+  #pgrid .pcard .cart-add svg{width:15px;height:15px;}
+  .cartfab{right:12px;bottom:66px;width:46px;height:46px;}
+  .cartfab svg{width:22px;height:22px;}
+  .cart-card{border-radius:18px;padding:22px 16px 18px;}
+  .carttoast{bottom:16px;font-size:.82rem;}
+}
+@media (prefers-reduced-motion:reduce){ .cartfab.bump{animation:none;} .carttoast{transition:none;} }
+
+/* 10 Nov 2026, owner: other changes are phones only, "except the add to cart
+   button" - the cart shows on computers and phones alike. */
