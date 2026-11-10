@@ -136,7 +136,7 @@
   function renderPicker() {
     var h = '<div class="kc-top"><p class="kc-kick">Customise your Healthy Grocery Kit</p>' +
             '<h2 id="kc-title">Choose what goes in</h2>' +
-            '<p class="kc-sub">Tap a size for each item you want, or tap Your qty to type any amount. Tap a size again to take it out.</p></div><div class="kc-list">';
+            '<p class="kc-sub">Tap a size for each item you want. Tap it again to take it out.</p></div><div class="kc-list">';
     GROUPS.forEach(function (g) {
       h += '<section class="kc-grp"><h3>' + esc(g.name) + '</h3><ul>';
       g.items.forEach(function (it) {
@@ -148,17 +148,7 @@
                 optional 4th entry lists its own sizes instead of SIZES. */
              (it[3] || SIZES).map(function (s) {
                return '<button type="button" class="kc-opt" data-n="' + esc(it[0]) + '" data-g="' + s + '" aria-pressed="' + (sel === s) + '">' + grams(s).replace(" ", "") + '</button>';
-             }).join("") +
-             /* 10 Nov 2026, owner: "add a quantity you want button" - any
-                amount, typed in grams, next to the fixed sizes. */
-             (function () {
-               var own = sel && (it[3] || SIZES).indexOf(sel) < 0;
-               return '<button type="button" class="kc-opt kc-own" data-n="' + esc(it[0]) + '" aria-pressed="' + !!own + '" aria-expanded="false">' +
-                 (own ? grams(sel).replace(" ", "") : "Your qty") + '</button>';
-             })() + '</div>' +
-             '<form class="kc-ownrow" hidden novalidate><label><span>Quantity you want</span>' +
-             '<input type="number" inputmode="numeric" min="50" max="10000" step="50" placeholder="e.g. 750" aria-label="' + esc(it[0]) + ' quantity in grams"><em>g</em></label>' +
-             '<button type="submit" class="kc-ownok">Add</button><p class="kc-ownerr" aria-live="polite"></p></form></li>';
+             }).join("") + '</div></li>';
       });
       h += '</ul></section>';
     });
@@ -166,40 +156,14 @@
     view.innerHTML = h;
     view.scrollTop = 0;
     tally();
-    function paintItem(li, n) {
-      li.classList.toggle("is-on", !!picks[n]);
-      [].forEach.call(li.querySelectorAll(".kc-opt:not(.kc-own)"), function (o) { o.setAttribute("aria-pressed", String(picks[n] === +o.getAttribute("data-g"))); });
-      var own = li.querySelector(".kc-own"), fixed = [].map.call(li.querySelectorAll(".kc-opt:not(.kc-own)"), function (o) { return +o.getAttribute("data-g"); });
-      var isOwn = !!picks[n] && fixed.indexOf(picks[n]) < 0;
-      own.setAttribute("aria-pressed", String(isOwn));
-      own.textContent = isOwn ? grams(picks[n]).replace(" ", "") : "Your qty";
-    }
-    [].forEach.call(view.querySelectorAll(".kc-own"), function (b) {
-      var li = b.closest(".kc-item"), row = li.querySelector(".kc-ownrow"), inp = row.querySelector("input"), er = row.querySelector(".kc-ownerr");
-      var n = b.getAttribute("data-n");
-      b.addEventListener("click", function () {
-        var open = row.hidden;
-        row.hidden = !open; b.setAttribute("aria-expanded", String(open));
-        if (open) { inp.value = b.getAttribute("aria-pressed") === "true" ? picks[n] : ""; er.textContent = ""; inp.focus(); }
-      });
-      row.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var g = Math.round(+inp.value);
-        if (!inp.value) { delete picks[n]; }
-        else if (!(g >= 50 && g <= 10000)) { er.textContent = "Please type between 50 g and 10,000 g."; inp.focus(); return; }
-        else picks[n] = g;
-        row.hidden = true; b.setAttribute("aria-expanded", "false");
-        paintItem(li, n); tally(); b.focus();
-      });
-    });
-    [].forEach.call(view.querySelectorAll(".kc-opt:not(.kc-own)"), function (b) {
+    [].forEach.call(view.querySelectorAll(".kc-opt"), function (b) {
       b.addEventListener("click", function () {
         var n = b.getAttribute("data-n"), g = +b.getAttribute("data-g");
         if (picks[n] === g) delete picks[n]; else picks[n] = g;
         save();
         var li = b.closest(".kc-item");
-        var row = li.querySelector(".kc-ownrow"); row.hidden = true; li.querySelector(".kc-own").setAttribute("aria-expanded", "false");
-        paintItem(li, n);
+        li.classList.toggle("is-on", !!picks[n]);
+        [].forEach.call(li.querySelectorAll(".kc-opt"), function (o) { o.setAttribute("aria-pressed", String(picks[n] === +o.getAttribute("data-g"))); });
         tally();
       });
     });

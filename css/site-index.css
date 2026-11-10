@@ -5794,19 +5794,21 @@ html.kc-on{overflow:hidden}
    .kc-alone then, and the block sizes itself. */
 .kitcust.kc-alone{height:auto;min-height:0;align-self:start}
 
-/* 10 Nov 2026: "Your qty" - any amount in grams (js/kit-custom-8002.js). Phones and computers. */
-.kc-opt.kc-own{min-width:72px;padding-inline:10px;border-style:dashed;}
-.kc-opt.kc-own[aria-pressed="true"]{border-style:solid;}
-.kc-item{flex-wrap:wrap;}
-.kc-ownrow{flex:1 0 100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px;margin-top:6px;}
-.kc-ownrow[hidden]{display:none;}
-.kc-ownrow label{display:flex;align-items:center;gap:8px;font-size:.82rem;color:#1f3a26;}
-.kc-ownrow input{width:96px;padding:8px 10px;border-radius:10px;border:1.5px solid rgba(31,58,38,.35);font:inherit;font-size:16px;color:#1f3a26;background:#fff;}
-.kc-ownrow input:focus{outline:2px solid #1f3a26;outline-offset:1px;}
-.kc-ownrow em{font-style:normal;font-weight:600;margin-left:-4px;}
-.kc-ownok{padding:8px 16px;border-radius:999px;border:0;background:#1f3a26;color:#f4efe6;font:inherit;font-weight:600;cursor:pointer;}
-.kc-ownerr{flex:1 0 100%;margin:0;text-align:right;font-size:.78rem;color:#a3311f;}
-.kc-ownerr:empty{display:none;}
+/* 10 Nov 2026, owner: "make it mobile friendly by having two items side by
+   side" (the "Your qty" button was taken out the same day). Phones only: the
+   picker shows two items per row - photo and name on top, the size buttons
+   in one line underneath. */
+@media (max-width:640px){
+  .kc-grp ul{grid-template-columns:1fr 1fr !important;gap:8px !important}
+  .kc-item{flex-direction:column !important;flex-wrap:nowrap !important;align-items:center !important;
+    text-align:center;gap:6px !important;padding:10px 6px !important}
+  .kc-item img{width:52px !important;height:52px !important}
+  .kc-nm{flex:none !important;width:100%}
+  .kc-nm b{font-size:13px !important;line-height:1.2 !important}
+  .kc-nm i{font-size:11px !important}
+  .kc-opts{width:100% !important;justify-content:center !important;gap:4px !important;margin-top:auto}
+  .kc-opt{min-width:0 !important;flex:1 1 0;max-width:48px;padding:7px 0 !important;font-size:12px !important}
+}
 
 /* ---- cart-8002.css ---- */
 /* 10 Nov 2026: Add to cart on every product card (js/cart-8002.js). 8002 only. */
