@@ -99,13 +99,13 @@
   function openCart(from) {
     back = from || back;
     if (!cart.length) {
-      view.innerHTML = '<p class="cart-kick">Your cart</p><h2 id="cart-t">Your cart is empty</h2><p class="cart-empty">Tap <b>Add to cart</b> on any product to start.</p>';
+      view.innerHTML = '<p class="cart-kick">Your cart</p><h2 id="cart-t">Your cart is empty</h2><p class="cart-empty">Tap <b>Add to cart</b> on any product, or <b>Customise your kit</b>, to start.</p>';
       show(); return;
     }
     view.innerHTML =
       '<p class="cart-kick">Your cart</p><h2 id="cart-t">' + count() + (count() === 1 ? ' pack' : ' packs') + '</h2>' +
       '<ul class="cart-list">' + cart.map(function (x, i) {
-        return '<li><img src="' + esc(x.img) + '" alt=""><div class="cart-nm"><b>' + esc(label(x)) + '</b><span>' + grams(x.g) + ' pack</span></div>' +
+        return '<li><img src="' + esc(x.img) + '" alt=""><div class="cart-nm"><b>' + esc(label(x)) + '</b><span>' + grams(x.g) + ' pack' + (x.kit ? ' <em class="cart-kit">Kit</em>' : '') + '</span></div>' +
           '<div class="cart-qty sm"><button type="button" data-i="' + i + '" data-d="-1" aria-label="One less ' + esc(label(x)) + '">&minus;</button><output>' + x.q + '</output>' +
           '<button type="button" data-i="' + i + '" data-d="1" aria-label="One more ' + esc(label(x)) + '">+</button></div></li>';
       }).join("") + '</ul>' +
@@ -122,14 +122,37 @@
     });
     view.querySelector(".cart-clear").addEventListener("click", function () { cart = []; save(); openCart(); });
     view.querySelector(".cart-order").addEventListener("click", function () {
-      var msg = "Namaskar! I would like to order:\n" + cart.map(function (x) {
-        return "- " + label(x) + " - " + grams(x.g).replace(" ", "") + " x " + x.q;
-      }).join("\n");
+      var msg = orderText();
       hide();
       if (window.satvaAskNumber) window.satvaAskNumber(msg);
       else window.open("https://wa.me/" + (window.SATVA_WA_NUMBER || "919689888822") + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
     });
     show();
+  }
+
+  /* 10 Nov 2026, owner: "in the WhatsApp message, customise according to the
+     product that is added" - one product reads as one sentence; kit items are
+     listed as "Items for my Healthy Grocery Kit"; other products as "Products". */
+  function line(x) { return "- " + label(x) + " - " + grams(x.g).replace(" ", "") + " x " + x.q; }
+  function orderText() {
+    var kit = cart.filter(function (x) { return x.kit; }), other = cart.filter(function (x) { return !x.kit; });
+    var tot = cart.reduce(function (a, x) { return a + x.g * x.q; }, 0);
+    if (cart.length === 1 && !kit.length) {
+      var x = cart[0];
+      return "Namaskar! I would like to order " + label(x) + " - " + grams(x.g).replace(" ", "") + " x " + x.q + ".";
+    }
+    var t = "Namaskar! I would like to order:";
+    if (kit.length) t += "\n\nItems for my Healthy Grocery Kit:\n" + kit.map(line).join("\n");
+    if (other.length) t += "\n\n" + (kit.length ? "Products:" : "Items:") + "\n" + other.map(line).join("\n");
+    return t + "\n\nTotal: " + count() + (count() === 1 ? " pack" : " packs") + ", " + grams(tot);
+  }
+  /* 10 Nov 2026, owner: "items added with Add to cart and the items in Customise
+     the kit should both be in the final cart". js/kit-custom-8002.js calls this
+     when the kit picker's Done is pressed. */
+  function addItem(it) {
+    var same = cart.filter(function (x) { return x.name === it.name && x.g === it.g && (x.v || "") === (it.v || "") && !!x.kit === !!it.kit; })[0];
+    if (same) same.q += it.q || 1; else cart.push({ name: it.name, v: it.v || "", g: it.g, q: it.q || 1, img: it.img, kit: !!it.kit });
+    save(); bump();
   }
 
   /* ---------- floating cart button + "added" toast ---------- */
@@ -156,4 +179,5 @@
   }
   paintFab();
   window.satvaOpenCart = openCart;
+  window.satvaCart = { add: addItem, open: openCart, toast: toast };
 })();

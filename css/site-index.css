@@ -5938,3 +5938,7 @@ html.kc-on{overflow:hidden}
 /* 10 Nov 2026, owner: other changes are phones only, "except the add to cart
    button" - the cart shows on computers and phones alike. */
 
+/* 10 Nov 2026: kit items in the shared cart carry a small "Kit" tag. */
+.cart-kit{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;background:#f1ddab;color:#7f5a0f;
+  font-style:normal;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:1px}
+

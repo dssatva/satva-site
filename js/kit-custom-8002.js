@@ -152,7 +152,7 @@
       });
       h += '</ul></section>';
     });
-    h += '</div><div class="kc-foot"><p class="kc-tally"></p><button type="button" class="btn-gold kc-done">Done</button></div>';
+    h += '</div><div class="kc-foot"><p class="kc-tally"></p><button type="button" class="btn-gold kc-done">Add to cart</button></div>';
     view.innerHTML = h;
     view.scrollTop = 0;
     tally();
@@ -167,7 +167,16 @@
         tally();
       });
     });
-    view.querySelector(".kc-done").addEventListener("click", renderSummary);
+    /* 10 Nov 2026, owner: kit items go into the same cart as Add to cart
+       (js/cart-8002.js), so the customer sends one order with both. */
+    view.querySelector(".kc-done").addEventListener("click", function () {
+      if (!window.satvaCart) { renderSummary(); return; }
+      var c = chosen();
+      c.forEach(function (x) { window.satvaCart.add({ name: x.name, g: x.g, q: 1, img: "assets/" + x.img, kit: true }); });
+      picks = {}; packs = {};
+      close();
+      window.satvaCart.toast(c.length + (c.length === 1 ? " kit item" : " kit items") + " added to cart");
+    });
   }
   function tally() {
     var c = chosen(), tot = c.reduce(function (a, x) { return a + x.g; }, 0);
