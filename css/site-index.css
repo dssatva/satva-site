@@ -5679,6 +5679,15 @@ footer#contact .btm .dv{color:#f7eccf}
   #kitphone .kitcust .kc-art{flex:0 0 auto !important}
 }
 
+/* 10 Nov 2026, owner: "keep this as a center - the build your own kit". Phones
+   only: the kit card's words, size chips and button are centred. */
+@media (max-width:760px){
+  #kitphone .kitcust .kc-copy{text-align:center !important;align-items:center !important;}
+  #kitphone .kitcust .kc-sz{justify-content:center !important;}
+  #kitphone .kitcust .kc-btn{margin-left:auto !important;margin-right:auto !important;align-self:center !important;}
+  #kitphone .kitcust .kc-count{text-align:center !important;}
+}
+
 /* ---- kit-custom-8002.css ---- */
 /* ============================================================
    CUSTOMISE YOUR KIT, :8002 only (15 Oct 2026) - the block at the end
