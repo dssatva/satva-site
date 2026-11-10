@@ -1752,3 +1752,38 @@ footer#contact .btm .dv{color:#f7eccf}
   #pgrid .kitcust .kc-track span:nth-child(n+13){display:none !important;}
   #pgrid .kitcust .kc-track img{width:100% !important;height:100% !important;object-fit:cover;display:block;}
 }
+
+/* ---- PHONE: BIGGER POTLI, SMALLER KIT PHOTOS (10 Nov 2026) ----
+   Owner: "reduce the size of the pictures below and increase the size of this
+   potli to fit the screen". Phones only: photo grid 4 across (smaller square
+   tiles), and the pouch grows to fill the space that frees up. */
+@media (max-width:760px){
+  #pgrid .kitcust .kc-in{flex:1 1 auto !important;}
+  #pgrid .kitcust .kc-art{flex:1 1 auto !important;display:flex !important;align-items:center;justify-content:center;
+    padding-top:12px !important;min-height:0;}
+  #pgrid .kitcust .kc-art .kc-d{width:min(190px,62vw) !important;height:min(190px,62vw) !important;}
+  #pgrid .kitcust .kc-strip{flex:0 0 auto !important;}
+  #pgrid .kitcust .kc-track{grid-template-columns:repeat(4,1fr) !important;grid-auto-rows:auto !important;gap:5px !important;}
+  #pgrid .kitcust .kc-track span{aspect-ratio:1/1;border-radius:8px;}
+}
+
+/* ---- KIT CARD: HERO POTLI (10 Nov 2026) ----
+   Owner: the Build-your-own-kit card should show the same potli picture as the
+   Healthy Grocery Kit hero slide (potli + tag + ring of ingredients + Packed by
+   Satva Sahelis stamp). Phones only; the copy is added by js/kit-custom-8002.js.
+   The photo grid under it is cut to 8 small tiles to make room. */
+.kc-orbit{display:none !important}
+@media (max-width:760px){
+  #pgrid .kitcust .kc-art .kc-d{display:none !important;}
+  #pgrid .kitcust .kc-art .kc-orbit{display:block !important;position:relative;right:auto;top:auto;transform:none;
+    width:min(300px,78vw);height:auto;aspect-ratio:1;margin:8px auto 4px;opacity:1;animation:none;z-index:1}
+  #pgrid .kitcust .kc-orbit .ko-stamp{left:1%;top:auto;bottom:0}
+  #pgrid .kitcust .kc-track span:nth-child(n+9){display:none !important;}
+}
+@media (max-width:760px){   /* the kit card's ".kc-art img" (absolute, fills the box) must not touch the copied potli */
+  #pgrid .kitcust .kc-art{overflow:visible !important;}
+  #pgrid .kitcust .kc-orbit img{position:static !important;inset:auto !important;filter:none;}
+  #pgrid .kitcust .kc-orbit .ko-it img{width:100% !important;height:100% !important;object-fit:cover !important;}
+  #pgrid .kitcust .kc-orbit .ko-potli.ko-photo img{display:block;width:100% !important;height:auto !important;object-fit:contain !important;}
+  #pgrid .kitcust .kc-orbit .ko-stamp img{width:34% !important;height:auto !important;object-fit:contain !important;}
+}

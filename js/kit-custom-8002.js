@@ -75,13 +75,13 @@
       '<button type="button" class="btn-gold kc-btn">Customise your kit <span aria-hidden="true">&rarr;</span></button>' +
       '<p class="kc-count" aria-live="polite"></p></div></div>' +
     '<div class="kc-strip" aria-hidden="true"><div class="kc-track">' + stripHTML + stripHTML + '</div></div>';
-  block.querySelector(".kc-btn").addEventListener("click", function (e) { picks = {}; openPicker(e); });
+  block.querySelector(".kc-btn").addEventListener("click", function (e) { picks = {}; packs = {}; openPicker(e); });
   /* 21 Oct 2026, owner: the "Customise your kit" button at the foot of the
      kit box (#kit) opens this same picker, starting empty like the one above. */
   [].forEach.call(document.querySelectorAll("[data-kitcustom]"), function (b) {
     /* 27 Oct 2026: the hero kit slide's WhatsApp link opens the picker too;
        preventDefault keeps it from also opening WhatsApp. */
-    b.addEventListener("click", function (e) { e.preventDefault(); picks = {}; openPicker(e); });
+    b.addEventListener("click", function (e) { e.preventDefault(); picks = {}; packs = {}; openPicker(e); });
   });
 
   /* span the columns left over in the last row (all of them if it is full) */
@@ -177,22 +177,44 @@
     view.querySelector(".kc-done").disabled = !c.length;
   }
 
+  /* 10 Nov 2026, owner: "after they have added the quantity, add a button to
+     add and reduce the quantity with + and - before the final confirmation".
+     Each line on the order slip has - / + for the number of packs; - on the
+     last pack takes the item out. */
+  var packs = {};
   function renderSummary() {
-    var c = chosen(), tot = c.reduce(function (a, x) { return a + x.g; }, 0);
+    var c = chosen();
+    if (!c.length) { renderPicker(); return; }
+    var n = function (x) { return packs[x.name] || 1; };
+    var tot = c.reduce(function (a, x) { return a + x.g * n(x); }, 0);
+    var nPacks = c.reduce(function (a, x) { return a + n(x); }, 0);
     var d = new Date(), when = d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
     var text = "Namaskar! I would like to order my Healthy Grocery Kit:\n" +
-      c.map(function (x) { return "- " + x.name + " - " + grams(x.g).replace(" ", ""); }).join("\n") + "\nTotal: " + grams(tot);
+      c.map(function (x) { return "- " + x.name + " - " + grams(x.g).replace(" ", "") + " x " + n(x); }).join("\n") + "\nTotal: " + grams(tot);
     view.innerHTML =
       '<div class="kc-slip"><div class="kc-slip-h"><img src="assets/logo-stack-dark.png" alt="DS SATVA">' +
         '<div><p class="kc-kick">My Healthy Grocery Kit</p><h2 id="kc-title">Your order</h2><p class="kc-when">' + when + '</p></div></div>' +
-        '<table class="kc-tbl"><thead><tr><th>Item</th><th>Qty</th></tr></thead><tbody>' +
-        c.map(function (x) { return '<tr><td><img src="assets/' + x.img + '" alt="">' + esc(x.name) + '</td><td>' + grams(x.g) + '</td></tr>'; }).join("") +
-        '</tbody><tfoot><tr><td>' + c.length + (c.length === 1 ? ' item' : ' items') + '</td><td>' + grams(tot) + '</td></tr></tfoot></table>' +
+        '<table class="kc-tbl kc-tbl3"><thead><tr><th>Item</th><th>Size</th><th>Packs</th></tr></thead><tbody>' +
+        c.map(function (x) {
+          return '<tr><td><img src="assets/' + x.img + '" alt="">' + esc(x.name) + '</td><td>' + grams(x.g) + '</td>' +
+            '<td><span class="kc-pk"><button type="button" data-n="' + esc(x.name) + '" data-d="-1" aria-label="One pack less of ' + esc(x.name) + '">&minus;</button>' +
+            '<output>' + n(x) + '</output>' +
+            '<button type="button" data-n="' + esc(x.name) + '" data-d="1" aria-label="One pack more of ' + esc(x.name) + '">+</button></span></td></tr>';
+        }).join("") +
+        '</tbody><tfoot><tr><td>' + c.length + (c.length === 1 ? ' item' : ' items') + ' &middot; ' + nPacks + (nPacks === 1 ? ' pack' : ' packs') + '</td><td colspan="2">' + grams(tot) + '</td></tr></tfoot></table>' +
         '<div class="kc-msg"><b>Take a pic &amp; send via WhatsApp to place the order</b><span>WhatsApp ' + WA_SHOW + '</span></div>' +
       '</div>' +
       '<div class="kc-foot"><button type="button" class="kc-edit">&larr; Change items</button>' +
         '<button type="button" class="btn-gold kc-wa">Open WhatsApp</button></div>';
-    view.scrollTop = 0;
+    [].forEach.call(view.querySelectorAll(".kc-pk button"), function (b) {
+      b.addEventListener("click", function () {
+        var nm = b.getAttribute("data-n"), dd = +b.getAttribute("data-d");
+        var v = (packs[nm] || 1) + dd;
+        if (v < 1) { delete picks[nm]; delete packs[nm]; } else packs[nm] = Math.min(v, 50);
+        var keep = view.scrollTop; renderSummary(); view.scrollTop = keep;
+        var f = view.querySelector('.kc-pk button[data-n="' + nm + '"][data-d="' + dd + '"]') || view.querySelector(".kc-edit"); if (f) f.focus();
+      });
+    });
     view.querySelector(".kc-edit").addEventListener("click", renderPicker);
     view.querySelector(".kc-wa").addEventListener("click", function () { askNumber(text); });
   }
@@ -260,4 +282,21 @@
   tabs.addEventListener("click", function () {
     setTimeout(function () { grid.scrollLeft = 0; }, 30);
   });
+})();
+
+/* 10 Nov 2026, owner: "add the same dssatva potli picture same like [the
+   Healthy Grocery Kit hero slide] to here" - the Build-your-own-kit card shows
+   a copy of the hero's potli with its ring of ingredients and the "Packed by
+   Satva Sahelis" stamp. Phones only (center-8002.css "KIT CARD: HERO POTLI");
+   on computers the card keeps its plain potli. */
+(function () {
+  var src = document.querySelector(".shelf.kit .kitorbit");
+  var art = document.querySelector("#pgrid .kitcust .kc-art");
+  if (!src || !art || art.querySelector(".kitorbit")) return;
+  var c = src.cloneNode(true);
+  c.classList.add("kc-orbit");
+  c.setAttribute("aria-hidden", "true"); c.removeAttribute("role"); c.removeAttribute("aria-label");
+  [].forEach.call(c.querySelectorAll("img[data-hsrc]"), function (im) { im.src = im.getAttribute("data-hsrc"); im.removeAttribute("data-hsrc"); });
+  [].forEach.call(c.querySelectorAll("img"), function (im) { im.loading = "lazy"; im.alt = ""; });
+  art.appendChild(c);
 })();

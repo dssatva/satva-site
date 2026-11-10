@@ -5606,6 +5606,41 @@ footer#contact .btm .dv{color:#f7eccf}
   #pgrid .kitcust .kc-track img{width:100% !important;height:100% !important;object-fit:cover;display:block;}
 }
 
+/* ---- PHONE: BIGGER POTLI, SMALLER KIT PHOTOS (10 Nov 2026) ----
+   Owner: "reduce the size of the pictures below and increase the size of this
+   potli to fit the screen". Phones only: photo grid 4 across (smaller square
+   tiles), and the pouch grows to fill the space that frees up. */
+@media (max-width:760px){
+  #pgrid .kitcust .kc-in{flex:1 1 auto !important;}
+  #pgrid .kitcust .kc-art{flex:1 1 auto !important;display:flex !important;align-items:center;justify-content:center;
+    padding-top:12px !important;min-height:0;}
+  #pgrid .kitcust .kc-art .kc-d{width:min(190px,62vw) !important;height:min(190px,62vw) !important;}
+  #pgrid .kitcust .kc-strip{flex:0 0 auto !important;}
+  #pgrid .kitcust .kc-track{grid-template-columns:repeat(4,1fr) !important;grid-auto-rows:auto !important;gap:5px !important;}
+  #pgrid .kitcust .kc-track span{aspect-ratio:1/1;border-radius:8px;}
+}
+
+/* ---- KIT CARD: HERO POTLI (10 Nov 2026) ----
+   Owner: the Build-your-own-kit card should show the same potli picture as the
+   Healthy Grocery Kit hero slide (potli + tag + ring of ingredients + Packed by
+   Satva Sahelis stamp). Phones only; the copy is added by js/kit-custom-8002.js.
+   The photo grid under it is cut to 8 small tiles to make room. */
+.kc-orbit{display:none !important}
+@media (max-width:760px){
+  #pgrid .kitcust .kc-art .kc-d{display:none !important;}
+  #pgrid .kitcust .kc-art .kc-orbit{display:block !important;position:relative;right:auto;top:auto;transform:none;
+    width:min(300px,78vw);height:auto;aspect-ratio:1;margin:8px auto 4px;opacity:1;animation:none;z-index:1}
+  #pgrid .kitcust .kc-orbit .ko-stamp{left:1%;top:auto;bottom:0}
+  #pgrid .kitcust .kc-track span:nth-child(n+9){display:none !important;}
+}
+@media (max-width:760px){   /* the kit card's ".kc-art img" (absolute, fills the box) must not touch the copied potli */
+  #pgrid .kitcust .kc-art{overflow:visible !important;}
+  #pgrid .kitcust .kc-orbit img{position:static !important;inset:auto !important;filter:none;}
+  #pgrid .kitcust .kc-orbit .ko-it img{width:100% !important;height:100% !important;object-fit:cover !important;}
+  #pgrid .kitcust .kc-orbit .ko-potli.ko-photo img{display:block;width:100% !important;height:auto !important;object-fit:contain !important;}
+  #pgrid .kitcust .kc-orbit .ko-stamp img{width:34% !important;height:auto !important;object-fit:contain !important;}
+}
+
 /* ---- kit-custom-8002.css ---- */
 /* ============================================================
    CUSTOMISE YOUR KIT, :8002 only (15 Oct 2026) - the block at the end
@@ -5808,6 +5843,21 @@ html.kc-on{overflow:hidden}
   .kc-nm i{font-size:11px !important}
   .kc-opts{width:100% !important;justify-content:center !important;gap:4px !important;margin-top:auto}
   .kc-opt{min-width:0 !important;flex:1 1 0;max-width:48px;padding:7px 0 !important;font-size:12px !important}
+}
+
+/* 10 Nov 2026: - / + packs on the order slip (js/kit-custom-8002.js renderSummary). Phones and computers. */
+.kc-tbl3 td:nth-child(2){white-space:nowrap;color:#4a5a3c;font-size:14px}
+.kc-tbl3 th:nth-child(2){text-align:left}
+.kc-pk{display:inline-flex;align-items:center;border:1.5px solid rgba(31,58,38,.25);border-radius:999px;background:#fff}
+.kc-pk button{width:32px;height:32px;border:0;background:none;color:#1f3a26;font:600 18px/1 "Jost",sans-serif;cursor:pointer;border-radius:999px}
+.kc-pk button:hover{background:#f3f7ef}
+.kc-pk button:focus-visible{outline:2px solid #1f3a26;outline-offset:1px}
+.kc-pk output{min-width:22px;text-align:center;font:600 14px/1 "Jost",sans-serif}
+@media (max-width:640px){
+  .kc-tbl3{font-size:13.5px}
+  .kc-tbl3 td{padding:6px 3px}
+  .kc-tbl3 td img{width:26px;height:26px}
+  .kc-pk button{width:28px;height:28px;font-size:16px}
 }
 
 /* ---- cart-8002.css ---- */

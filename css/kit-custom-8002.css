@@ -200,3 +200,18 @@ html.kc-on{overflow:hidden}
   .kc-opts{width:100% !important;justify-content:center !important;gap:4px !important;margin-top:auto}
   .kc-opt{min-width:0 !important;flex:1 1 0;max-width:48px;padding:7px 0 !important;font-size:12px !important}
 }
+
+/* 10 Nov 2026: - / + packs on the order slip (js/kit-custom-8002.js renderSummary). Phones and computers. */
+.kc-tbl3 td:nth-child(2){white-space:nowrap;color:#4a5a3c;font-size:14px}
+.kc-tbl3 th:nth-child(2){text-align:left}
+.kc-pk{display:inline-flex;align-items:center;border:1.5px solid rgba(31,58,38,.25);border-radius:999px;background:#fff}
+.kc-pk button{width:32px;height:32px;border:0;background:none;color:#1f3a26;font:600 18px/1 "Jost",sans-serif;cursor:pointer;border-radius:999px}
+.kc-pk button:hover{background:#f3f7ef}
+.kc-pk button:focus-visible{outline:2px solid #1f3a26;outline-offset:1px}
+.kc-pk output{min-width:22px;text-align:center;font:600 14px/1 "Jost",sans-serif}
+@media (max-width:640px){
+  .kc-tbl3{font-size:13.5px}
+  .kc-tbl3 td{padding:6px 3px}
+  .kc-tbl3 td img{width:26px;height:26px}
+  .kc-pk button{width:28px;height:28px;font-size:16px}
+}
