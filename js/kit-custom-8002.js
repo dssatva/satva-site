@@ -93,12 +93,36 @@
        so it sizes itself (kit-custom-8002.css, .kc-alone) */
     block.classList.toggle("kc-alone", !used);
   }
-  addEventListener("resize", fit);
-  function place() {
-    if (grid.lastElementChild !== block) grid.appendChild(block);
-    fit(); updateCount();
+  addEventListener("resize", function () { if (!phone.matches) fit(); });
+  /* 10 Nov 2026, owner: on phones the card was the last stop of the sideways
+     product strip, so few people reached it - "let this come down just above
+     Why choose SATVA so that people can see it just by scrolling". Phones: the
+     card sits in its own band (#kitphone) between the range and #why.
+     Computers: unchanged, the last tile of the product grid. */
+  var phone = window.matchMedia("(max-width:760px)");
+  var holder = null;
+  function phoneHolder() {
+    if (holder) return holder;
+    var why = document.getElementById("why");
+    if (!why) return null;
+    holder = document.createElement("div");
+    holder.id = "kitphone"; holder.className = "kitphone";
+    why.parentNode.insertBefore(holder, why);
+    return holder;
   }
-  new MutationObserver(function () { if (grid.lastElementChild !== block) place(); }).observe(grid, { childList: true });
+  function place() {
+    var h = phone.matches && phoneHolder();
+    if (h) {
+      if (block.parentNode !== h) h.appendChild(block);
+      block.style.gridColumn = ""; block.classList.remove("kc-alone");
+    } else {
+      if (grid.lastElementChild !== block) grid.appendChild(block);
+      fit();
+    }
+    updateCount();
+  }
+  new MutationObserver(function () { if (!phone.matches && grid.lastElementChild !== block) place(); }).observe(grid, { childList: true });
+  if (phone.addEventListener) phone.addEventListener("change", place); else if (phone.addListener) phone.addListener(place);
   place();
 
   function chosen() {
@@ -300,7 +324,7 @@
    on computers the card keeps its plain potli. */
 (function () {
   var src = document.querySelector(".shelf.kit .kitorbit");
-  var art = document.querySelector("#pgrid .kitcust .kc-art");
+  var art = document.querySelector(".kitcust .kc-art");
   if (!src || !art || art.querySelector(".kitorbit")) return;
   var c = src.cloneNode(true);
   c.classList.add("kc-orbit");

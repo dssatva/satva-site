@@ -1460,8 +1460,8 @@ html.cvar-open{overflow:hidden}
 .kitsec .kk-kick,.kitsec .kk-h em,.kitsec .kk-tel,.kitsec .kk-sign i{color:#f7eccf}
 .kitsec .kk-steps span,.kitsec .kk-perks span:not(.s20-ic),.kitsec .kk-sign{color:#efece5}
 .kitsec .kk-sign b{color:#f6ebd4}
-#pgrid .kitcust .kc-kick{color:#f6ebd4}
-#pgrid .kitcust .kc-d2{color:#f3ede2}
+:is(#pgrid,#kitphone) .kitcust .kc-kick{color:#f6ebd4}
+:is(#pgrid,#kitphone) .kitcust .kc-d2{color:#f3ede2}
 footer#contact .fcol h3{color:#f7ecd4}
 footer#contact .fcol a,footer#contact .fcol span{color:#f2ece0}
 footer#contact .btm,footer#contact .btm span,footer#contact .btm a,footer#contact .fveg{color:#efece5}
@@ -1482,8 +1482,8 @@ footer#contact .btm .dv{color:#f7eccf}
   /* 1 - readable sizes */
   #pgrid .pcard .jcard-kick{font-size:11px}
   #pgrid .pcard .pform{font-size:11px}
-  #pgrid .kitcust .kc-kick{font-size:11px}
-  #pgrid .kitcust .kc-sz span{font-size:11.5px;padding:4px 9px}
+  :is(#pgrid,#kitphone) .kitcust .kc-kick{font-size:11px}
+  :is(#pgrid,#kitphone) .kitcust .kc-sz span{font-size:11.5px;padding:4px 9px}
   .kitsec .kk-box .kk-gl{font-size:11.5px}
   .kitsec .kk-box li b{font-size:11.5px}
   .kitsec .kk-box li i.dv{font-size:11px}
@@ -1538,7 +1538,7 @@ footer#contact .btm .dv{color:#f7eccf}
 }
 /* (same owner request) stronger selectors for the labels whose older rules win */
 @media (max-width:760px){
-  #pgrid .jcard-kick,#pgrid .pform,#pgrid .kc-kick,#pgrid .kc-d2,#pgrid .kitcust span{font-size:12.5px!important}
+  #pgrid .jcard-kick,#pgrid .pform,#pgrid .kc-kick,#pgrid .kc-d2,:is(#pgrid,#kitphone) .kitcust span{font-size:12.5px!important}
   #mkrow span{font-size:12.5px!important}
   #recipes-grid .rsee{font-size:12.5px!important}
   #contact h3{font-size:13px!important}
@@ -1576,7 +1576,7 @@ footer#contact .btm .dv{color:#f7eccf}
   #pgrid{display:grid !important;grid-auto-flow:column !important;
     grid-template-rows:auto auto !important;grid-template-columns:none !important;
     grid-auto-columns:44vw !important;gap:12px !important;align-items:stretch}
-  #pgrid .kitcust{grid-column:auto / span 2 !important;grid-row:1 / span 2 !important;width:auto !important}
+  :is(#pgrid,#kitphone) .kitcust{grid-column:auto / span 2 !important;grid-row:1 / span 2 !important;width:auto !important}
 
   #recipes-grid{display:grid !important;grid-auto-flow:column !important;
     grid-template-columns:none !important;grid-auto-columns:76vw !important;gap:14px !important}
@@ -1605,11 +1605,11 @@ footer#contact .btm .dv{color:#f7eccf}
 /* (same 10 Nov pass) the kit card fills two rows of the strip: pouch on top, words
    below, instead of a tall green slab; the four shelf tabs stay on one line */
 @media (max-width:760px){
-  #pgrid .kitcust .kc-in{flex-direction:column !important;justify-content:center;align-items:stretch}
-  #pgrid .kitcust .kc-art{flex:0 0 auto !important;width:auto !important;height:auto !important;min-height:0 !important;padding-top:26px}
-  #pgrid .kitcust .kc-art .kc-d{width:120px !important;height:120px !important;margin:0 auto}
-  #pgrid .kitcust .kc-copy{flex:0 0 auto !important;padding:16px 20px 24px !important;text-align:left}
-  #pgrid .kitcust .kc-h{font-size:24px !important}
+  :is(#pgrid,#kitphone) .kitcust .kc-in{flex-direction:column !important;justify-content:center;align-items:stretch}
+  :is(#pgrid,#kitphone) .kitcust .kc-art{flex:0 0 auto !important;width:auto !important;height:auto !important;min-height:0 !important;padding-top:26px}
+  :is(#pgrid,#kitphone) .kitcust .kc-art .kc-d{width:120px !important;height:120px !important;margin:0 auto}
+  :is(#pgrid,#kitphone) .kitcust .kc-copy{flex:0 0 auto !important;padding:16px 20px 24px !important;text-align:left}
+  :is(#pgrid,#kitphone) .kitcust .kc-h{font-size:24px !important}
   #rtabs{flex-wrap:nowrap !important;overflow-x:auto;scrollbar-width:none;gap:16px !important}
   #rtabs::-webkit-scrollbar{display:none}
   #rtabs .etab{flex:0 0 auto;white-space:nowrap}
@@ -1650,8 +1650,8 @@ footer#contact .btm .dv{color:#f7eccf}
 @media (max-width:760px){
   #pgrid .pcard .pbody > p:not([class]){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;
     overflow:hidden;flex:0 0 auto !important;margin-bottom:12px !important;}
-  #pgrid .kitcust .kc-art{padding-top:14px !important;}
-  #pgrid .kitcust .kc-art .kc-d{width:96px !important;height:96px !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-art{padding-top:14px !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-art .kc-d{width:96px !important;height:96px !important;}
 }
 
 /* ---- PHONE: FOUNDER PHOTO WITH DS SATVA BESIDE IT (10 Nov 2026) ----
@@ -1741,16 +1741,16 @@ footer#contact .btm .dv{color:#f7eccf}
    sit at the top, and the thin moving photo strip becomes a still 3-across
    grid of 12 kit products that fills the rest of the card. */
 @media (max-width:760px){
-  #pgrid .kitcust .kc-in{flex:0 0 auto !important;height:auto !important;min-height:0 !important;justify-content:flex-start !important;padding-top:6px;}
-  #pgrid .kitcust .kc-art{padding-top:10px !important;}
-  #pgrid .kitcust .kc-copy{padding-bottom:14px !important;}
-  #pgrid .kitcust .kc-strip{flex:1 1 auto !important;height:auto !important;min-height:0;padding:0 14px 14px;overflow:hidden;display:flex !important;flex-direction:column;}
-  #pgrid .kitcust .kc-track{display:grid !important;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:6px;
+  :is(#pgrid,#kitphone) .kitcust .kc-in{flex:0 0 auto !important;height:auto !important;min-height:0 !important;justify-content:flex-start !important;padding-top:6px;}
+  :is(#pgrid,#kitphone) .kitcust .kc-art{padding-top:10px !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-copy{padding-bottom:14px !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-strip{flex:1 1 auto !important;height:auto !important;min-height:0;padding:0 14px 14px;overflow:hidden;display:flex !important;flex-direction:column;}
+  :is(#pgrid,#kitphone) .kitcust .kc-track{display:grid !important;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:6px;
     width:auto !important;height:auto !important;flex:1 1 auto;min-height:0;animation:none !important;transform:none !important;}
-  #pgrid .kitcust .kc-track span{width:auto !important;height:auto !important;min-height:0;margin:0 !important;
+  :is(#pgrid,#kitphone) .kitcust .kc-track span{width:auto !important;height:auto !important;min-height:0;margin:0 !important;
     border-radius:10px;overflow:hidden;flex:none !important;}
-  #pgrid .kitcust .kc-track span:nth-child(n+13){display:none !important;}
-  #pgrid .kitcust .kc-track img{width:100% !important;height:100% !important;object-fit:cover;display:block;}
+  :is(#pgrid,#kitphone) .kitcust .kc-track span:nth-child(n+13){display:none !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-track img{width:100% !important;height:100% !important;object-fit:cover;display:block;}
 }
 
 /* ---- PHONE: BIGGER POTLI, SMALLER KIT PHOTOS (10 Nov 2026) ----
@@ -1758,13 +1758,13 @@ footer#contact .btm .dv{color:#f7eccf}
    potli to fit the screen". Phones only: photo grid 4 across (smaller square
    tiles), and the pouch grows to fill the space that frees up. */
 @media (max-width:760px){
-  #pgrid .kitcust .kc-in{flex:1 1 auto !important;}
-  #pgrid .kitcust .kc-art{flex:1 1 auto !important;display:flex !important;align-items:center;justify-content:center;
+  :is(#pgrid,#kitphone) .kitcust .kc-in{flex:1 1 auto !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-art{flex:1 1 auto !important;display:flex !important;align-items:center;justify-content:center;
     padding-top:12px !important;min-height:0;}
-  #pgrid .kitcust .kc-art .kc-d{width:min(190px,62vw) !important;height:min(190px,62vw) !important;}
-  #pgrid .kitcust .kc-strip{flex:0 0 auto !important;}
-  #pgrid .kitcust .kc-track{grid-template-columns:repeat(4,1fr) !important;grid-auto-rows:auto !important;gap:5px !important;}
-  #pgrid .kitcust .kc-track span{aspect-ratio:1/1;border-radius:8px;}
+  :is(#pgrid,#kitphone) .kitcust .kc-art .kc-d{width:min(190px,62vw) !important;height:min(190px,62vw) !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-strip{flex:0 0 auto !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-track{grid-template-columns:repeat(4,1fr) !important;grid-auto-rows:auto !important;gap:5px !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-track span{aspect-ratio:1/1;border-radius:8px;}
 }
 
 /* ---- KIT CARD: HERO POTLI (10 Nov 2026) ----
@@ -1774,16 +1774,54 @@ footer#contact .btm .dv{color:#f7eccf}
    The photo grid under it is cut to 8 small tiles to make room. */
 .kc-orbit{display:none !important}
 @media (max-width:760px){
-  #pgrid .kitcust .kc-art .kc-d{display:none !important;}
-  #pgrid .kitcust .kc-art .kc-orbit{display:block !important;position:relative;right:auto;top:auto;transform:none;
+  :is(#pgrid,#kitphone) .kitcust .kc-art .kc-d{display:none !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-art .kc-orbit{display:block !important;position:relative;right:auto;top:auto;transform:none;
     width:min(300px,78vw);height:auto;aspect-ratio:1;margin:8px auto 4px;opacity:1;animation:none;z-index:1}
-  #pgrid .kitcust .kc-orbit .ko-stamp{left:1%;top:auto;bottom:0}
-  #pgrid .kitcust .kc-track span:nth-child(n+9){display:none !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-orbit .ko-stamp{left:1%;top:auto;bottom:0}
+  :is(#pgrid,#kitphone) .kitcust .kc-track span:nth-child(n+9){display:none !important;}
 }
 @media (max-width:760px){   /* the kit card's ".kc-art img" (absolute, fills the box) must not touch the copied potli */
-  #pgrid .kitcust .kc-art{overflow:visible !important;}
-  #pgrid .kitcust .kc-orbit img{position:static !important;inset:auto !important;filter:none;}
-  #pgrid .kitcust .kc-orbit .ko-it img{width:100% !important;height:100% !important;object-fit:cover !important;}
-  #pgrid .kitcust .kc-orbit .ko-potli.ko-photo img{display:block;width:100% !important;height:auto !important;object-fit:contain !important;}
-  #pgrid .kitcust .kc-orbit .ko-stamp img{width:34% !important;height:auto !important;object-fit:contain !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-art{overflow:visible !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-orbit img{position:static !important;inset:auto !important;filter:none;}
+  :is(#pgrid,#kitphone) .kitcust .kc-orbit .ko-it img{width:100% !important;height:100% !important;object-fit:cover !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-orbit .ko-potli.ko-photo img{display:block;width:100% !important;height:auto !important;object-fit:contain !important;}
+  :is(#pgrid,#kitphone) .kitcust .kc-orbit .ko-stamp img{width:34% !important;height:auto !important;object-fit:contain !important;}
+}
+
+/* ---- PHONE STRIP ARROWS (10 Nov 2026) ----
+   Owner: an arrow pointing right so customers know the products (and recipes)
+   carry on to the right. Phones only; js/strip-arrows-8002.js adds the buttons. */
+.sa-btn{display:none}
+@media (max-width:760px){
+  .sa-host{position:relative}
+  .sa-btn{display:grid;place-items:center;position:absolute;z-index:6;width:42px;height:42px;margin-top:-21px;padding:0;
+    border:0;border-radius:50%;background:rgba(44,66,32,.92);color:#fff;cursor:pointer;
+    box-shadow:0 8px 18px -6px rgba(0,0,0,.45),0 0 0 3px rgba(255,250,240,.9)}
+  .sa-btn[hidden]{display:none}
+  .sa-btn svg{width:22px;height:22px}
+  .sa-next{right:6px}
+  .sa-prev{left:6px}
+  .sa-prev svg{transform:scaleX(-1)}
+  .sa-btn:focus-visible{outline:3px solid var(--gold,#bf8a17);outline-offset:2px}
+  .sa-nudge{animation:sa-nudge 1.6s ease-in-out infinite}
+  @keyframes sa-nudge{0%,60%,100%{transform:translateX(0)}30%{transform:translateX(5px)}}
+}
+@media (max-width:760px) and (prefers-reduced-motion:reduce){ .sa-nudge{animation:none} }
+
+/* 10 Nov 2026, owner: "I don't want the WhatsApp number to be repeated under
+   Reach us" - the big WhatsApp button sits just above the footer, so on phones
+   the "+91-9689888822 (WhatsApp)" line in Reach us is hidden (email and Call stay). */
+@media (max-width:760px){
+  #contact .fcol li:has(> a[href*="wa.me"]){display:none !important;}
+}
+
+/* ---- PHONE: KIT CARD IN ITS OWN BAND ABOVE WHY SATVA (10 Nov 2026) ----
+   js/kit-custom-8002.js moves the Build-your-own-kit card out of the product
+   strip into #kitphone (just before #why) on phones. */
+#kitphone{display:none}
+@media (max-width:760px){
+  #kitphone{display:block;padding:6px 18px 22px;background:inherit}
+  #kitphone .kitcust{height:auto !important;min-height:0 !important;grid-row:auto !important;border-radius:22px;overflow:hidden}
+  #kitphone .kitcust .kc-in{flex:0 0 auto !important}
+  #kitphone .kitcust .kc-art{flex:0 0 auto !important}
 }
