@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- SATVA Saheli STOCK ORDER (14 Nov 2026): dssatva.com/s/stock/?id=S001. An approved Saheli orders packs from DS SATVA;
-     the order goes to WhatsApp 96898 88822 with her code. No prices yet (Saheli rates confirmed by the owner on WhatsApp). -->
+     the order goes to WhatsApp 96898 88822 with her code. Saheli pays customer price minus commission: 15%, or 20% once she has 20 families (owner 14 Nov; set c20:1 in sahelis.js when the owner says so). -->
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Order stock – SATVA Saheli</title>
@@ -57,6 +57,7 @@ header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a3
 .chk{display:flex;align-items:center;gap:10px;font-weight:600;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px}
 .chk input{width:20px;height:20px;accent-color:#55714e}
 .note{font-size:13.5px;color:var(--mut);margin-top:14px;line-height:1.45}
+.comm{background:#fff1e4;border:1.5px solid var(--gold);border-radius:12px;padding:10px 12px;font-weight:600;color:#3f5a38;font-size:15px}
 </style></head><body>
 <header>
   <img src="/order/logo.png" alt="SATVA Saheli">
@@ -66,7 +67,8 @@ header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a3
 </header>
 <main>
   <h2>1. Choose packs</h2>
-  <p class="note" style="margin-top:0">Your Saheli rate is confirmed by DS SATVA on WhatsApp. Prices below are the customer price list, for reference.</p>
+  <p class="comm" id="comm"></p>
+  <p class="note" style="margin-top:6px">Prices below are the prices you sell at. Your commission comes off the total.</p>
   <div id="list"></div>
 
   <h2>2. Delivery</h2>
@@ -81,7 +83,7 @@ header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a3
   </div>
   <label>Anything else? (optional)</label><input id="msg" placeholder="e.g. need by Friday">
   <p class="err" id="err"></p>
-  <p class="note">Tapping <b>Send order</b> opens WhatsApp with your order typed in – just press send. DS SATVA will confirm your rate, payment and delivery on WhatsApp (96898 88822).</p>
+  <p class="note">Tapping <b>Send order</b> opens WhatsApp with your order typed in – just press send. DS SATVA will confirm payment and delivery on WhatsApp (96898 88822).</p>
 </main>
 <div class="bar"><div class="in">
   <div class="tot"><span id="cnt">No packs yet</span><b id="sum">0 packs</b></div>
@@ -92,12 +94,15 @@ header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a3
 const ID = (new URLSearchParams(location.search).get("id") || "").trim().toUpperCase();
 const SH = Object.prototype.hasOwnProperty.call(window.SAHELIS || {}, ID) ? window.SAHELIS[ID] : null;   // approved Sahelis only
 const PH = SH ? String(SH.p) : "", NAME = SH ? String(SH.n) : "", UPI = SH ? String(SH.u || "") : "";
-const WA = "919689888822";   // stock orders go to DS SATVA (website number)
+const WA = "919689888822";
+const PCT = SH && SH.c20 ? 20 : 15;   // commission %: 20 once she has 20 families   // stock orders go to DS SATVA (website number)
 if (!SH || !/^[6-9]\d{9}$/.test(PH)) {
   document.body.innerHTML = '<p class="bad">This is not an active SATVA Saheli order link.<br>Please ask your Saheli for her link again, or order directly at <a href="https://dssatva.com/order/">dssatva.com/order</a>.</p>';
   throw new Error("unknown saheli");
 }
 document.getElementById("who").textContent = `Saheli ${ID} · ${NAME}`;
+document.getElementById("comm").textContent = PCT === 20 ? "🎉 You get 20% commission (20 families reached)." : "You get 15% commission. Once 20 families buy from you, it goes up to 20%.";
+const calc = sum => { const c = Math.round(sum * PCT / 100); return {c, pay: sum - c}; };
 const P = [
  ["haldi","Haldi (Turmeric)",[["100 g",45],["200 g",80]]],
  ["kashmiri","Kashmiri Chilli",[["100 g",105],["200 g",195]]],
@@ -137,7 +142,7 @@ function items(){ const out=[]; P.forEach(([k,n,sz],i)=>sz.forEach(([s,pr],j)=>{
 function totals(){
   const it = items(), packs = it.reduce((a,x)=>a+x.q,0), sum = it.reduce((a,x)=>a+x.q*x.pr,0);
   document.getElementById("cnt").textContent = packs ? "Packs in this order" : "No packs yet";
-  document.getElementById("sum").textContent = packs + " pack" + (packs===1?"":"s");
+  document.getElementById("sum").textContent = packs ? `${packs} pack${packs===1?"":"s"} · you pay ${rs(calc(sum).pay)}` : "0 packs";
 }
 const v = id => document.getElementById(id).value.trim();
 document.getElementById("same").onchange = e => document.getElementById("other").hidden = e.target.checked;
@@ -149,10 +154,10 @@ document.getElementById("send").onclick = () => {
     !same && !/^\d{6}$/.test(v("pin")) ? "Please enter a 6-digit pincode." : "";
   if (m) { err.textContent = m; err.style.display = "block"; err.scrollIntoView({behavior:"smooth",block:"center"}); return; }
   err.style.display = "none";
-  const packs = it.reduce((a,x)=>a+x.q,0);
+  const packs = it.reduce((a,x)=>a+x.q,0), sum = it.reduce((a,x)=>a+x.q*x.pr,0), {c, pay} = calc(sum);
   const txt = [
     `📦 *Stock order – SATVA Saheli ${ID}*`, `👤 ${NAME} · 📞 +91 ${PH}`, "",
-    ...it.map((x,k)=>`${k+1}. ${x.n} – ${x.s} × ${x.q} packs`), "", `*Total: ${packs} packs* (Saheli rate to confirm)`, "",
+    ...it.map((x,k)=>`${k+1}. ${x.n} – ${x.s} × ${x.q} packs = ${rs(x.q*x.pr)}`), "", `Order value: ${packs} packs · ${rs(sum)}`, `Commission ${PCT}%: −${rs(c)}`, `*You pay: ${rs(pay)}*`, "",
     same ? "🏠 *Deliver to:* my registered address" : `🏠 *Deliver to:* ${v("house")}, ${v("addr")}${v("land") ? ", near " + v("land") : ""} – ${v("pin")}`,
     v("msg") ? `📝 *Note:* ${v("msg")}` : null
   ].filter(l=>l!==null).join("\n");
