@@ -101,7 +101,7 @@ if (!SH || !/^[6-9]\d{9}$/.test(PH)) {
   throw new Error("unknown saheli");
 }
 document.getElementById("who").textContent = `Saheli ${ID} · ${NAME}`;
-document.getElementById("comm").textContent = PCT === 20 ? "🎉 You get 20% commission (20 families reached)." : "You get 15% commission. Once 20 families buy from you, it goes up to 20%.";
+document.getElementById("comm").textContent = PCT === 20 ? "🎉 You get 20% commission (20 families reached)." : "You get 15% commission. Once 20 families buy from you, it goes up to 20%: send DS SATVA (96898 88822) your WhatsApp order screenshots or your buying list of the 20 families.";
 const calc = sum => { const c = Math.round(sum * PCT / 100); return {c, pay: sum - c}; };
 const P = [
  ["haldi","Haldi (Turmeric)",[["100 g",45],["200 g",80]]],
