@@ -71,7 +71,7 @@ const ID = (new URLSearchParams(location.search).get("id") || "").trim().toUpper
 const SH = Object.prototype.hasOwnProperty.call(window.SAHELIS || {}, ID) ? window.SAHELIS[ID] : null;
 if (!SH) { document.querySelector("main").innerHTML = '<p class="note" style="font-size:17px;text-align:center;margin-top:40px">This kit link is not active. Please contact DS SATVA on WhatsApp: <a href="https://wa.me/919689888822">96898 88822</a>.</p>'; throw new Error("unknown"); }
 const p = String(SH.p), url = "https://dssatva.com/s/?id=" + ID;
-$("cn").textContent = SH.n; $("cp").textContent = "📞 " + p.slice(0, 5) + " " + p.slice(5); $("lk").textContent = url;
+$("cn").textContent = SH.n + " · Saheli code " + ID; $("cp").textContent = "📞 " + p.slice(0, 5) + " " + p.slice(5); $("lk").textContent = url;
 new QRCode($("qr"), { text: url, width: 440, height: 440, colorDark: "#2f4529", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M });
 $("share").href = "https://wa.me/?text=" + encodeURIComponent(`🌿 Order homemade SATVA Saheli spices & masalas from me!\nPick your products here and send the order on WhatsApp:\n${url}`);
 $("test").href = url;
