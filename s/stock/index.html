@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- SATVA Saheli STOCK ORDER (14 Nov 2026): dssatva.com/s/stock/?id=S001. An approved Saheli orders packs from DS SATVA;
-     the order goes to WhatsApp 96898 88822 with her code. No prices yet (Saheli rates confirmed by the owner on WhatsApp). -->
+     the order goes to WhatsApp 96898 88822 with her code. Prices = customer list for now (owner 14 Nov); Saheli rates to come. -->
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Order stock – SATVA Saheli</title>
@@ -66,7 +66,7 @@ header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a3
 </header>
 <main>
   <h2>1. Choose packs</h2>
-  <p class="note" style="margin-top:0">Your Saheli rate is confirmed by DS SATVA on WhatsApp. Prices below are the customer price list, for reference.</p>
+  <p class="note" style="margin-top:0">Saheli prices for now (DS SATVA may update them).</p>
   <div id="list"></div>
 
   <h2>2. Delivery</h2>
@@ -81,10 +81,10 @@ header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a3
   </div>
   <label>Anything else? (optional)</label><input id="msg" placeholder="e.g. need by Friday">
   <p class="err" id="err"></p>
-  <p class="note">Tapping <b>Send order</b> opens WhatsApp with your order typed in – just press send. DS SATVA will confirm your rate, payment and delivery on WhatsApp (96898 88822).</p>
+  <p class="note">Tapping <b>Send order</b> opens WhatsApp with your order typed in – just press send. DS SATVA will confirm payment and delivery on WhatsApp (96898 88822).</p>
 </main>
 <div class="bar"><div class="in">
-  <div class="tot"><span id="cnt">No packs yet</span><b id="sum">0 packs</b></div>
+  <div class="tot"><span id="cnt">No packs yet</span><b id="sum">₹0</b></div>
   <button class="send" id="send"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Send order</button>
 </div></div>
 <script src="/s/sahelis.js"></script>
@@ -136,8 +136,8 @@ list.addEventListener("click", e => {
 function items(){ const out=[]; P.forEach(([k,n,sz],i)=>sz.forEach(([s,pr],j)=>{const q=S[i][j]; if(q) out.push({n,s,pr,q});})); return out; }
 function totals(){
   const it = items(), packs = it.reduce((a,x)=>a+x.q,0), sum = it.reduce((a,x)=>a+x.q*x.pr,0);
-  document.getElementById("cnt").textContent = packs ? "Packs in this order" : "No packs yet";
-  document.getElementById("sum").textContent = packs + " pack" + (packs===1?"":"s");
+  document.getElementById("cnt").textContent = packs ? `${packs} pack${packs>1?"s":""} · total` : "No packs yet";
+  document.getElementById("sum").textContent = rs(sum);
 }
 const v = id => document.getElementById(id).value.trim();
 document.getElementById("same").onchange = e => document.getElementById("other").hidden = e.target.checked;
@@ -149,10 +149,10 @@ document.getElementById("send").onclick = () => {
     !same && !/^\d{6}$/.test(v("pin")) ? "Please enter a 6-digit pincode." : "";
   if (m) { err.textContent = m; err.style.display = "block"; err.scrollIntoView({behavior:"smooth",block:"center"}); return; }
   err.style.display = "none";
-  const packs = it.reduce((a,x)=>a+x.q,0);
+  const packs = it.reduce((a,x)=>a+x.q,0), sum = it.reduce((a,x)=>a+x.q*x.pr,0);
   const txt = [
     `📦 *Stock order – SATVA Saheli ${ID}*`, `👤 ${NAME} · 📞 +91 ${PH}`, "",
-    ...it.map((x,k)=>`${k+1}. ${x.n} – ${x.s} × ${x.q} packs`), "", `*Total: ${packs} packs* (Saheli rate to confirm)`, "",
+    ...it.map((x,k)=>`${k+1}. ${x.n} – ${x.s} × ${x.q} packs = ${rs(x.q*x.pr)}`), "", `*Total: ${packs} packs · ${rs(sum)}*`, "",
     same ? "🏠 *Deliver to:* my registered address" : `🏠 *Deliver to:* ${v("house")}, ${v("addr")}${v("land") ? ", near " + v("land") : ""} – ${v("pin")}`,
     v("msg") ? `📝 *Note:* ${v("msg")}` : null
   ].filter(l=>l!==null).join("\n");
