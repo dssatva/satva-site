@@ -5688,6 +5688,26 @@ footer#contact .btm .dv{color:#f7eccf}
   #kitphone .kitcust .kc-count{text-align:center !important;}
 }
 
+/* ---- ORDER QR (13 Nov 2026) ----
+   Footer cream band: "Scan this code to order on WhatsApp" -> dssatva.com/order.
+   Computer: a card pinned to the right of the band, so the band keeps its height
+   (screen-fit 1245x657). Phone: sits under the WhatsApp number, QR small, with a
+   tap button (no one can scan their own screen). */
+#contact .fsplit-top{position:relative}
+.forder{position:absolute;right:clamp(24px,5vw,90px);top:50%;transform:translateY(-50%);width:220px;
+  background:#fff;border:2px solid #d4a63c;border-radius:18px;padding:14px 14px 12px;text-align:center;
+  box-shadow:0 14px 28px -18px rgba(40,60,35,.6)}
+.forder img{width:150px;height:150px;display:block;margin:0 auto 8px;border-radius:8px}
+.forder-t b{display:block;font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1rem;line-height:1.2;color:#3f5a38}
+.forder-t span{display:block;font-size:.78rem;line-height:1.35;color:#6d675a;margin-top:5px}
+.forder-t a{display:inline-block;margin-top:8px;font-weight:600;font-size:.85rem;color:#fff;background:#55714e;border-radius:999px;padding:6px 14px;text-decoration:none}
+.forder-t a:hover{background:#4a6444}
+@media (max-width:1000px){
+  .forder{position:static;transform:none;width:auto;max-width:360px;margin:16px auto 0;display:flex;gap:12px;align-items:center;text-align:left;padding:10px 12px}
+  .forder img{width:96px;height:96px;margin:0;flex:none}
+  .forder-t b{font-size:.95rem}
+}
+
 /* ---- kit-custom-8002.css ---- */
 /* ============================================================
    CUSTOMISE YOUR KIT, :8002 only (15 Oct 2026) - the block at the end
