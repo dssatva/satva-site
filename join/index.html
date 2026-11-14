@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- SATVA Saheli JOIN REQUEST (14 Nov 2026). A woman who wants to be a Saheli fills this; the button opens WhatsApp to the owner
-     (91685 81606) with her details. Nothing is stored. The owner approves -> she is added to s/sahelis.js -> owner sends her
+<!-- SATVA Saheli JOIN REQUEST (14 Nov 2026). A woman who wants to be a Saheli fills this; the button opens WhatsApp to DS SATVA
+     (website number 96898 88822; the website shows only this number, owner 14 Nov) with her details. Nothing is stored. The owner approves -> she is added to s/sahelis.js -> owner sends her
      dssatva.com/s/kit/?id=S00x. No link works until she is approved (prevents fake SATVA pages). -->
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -49,10 +49,11 @@ input:focus{outline:none;border-color:var(--g)}
   <label>Your UPI ID <small>(optional, shown to your customers for payment)</small></label><input id="u" autocapitalize="off" autocomplete="off" placeholder="e.g. meena@okaxis">
   <p class="err" id="err"></p>
   <button class="btn" id="send">Send my request on WhatsApp</button>
+  <p class="note"><a href="/" style="color:#3f5a38;font-weight:600">&larr; Back to dssatva.com</a></p>
   <p class="note">Your details go only to DS SATVA on WhatsApp; nothing is stored on this website. Please double-check your UPI ID: customers' payments will go to it.</p>
 </main>
 <script>
-const $ = id => document.getElementById(id), OWNER = "919168581606";
+const $ = id => document.getElementById(id), OWNER = "919689888822";
 $("p").addEventListener("input", e => e.target.value = e.target.value.replace(/[^\d+ ]/g, ""));
 $("send").onclick = () => {
   const n = $("n").value.trim(), p = $("p").value.replace(/\D/g, "").slice(-10), c = $("c").value.trim(), u = $("u").value.trim();
