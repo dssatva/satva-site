@@ -83,7 +83,7 @@ $("send").onclick = () => {
             u && !/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(u) ? "That UPI ID doesn't look right (it looks like name@bank). Leave it empty if unsure." : "";
   if (m) { $("err").textContent = m; $("err").style.display = "block"; return; }
   $("err").style.display = "none";
-  const txt = ["🌿 *SATVA Saheli request*", "", `👤 *Name:* ${n}`, `📞 *WhatsApp:* ${p}`, `🏠 *Address:* ${h}, ${a}${l ? ", near " + l : ""}`, `📍 *City:* ${c} – ${z}, ${st}`, `💳 *UPI:* ${u || "(none)"}`, "", "I would like to become a SATVA Saheli. Please send my approval on WhatsApp."].join("\n");
+  const txt = ["🌿 *SATVA Saheli request*", "", `👤 *Name:* ${n}`, `📞 *WhatsApp:* +91 ${p}`, `💬 *Reply to her:* https://wa.me/91${p}`, `☎️ *Call:* +91${p}`, `🏠 *Address:* ${h}, ${a}${l ? ", near " + l : ""}`, `📍 *City:* ${c} – ${z}, ${st}`, `💳 *UPI:* ${u || "(none)"}`, "", "I would like to become a SATVA Saheli. Please send my approval on WhatsApp."].join("\n");
   // thank-you screen first, so she sees it when she comes back from WhatsApp
   const box = document.querySelector("main"), first = n.split(" ")[0];
   box.innerHTML = `<div class="thanks"><div class="tick">✓</div><h2>Thank you, <span></span>!</h2>

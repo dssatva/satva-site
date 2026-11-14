@@ -59,6 +59,9 @@ input:focus{outline:none;border-color:var(--g)}
     <button class="btn lt" id="copy">Copy my link</button>
     <button class="btn lt" id="dl">Download my QR code</button>
     <a class="btn lt" id="test" target="_blank" rel="noopener">Open my order page (try it)</a>
+    <h2>Need more stock?</h2>
+    <a class="btn go" id="stock">📦 Order stock from DS SATVA</a>
+    <p class="note" style="margin-top:8px">Choose the packs you need. Your order goes to DS SATVA on WhatsApp (96898 88822), and we confirm your Saheli rate, payment and delivery.</p>
     <p class="note">Save this page. Your link never changes. Prices on your page are the SATVA price list and update automatically. Orders from your link come to your WhatsApp; please check the total against the price list before confirming.</p>
   </div>
 </main>
@@ -72,6 +75,7 @@ $("cn").textContent = SH.n; $("cp").textContent = "📞 " + p.slice(0, 5) + " " 
 new QRCode($("qr"), { text: url, width: 440, height: 440, colorDark: "#2f4529", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M });
 $("share").href = "https://wa.me/?text=" + encodeURIComponent(`🌿 Order homemade SATVA Saheli spices & masalas from me!\nPick your products here and send the order on WhatsApp:\n${url}`);
 $("test").href = url;
+$("stock").href = "/s/stock/?id=" + ID;
 $("copy").onclick = async () => { try { await navigator.clipboard.writeText(url); $("copy").textContent = "Copied ✓"; } catch (e) { prompt("Copy your link:", url); } };
 </script>
 </body></html>
