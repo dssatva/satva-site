@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- SATVA Saheli order page (14 Nov 2026, trial). dssatva.com/s/?p=<her 10-digit WhatsApp>&n=<her name>&u=<her UPI id, optional>.
+     Same products and prices as /order; the Send button opens WhatsApp to THAT Saheli. Links are made at dssatva.com/join. -->
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order from your SATVA Saheli</title>
+<meta name="description" content="Order homemade SATVA Saheli spices, seeds and natural sweeteners on WhatsApp.">
+<meta property="og:title" content="Order from your SATVA Saheli"><meta property="og:description" content="Homemade spices, seeds &amp; sweeteners. Tap to see prices, pick products, add your address and send your order on WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://dssatva.com/order/logo.png">
+<meta name="robots" content="noindex"><link rel="icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#55714E;--gd:#46603f;--gold:#d4a63c;--rust:#a8460f;--cream:#f7f1e3;--ink:#2c2a24;--mut:#6d675a;--line:#e8dcc0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);font-family:Jost,sans-serif;color:var(--ink);font-size:16px}
+header{background:linear-gradient(180deg,var(--g),var(--gd));color:#fff;text-align:center;padding:22px 16px 20px;border-bottom:5px solid var(--gold)}
+header img{width:84px;height:84px;border-radius:50%;background:#fffaf0;border:3px solid var(--gold)}
+header h1{font:700 28px/1.15 Fraunces,serif;margin-top:8px}
+header p{font-size:15px;color:#eef3e8;margin-top:6px;line-height:1.4}
+main{max-width:640px;margin:0 auto;padding:16px 16px 140px}
+h2{font:700 21px/1.2 Fraunces,serif;color:var(--rust);margin:20px 0 10px}
+.p{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:10px;margin-bottom:10px;display:flex;gap:12px;align-items:center;transition:border-color .15s}
+.p.on{border-color:var(--g);box-shadow:0 0 0 2px rgba(85,113,78,.15)}
+.p img{width:74px;height:74px;border-radius:12px;object-fit:cover;flex:none}
+.p .b{flex:1;min-width:0}
+.p h3{font:700 17px/1.2 Fraunces,serif;color:#3f5a38}
+.sz{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.sz button{font:600 13.5px/1 Jost;border:1.5px solid #b9c6ad;background:#fff;color:#3f5a38;border-radius:20px;padding:7px 10px;cursor:pointer}
+.sz button.sel{background:var(--g);border-color:var(--g);color:#fff}
+.p:not(.on) .sz button.sel{background:#fff;color:#3f5a38;border-color:var(--g)}
+.sz button b{color:var(--rust);margin-left:3px}.p:not(.on) .sz button.sel b{color:var(--rust)}.sz button.sel b{color:#f6d78a}
+.q{display:flex;align-items:center;gap:6px;margin-top:8px}
+.q button{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--g);background:#fff;color:var(--g);font:700 19px/1 Jost;cursor:pointer}
+.q span{min-width:24px;text-align:center;font-weight:700}
+.q small{color:var(--mut);margin-left:6px}
+.ask{font-size:13px;color:var(--mut);font-style:italic;margin-top:4px}
+label{display:block;font-weight:600;font-size:14.5px;margin:12px 0 5px;color:#3f5a38}
+label i{font-style:normal;color:var(--rust)}
+input,textarea{width:100%;font:16px Jost,sans-serif;border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff;color:var(--ink)}
+input:focus,textarea:focus{outline:none;border-color:var(--g)}
+textarea{min-height:72px;resize:vertical}
+.row{display:flex;gap:10px}.row>div{flex:1}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--gold);padding:10px 16px 14px;box-shadow:0 -6px 18px rgba(0,0,0,.08)}
+.bar .in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.tot{flex:1;font-size:14px;color:var(--mut);line-height:1.25}
+.tot b{display:block;font:700 22px/1.1 Jost;color:var(--rust)}
+.send{background:#25a244;color:#fff;border:0;border-radius:30px;font:700 16px/1 Jost;padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.send svg{width:20px;height:20px}
+.err{color:#b3261e;font-size:14px;margin-top:8px;display:none}
+header .free{display:inline-block;margin-top:10px;background:var(--gold);color:#2c2a24;font-weight:700;font-size:15px;border-radius:20px;padding:6px 14px}
+.tot i{display:block;font-style:normal;font-size:12.5px;color:var(--g);font-weight:600}
+header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a38;font-weight:700;font-size:16px;border-radius:20px;padding:7px 16px}
+.upi{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:14px;font-size:14.5px;color:#3f5a38;display:none}
+.upi b{color:var(--rust)}
+.bad{max-width:520px;margin:40px auto;padding:20px;text-align:center;font-size:17px;line-height:1.5}
+.note{font-size:13.5px;color:var(--mut);margin-top:14px;line-height:1.45}
+</style></head><body>
+<header>
+  <img src="/order/logo.png" alt="SATVA Saheli">
+  <h1>Place your order</h1>
+  <p class="who" id="who"></p>
+  <p>Homemade with care by women · pick your products, fill your address, and send it to your Saheli on WhatsApp</p>
+</header>
+<main>
+  <h2>1. Choose products</h2>
+  <div id="list"></div>
+
+  <h2>2. Delivery details</h2>
+  <label>Your name <i>*</i></label><input id="name" autocomplete="name">
+  <label>Mobile number <i>*</i></label><input id="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit number">
+  <label>House / flat number &amp; building <i>*</i></label><input id="house" placeholder="e.g. B-204, Sai Residency">
+  <label>Address (street, area) <i>*</i></label><textarea id="addr" autocomplete="street-address"></textarea>
+  <div class="row">
+    <div><label>Landmark</label><input id="land"></div>
+    <div><label>Pincode <i>*</i></label><input id="pin" inputmode="numeric" maxlength="6" autocomplete="postal-code"></div>
+  </div>
+  <label>Anything else? (optional)</label><input id="msg" placeholder="Preferred delivery time, etc.">
+  <p class="err" id="err"></p>
+  <p class="upi" id="upi"></p>
+  <p class="note">Tapping <b>Send order</b> opens WhatsApp with your order typed in – just press send. Your SATVA Saheli will confirm the order, payment and delivery on WhatsApp.</p>
+</main>
+<div class="bar"><div class="in">
+  <div class="tot"><span id="cnt">No items yet</span><b id="sum">₹0</b></div>
+  <button class="send" id="send"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Send order</button>
+</div></div>
+<script>
+const Q = new URLSearchParams(location.search);
+const PH = (Q.get("p") || "").replace(/\D/g, "").slice(-10);
+const NAME = (Q.get("n") || "").trim().slice(0, 40);
+const UPI = /^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test((Q.get("u") || "").trim()) ? Q.get("u").trim() : "";
+const WA = "91" + PH;
+if (!/^[6-9]\d{9}$/.test(PH)) {          // incomplete link: say so instead of sending orders nowhere
+  document.body.innerHTML = '<p class="bad">This order link is incomplete.<br>Please ask your SATVA Saheli for her link again, or order at <a href="https://dssatva.com/order/">dssatva.com/order</a>.</p>';
+  throw new Error("no saheli number");
+}
+document.getElementById("who").textContent = NAME ? `Your SATVA Saheli: ${NAME}` : "Order from your SATVA Saheli";
+if (UPI) { const e = document.getElementById("upi"); e.innerHTML = `💳 Pay ${NAME || "your Saheli"} by UPI: <b></b>`; e.querySelector("b").textContent = UPI; e.style.display = "block"; }
+const P = [
+ ["haldi","Haldi (Turmeric)",[["100 g",45],["200 g",80]]],
+ ["kashmiri","Kashmiri Chilli",[["100 g",105],["200 g",195]]],
+ ["mirchi","Satva Special Mirchi",[["100 g",50],["200 g",90]]],
+ ["sambar","Sambar Powder",[["100 g",75],["200 g",140]]],
+ ["garam","Garam Masala",[["100 g",75],["200 g",140]]],
+ ["chaat","Chaat Masala",[["100 g",50],["200 g",90]]],
+ ["chatpat","Chatpat Masala",[["100 g",50],["200 g",90]]],
+ ["chia","Chia Seeds",[["100 g",70],["200 g",130]]],
+ ["coconut","Coconut Sugar",[["100 g",75],["200 g",140]]],
+ ["monk","Monk Fruit – Natural Sweetener",[["100 g",120],["200 g",230]]],
+ ["pinksalt","Himalayan Pink Salt",[["1 kg",90]]]];
+// state: per product, qty per size index
+const S = P.map(p => p[2].map(() => 0));
+const rs = n => "₹" + n.toLocaleString("en-IN");
+const list = document.getElementById("list");
+list.innerHTML = P.map(([k,n,sz],i) => `<div class="p" id="p${i}"><img src="/order/${k}.jpg" alt="${n}" loading="lazy"><div class="b">
+ <h3>${n}</h3><div class="sz">${sz.map(([s,pr],j)=>`<button type="button" data-i="${i}" data-j="${j}">${s}${pr?`<b>${rs(pr)}</b>`:""}</button>`).join("")}</div>
+ ${sz.some(x=>!x[1])?'<div class="ask">Price confirmed on WhatsApp</div>':""}
+ <div class="q" id="q${i}"></div></div></div>`).join("");
+let cur = P.map(()=>0); // selected size per product
+function draw(i){
+  const el = document.getElementById("p"+i), j = cur[i], q = S[i][j];
+  el.querySelectorAll(".sz button").forEach(b => b.classList.toggle("sel", +b.dataset.j === j));
+  const others = S[i].map((n,k)=>k!==j&&n?`${n} × ${P[i][2][k][0]}`:"").filter(Boolean).join(", ");
+  document.getElementById("q"+i).innerHTML = `<button type="button" data-d="-1" data-i="${i}">−</button><span>${q}</span><button type="button" data-d="1" data-i="${i}">+</button>${others?`<small>also ${others}</small>`:""}`;
+  el.classList.toggle("on", S[i].some(n=>n));
+}
+P.forEach((_,i)=>draw(i));
+list.addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return; const i = +b.dataset.i;
+  if (b.dataset.j !== undefined) { cur[i] = +b.dataset.j; if (!S[i][cur[i]]) S[i][cur[i]] = 1; }
+  else S[i][cur[i]] = Math.max(0, Math.min(50, S[i][cur[i]] + +b.dataset.d));
+  draw(i); totals();
+});
+function items(){ const out=[]; P.forEach(([k,n,sz],i)=>sz.forEach(([s,pr],j)=>{const q=S[i][j]; if(q) out.push({n,s,pr,q});})); return out; }
+function totals(){
+  const it = items(), packs = it.reduce((a,x)=>a+x.q,0), sum = it.reduce((a,x)=>a+x.q*x.pr,0);
+  document.getElementById("cnt").textContent = packs ? `${packs} pack${packs>1?"s":""} · total` : "No items yet";
+  document.getElementById("sum").textContent = rs(sum) + (it.some(x=>!x.pr) ? " +" : "");
+}
+const v = id => document.getElementById(id).value.trim();
+document.getElementById("send").onclick = () => {
+  const err = document.getElementById("err"), it = items();
+  let m = !it.length ? "Please choose at least one product." :
+    !v("name") ? "Please enter your name." :
+    !/^[6-9]\d{9}$/.test(v("phone").replace(/\D/g,"").slice(-10)) ? "Please enter a valid 10-digit mobile number." :
+    !v("house") ? "Please enter your house / flat number." :
+    !v("addr") ? "Please enter your address." :
+    !/^\d{6}$/.test(v("pin")) ? "Please enter a 6-digit pincode." : "";
+  if (m) { err.textContent = m; err.style.display = "block"; err.scrollIntoView({behavior:"smooth",block:"center"}); return; }
+  err.style.display = "none";
+  const sum = it.reduce((a,x)=>a+x.q*x.pr,0);
+  const lines = it.map((x,k)=>`${k+1}. ${x.n} – ${x.s} × ${x.q}${x.pr?` = ${rs(x.q*x.pr)}`:" (price to confirm)"}`);
+  const txt = [
+    `🛒 *New order – SATVA Saheli*${NAME ? " (" + NAME + ")" : ""}`, "",
+    ...lines, "", `*Total: ${rs(sum)}*${it.some(x=>!x.pr)?" + items with price to confirm":""}`,
+    UPI ? `💳 *Pay by UPI:* ${UPI}` : null, "",
+    `👤 *Name:* ${v("name")}`, `📞 *Mobile:* ${v("phone")}`,
+    `🏠 *House/Flat:* ${v("house")}`, `📍 *Address:* ${v("addr")}`,
+    v("land") ? `🧭 *Landmark:* ${v("land")}` : null, `📮 *Pincode:* ${v("pin")}`,
+    v("msg") ? `📝 *Note:* ${v("msg")}` : null
+  ].filter(l=>l!==null).join("\n");
+  location.href = `https://wa.me/${WA}?text=${encodeURIComponent(txt)}`;
+};
+</script>
+</body></html>
