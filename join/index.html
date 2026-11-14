@@ -28,6 +28,7 @@ input{width:100%;font:16px Jost,sans-serif;border:1.5px solid var(--line);border
 input:focus{outline:none;border-color:var(--g)}
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:30px;font:700 16px/1 Jost;padding:15px 18px;cursor:pointer;margin-top:18px;background:#25a244;color:#fff}
 .err{color:#b3261e;font-size:14px;margin-top:8px;display:none}
+.row{display:flex;gap:10px}.row>div{flex:1}
 .note{font-size:13.5px;color:var(--mut);margin-top:14px;line-height:1.45}
 </style></head><body>
 <header>
@@ -45,8 +46,14 @@ input:focus{outline:none;border-color:var(--g)}
   <h2>Your details</h2>
   <label>Your name <i>*</i></label><input id="n" maxlength="40" autocomplete="name" placeholder="e.g. Meena Patil">
   <label>Your WhatsApp number <i>*</i> <small>(customers' orders will come here)</small></label><input id="p" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit number">
-  <label>Your city / area <i>*</i></label><input id="c" maxlength="60" placeholder="e.g. Kothrud, Pune">
   <label>Your UPI ID <small>(optional, shown to your customers for payment)</small></label><input id="u" autocapitalize="off" autocomplete="off" placeholder="e.g. meena@okaxis">
+  <h2>Your address</h2>
+  <label>House / flat number &amp; building <i>*</i></label><input id="h" maxlength="80" autocomplete="address-line1" placeholder="e.g. B-204, Sai Residency">
+  <label>Street &amp; area <i>*</i></label><input id="a" maxlength="100" autocomplete="address-line2" placeholder="e.g. Karve Road, Kothrud">
+  <label>Landmark <small>(optional)</small></label><input id="l" maxlength="60" placeholder="e.g. near City Pride">
+  <div class="row"><div><label>City <i>*</i></label><input id="c" maxlength="40" autocomplete="address-level2" placeholder="e.g. Pune"></div>
+  <div><label>Pincode <i>*</i></label><input id="z" inputmode="numeric" maxlength="6" autocomplete="postal-code" placeholder="6 digits"></div></div>
+  <label>State <i>*</i></label><input id="st" maxlength="30" autocomplete="address-level1" value="Maharashtra">
   <p class="err" id="err"></p>
   <button class="btn" id="send">Send my request on WhatsApp</button>
   <p class="note"><a href="/" style="color:#3f5a38;font-weight:600">&larr; Back to dssatva.com</a></p>
@@ -56,14 +63,19 @@ input:focus{outline:none;border-color:var(--g)}
 const $ = id => document.getElementById(id), OWNER = "919689888822";
 $("p").addEventListener("input", e => e.target.value = e.target.value.replace(/[^\d+ ]/g, ""));
 $("send").onclick = () => {
-  const n = $("n").value.trim(), p = $("p").value.replace(/\D/g, "").slice(-10), c = $("c").value.trim(), u = $("u").value.trim();
+  const v = id => $(id).value.trim();
+  const n = v("n"), p = $("p").value.replace(/\D/g, "").slice(-10), u = v("u"), h = v("h"), a = v("a"), l = v("l"), c = v("c"), z = v("z"), st = v("st");
   const m = !n ? "Please type your name." :
             !/^[6-9]\d{9}$/.test(p) ? "Please type a valid 10-digit WhatsApp number." :
-            !c ? "Please type your city or area." :
+            !h ? "Please type your house / flat number and building." :
+            !a ? "Please type your street and area." :
+            !c ? "Please type your city." :
+            !/^\d{6}$/.test(z) ? "Please type a 6-digit pincode." :
+            !st ? "Please type your state." :
             u && !/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(u) ? "That UPI ID doesn't look right (it looks like name@bank). Leave it empty if unsure." : "";
   if (m) { $("err").textContent = m; $("err").style.display = "block"; return; }
   $("err").style.display = "none";
-  const txt = ["🌿 *SATVA Saheli request*", "", `👤 *Name:* ${n}`, `📞 *WhatsApp:* ${p}`, `📍 *City/area:* ${c}`, `💳 *UPI:* ${u || "(none)"}`, "", "I would like to become a SATVA Saheli."].join("\n");
+  const txt = ["🌿 *SATVA Saheli request*", "", `👤 *Name:* ${n}`, `📞 *WhatsApp:* ${p}`, `🏠 *Address:* ${h}, ${a}${l ? ", near " + l : ""}`, `📍 *City:* ${c} – ${z}, ${st}`, `💳 *UPI:* ${u || "(none)"}`, "", "I would like to become a SATVA Saheli."].join("\n");
   location.href = `https://wa.me/${OWNER}?text=${encodeURIComponent(txt)}`;
 };
 </script>
