@@ -26,11 +26,16 @@ label{display:block;font-weight:600;font-size:14.5px;margin:12px 0 5px;color:#3f
 label i{font-style:normal;color:var(--rust)}label small{font-weight:500;color:var(--mut)}
 input{width:100%;font:16px Jost,sans-serif;border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff;color:var(--ink)}
 input:focus{outline:none;border-color:var(--g)}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:30px;font:700 16px/1 Jost;padding:15px 18px;cursor:pointer;margin-top:18px;background:#25a244;color:#fff}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;text-decoration:none;border-radius:30px;font:700 16px/1 Jost;padding:15px 18px;cursor:pointer;margin-top:18px;background:#25a244;color:#fff}
 .err{color:#b3261e;font-size:14px;margin-top:8px;display:none}
 .row{display:flex;gap:10px}.row>div{flex:1}
 .site{display:flex;align-items:center;justify-content:space-between;background:#fff1e4;padding:8px 16px;border-bottom:3px solid var(--gold);text-decoration:none}
 .site img{height:46px}.site span{font-weight:600;font-size:14px;color:#3f5a38}
+.thanks{text-align:center;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:24px 18px;margin-top:18px}
+.thanks .tick{width:64px;height:64px;border-radius:50%;background:#25a244;color:#fff;font:700 34px/64px Jost;margin:0 auto}
+.thanks h2{margin-top:12px}.thanks p{margin-top:10px;line-height:1.5;color:#3f5a38}
+.thanks .no{white-space:nowrap;color:#3f5a38}
+.thanks .big{font:700 20px/1.3 Fraunces,serif;color:var(--rust);background:#fff1e4;border-radius:12px;padding:12px}
 .note{font-size:13.5px;color:var(--mut);margin-top:14px;line-height:1.45}
 </style></head><body>
 <a class="site" href="/" aria-label="DS SATVA home"><img src="/assets/logo-stack-dark-sm.png" alt="DS SATVA"><span>&larr; dssatva.com</span></a>
@@ -78,7 +83,17 @@ $("send").onclick = () => {
             u && !/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(u) ? "That UPI ID doesn't look right (it looks like name@bank). Leave it empty if unsure." : "";
   if (m) { $("err").textContent = m; $("err").style.display = "block"; return; }
   $("err").style.display = "none";
-  const txt = ["🌿 *SATVA Saheli request*", "", `👤 *Name:* ${n}`, `📞 *WhatsApp:* ${p}`, `🏠 *Address:* ${h}, ${a}${l ? ", near " + l : ""}`, `📍 *City:* ${c} – ${z}, ${st}`, `💳 *UPI:* ${u || "(none)"}`, "", "I would like to become a SATVA Saheli."].join("\n");
+  const txt = ["🌿 *SATVA Saheli request*", "", `👤 *Name:* ${n}`, `📞 *WhatsApp:* ${p}`, `🏠 *Address:* ${h}, ${a}${l ? ", near " + l : ""}`, `📍 *City:* ${c} – ${z}, ${st}`, `💳 *UPI:* ${u || "(none)"}`, "", "I would like to become a SATVA Saheli. Please send my approval on WhatsApp."].join("\n");
+  // thank-you screen first, so she sees it when she comes back from WhatsApp
+  const box = document.querySelector("main"), first = n.split(" ")[0];
+  box.innerHTML = `<div class="thanks"><div class="tick">✓</div><h2>Thank you, <span></span>!</h2>
+    <p>Your request is ready in WhatsApp. Please press <b>Send</b> there.</p>
+    <p class="big">You will get your approval on WhatsApp<br>from <span class="no">96898 88822</span></p>
+    <p>We will check your details and call you on <b></b>. Once you are approved, DS SATVA will send your own SATVA Saheli order link from <b>96898 88822</b>. Please save this number.</p>
+    <a class="btn" href="https://wa.me/${OWNER}?text=${encodeURIComponent(txt)}">Open WhatsApp again</a>
+    <p class="note"><a href="/" style="color:#3f5a38;font-weight:600">&larr; Back to dssatva.com</a></p></div>`;
+  box.querySelector("h2 span").textContent = first; box.querySelectorAll(".thanks p b")[1].textContent = p.slice(0, 5) + " " + p.slice(5);
+  window.scrollTo(0, 0);
   location.href = `https://wa.me/${OWNER}?text=${encodeURIComponent(txt)}`;
 };
 </script>
