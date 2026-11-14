@@ -96,6 +96,27 @@ const SH = Object.prototype.hasOwnProperty.call(window.SAHELIS || {}, ID) ? wind
 const PH = SH ? String(SH.p) : "", NAME = SH ? String(SH.n) : "", UPI = SH ? String(SH.u || "") : "";
 const WA = "919689888822";
 const PCT = SH && SH.c20 ? 20 : 15;   // commission %: 20 once she has 20 families   // stock orders go to DS SATVA (website number)
+if (!ID) {   // opened from the website without her code: ask for Saheli code + her WhatsApp number
+  let last = ""; try { last = localStorage.getItem("satvaSaheli") || ""; } catch (e) {}
+  document.querySelector("main").innerHTML = `<h2>Saheli sign in</h2>
+  <p class="note" style="margin-top:0">Type your Saheli code (it is in your approval message, e.g. S001) and your WhatsApp number.</p>
+  <label>Saheli code <i>*</i></label><input id="sc" maxlength="6" autocapitalize="characters" placeholder="e.g. S001">
+  <label>Your WhatsApp number <i>*</i></label><input id="sp" type="tel" inputmode="numeric" placeholder="10-digit number">
+  <p class="err" id="serr"></p>
+  <button class="send" id="sgo" style="width:100%;justify-content:center;margin-top:16px">Open my stock order page</button>
+  <p class="note">Not a Saheli yet? <a href="/join/" style="color:#3f5a38;font-weight:600">Become a SATVA Saheli</a></p>`;
+  document.querySelector(".bar").remove(); document.getElementById("who").textContent = "Approved SATVA Sahelis only";
+  document.getElementById("sc").value = last;
+  document.getElementById("sgo").onclick = () => {
+    const c = document.getElementById("sc").value.trim().toUpperCase(), ph = document.getElementById("sp").value.replace(/\D/g, "").slice(-10);
+    const ok = /^S\d{3}$/.test(c) && Object.prototype.hasOwnProperty.call(window.SAHELIS || {}, c) && String(window.SAHELIS[c].p) === ph;
+    const e = document.getElementById("serr");
+    if (!ok) { e.textContent = "That code and number don't match an approved Saheli. Please check, or message DS SATVA on 96898 88822."; e.style.display = "block"; return; }
+    try { localStorage.setItem("satvaSaheli", c); } catch (x) {}
+    location.href = "/s/stock/?id=" + c;
+  };
+  throw new Error("sign in");
+}
 if (!SH || !/^[6-9]\d{9}$/.test(PH)) {
   document.body.innerHTML = '<p class="bad">This is not an active SATVA Saheli order link.<br>Please ask your Saheli for her link again, or order directly at <a href="https://dssatva.com/order/">dssatva.com/order</a>.</p>';
   throw new Error("unknown saheli");
