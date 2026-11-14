@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- SATVA Saheli order page (14 Nov 2026, trial). dssatva.com/s/?p=<her 10-digit WhatsApp>&n=<her name>&u=<her UPI id, optional>.
-     Same products and prices as /order; the Send button opens WhatsApp to THAT Saheli. Links are made at dssatva.com/join. -->
+<!-- SATVA Saheli order page (14 Nov 2026, trial). dssatva.com/s/?id=S001 (approved Sahelis in s/sahelis.js).
+     Same products and prices as /order; the Send button opens WhatsApp to THAT Saheli. Sahelis ask at dssatva.com/join; the owner approves; kit at /s/kit/?id=. -->
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Order from your SATVA Saheli</title>
@@ -84,18 +84,22 @@ header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a3
   <div class="tot"><span id="cnt">No items yet</span><b id="sum">₹0</b></div>
   <button class="send" id="send"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Send order</button>
 </div></div>
+<script src="/s/sahelis.js"></script>
 <script>
-const Q = new URLSearchParams(location.search);
-const PH = (Q.get("p") || "").replace(/\D/g, "").slice(-10);
-const NAME = (Q.get("n") || "").trim().slice(0, 40);
-const UPI = /^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test((Q.get("u") || "").trim()) ? Q.get("u").trim() : "";
+const ID = (new URLSearchParams(location.search).get("id") || "").trim().toUpperCase();
+const SH = Object.prototype.hasOwnProperty.call(window.SAHELIS || {}, ID) ? window.SAHELIS[ID] : null;   // approved Sahelis only
+const PH = SH ? String(SH.p) : "", NAME = SH ? String(SH.n) : "", UPI = SH ? String(SH.u || "") : "";
 const WA = "91" + PH;
-if (!/^[6-9]\d{9}$/.test(PH)) {          // incomplete link: say so instead of sending orders nowhere
-  document.body.innerHTML = '<p class="bad">This order link is incomplete.<br>Please ask your SATVA Saheli for her link again, or order at <a href="https://dssatva.com/order/">dssatva.com/order</a>.</p>';
-  throw new Error("no saheli number");
+if (!SH || !/^[6-9]\d{9}$/.test(PH)) {
+  document.body.innerHTML = '<p class="bad">This is not an active SATVA Saheli order link.<br>Please ask your Saheli for her link again, or order directly at <a href="https://dssatva.com/order/">dssatva.com/order</a>.</p>';
+  throw new Error("unknown saheli");
 }
-document.getElementById("who").textContent = NAME ? `Your SATVA Saheli: ${NAME}` : "Order from your SATVA Saheli";
-if (UPI) { const e = document.getElementById("upi"); e.innerHTML = `💳 Pay ${NAME || "your Saheli"} by UPI: <b></b>`; e.querySelector("b").textContent = UPI; e.style.display = "block"; }
+document.getElementById("who").textContent = "Your SATVA Saheli: " + NAME;
+if (UPI) {                                   // text only (never innerHTML with data)
+  const e = document.getElementById("upi"), b = document.createElement("b"), sm = document.createElement("small");
+  b.textContent = UPI; sm.textContent = `Check that the name in your UPI app is ${NAME} before you pay.`;
+  e.append(`💳 Pay ${NAME} by UPI: `, b, document.createElement("br"), sm); e.style.display = "block";
+}
 const P = [
  ["haldi","Haldi (Turmeric)",[["100 g",45],["200 g",80]]],
  ["kashmiri","Kashmiri Chilli",[["100 g",105],["200 g",195]]],

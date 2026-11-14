@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<!-- SATVA Saheli link maker (14 Nov 2026, trial). A Saheli types her name, WhatsApp number and (optional) UPI id and gets
-     her own order link dssatva.com/s/?p=..&n=..&u=.. + QR to download/share. Orders from that link go to HER WhatsApp. No data is stored. -->
+<!-- SATVA Saheli JOIN REQUEST (14 Nov 2026). A woman who wants to be a Saheli fills this; the button opens WhatsApp to the owner
+     (91685 81606) with her details. Nothing is stored. The owner approves -> she is added to s/sahelis.js -> owner sends her
+     dssatva.com/s/kit/?id=S00x. No link works until she is approved (prevents fake SATVA pages). -->
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Get your SATVA Saheli order link</title>
-<meta name="description" content="SATVA Saheli: make your own order link and QR code. Orders come straight to your WhatsApp.">
-<meta property="og:title" content="SATVA Saheli – get your own order link"><meta property="og:description" content="Type your name and WhatsApp number to get your own order link and QR code. Your customers' orders come straight to you.">
+<title>Become a SATVA Saheli</title>
+<meta name="description" content="Ask to become a SATVA Saheli and get your own order link.">
+<meta property="og:title" content="Become a SATVA Saheli"><meta property="og:description" content="Send your details to DS SATVA. Once approved you get your own order link and QR code.">
 <meta property="og:image" content="https://dssatva.com/order/logo.png">
 <meta name="robots" content="noindex"><link rel="icon" href="/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 :root{--g:#55714E;--gd:#46603f;--gold:#d4a63c;--rust:#a8460f;--cream:#f7f1e3;--ink:#2c2a24;--mut:#6d675a;--line:#e8dcc0}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -26,92 +26,44 @@ label{display:block;font-weight:600;font-size:14.5px;margin:12px 0 5px;color:#3f
 label i{font-style:normal;color:var(--rust)}label small{font-weight:500;color:var(--mut)}
 input{width:100%;font:16px Jost,sans-serif;border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff;color:var(--ink)}
 input:focus{outline:none;border-color:var(--g)}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:30px;font:700 16px/1 Jost;padding:15px 18px;cursor:pointer;margin-top:12px;text-decoration:none}
-.go{background:var(--g);color:#fff;margin-top:18px}
-.wa{background:#25a244;color:#fff}
-.lt{background:#fff;color:#3f5a38;border:1.5px solid var(--g)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:30px;font:700 16px/1 Jost;padding:15px 18px;cursor:pointer;margin-top:18px;background:#25a244;color:#fff}
 .err{color:#b3261e;font-size:14px;margin-top:8px;display:none}
-#out{display:none}
-.card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px;text-align:center;margin-top:10px}
-.card .nm{font:700 20px/1.2 Fraunces,serif;color:#3f5a38}
-.card .ph{font:700 18px/1 Jost;color:var(--rust);margin-top:6px}
-#qr{display:inline-block;margin-top:14px;padding:10px;background:#fff;border:4px solid var(--gold);border-radius:12px}
-#qr img,#qr canvas{display:block;width:220px;height:220px}
-.card .sc{font:700 16px/1.2 Fraunces,serif;color:#3f5a38;margin-top:10px}
-.link{word-break:break-all;font-size:13.5px;color:var(--mut);background:var(--cream);border-radius:10px;padding:10px;margin-top:12px}
 .note{font-size:13.5px;color:var(--mut);margin-top:14px;line-height:1.45}
 </style></head><body>
 <header>
   <img src="/order/logo.png" alt="SATVA Saheli">
-  <h1>Get your own order link</h1>
-  <p>For SATVA Sahelis · your customers order from you, and the order comes straight to your WhatsApp</p>
+  <h1>Become a SATVA Saheli</h1>
+  <p>Sell homemade SATVA spices &amp; masalas in your area, with your own order link</p>
 </header>
 <main>
   <ol class="steps">
-    <li>Type your name and WhatsApp number below.</li>
-    <li>You get your own <b>order link</b> and <b>QR code</b>.</li>
-    <li>Share them with your customers. When they order, it comes to <b>your</b> WhatsApp and they pay <b>you</b>.</li>
+    <li>Fill in your details and tap <b>Send my request</b>. It opens WhatsApp to DS SATVA.</li>
+    <li>We call you, talk about stock and pricing, and approve you.</li>
+    <li>You get your own <b>order link</b> and <b>QR code</b>. Your customers' orders come to <b>your</b> WhatsApp and they pay <b>you</b>.</li>
   </ol>
 
   <h2>Your details</h2>
-  <label>Your name <i>*</i> <small>(customers will see this)</small></label><input id="n" maxlength="40" autocomplete="name" placeholder="e.g. Meena Patil">
-  <label>Your WhatsApp number <i>*</i></label><input id="p" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit number">
-  <label>Your UPI ID <small>(optional, so customers can pay you)</small></label><input id="u" autocapitalize="off" autocomplete="off" placeholder="e.g. meena@okaxis">
+  <label>Your name <i>*</i></label><input id="n" maxlength="40" autocomplete="name" placeholder="e.g. Meena Patil">
+  <label>Your WhatsApp number <i>*</i> <small>(customers' orders will come here)</small></label><input id="p" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit number">
+  <label>Your city / area <i>*</i></label><input id="c" maxlength="60" placeholder="e.g. Kothrud, Pune">
+  <label>Your UPI ID <small>(optional, shown to your customers for payment)</small></label><input id="u" autocapitalize="off" autocomplete="off" placeholder="e.g. meena@okaxis">
   <p class="err" id="err"></p>
-  <button class="btn go" id="make">Make my order link</button>
-
-  <div id="out">
-    <h2>Your order link is ready 🎉</h2>
-    <div class="card" id="card">
-      <div class="nm" id="cn"></div><div class="ph" id="cp"></div>
-      <div id="qr"></div>
-      <div class="sc">Scan to order on WhatsApp</div>
-      <div class="link" id="lk"></div>
-    </div>
-    <a class="btn wa" id="share" target="_blank" rel="noopener">Share my link on WhatsApp</a>
-    <button class="btn lt" id="copy">Copy my link</button>
-    <button class="btn lt" id="dl">Download my QR code</button>
-    <a class="btn lt" id="test" target="_blank" rel="noopener">Open my order page (try it)</a>
-    <p class="note">Save your link: it never changes. Prices on your page are the SATVA price list and update automatically. Nothing you type here is stored by us.</p>
-  </div>
+  <button class="btn" id="send">Send my request on WhatsApp</button>
+  <p class="note">Your details go only to DS SATVA on WhatsApp; nothing is stored on this website. Please double-check your UPI ID: customers' payments will go to it.</p>
 </main>
 <script>
-const $ = id => document.getElementById(id);
+const $ = id => document.getElementById(id), OWNER = "919168581606";
 $("p").addEventListener("input", e => e.target.value = e.target.value.replace(/[^\d+ ]/g, ""));
-let url = "";
-$("make").onclick = () => {
-  const n = $("n").value.trim(), p = $("p").value.replace(/\D/g, "").slice(-10), u = $("u").value.trim();
+$("send").onclick = () => {
+  const n = $("n").value.trim(), p = $("p").value.replace(/\D/g, "").slice(-10), c = $("c").value.trim(), u = $("u").value.trim();
   const m = !n ? "Please type your name." :
             !/^[6-9]\d{9}$/.test(p) ? "Please type a valid 10-digit WhatsApp number." :
+            !c ? "Please type your city or area." :
             u && !/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(u) ? "That UPI ID doesn't look right (it looks like name@bank). Leave it empty if unsure." : "";
   if (m) { $("err").textContent = m; $("err").style.display = "block"; return; }
   $("err").style.display = "none";
-  const q = new URLSearchParams({ p, n }); if (u) q.set("u", u);
-  url = "https://dssatva.com/s/?" + q.toString();
-  $("cn").textContent = n; $("cp").textContent = "📞 " + p.slice(0, 5) + " " + p.slice(5);
-  $("lk").textContent = url;
-  $("qr").innerHTML = "";
-  new QRCode($("qr"), { text: url, width: 440, height: 440, colorDark: "#2f4529", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M });
-  $("share").href = "https://wa.me/?text=" + encodeURIComponent(`🌿 Order homemade SATVA Saheli spices & masalas from me!\nPick your products here and send the order on WhatsApp:\n${url}`);
-  $("test").href = url;
-  $("out").style.display = "block";
-  $("out").scrollIntoView({ behavior: "smooth" });
-};
-$("copy").onclick = async () => {
-  try { await navigator.clipboard.writeText(url); $("copy").textContent = "Copied ✓"; }
-  catch (e) { prompt("Copy your link:", url); }
-};
-$("dl").onclick = () => {                     // QR + name + number on one white picture
-  const src = $("qr").querySelector("canvas"); if (!src) return;
-  const c = document.createElement("canvas"), W = 600, H = 760; c.width = W; c.height = H;
-  const x = c.getContext("2d"); x.fillStyle = "#ffffff"; x.fillRect(0, 0, W, H);
-  x.fillStyle = "#46603f"; x.fillRect(0, 0, W, 110); x.fillStyle = "#d4a63c"; x.fillRect(0, 110, W, 6);
-  x.textAlign = "center"; x.fillStyle = "#ffffff"; x.font = "700 40px Fraunces, serif"; x.fillText("SATVA Saheli", W / 2, 70);
-  x.drawImage(src, 80, 150, 440, 440);
-  x.fillStyle = "#3f5a38"; x.font = "700 30px Fraunces, serif"; x.fillText("Scan to order on WhatsApp", W / 2, 640);
-  x.fillStyle = "#a8460f"; x.font = "700 30px Jost, sans-serif"; x.fillText($("cn").textContent + "  ·  " + $("cp").textContent.replace("📞 ", ""), W / 2, 690);
-  x.fillStyle = "#6d675a"; x.font = "500 22px Jost, sans-serif"; x.fillText("dssatva.com", W / 2, 735);
-  const a = document.createElement("a"); a.download = "SATVA-Saheli-order-QR.png"; a.href = c.toDataURL("image/png"); a.click();
+  const txt = ["🌿 *SATVA Saheli request*", "", `👤 *Name:* ${n}`, `📞 *WhatsApp:* ${p}`, `📍 *City/area:* ${c}`, `💳 *UPI:* ${u || "(none)"}`, "", "I would like to become a SATVA Saheli."].join("\n");
+  location.href = `https://wa.me/${OWNER}?text=${encodeURIComponent(txt)}`;
 };
 </script>
 </body></html>
