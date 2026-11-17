@@ -5708,6 +5708,20 @@ footer#contact .btm .dv{color:#f7eccf}
   .forder-t b{font-size:.95rem}
 }
 
+/* 17 Nov 2026, owner: the Build-your-own-kit card on computers shows the same
+   ring of spices around the potli as the Healthy Grocery Kit hero - the ring
+   only: no "Packed by Satva Sahelis" stamp, no tag. Phones are unchanged (above). */
+@media (min-width:761px){
+  .kitcust .kc-art .kc-d{display:none !important}
+  .kitcust .kc-art .kc-orbit{display:block !important;position:relative;right:auto;top:auto;transform:none;opacity:1;animation:none;
+    width:min(86%,320px);height:auto;aspect-ratio:1;margin:0 auto;z-index:1}
+  .kitcust .kc-orbit .ko-stamp,.kitcust .kc-orbit .ko-tag{display:none !important}
+  .kitcust .kc-orbit img{position:static !important;inset:auto !important;filter:none}
+  .kitcust .kc-orbit .ko-it img{width:100% !important;height:100% !important;object-fit:cover !important}
+  .kitcust .kc-orbit .ko-potli.ko-photo img{display:block;width:100% !important;height:auto !important;object-fit:contain !important}
+  .kitcust .kc-art.kc-disc{overflow:visible}
+}
+
 /* ---- kit-custom-8002.css ---- */
 /* ============================================================
    CUSTOMISE YOUR KIT, :8002 only (15 Oct 2026) - the block at the end

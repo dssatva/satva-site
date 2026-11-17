@@ -25,7 +25,7 @@
      Poha, Bhel, Masala Dosa, Vada Pav, Jeera Bhaat and Overnight Chia
      came out rather than fill a fifth set with weaker pictures. */
   var SETS = [
-    [ ["methi-dal",     "Methi Dal Tadka",   "Methi Seeds"],
+    [ ["fodni-poha",    "Fodnicha Poha",     "Turmeric"],
       ["chole",         "Chole Bhature",     "Garam Masala"],
       ["biryani",       "Sunday Biryani",    "Biryani Masala"],
       ["nimbu-pani",    "Nimbu Pani",        "Himalayan Pink Salt"] ],

@@ -39,8 +39,7 @@
       ["Chaat Masala", "चाट मसाला", "u-chaat-masala.webp"], ["Sambar Masala", "सांबार मसाला", "u-sambar-masala-8002.webp"],
       ["Chatpat / Kanda Lasun Masala", "चटपट / कांदा लसूण मसाला", "u-chatpat-masala.webp"] ] },
     { name: "Seeds", items: [
-      ["Chia Seeds", "चिया बीज", "u-chia-seeds.webp"], ["Flax Seeds", "अलसी", "u-flax-seeds.webp"],
-      ["Methi Seeds", "मेथी दाना", "u-methi-seeds.webp"] ] },
+      ["Chia Seeds", "चिया बीज", "u-chia-seeds.webp"], ["Flax Seeds", "अलसी", "u-flax-seeds.webp"] ] },
     { name: "Healthy essentials", items: [
       ["Himalayan Pink Salt", "गुलाबी नमक", "u-himalayan-pink-salt.webp", [500, 1000]], ["Coconut Sugar", "नारियल शक्कर", "u-coconut-sugar.webp"],
       ["Monk Fruit Sweetener", "मंक फ्रूट", "j-monk-3-powder.webp"] ] }
@@ -64,7 +63,7 @@
      an ivory disc, size chips) in a lighter terracotta, with a strip of
      ingredient photos scrolling along the foot of this block only */
   var STRIP = ["u-turmeric", "u-chilli-powder", "u-garam-masala", "u-cumin-seeds", "u-coriander-seeds", "j-coriander-3-powder",
-               "u-himalayan-pink-salt", "u-chia-seeds", "u-sambar-masala-8002", "u-methi-seeds", "u-mustard-seeds", "u-coconut-sugar", "u-black-pepper"];
+               "u-himalayan-pink-salt", "u-chia-seeds", "u-sambar-masala-8002", "u-mustard-seeds", "u-coconut-sugar", "u-black-pepper"];
   var stripHTML = STRIP.map(function (f) { return '<span><img src="assets/' + f + '.jpg" alt="" loading="lazy"></span>'; }).join("");
   block.innerHTML = '<div class="kc-in">' +
     '<div class="kc-art kc-disc" aria-hidden="true"><div class="kc-d"><img src="assets/kit-potli-ivory.webp" alt="" loading="lazy"></div></div>' +
@@ -321,7 +320,7 @@
    Healthy Grocery Kit hero slide] to here" - the Build-your-own-kit card shows
    a copy of the hero's potli with its ring of ingredients and the "Packed by
    Satva Sahelis" stamp. Phones only (center-8002.css "KIT CARD: HERO POTLI");
-   on computers the card keeps its plain potli. */
+   on computers the ring (only) was added 17 Nov 2026. */
 (function () {
   var src = document.querySelector(".shelf.kit .kitorbit");
   var art = document.querySelector(".kitcust .kc-art");

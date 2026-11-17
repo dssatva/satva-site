@@ -125,11 +125,6 @@
       d:"Whole dhaniya — crush it fresh, or roast it for a masala.",
       make:"Cleaned and graded whole. Nothing ground, nothing polished.",
       img:"assets/p-dhaniya-whole.jpg", tint:"linear-gradient(150deg,#a6b268,#7d8a3c)" },
-    /* moved here from Spices on 20 Sep 2026 */
-    { acc:"#b08b2e", ink:"#7d6118", en:"Methi Seeds", hi:"मेथी दाना", cat:"seeds", glyph:"मे",
-      d:"A bitter edge for pickles, dal and tadka.",
-      make:"Dried, cleaned and graded whole. Bitter on purpose.",
-      img:"assets/p-methi.jpg", tint:"linear-gradient(150deg,#bf9c48,#94781f)" },
 
     /* ---- HEALTHY ESSENTIALS ----
        No oils on this shelf any more, and no khandsari. Salt and two
@@ -629,39 +624,6 @@
       end: { title: "Four seconds in hot ghee",
         text: "That is the entire point of buying it whole.",
         shot: "assets/j-cumin-2-seed.webp" }
-    },
-
-    "Methi Seeds": {
-      hi: "मेथी दाना",
-      intro: { kick: "Field to plate", title: "How methi keeps its bitterness",
-        text: "The only spice we sell where the bitterness is the product. Everything " +
-              "below is about not losing it.",
-        shot: "assets/j-methi-1-plant.webp" },
-      stages: [
-        { when: "Month 3", title: "A clover, not a grass",
-          text: "Trigonella foenum-graecum grows low and bushy with three-part leaves and " +
-                "small pale flowers. The leaf is a vegetable in its own right — this is " +
-                "the same plant as kasuri methi.",
-          short: "Same plant as the leaf you cook as a vegetable.",
-          shot: "assets/j-methi-1-plant.webp",
-          credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Trigonella_foenum_graecum-1-bangalore-India.jpg" target="_blank" rel="noopener">Trigonella foenum-graecum</a>, CC BY-SA 4.0.' },
-        { when: "Harvest", title: "It grows low, and close together",
-          text: "A dense, low crop cut whole at ground level. The pods it carries are slim " +
-                "and easy to miss, ten to twenty seeds in each — left a week too long they " +
-                "split and the crop is on the floor.",
-          short: "Cut whole at ground level, pods and all.",
-          shot: "assets/j-methi-3-crop.webp",
-          credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Trigonella_foenum_graecum-3-xavier_cottage-yercaud-salem-India.jpg" target="_blank" rel="noopener">Trigonella foenum-graecum</a>, CC BY-SA 4.0.' },
-        { when: "Whole", title: "Dried, cleaned, graded",
-          text: "Bitter on purpose. That bitterness is what it is for in a tadka, in a " +
-                "pickle and in sambar — and it is the first thing lost if the seed is " +
-                "over-dried to make it grind easily.",
-          short: "Bitter on purpose. Over-drying kills it.",
-          shot: "assets/j-methi-2-seed.webp" }
-      ],
-      end: { title: "A little goes a long way",
-        text: "Half a teaspoon is a decision. A whole one is a mistake.",
-        shot: "assets/j-methi-2-seed.webp" }
     },
 
     "Black Pepper": {
@@ -1256,7 +1218,6 @@
     "Chana Dal":            "assets/u-chana-dal.webp",
     "Chia Seeds":           "assets/u-chia-seeds.webp",
     "Flax Seeds":           "assets/u-flax-seeds.webp",
-    "Methi Seeds":          "assets/u-methi-seeds.webp",
     "Himalayan Pink Salt":  "assets/u-himalayan-pink-salt.webp",
     "Coconut Sugar":        "assets/u-coconut-sugar.webp",
     "Monk Fruit Sweetener": "assets/j-monk-3-powder.webp"
@@ -1289,7 +1250,6 @@
     "Chana Dal":            "chana-dal",
     "Chia Seeds":           "chia",
     "Flax Seeds":           "javas-chutney",
-    "Methi Seeds":          "methi-dal",
     "Himalayan Pink Salt":  "nimbu-pani",
     "Coconut Sugar":        "kheer",
     "Monk Fruit Sweetener": "shrikhand"
@@ -2629,11 +2589,6 @@
       desc:"Wait for the mustard to actually pop before the onion goes in; everything after that is timing. Peanuts for the crunch, lime at the end, coconut if you have it.",
       uses:"Mustard Seeds" },
 
-    { id:"methi-dal", group:"seed", name:"Methi Dal Tadka", hi:"मेथी डाळ", time:"35 min",
-      icon:POT, tint:"linear-gradient(150deg,#f4dda1,#c68f1e)",
-      desc:"Four or five methi seeds in the tadka — no more. They turn the dal faintly bitter in the way that makes you want the next spoon, and too many ruin it outright.",
-      uses:"Methi Seeds" },
-
     { id:"javas-chutney", group:"seed", name:"Javas Chutney", hi:"जवस चटणी", time:"15 min",
       icon:PAN, tint:"linear-gradient(150deg,#dcc39a,#8e6435)",
       desc:"Flax roasted till it crackles, cooled completely, then ground coarse with garlic, chilli and salt. Keeps a fortnight in a steel dabba. Bhakri, bhaat, or a spoon straight off the plate.",
@@ -2839,7 +2794,7 @@
       ing:[["¾ cup","Satva Toor Dal"],["½ tsp","Satva Turmeric"],["2 cups","mixed vegetables (drumstick, pumpkin, brinjal, okra)"],
            ["10","shallots, or 1 onion in chunks"],["1","tomato, chopped"],["1 tbsp","tamarind paste"],["1 tsp","jaggery"],
            ["2½ tbsp","Satva Sambar Masala"],["1½ tsp","salt"],["2 tbsp","oil or ghee"],["1 tsp","Satva Mustard Seeds"],
-           ["¼ tsp","Satva Methi Seeds"],["2","dry red chillies"],["10","curry leaves"],["a pinch","asafoetida (hing)"],
+           ["¼ tsp","methi seeds"],["2","dry red chillies"],["10","curry leaves"],["a pinch","asafoetida (hing)"],
            ["2 tbsp","coriander leaves"]],
       steps:["Pressure-cook the dal with the turmeric and 2½ cups water for 4 whistles. Mash smooth.",
              "Simmer the vegetables, shallots and tomato in 2 cups water with the salt until just tender, 8-10 minutes. Drumstick first, okra last, so everything keeps its shape.",
@@ -2895,17 +2850,6 @@
              "Let everything cool completely - warm seeds turn to paste.",
              "Grind the flax, chillies, cumin and salt in short pulses until coarse.",
              "Add the garlic and pulse 2-3 more times. It should stay coarse and dry. Keeps a fortnight in an airtight dabba."] },
-
-    "methi-dal": { serves:"4",
-      ing:[["¾ cup","Satva Toor Dal"],["½ tsp","Satva Turmeric"],["1","tomato, chopped"],["1 tsp","salt"],
-           ["2 tbsp","ghee"],["4-5 seeds","Satva Methi Seeds (no more)"],["½ tsp","Satva Mustard Seeds"],
-           ["½ tsp","Satva Cumin Seeds"],["3 cloves","garlic, sliced"],["2","dry red chillies"],["a pinch","asafoetida (hing)"],
-           ["½ tsp","Satva Chilli Powder"],["to finish","coriander leaves and lemon"]],
-      steps:["Pressure-cook the dal with the turmeric, tomato and 2½ cups water for 4 whistles. Whisk, add the salt, loosen with hot water and simmer 5 minutes.",
-             "Heat the ghee and pop the mustard seeds. Add the methi seeds and let them turn reddish-brown - about 10 seconds. Black methi is bitter; start again if it burns.",
-             "Add the cumin, then the garlic until golden, then the red chillies and hing.",
-             "Turn off the heat, stir in the chilli powder, and pour the tadka over the dal. Cover for 2 minutes.",
-             "Finish with coriander and a squeeze of lemon."] },
 
     "nimbu-pani": { serves:"4",
       ing:[["3","lemons"],["4 cups","chilled water"],["½ tsp","Satva Himalayan Pink Salt"],["4 tbsp","sugar or jaggery"],
@@ -3132,7 +3076,7 @@
      is built on a DIFFERENT product we actually pack, so the row reads as four
      reasons to buy four different things. The other eleven recipes stay in
      RECIPES; change FEATURED to change what shows. */
-  var FEATURED = ["fodni-poha", "methi-dal", "bharli-vangi", "jeera-bhaat"]; /* 20 Oct 2026: quinoa removed */
+  var FEATURED = ["fodni-poha", "varan-bhaat", "bharli-vangi", "jeera-bhaat"]; /* 20 Oct 2026: quinoa removed */
   /* A page may choose its own four and their photographs
      (window.SATVA_FEATURED / window.SATVA_RECIPE_IMG, set before this
      script, e.g. ports/8002). Without them nothing changes. */
