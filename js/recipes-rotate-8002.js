@@ -28,8 +28,8 @@
     [ ["fodni-poha",    "Fodnicha Poha",     "Turmeric"],
       ["chole",         "Chole Bhature",     "Garam Masala"],
       ["biryani",       "Sunday Biryani",    "Biryani Masala"],
-      ["nimbu-pani",    "Nimbu Pani",        "Himalayan Pink Salt"] ],
-    [ ["idli-sambar",   "Idli Sambar",       "Sambar Masala"],
+      ["sambar",        "Home-style Sambar", "Sambar Masala"] ],
+    [ ["nimbu-pani",    "Nimbu Pani",        "Himalayan Pink Salt"],
       ["varan-bhaat",   "Varan Bhaat",       "Turmeric"],
       ["rassa",         "Aitwarcha Rassa",   "Garam Masala"],
       ["haldi-doodh",   "Haldi Doodh",       "Turmeric"] ],
@@ -50,7 +50,7 @@
   var grid = document.getElementById("recipes-grid");
   if (!grid) return;
 
-  function src(id) { return "assets/rec-" + id + ".webp"; }
+  function src(id) { return "assets/rec-" + id + ".webp" + (id === "sambar" ? "?v=20261118c" : ""); }
 
   // animate: false for the first draw, which sits still until there is a
   // second set to bring in; every later set gets the staggered entrance
