@@ -1940,3 +1940,11 @@ a.kk-enq{display:inline-flex;align-items:center;justify-content:center}
   #pgrid .kitcust .kc-copy{flex:0 1 auto;width:min(440px,52%);padding:14px 0 10px;align-self:center}
   #pgrid .kitcust .kc-d2{max-width:none}
 }
+/* 20 Nov 2026, owner: the "Not ordered yet? Place it now" tag sits ON the top edge of the kit box,
+   between the cream page and the green box, a little above the line - so the box no longer clips it.
+   The rounded corners now come from the parts inside (kc-in on top, the photo strip at the foot). */
+.kitcust{overflow:visible}
+.kitcust .kc-in{border-radius:22px 22px 0 0}
+.kitcust .kc-strip{border-radius:0 0 22px 22px}
+.kitcust .otag-in{top:-17px;right:28px}
+@media (max-width:760px){.kitcust .kc-row{justify-content:center;width:100%}}
