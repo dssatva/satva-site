@@ -50,6 +50,20 @@ textarea{min-height:72px;resize:vertical}
 header .free{display:inline-block;margin-top:10px;background:var(--gold);color:#2c2a24;font-weight:700;font-size:15px;border-radius:20px;padding:6px 14px}
 .tot i{display:block;font-style:normal;font-size:12.5px;color:var(--g);font-weight:600}
 .note{font-size:13.5px;color:var(--mut);margin-top:14px;line-height:1.45}
+/* 19 Nov 2026, owner: "instead of the long list, side by side" - then "too congested": shop tiles, picture on top, three across
+   on wider screens; the delivery form stays one narrow column. Phones keep the single list. */
+@media (min-width:760px){
+  main{max-width:1000px}
+  #list{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  #list .p{margin-bottom:0;flex-direction:column;align-items:stretch;gap:0;padding:0;overflow:hidden;border-radius:20px}
+  #list .p img{width:100%;height:170px;border-radius:0}
+  #list .p .b{padding:16px 18px 18px}
+  #list .p h3{font-size:19px}
+  #list .sz{gap:8px;margin-top:10px}
+  #list .q{margin-top:14px}
+  .dform{max-width:640px;margin:0 auto}
+  .bar .in{max-width:1000px}
+}
 </style></head><body>
 <header>
   <img src="logo.png" alt="SATVA Saheli">
@@ -61,6 +75,7 @@ header .free{display:inline-block;margin-top:10px;background:var(--gold);color:#
   <h2>1. Choose products</h2>
   <div id="list"></div>
 
+  <div class="dform">
   <h2>2. Delivery details</h2>
   <label>Your name <i>*</i></label><input id="name" autocomplete="name">
   <label>Mobile number <i>*</i></label><input id="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit number">
@@ -73,6 +88,7 @@ header .free{display:inline-block;margin-top:10px;background:var(--gold);color:#
   <label>Anything else? (optional)</label><input id="msg" placeholder="Preferred delivery time, etc.">
   <p class="err" id="err"></p>
   <p class="note">Tapping <b>Send order</b> opens WhatsApp with your order typed in – just press send. We will confirm the order and delivery on WhatsApp.</p>
+  </div>
 </main>
 <div class="bar"><div class="in">
   <div class="tot"><span id="cnt">No items yet</span><b id="sum">₹0</b><i id="dl">Free delivery above ₹499</i></div>
