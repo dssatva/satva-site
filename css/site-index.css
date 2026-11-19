@@ -6028,3 +6028,17 @@ html.kc-on{overflow:hidden}
 #pgrid .pcard .cart-add{background:#55714e;}
 #pgrid .pcard .cart-add:hover{background:#465e40;}
 
+
+/* 19 Nov 2026, owner: option 2 of footer-invite-variations.html. Computers: logo | words | QR card
+   in one centred row (thin divider after the logo), so the cream band no longer has wide empty sides.
+   Phones and tablets (1000px and under) keep the stacked layout above. */
+@media (min-width:1001px){
+  #contact .fsplit-top .wrap{display:grid;grid-template-columns:auto minmax(0,500px) auto;align-items:center;justify-content:center;column-gap:clamp(32px,4vw,56px);text-align:left}
+  #contact .fsplit-top .logo{width:clamp(150px,13vw,180px);margin:0}
+  #contact .fsplit-top .fmid{border-left:2px solid #e3cfb7;padding-left:clamp(28px,3.5vw,48px)}
+  #contact .fsplit-top h2{margin:0 0 12px;max-width:none;text-align:left}
+  #contact .fsplit-top p{margin:0;max-width:none}
+  #contact .fsplit-top .fphone{margin-top:20px}
+  #contact .fsplit-top .forder{position:static;transform:none;width:230px;margin:0}
+  #contact .fsplit-top .forder img{width:170px;height:170px;margin:0 auto 10px}
+}
