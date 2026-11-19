@@ -8,7 +8,7 @@
    panel; the card also gets a "See the chilli varieties" line so the
    click is discoverable. Escape, the close button or the backdrop
    closes it. Styles: "CHILLI VARIETIES" in css/center-8002.css.
-   Photos: Teja and 341 are the owner's own; Byadgi (Rajaramraok, CC BY-SA 4.0)
+   Photos: Teja and Satva Special Mirchi are the owner's own; Byadgi (Rajaramraok, CC BY-SA 4.0)
    and Kashmiri (joegoauk73, CC BY-SA 2.0) are credited on credits.html.
    ============================================================= */
 (function () {
@@ -20,8 +20,8 @@
       d: "Long, thin and sharp. A little gives real heat, so it is the chilli for food that should be spicy.",
       uses: "Andhra chicken curry, mutton and fish curry, pickles, misal kat, vada pav garlic chutney" },
     /* 20 Oct 2026: 341 added, owner's own photo (WhatsApp Image 12.56.02 PM, feet cropped out) */
-    { name: "341", tag: "Hot \u00b7 rich red", img: "assets/cv-341.webp",
-      alt: "A heap of dark red 341 chillies",
+    { name: "Satva Special Mirchi", tag: "Hot \u00b7 rich red", img: "assets/cv-341.webp",
+      alt: "A heap of dark red Satva Special Mirchi chillies",
       d: "Heat and colour together. A thick-skinned, dark crimson chilli that makes a powder both spicy and red.",
       uses: "Everyday chicken and egg curry, kolhapuri rassa, misal, usal, pickles" },
     { name: "Byadgi", tag: "Mild · deep red", img: "assets/cv-byadgi.webp?v=20261103",

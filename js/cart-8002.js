@@ -14,7 +14,7 @@
   var KEY = "satva-cart-v1";
   var SIZES = [100, 200];       // 19 Nov 2026: 500 g only for Pink Salt
   var SIZE_OF = { "Himalayan Pink Salt": [500, 1000] };       // same as the kit picker
-  var VARIETY = { "Chilli Powder": ["Teja", "341", "Byadgi", "Kashmiri"] };
+  var VARIETY = { "Chilli Powder": ["Teja", "Satva Special Mirchi", "Byadgi", "Kashmiri"] };
 
   var cart = [];
   try { cart = JSON.parse(localStorage.getItem(KEY) || "[]") || []; } catch (e) { cart = []; }

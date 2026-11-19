@@ -30,7 +30,7 @@
        became three, the same three as js/chilli-varieties-8002.js. */
     { name: "Chilli powder \u00b7 pick your chilli", items: [
       ["Teja Chilli Powder", "Hot \u00b7 bright red", "cv-teja.webp"],
-      ["341 Chilli Powder", "Hot \u00b7 rich red", "cv-341.webp"],
+      ["Satva Special Mirchi", "Hot \u00b7 rich red", "cv-341.webp"],
       ["Byadgi Chilli Powder", "Mild \u00b7 deep red", "cv-byadgi.webp"],
       ["Kashmiri Chilli Powder", "Very mild \u00b7 brightest red", "cv-kashmiri.webp"] ] },
     { name: "Home-made masalas", items: [
