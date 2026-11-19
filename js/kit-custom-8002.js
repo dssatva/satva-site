@@ -19,13 +19,12 @@
   if (!grid) return;
 
   var WA = "919689888822", WA_SHOW = "+91-9689888822";
-  var SIZES = [100, 200, 500];
+  var SIZES = [100, 200];   /* 19 Nov 2026, owner: 500 g only for Pink Salt (its own sizes below) */
   var GROUPS = [
     { name: "Spices", items: [
       ["Turmeric", "हल्दी", "u-turmeric.webp"],
-      ["Coriander Powder", "धनिया पावडर", "j-coriander-3-powder.webp"], ["Coriander Seeds", "धनिया", "u-coriander-seeds.webp"],
-      ["Cumin Seeds", "जीरा", "u-cumin-seeds.webp"], ["Mustard Seeds", "राई", "u-mustard-seeds.webp"],
-      ["Black Pepper", "काली मिर्च", "u-black-pepper.webp"] ] },
+      ["Coriander Seeds", "धनिया", "u-coriander-seeds.webp"],
+      ["Cumin Seeds", "जीरा", "u-cumin-seeds.webp"], ["Mustard Seeds", "राई", "u-mustard-seeds.webp"] ] },
     /* 20 Oct 2026, owner: "even in the customizing kit, add the varieties of
        chilli so that they can select and place the order" - one Chilli Powder
        became three, the same three as js/chilli-varieties-8002.js. */
@@ -35,7 +34,7 @@
       ["Byadgi Chilli Powder", "Mild \u00b7 deep red", "cv-byadgi.webp"],
       ["Kashmiri Chilli Powder", "Very mild \u00b7 brightest red", "cv-kashmiri.webp"] ] },
     { name: "Home-made masalas", items: [
-      ["Garam Masala", "गरम मसाला", "u-garam-masala.webp"], ["Biryani Masala", "बिरयानी मसाला", "u-biryani-masala.webp"],
+      ["Garam Masala", "गरम मसाला", "u-garam-masala.webp"], 
       ["Chaat Masala", "चाट मसाला", "u-chaat-masala.webp"], ["Sambar Masala", "सांबार मसाला", "u-sambar-masala-8002.webp"],
       ["Chatpat / Kanda Lasun Masala", "चटपट / कांदा लसूण मसाला", "u-chatpat-masala.webp"] ] },
     { name: "Seeds", items: [
@@ -62,15 +61,15 @@
   /* 16 Oct 2026: option 13 of kit-custom-variations.html (terracotta, potli on
      an ivory disc, size chips) in a lighter terracotta, with a strip of
      ingredient photos scrolling along the foot of this block only */
-  var STRIP = ["u-turmeric", "u-chilli-powder", "u-garam-masala", "u-cumin-seeds", "u-coriander-seeds", "j-coriander-3-powder",
-               "u-himalayan-pink-salt", "u-chia-seeds", "u-sambar-masala-8002", "u-mustard-seeds", "u-coconut-sugar", "u-black-pepper"];
+  var STRIP = ["u-turmeric", "u-chilli-powder", "u-garam-masala", "u-cumin-seeds", "u-coriander-seeds",
+               "u-himalayan-pink-salt", "u-chia-seeds", "u-sambar-masala-8002", "u-mustard-seeds", "u-coconut-sugar"];
   var stripHTML = STRIP.map(function (f) { return '<span><img src="assets/' + f + '.jpg" alt="" loading="lazy"></span>'; }).join("");
   block.innerHTML = '<div class="kc-in">' +
     '<div class="kc-art kc-disc" aria-hidden="true"><div class="kc-d"><img src="assets/kit-potli-ivory.webp" alt="" loading="lazy"></div></div>' +
     '<div class="kc-copy"><p class="kc-kick">Healthy Grocery Kit &middot; made to order</p>' +
       '<h3 class="kc-h">Build your own kit</h3>' +
       '<p class="kc-d2">Pick only the masalas and staples your kitchen uses, in the size you need. Our Sahelis pack it fresh, just for you.</p>' +
-      '<div class="kc-sz"><span>100 g</span><span>200 g</span><span>500 g</span></div>' +
+      '<div class="kc-sz"><span>100 g</span><span>200 g</span></div>' +
       '<button type="button" class="btn-gold kc-btn">Customise your kit <span aria-hidden="true">&rarr;</span></button>' +
       '<p class="kc-count" aria-live="polite"></p></div></div>' +
     '<div class="kc-strip" aria-hidden="true"><div class="kc-track">' + stripHTML + stripHTML + '</div></div>';

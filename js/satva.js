@@ -198,6 +198,16 @@
     PRODUCTS = PRODUCTS.filter(function (p) { return HIDE.indexOf(p.cat) < 0; });
   }
 
+  /* 19 Nov 2026, owner: "I'm yet to get these products for now, so hide them
+     so customers can't place orders" - Coriander Powder, Black Pepper and
+     Biryani Masala are held back until stock arrives. To bring one back,
+     delete its name from this list (its entry above and its journey data
+     are untouched). Named in HIDDEN too, so a recipe that calls for one
+     reads it as a plain ingredient rather than something we sell. */
+  var HELD_BACK = ["Coriander Powder", "Black Pepper", "Biryani Masala"];
+  HELD_BACK.forEach(function (n) { HIDDEN.push(n); });
+  PRODUCTS = PRODUCTS.filter(function (p) { return HELD_BACK.indexOf(p.en) < 0; });
+
   /* Not a category - the dropdown's "see the lot" entry, kept out of GROUPS so
      that array stays exactly the four shelves the owner asked for. */
   var ALL = { id:"all", label:"Everything", cats:null };
