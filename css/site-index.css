@@ -6108,3 +6108,18 @@ a.kk-enq{display:inline-flex;align-items:center;justify-content:center}
 .kitcust .kc-strip{border-radius:0 0 22px 22px}
 .kitcust .otag-in{top:-17px;right:28px}
 @media (max-width:760px){.kitcust .kc-row{justify-content:center;width:100%}}
+/* 20 Nov 2026, owner: the kit box sits again in the two free columns beside the last cards.
+   When the box is that narrow (container query on .kitcust) the picture, words and buttons are
+   sized down to fit, the words start below the tag, and the two buttons stack equal width. */
+@container (max-width:680px){
+  #pgrid .kitcust .kc-in{padding:0 14px;gap:12px}
+  #pgrid .kitcust .kc-art{width:44%}
+  #pgrid .kitcust .kc-copy{width:auto;flex:1 1 0;min-width:0;padding:44px 0 10px}
+  #pgrid .kitcust .kc-kick{font-size:9px;letter-spacing:.12em}
+  #pgrid .kitcust .kc-h{font-size:24px;margin:5px 0}
+  #pgrid .kitcust .kc-d2{font-size:12.5px;line-height:1.4}
+  #pgrid .kitcust .kc-row{flex-direction:column;align-items:stretch;gap:8px}
+  #pgrid .kitcust .kc-btn,#pgrid .kitcust .kc-enq{width:100%;justify-content:center;text-align:center;white-space:nowrap}
+  #pgrid .kitcust .kc-btn{padding:0 12px;font-size:12.5px}
+  #pgrid .kitcust .otag-in{font-size:9.5px;padding:7px 12px 7px 18px;right:20px}
+}

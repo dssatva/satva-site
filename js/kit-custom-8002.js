@@ -112,7 +112,9 @@
     var span = used ? cols - used : cols, alone = !used;
     /* 20 Nov 2026, owner: "align it neatly" - with only one or two columns left in the last row
        the box was squeezed to a sliver (tag cut off, buttons crammed), so it takes the whole row instead */
-    if (cols >= 3 && span < 3) { span = cols; alone = true; }
+    /* 20 Nov 2026, owner: "make this fit in the previous place" - two free columns beside the last cards
+       are used again (the box fits them); only a single free column is too thin, so then it takes the row */
+    if (cols >= 3 && span < 2) { span = cols; alone = true; }
     block.style.gridColumn = "span " + span;
     /* 24 Oct 2026: alone in its row there is no card to take its height from,
        so it sizes itself (kit-custom-8002.css, .kc-alone) */
