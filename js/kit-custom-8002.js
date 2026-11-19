@@ -73,13 +73,36 @@
       '<button type="button" class="btn-gold kc-btn">Customise your kit <span aria-hidden="true">&rarr;</span></button>' +
       '<p class="kc-count" aria-live="polite"></p></div></div>' +
     '<div class="kc-strip" aria-hidden="true"><div class="kc-track">' + stripHTML + stripHTML + '</div></div>';
-  block.querySelector(".kc-btn").addEventListener("click", function (e) { picks = {}; packs = {}; openPicker(e); });
+  /* 19 Nov 2026, owner: the three Customise-your-kit links (hero, Build your own kit,
+     Inside every kit) share ONE list - nothing is cleared on open. Items already added to
+     the cart as kit items show ticked; picks not yet added stay ticked too (dirty). */
+  var dirty = false;
+  function syncFromCart() {
+    if (dirty || !window.satvaCart || !window.satvaCart.kitItems) return;
+    picks = {}; packs = {};
+    window.satvaCart.kitItems().forEach(function (it) { picks[it.name] = it.g; packs[it.name] = it.q || 1; });
+  }
+  block.querySelector(".kc-btn").addEventListener("click", function (e) { syncFromCart(); openPicker(e); });
+  /* 19 Nov 2026, owner: option 6 of order-badge-variations.html - the "Not ordered yet? Place it now"
+     hanging tag on this box (not in the hero). Tapping it opens the same picker. */
+  var otag = document.createElement("button");
+  otag.type = "button"; otag.className = "otag otag-in"; otag.textContent = "Not ordered yet? Place it now";
+  otag.addEventListener("click", function (e) { syncFromCart(); openPicker(e); });
+  block.appendChild(otag);
+  /* 19 Nov 2026, owner: "Enquire for prices" button beside Customise your kit (not in the hero).
+     Opens the name + number form below (window.satvaEnquire). */
+  var kcb = block.querySelector(".kc-btn");
+  var kcRow = document.createElement("div"); kcRow.className = "kc-row";
+  kcb.parentNode.insertBefore(kcRow, kcb); kcRow.appendChild(kcb);
+  var enqBtn = document.createElement("button");
+  enqBtn.type = "button"; enqBtn.className = "kc-enq"; enqBtn.setAttribute("data-enquire", ""); enqBtn.textContent = "Enquire for prices";
+  kcRow.appendChild(enqBtn);
   /* 21 Oct 2026, owner: the "Customise your kit" button at the foot of the
      kit box (#kit) opens this same picker, starting empty like the one above. */
   [].forEach.call(document.querySelectorAll("[data-kitcustom]"), function (b) {
     /* 27 Oct 2026: the hero kit slide's WhatsApp link opens the picker too;
        preventDefault keeps it from also opening WhatsApp. */
-    b.addEventListener("click", function (e) { e.preventDefault(); picks = {}; packs = {}; openPicker(e); });
+    b.addEventListener("click", function (e) { e.preventDefault(); syncFromCart(); openPicker(e); });
   });
 
   /* span the columns left over in the last row (all of them if it is full) */
@@ -181,7 +204,7 @@
     [].forEach.call(view.querySelectorAll(".kc-opt"), function (b) {
       b.addEventListener("click", function () {
         var n = b.getAttribute("data-n"), g = +b.getAttribute("data-g");
-        if (picks[n] === g) delete picks[n]; else picks[n] = g;
+        dirty = true; if (picks[n] === g) delete picks[n]; else picks[n] = g;
         save();
         var li = b.closest(".kc-item");
         li.classList.toggle("is-on", !!picks[n]);
@@ -194,10 +217,12 @@
     view.querySelector(".kc-done").addEventListener("click", function () {
       if (!window.satvaCart) { renderSummary(); return; }
       var c = chosen();
-      c.forEach(function (x) { window.satvaCart.add({ name: x.name, g: x.g, q: 1, img: "assets/" + x.img, kit: true }); });
-      picks = {}; packs = {};
+      /* replaces the kit lines in the cart with this list, so a second visit never doubles them */
+      window.satvaCart.setKit(c.map(function (x) { return { name: x.name, g: x.g, q: packs[x.name] || 1, img: "assets/" + x.img }; }));
+      dirty = false;
       close();
-      window.satvaCart.toast(c.length + (c.length === 1 ? " kit item" : " kit items") + " added to cart");
+      updateCount();
+      window.satvaCart.toast(c.length + (c.length === 1 ? " kit item" : " kit items") + " in your cart");
     });
   }
   function tally() {
@@ -241,7 +266,7 @@
       b.addEventListener("click", function () {
         var nm = b.getAttribute("data-n"), dd = +b.getAttribute("data-d");
         var v = (packs[nm] || 1) + dd;
-        if (v < 1) { delete picks[nm]; delete packs[nm]; } else packs[nm] = Math.min(v, 50);
+        dirty = true; if (v < 1) { delete picks[nm]; delete packs[nm]; } else packs[nm] = Math.min(v, 50);
         var keep = view.scrollTop; renderSummary(); view.scrollTop = keep;
         var f = view.querySelector('.kc-pk button[data-n="' + nm + '"][data-d="' + dd + '"]') || view.querySelector(".kc-edit"); if (f) f.focus();
       });
@@ -296,6 +321,53 @@
     askClose();
   });
   window.satvaAskNumber = askNumber;
+
+  /* ---------- Enquire for prices: name + number, then WhatsApp to DS Satva ----------
+     19 Nov 2026, owner: "they can give their name and number and we get a notification and the
+     price list should be ready with the message and a link to place the order". The enquiry
+     arrives as a normal WhatsApp message on 96898 88822. It carries a one-tap reply link
+     (wa.me/<customer>) whose text holds the price list picture and the order link, so the owner
+     only checks and presses send - nothing goes to the customer without the owner. */
+  var enq = document.createElement("div");
+  enq.className = "kcask"; enq.hidden = true;
+  enq.setAttribute("role", "dialog"); enq.setAttribute("aria-modal", "true"); enq.setAttribute("aria-labelledby", "kcenq-t");
+  enq.innerHTML = '<form class="kcask-card" novalidate><button type="button" class="kc-x" aria-label="Close">&times;</button>' +
+    '<p class="kc-kick">Price list</p><h2 id="kcenq-t">Enquire for prices</h2>' +
+    '<p class="kcask-d">Tell us your name and number. We will send you the price list on WhatsApp, with a link to place your order.</p>' +
+    '<label class="kcask-f kcenq-n"><input type="text" autocomplete="name" maxlength="60" placeholder="Your name" required></label>' +
+    '<label class="kcask-f"><span>+91</span><input class="kcenq-t" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="12" placeholder="10-digit mobile number" required></label>' +
+    '<p class="kcask-err" aria-live="polite"></p>' +
+    '<button type="submit" class="btn-gold kcask-go">Send on WhatsApp</button></form>';
+  document.body.appendChild(enq);
+  var enqName = enq.querySelector(".kcenq-n input"), enqNum = enq.querySelector(".kcenq-t"), enqErr = enq.querySelector(".kcask-err"), enqLast = null;
+  function enqOpen(e) {
+    enqLast = (e && e.currentTarget) || document.activeElement;
+    var sn = "", sno = ""; try { sn = localStorage.getItem("satva-wa-name") || ""; sno = localStorage.getItem("satva-wa-no") || ""; } catch (e1) {}
+    enqName.value = sn; enqNum.value = sno; enqErr.textContent = "";
+    enq.hidden = false; document.documentElement.classList.add("kc-on");
+    setTimeout(function () { (enqName.value ? enqNum : enqName).focus(); }, 30);
+  }
+  function enqClose() { enq.hidden = true; if (dlg.hidden) document.documentElement.classList.remove("kc-on"); if (enqLast && enqLast.focus) enqLast.focus(); }
+  enq.querySelector(".kc-x").addEventListener("click", enqClose);
+  enq.addEventListener("click", function (e) { if (e.target === enq) enqClose(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !enq.hidden) { e.stopImmediatePropagation(); enqClose(); } }, true);
+  enq.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nm = enqName.value.replace(/\s+/g, " ").trim();
+    var d = enqNum.value.replace(/\D/g, "").replace(/^(91|0)(?=\d{10}$)/, "");
+    if (!nm) { enqErr.textContent = "Please tell us your name."; enqName.focus(); return; }
+    if (!/^[6-9]\d{9}$/.test(d)) { enqErr.textContent = "Please enter a valid 10-digit mobile number."; enqNum.focus(); return; }
+    try { localStorage.setItem("satva-wa-no", d); localStorage.setItem("satva-wa-name", nm); } catch (e2) {}
+    var reply = "Namaste " + nm + "! Thank you for asking about SATVA.\n\nOur price list: https://dssatva.com/price-list.jpg\n\nPlace your order here: https://dssatva.com/order/\n\nDS SATVA - Dil Se Pure.";
+    var text = "Namaskar! Please send me the SATVA price list.\n\nName: " + nm + "\nMy WhatsApp number: +91 " + d +
+               "\n\n(DS SATVA team - tap to reply with the price list: https://wa.me/91" + d + "?text=" + encodeURIComponent(reply) + " )";
+    window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+    enqClose();
+  });
+  window.satvaEnquire = enqOpen;
+  [].forEach.call(document.querySelectorAll("[data-enquire]"), function (b) {
+    b.addEventListener("click", function (e) { e.preventDefault(); enqOpen(e); });
+  });
   [].forEach.call(document.querySelectorAll("[data-kitbuy]"), function (a) {
     a.addEventListener("click", function (e) {
       e.preventDefault();

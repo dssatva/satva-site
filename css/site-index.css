@@ -6039,6 +6039,29 @@ html.kc-on{overflow:hidden}
   #contact .fsplit-top h2{margin:0 0 12px;max-width:none;text-align:left}
   #contact .fsplit-top p{margin:0;max-width:none}
   #contact .fsplit-top .fphone{margin-top:20px}
-  #contact .fsplit-top .forder{position:static;transform:none;width:230px;margin:0}
+  #contact .fsplit-top .forder{position:relative;top:auto;right:auto;transform:none;width:230px;margin:0}
   #contact .fsplit-top .forder img{width:170px;height:170px;margin:0 auto 10px}
 }
+
+/* 19 Nov 2026, owner: option 6 of order-badge-variations.html - terracotta hanging tag,
+   "Not ordered yet? Place it now", on the Build-your-own-kit box and the footer QR card.
+   Not in the hero. */
+.otag{position:absolute;z-index:3;display:inline-block;border:0;cursor:pointer;text-decoration:none;white-space:nowrap;
+  padding:9px 18px 9px 22px;background:#b9532f;color:#fff6e8;font:600 11.5px/1 "Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,10px 50%);filter:drop-shadow(0 6px 8px rgba(0,0,0,.3))}
+.otag:hover{background:#a2441f}
+.otag:focus-visible{outline:2px solid #1f3a26;outline-offset:2px}
+.forder .otag{top:-14px;left:50%;transform:translateX(-50%)}
+.forder{padding-top:30px}
+.kitcust{position:relative}
+.kitcust .otag-in{top:14px;right:0;left:auto;padding:9px 16px 9px 22px;font-size:10.5px;letter-spacing:.1em}
+@media (max-width:1000px){.forder{position:relative;top:auto;right:auto;margin-top:30px}}
+
+/* 19 Nov 2026, owner: "Enquire for prices" button (name + number, then WhatsApp). Kit box and footer only - not the hero. */
+.kc-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kc-enq{cursor:pointer;background:transparent;border:2px solid #f3d58a;color:#fff6e4;font:600 13px/1 "Jost",sans-serif;padding:9px 18px;border-radius:999px}
+.kc-enq:hover{background:rgba(243,213,138,.16)}
+.fenq{display:inline-block;margin:20px 0 0 12px;padding:10px 20px;border:2px solid #55714e;border-radius:999px;color:#1f3a26;font:600 15px/1.2 "Jost",sans-serif;text-decoration:none;background:transparent}
+.fenq:hover{background:#55714e;color:#fff}
+.kc-enq:focus-visible,.fenq:focus-visible{outline:2px solid #1f3a26;outline-offset:2px}
+@media (max-width:1000px){.fenq{margin:12px 0 0}}

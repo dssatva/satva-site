@@ -179,5 +179,15 @@
   }
   paintFab();
   window.satvaOpenCart = openCart;
-  window.satvaCart = { add: addItem, open: openCart, toast: toast };
+  /* 19 Nov 2026, owner: all three Customise-your-kit links share one list.
+     kitItems() hands the kit lines now in the cart to the picker so it opens
+     with them ticked; setKit() puts the picker's list back as THE kit lines
+     (replacing, not adding to, the old ones - so nothing doubles). */
+  function kitItems() { return cart.filter(function (x) { return x.kit; }).map(function (x) { return { name: x.name, g: x.g, q: x.q }; }); }
+  function setKit(list) {
+    cart = cart.filter(function (x) { return !x.kit; });
+    list.forEach(function (it) { cart.push({ name: it.name, v: "", g: it.g, q: it.q || 1, img: it.img, kit: true }); });
+    save(); bump();
+  }
+  window.satvaCart = { add: addItem, open: openCart, toast: toast, kitItems: kitItems, setKit: setKit };
 })();
