@@ -50,19 +50,21 @@ textarea{min-height:72px;resize:vertical}
 header .free{display:inline-block;margin-top:10px;background:var(--gold);color:#2c2a24;font-weight:700;font-size:15px;border-radius:20px;padding:6px 14px}
 .tot i{display:block;font-style:normal;font-size:12.5px;color:var(--g);font-weight:600}
 .note{font-size:13.5px;color:var(--mut);margin-top:14px;line-height:1.45}
-/* 19 Nov 2026, owner: "instead of the long list, side by side" - then "too congested": shop tiles, picture on top, three across
-   on wider screens; the delivery form stays one narrow column. Phones keep the single list. */
+/* 19 Nov 2026, owner: "instead of the long list, side by side" - then "too congested" - then version 3:
+   two columns, each product one row: picture left, name and sizes in the middle, quantity on the right.
+   The delivery form stays one narrow column. Phones keep the single list. */
 @media (min-width:760px){
-  main{max-width:1000px}
-  #list{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  #list .p{margin-bottom:0;flex-direction:column;align-items:stretch;gap:0;padding:0;overflow:hidden;border-radius:20px}
-  #list .p img{width:100%;height:170px;border-radius:0}
-  #list .p .b{padding:16px 18px 18px}
-  #list .p h3{font-size:19px}
-  #list .sz{gap:8px;margin-top:10px}
-  #list .q{margin-top:14px}
+  main{max-width:980px}
+  #list{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
+  #list .p{margin-bottom:0;padding:16px 18px;gap:16px;border-radius:18px}
+  #list .p img{width:92px;height:92px;border-radius:14px}
+  #list .p .b{display:grid;grid-template-columns:1fr auto;grid-template-areas:"n n" "s q";gap:10px 12px;align-items:center}
+  #list .p h3{grid-area:n;font-size:19px}
+  #list .p .sz{grid-area:s;margin-top:0}
+  #list .p .q{grid-area:q;margin-top:0}
+  #list .p .ask{grid-column:1 / -1}
   .dform{max-width:640px;margin:0 auto}
-  .bar .in{max-width:1000px}
+  .bar .in{max-width:980px}
 }
 </style></head><body>
 <header>
