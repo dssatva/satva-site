@@ -1905,3 +1905,38 @@ footer#contact .btm .dv{color:#f7eccf}
 .fenq:hover{background:#55714e;color:#fff}
 .kc-enq:focus-visible,.fenq:focus-visible{outline:2px solid #1f3a26;outline-offset:2px}
 @media (max-width:1000px){.fenq{margin:12px 0 0}}
+
+/* 19 Nov 2026 (later), owner: "alignment is not proper" + the green Enquire for prices button beside
+   every Customise your kit (hero left out). Same height as its neighbour, centred on one line;
+   the footer tag now fits inside its card. */
+.kk-btns{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.kk-enq{cursor:pointer;border:0;white-space:nowrap;height:44px;padding:0 20px;border-radius:999px;background:#55714e;color:#fff;font:600 14px/1 "Jost",sans-serif;letter-spacing:.02em}
+.kk-enq:hover{background:#465e40}
+.kk-cust{height:44px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+/* kit box (green): same height as the gold button; cream so it shows on the green */
+.kc-row{align-items:center}
+.kitcust .kc-btn{height:44px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center}
+.kc-enq{height:44px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;background:#fdf4f2;border:0;color:#3f5a38;font:600 13px/1 "Jost",sans-serif}
+.kc-enq:hover{background:#fff}
+/* footer: same height as the phone button, one line */
+#contact .fsplit-top .fmid .fphone,#contact .fsplit-top .fmid .fenq{vertical-align:middle}
+.fenq{height:48px;padding:0 22px;display:inline-flex;align-items:center;background:#55714e;color:#fff;border:0;font:600 15px/1 "Jost",sans-serif}
+.fenq:hover{background:#465e40;color:#fff}
+.fphone{height:48px}
+/* footer tag fits the card */
+.forder{width:250px}
+.forder .otag{font-size:10px;letter-spacing:.08em;padding:8px 12px 8px 18px;max-width:calc(100% + 24px)}
+@media (min-width:1001px){#contact .fsplit-top .forder{width:250px}}
+@media (max-width:640px){.kk-btns{width:100%}.kk-enq,.kk-cust{flex:1 1 100%}}
+
+/* 20 Nov 2026, owner: Enquire for prices opens the order page (prices are shown there); links, not buttons. */
+a.kk-enq,a.kc-enq{text-decoration:none}
+a.kk-enq{display:inline-flex;align-items:center;justify-content:center}
+/* 20 Nov 2026: kit box on computers - potli circle and words centred together with an even gap
+   (same as the first alignment fix of 19 Nov). Phones untouched. */
+@media (min-width:900px){
+  #pgrid .kitcust .kc-in{justify-content:center;align-items:center;gap:clamp(24px,3vw,56px);padding:0 clamp(16px,3vw,48px)}
+  #pgrid .kitcust .kc-art{flex:0 0 auto;width:clamp(260px,34%,430px);align-self:stretch;display:flex;align-items:center;justify-content:center}
+  #pgrid .kitcust .kc-copy{flex:0 1 auto;width:min(440px,52%);padding:14px 0 10px;align-self:center}
+  #pgrid .kitcust .kc-d2{max-width:none}
+}
