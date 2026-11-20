@@ -84,7 +84,7 @@ $("send").onclick = () => {
             u && !/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(u) ? "That UPI ID doesn't look right (it looks like name@bank). Leave it empty if unsure." : "";
   if (m) { $("err").textContent = m; $("err").style.display = "block"; return; }
   $("err").style.display = "none";
-  const txt = ["🌿 *SATVA Saheli request*", "", `👤 *Name:* ${n}`, `📞 *WhatsApp:* +91 ${p}`, `💬 *Reply to her:* https://wa.me/91${p}`, `☎️ *Call:* +91${p}`, `🏠 *Address:* ${h}, ${a}${l ? ", near " + l : ""}`, `📍 *City:* ${c} – ${z}, ${st}`, `💳 *UPI:* ${u || "(none)"}`, "", "I would like to become a SATVA Saheli. Please send my approval on WhatsApp."].join("\n");
+  const txt = ["🌿 *SATVA Saheli request*", "", `👤 *Name:* ${n}`, `📞 *WhatsApp:* +91 ${p}`, `💬 *Reply to her:* https://wa.me/91${p}?text=${encodeURIComponent(`Hi ${n.split(" ")[0]} 🌿 Welcome to SATVA Saheli! Thank you for your request. We have received your details and will check them now. Once approved, we will send your own SATVA Saheli order link right here on WhatsApp. – DS SATVA`)}`, `☎️ *Call:* +91${p}`, `🏠 *Address:* ${h}, ${a}${l ? ", near " + l : ""}`, `📍 *City:* ${c} – ${z}, ${st}`, `💳 *UPI:* ${u || "(none)"}`, "", "I would like to become a SATVA Saheli. Please send my approval on WhatsApp."].join("\n");
   // thank-you screen first, so she sees it when she comes back from WhatsApp
   const box = document.querySelector("main"), first = n.split(" ")[0];
   box.innerHTML = `<div class="thanks"><div class="tick">✓</div><h2>Thank you, <span></span>!</h2>
@@ -95,6 +95,10 @@ $("send").onclick = () => {
     <p class="note"><a href="/" style="color:#3f5a38;font-weight:600">&larr; Back to dssatva.com</a></p></div>`;
   box.querySelector("h2 span").textContent = first; box.querySelectorAll(".thanks p b")[1].textContent = p.slice(0, 5) + " " + p.slice(5);
   window.scrollTo(0, 0);
+  // Also send her details to the owner's Saheli Ledger app (shows as "New registration"). Paste the web app URL below once it is deployed; empty = off.
+  const APP = "https://script.google.com/macros/s/AKfycby7AcGDF_rvdwtLD6mjQfS9btyxlZB3rguaBsU5FG4rm2_MIHjfmF-SNI5xva4GOSYaOw/exec";
+  if (APP) { try { fetch(APP, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({ name: n, phone: p, upi: u, house: h, area: a, landmark: l, city: c, pincode: z, state: st }) }); } catch (e) {} }
   location.href = `https://wa.me/${OWNER}?text=${encodeURIComponent(txt)}`;
 };
 </script>
