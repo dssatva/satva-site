@@ -64,6 +64,7 @@ header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a3
   <h1>Order stock from DS SATVA</h1>
   <p class="who" id="who"></p>
   <p>For approved SATVA Sahelis · choose the packs you need and send the order to DS SATVA on WhatsApp</p>
+  <p class="free" id="free">🚚 Order above ₹499 and get free delivery</p>
 </header>
 <main>
   <h2>1. Choose packs</h2>
@@ -72,14 +73,13 @@ header .who{display:inline-block;margin-top:10px;background:#fffaf0;color:#3f5a3
   <div id="list"></div>
 
   <h2>2. Delivery</h2>
-  <label class="chk"><input type="checkbox" id="same" checked> Deliver to the address I gave when I joined</label>
-  <div id="other" hidden>
-    <label>House / flat number &amp; building <i>*</i></label><input id="house">
-    <label>Street, area &amp; city <i>*</i></label><textarea id="addr"></textarea>
-    <div class="row">
-      <div><label>Landmark</label><input id="land"></div>
-      <div><label>Pincode <i>*</i></label><input id="pin" inputmode="numeric" maxlength="6"></div>
-    </div>
+  <p class="note" id="adrnote" style="margin-top:0">Fetching your name and address…</p>
+  <label>Name</label><input id="nm" readonly>
+  <label>House / flat number &amp; building <i>*</i></label><input id="house">
+  <label>Street, area &amp; city <i>*</i></label><textarea id="addr"></textarea>
+  <div class="row">
+    <div><label>Landmark</label><input id="land"></div>
+    <div><label>Pincode <i>*</i></label><input id="pin" inputmode="numeric" maxlength="6"></div>
   </div>
   <label>Anything else? (optional)</label><input id="msg" placeholder="e.g. need by Friday">
   <p class="err" id="err"></p>
@@ -109,13 +109,15 @@ if (!ID) {   // opened from the website: she types only her WhatsApp number; we 
   const go = () => {
     const ph = document.getElementById("sp").value.replace(/\D/g, "").slice(-10), all = window.SAHELIS || {};
     const c = Object.keys(all).find(k => /^S\d{3}$/.test(k) && String(all[k].p) === ph);
-    const e = document.getElementById("serr");
+    const e = document.getElementById("serr"); e.style.color = "";
     if (!/^[6-9]\d{9}$/.test(ph)) { e.textContent = "Please type your 10-digit WhatsApp number."; e.style.display = "block"; return; }
     if (!c) { e.textContent = "This number is not an approved SATVA Saheli yet. If you have applied, please wait for your approval, or message DS SATVA on 96898 88822."; e.style.display = "block"; return; }
     try { localStorage.setItem("satvaSaheliPh", ph); } catch (x) {}
     location.href = "/s/stock/?id=" + c;
   };
   document.getElementById("sgo").onclick = go;
+  document.getElementById("sp").oninput = () => { const ph = document.getElementById("sp").value.replace(/\D/g,"").slice(-10), all = window.SAHELIS || {}, c = Object.keys(all).find(k => /^S\d{3}$/.test(k) && String(all[k].p) === ph), e = document.getElementById("serr");
+    if (c && ph.length === 10) { e.style.color = "#3f5a38"; e.textContent = "Welcome, " + all[c].n + " ✓"; e.style.display = "block"; } else { e.style.color = ""; e.style.display = "none"; } };
   document.getElementById("sp").onkeydown = ev => { if (ev.key === "Enter") go(); };
   throw new Error("sign in");
 }
@@ -159,6 +161,22 @@ function draw(i){
   el.classList.toggle("on", S[i].some(n=>n));
 }
 P.forEach((_,i)=>draw(i));
+document.getElementById("nm").value = NAME;
+// name + address come from the Saheli ledger (Google Sheet) by her WhatsApp number
+const APP = "https://script.google.com/macros/s/AKfycby7AcGDF_rvdwtLD6mjQfS9btyxlZB3rguaBsU5FG4rm2_MIHjfmF-SNI5xva4GOSYaOw/exec";
+(async () => {
+  const note = document.getElementById("adrnote");
+  try {
+    const r = await fetch(APP + "?action=saheli&phone=" + encodeURIComponent(PH)), j = await r.json();
+    if (!j || !j.found) throw 0;
+    document.getElementById("nm").value = j.name || NAME;
+    document.getElementById("house").value = j.house || "";
+    document.getElementById("addr").value = [j.area, j.city, j.state].filter(Boolean).join(", ");
+    document.getElementById("land").value = j.landmark || "";
+    document.getElementById("pin").value = j.pincode || "";
+    note.textContent = "Your name and address from when you joined are filled in. Change them if you want it delivered somewhere else.";
+  } catch (e) { note.textContent = "Please type your delivery address."; }
+})();
 list.addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return; const i = +b.dataset.i;
   if (b.dataset.j !== undefined) { cur[i] = +b.dataset.j; if (!S[i][cur[i]]) S[i][cur[i]] = 1; }
@@ -169,26 +187,31 @@ function items(){ const out=[]; P.forEach(([k,n,sz],i)=>sz.forEach(([s,pr],j)=>{
 function totals(){
   const it = items(), packs = it.reduce((a,x)=>a+x.q,0), sum = it.reduce((a,x)=>a+x.q*x.pr,0);
   document.getElementById("cnt").textContent = packs ? "Packs in this order" : "No packs yet";
+  const fr = document.getElementById("free"), left = 500 - sum;
+  fr.textContent = !packs || left > 0 ? (packs ? `🚚 Add ${rs(left)} more to get free delivery (order above ₹499)` : "🚚 Order above ₹499 and get free delivery") : "🎉 You get free delivery on this order!";
   document.getElementById("sum").textContent = packs ? `${packs} pack${packs===1?"":"s"} · you pay ${rs(calc(sum).pay)}` : "0 packs";
 }
 const v = id => document.getElementById(id).value.trim();
-document.getElementById("same").onchange = e => document.getElementById("other").hidden = e.target.checked;
 document.getElementById("send").onclick = () => {
-  const err = document.getElementById("err"), it = items(), same = document.getElementById("same").checked;
+  const err = document.getElementById("err"), it = items();
   let m = !it.length ? "Please choose at least one pack." :
-    !same && !v("house") ? "Please enter the house / flat number." :
-    !same && !v("addr") ? "Please enter the street, area and city." :
-    !same && !/^\d{6}$/.test(v("pin")) ? "Please enter a 6-digit pincode." : "";
+    !v("house") ? "Please enter the house / flat number." :
+    !v("addr") ? "Please enter the street, area and city." :
+    !/^\d{6}$/.test(v("pin")) ? "Please enter a 6-digit pincode." : "";
   if (m) { err.textContent = m; err.style.display = "block"; err.scrollIntoView({behavior:"smooth",block:"center"}); return; }
   err.style.display = "none";
   const packs = it.reduce((a,x)=>a+x.q,0), sum = it.reduce((a,x)=>a+x.q*x.pr,0), {c, pay} = calc(sum);
   const txt = [
     `📦 *Stock order – SATVA Saheli ${ID}*`, `👤 ${NAME} · 📞 +91 ${PH}`, "",
     ...it.map((x,k)=>`${k+1}. ${x.n} – ${x.s} × ${x.q} packs = ${rs(x.q*x.pr)}`), "", `Order value: ${packs} packs · ${rs(sum)}`, `Commission ${PCT}%: −${rs(c)}`, `*You pay: ${rs(pay)}*`, "",
-    same ? "🏠 *Deliver to:* my registered address" : `🏠 *Deliver to:* ${v("house")}, ${v("addr")}${v("land") ? ", near " + v("land") : ""} – ${v("pin")}`,
+    `🏠 *Deliver to:* ${v("house")}, ${v("addr")}${v("land") ? ", near " + v("land") : ""} – ${v("pin")}`,
+    sum > 499 ? "🚚 *Free delivery* (order above ₹499)" : "🚚 Order is ₹499 or below – delivery charge applies",
     v("msg") ? `📝 *Note:* ${v("msg")}` : null
   ].filter(l=>l!==null).join("\n");
-  location.href = `https://wa.me/${WA}?text=${encodeURIComponent(txt)}`;
+  // also record the order in the DS SATVA Saheli sheet (StockOrders tab); WhatsApp opens right after
+  try { fetch(APP, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ type: "stock", id: ID, phone: PH, pct: PCT,
+    lines: it.map(x => ({ n: x.n, s: x.s, q: x.q, pr: x.pr })), address: `${v("house")}, ${v("addr")}${v("land") ? ", near " + v("land") : ""} - ${v("pin")}`, note: v("msg") }) }); } catch (e) {}
+  setTimeout(() => { location.href = `https://wa.me/${WA}?text=${encodeURIComponent(txt)}`; }, 400);
 };
 </script>
 </body></html>
